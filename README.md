@@ -1,5 +1,7 @@
 # silq2
 
+[![Build Status](https://travis-ci.com/CarlosBonetti/silq2.svg?token=TncWKXR1N9y1CQNXWyip&branch=master)](https://travis-ci.com/CarlosBonetti/silq2)
+
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
