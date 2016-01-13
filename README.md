@@ -1,77 +1,63 @@
-# silq2
+# SILQ 2
 
 [![Build Status](https://travis-ci.com/CarlosBonetti/silq2.svg?token=TncWKXR1N9y1CQNXWyip&branch=master)](https://travis-ci.com/CarlosBonetti/silq2)
 
-This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
+A base desta aplicação foi gerada utilizando JHipster, você pode encontrar documentação a respeito em  [https://jhipster.github.io](https://jhipster.github.io).
 
-Before you can build this project, you must install and configure the following dependencies on your machine:
+## Dependências
 
-1. [Node.js][]: We use Node to run a development web server and build the project.
-   Depending on your system, you can install Node either from source or as a pre-packaged bundle.
+Antes de poder construir esta aplicação, instale e configure em sua máquina:
 
-After installing Node, you should be able to run the following command to install development tools (like
-[Bower][] and [BrowserSync][]). You will only need to run this command when dependencies change in package.json.
+1. [Node.js][]: Utilizamos para rodar o servidor de desenvolvimento e para construir o front-end do projeto. Requere versão 4 ou superior.
 
-    npm install
+Após instalar o node, instale as dependências front-end da aplicação com:
 
-We use [Grunt][] as our build system. Install the grunt command-line tool globally with:
+```sh
+$ npm install
+```
 
-    npm install -g grunt-cli
+Também utilizamos [Grunt][] como build system. Instale com:
 
-Run the following commands in two separate terminals to create a blissful development experience where your browser
-auto-refreshes when files change on your hard drive.
+```sh
+$ npm install -g grunt-cli
+```
 
-    mvn
-    grunt
+Para instalar as dependências maven, rode em um terminal:
 
-Bower is used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
-specifying a newer version in `bower.json`. You can also run `bower update` and `bower install` to manage dependencies.
-Add the `-h` flag on any command to see how you can use it. For example, `bower update -h`.
+```sh
+$ mvn clean install
+```
 
-# Building for production
+## Construindo a aplicação
 
-To optimize the silq2 client for production, run:
+Rode os seguintes comandos em dois terminais separados para criar uma experiência de desenvolvimento mais agradável:
 
-    mvn -Pprod clean package
+```sh
+$ mvn
+$ grunt
+```
 
-This will concatenate and minify CSS and JavaScript files. It will also modify `index.html` so it references
-these new files.
+[Bower][] é utilizado para gerenciar as dependências CSS e Javascript. Atualize ou adicione dependências no arquivo `bower.json`. Rode `bower install` ou `bower update` para gerenciar as dependências.
 
-To ensure everything worked, run:
+## Construindo para produção
 
-    java -jar target/*.war --spring.profiles.active=prod
+Para criar uma versão otimizada para produção, utilize:
 
-Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
+```sh
+$ mvn -Pprod clean package
+```
 
-# Testing
+Isto irá concatenar e minificar os arquivos CSS e Javascript, além de modificar `index.html` com as novas referências a estes arquivos.
 
-Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in `src/test/javascript` and can be run with:
+Para rodar a versão _standalone_ do projeto, utilizando um servidor Tomcat e ativando o perfil de produção, utilize:
 
-    grunt test
+```sh
+$ java -jar target/*.war --spring.profiles.active=prod
+```
 
-
-
-# Continuous Integration
-
-To setup this project in Jenkins, use the following configuration:
-
-* Project name: `silq2`
-* Source Code Management
-    * Git Repository: `git@github.com:xxxx/silq2.git`
-    * Branches to build: `*/master`
-    * Additional Behaviours: `Wipe out repository & force clone`
-* Build Triggers
-    * Poll SCM / Schedule: `H/5 * * * *`
-* Build
-    * Invoke Maven / Tasks: `-Pprod clean package`
-* Post-build Actions
-    * Publish JUnit test result report / Test Report XMLs: `build/test-results/*.xml`
+Então navegue para [http://localhost:8080](http://localhost:8080) in em seu navegador.
 
 [JHipster]: https://jhipster.github.io/
 [Node.js]: https://nodejs.org/
 [Bower]: http://bower.io/
 [Grunt]: http://gruntjs.com/
-[BrowserSync]: http://www.browsersync.io/
-[Karma]: http://karma-runner.github.io/
-[Jasmine]: http://jasmine.github.io/2.0/introduction.html
-[Protractor]: https://angular.github.io/protractor/
