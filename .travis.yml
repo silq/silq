@@ -4,6 +4,11 @@ node_js:
 sudo: false
 before_install: npm install -g grunt-cli
 install: npm install
+cache:
+  directories:
+    - node_modules
+    - src/main/webapp/bower_components
+    - $HOME/.m2
 before_script: grunt build
 notifications:
   webhooks:
