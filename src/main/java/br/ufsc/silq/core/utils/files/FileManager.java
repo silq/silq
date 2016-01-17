@@ -30,6 +30,9 @@ import br.ufsc.silq.core.exceptions.SilqErrorException;
 
 public class FileManager {
 
+	public static final String LATTES_DTD_PATH = "src/main/resources/xml/lattes.dtd";
+	public static final File LATTES_DTD = new File(LATTES_DTD_PATH);
+
 	public static String extractCurriculum(File curriculo) {
 		FileManager.validateCurriculumAgainstDTD(curriculo);
 
@@ -105,16 +108,8 @@ public class FileManager {
 		return raiz;
 	}
 
-	public static void main(String[] args) {
-		File curriculo = new File("C:\\Users\\Felps\\Workspace\\silq\\public\\xmlvalidation\\curriculos\\c1.xml");
-
-		validateCurriculumAgainstDTD(curriculo);
-	}
-
 	public static void validateCurriculumAgainstDTD(File curriculo) {
 		try {
-			File dtd = new File("C:\\Users\\Felps\\Workspace\\silq\\public\\xmlvalidation\\lattes.dtd");
-
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 			// TODO documentBuilderFactory.setValidating(true);
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -126,7 +121,7 @@ public class FileManager {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 
-			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, dtd.getAbsolutePath());
+			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, LATTES_DTD.getAbsolutePath());
 			StringWriter writer = new StringWriter();
 			StreamResult result = new StreamResult(writer);
 			transformer.transform(source, result);
