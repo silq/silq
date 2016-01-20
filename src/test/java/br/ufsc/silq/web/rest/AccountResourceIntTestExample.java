@@ -53,7 +53,7 @@ import br.ufsc.silq.web.rest.dto.UserDTO;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest
-public class AccountResourceIntTest {
+public class AccountResourceIntTestExample {
 
 	@Inject
 	private UserRepository userRepository;

@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.*;
 @WebAppConfiguration
 @IntegrationTest
 @Transactional
-public class UserServiceIntTest {
+public class UserServiceIntTestExample {
 
     @Inject
     private UserRepository userRepository;
