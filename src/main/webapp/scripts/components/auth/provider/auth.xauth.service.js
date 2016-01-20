@@ -4,7 +4,7 @@ angular.module('silq2App')
     .factory('AuthServerProvider', function loginService($http, localStorageService, Base64) {
         return {
             login: function(credentials) {
-                var data = "username=" +  encodeURIComponent(credentials.username) + "&password="
+                var data = "login=" +  encodeURIComponent(credentials.email) + "&password="
                     + encodeURIComponent(credentials.password);
                 return $http.post('api/authenticate', data, {
                     headers: {

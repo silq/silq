@@ -55,7 +55,7 @@ public class DadoGeralService {
 		QDadoGeral qDadoGeral = QDadoGeral.dadoGeral;
 		QUsuario qUsuario = QUsuario.usuario;
 
-		Usuario usuarioAtual = new UsuarioService().getUsuarioAtual();
+		Usuario usuarioAtual = new UsuarioService().getUsuarioLogado();
 
 		// @formatter:off
 		JPAQuery query = new JPAQuery(this.em).from(qDadoGeral).innerJoin(qDadoGeral.usuario, qUsuario)
@@ -68,7 +68,7 @@ public class DadoGeralService {
 			dadoGeral.setGrupos(result.getGrupos());
 			this.em.merge(dadoGeral);
 		} else {
-			Usuario usuario = new UsuarioService().getUsuarioAtual();
+			Usuario usuario = new UsuarioService().getUsuarioLogado();
 			dadoGeral.setUsuario(usuario);
 			this.em.persist(dadoGeral);
 		}

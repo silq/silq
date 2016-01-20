@@ -26,12 +26,9 @@ angular.module('silq2App')
          */
         var copyAccount = function (account) {
             return {
-                activated: account.activated,
                 email: account.email,
-                firstName: account.firstName,
-                langKey: account.langKey,
-                lastName: account.lastName,
-                login: account.login
+                nome: account.nome,
+                sexo: account.sexo
             }
         }
     });

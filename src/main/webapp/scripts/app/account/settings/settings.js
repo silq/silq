@@ -8,7 +8,7 @@ angular.module('silq2App')
                 url: '/settings',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Settings'
+                    pageTitle: 'Informações de usuário'
                 },
                 views: {
                     'content@': {
@@ -17,7 +17,7 @@ angular.module('silq2App')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });

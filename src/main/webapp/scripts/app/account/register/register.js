@@ -8,7 +8,7 @@ angular.module('silq2App')
                 url: '/register',
                 data: {
                     authorities: [],
-                    pageTitle: 'Registration'
+                    pageTitle: 'Novo cadastro'
                 },
                 views: {
                     'content@': {
@@ -17,7 +17,7 @@ angular.module('silq2App')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });

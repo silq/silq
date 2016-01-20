@@ -8,7 +8,7 @@ angular.module('silq2App')
                 url: '/password',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Password'
+                    pageTitle: 'Alterar senha'
                 },
                 views: {
                     'content@': {
@@ -17,7 +17,7 @@ angular.module('silq2App')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });

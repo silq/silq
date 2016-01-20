@@ -1,8 +1,7 @@
 package br.ufsc.silq.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import br.ufsc.silq.security.xauth.Token;
-import br.ufsc.silq.security.xauth.TokenProvider;
+import javax.inject.Inject;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,33 +13,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import com.codahale.metrics.annotation.Timed;
 
+import br.ufsc.silq.security.xauth.Token;
+import br.ufsc.silq.security.xauth.TokenProvider;
+
+/**
+ * Controlador de autenticação de usuários usuando um Token stateless
+ */
 @RestController
 @RequestMapping("/api")
 public class UserXAuthTokenController {
 
-    @Inject
-    private TokenProvider tokenProvider;
+	@Inject
+	private TokenProvider tokenProvider;
 
-    @Inject
-    private AuthenticationManager authenticationManager;
+	@Inject
+	private AuthenticationManager authenticationManager;
 
-    @Inject
-    private UserDetailsService userDetailsService;
+	@Inject
+	private UserDetailsService userDetailsService;
 
-    @RequestMapping(value = "/authenticate",
-            method = RequestMethod.POST)
-    @Timed
-    public Token authorize(@RequestParam String username, @RequestParam String password) {
-
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-        Authentication authentication = this.authenticationManager.authenticate(token);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserDetails details = this.userDetailsService.loadUserByUsername(username);
-        return tokenProvider.createToken(details);
-    }
+	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	@Timed
+	public Token authorize(@RequestParam String login, @RequestParam String password) {
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(login, password);
+		Authentication authentication = this.authenticationManager.authenticate(token);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		UserDetails details = this.userDetailsService.loadUserByUsername(login);
+		return this.tokenProvider.createToken(details);
+	}
 }

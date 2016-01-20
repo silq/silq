@@ -8,7 +8,7 @@ angular.module('silq2App')
                 url: '/login',
                 data: {
                     authorities: [], 
-                    pageTitle: 'Sign in'
+                    pageTitle: 'Login'
                 },
                 views: {
                     'content@': {
@@ -17,7 +17,7 @@ angular.module('silq2App')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });

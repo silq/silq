@@ -6,11 +6,11 @@ angular.module('silq2App')
         $scope.errors = {};
 
         $scope.rememberMe = true;
-        $timeout(function (){angular.element('[ng-model="username"]').focus();});
+        $timeout(function (){angular.element('[ng-model="email"]').focus();});
         $scope.login = function (event) {
             event.preventDefault();
             Auth.login({
-                username: $scope.username,
+                email: $scope.email,
                 password: $scope.password,
                 rememberMe: $scope.rememberMe
             }).then(function () {

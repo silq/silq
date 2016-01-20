@@ -7,13 +7,13 @@ angular.module('silq2App')
         $scope.doNotMatch = null;
 
         $scope.resetAccount = {};
-        $timeout(function (){angular.element('[ng-model="resetAccount.password"]').focus();});
+        $timeout(function (){angular.element('[ng-model="resetAccount.novaSenha"]').focus();});
 
         $scope.finishReset = function() {
-            if ($scope.resetAccount.password !== $scope.confirmPassword) {
+            if ($scope.resetAccount.novaSenha !== $scope.confirmPassword) {
                 $scope.doNotMatch = 'ERROR';
             } else {
-                Auth.resetPasswordFinish({key: $stateParams.key, newPassword: $scope.resetAccount.password}).then(function () {
+                Auth.resetPasswordFinish({key: $stateParams.key, novaSenha: $scope.resetAccount.novaSenha}).then(function () {
                     $scope.success = 'OK';
                 }).catch(function (response) {
                     $scope.success = null;

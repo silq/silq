@@ -7,10 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import br.ufsc.silq.core.cypher.Cypher;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,12 +33,12 @@ public class Usuario {
 	@Column(name = "no_usuario")
 	private String nome;
 
-	// TODO É seguro manter a senha como campo da entidade? Provavelmente não...
 	@NotBlank(message = "Campo obrigatório")
 	@Column(name = "ds_senha")
 	private String senha;
 
 	@NotBlank(message = "Entre com um e-mail válido")
+	@Email
 	@Column(name = "ds_email")
 	private String email;
 
@@ -45,14 +46,10 @@ public class Usuario {
 	@Column(name = "no_sexo")
 	private String sexo;
 
-	public Usuario(String username, String email, String sexo) {
-		this.nome = username;
-		this.email = email;
-		this.sexo = sexo;
-	}
+	@Size(max = 20)
+	@Column(name = "reset_key", length = 20)
+	private String resetKey;
 
-	public void cifrarSenha() {
-		this.senha = Cypher.createPassword(this.senha);
-	}
+	// TODO (bonetti): autoridades!
 
 }

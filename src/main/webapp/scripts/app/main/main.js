@@ -7,7 +7,8 @@ angular.module('silq2App')
                 parent: 'site',
                 url: '/',
                 data: {
-                    authorities: []
+                    authorities: [],
+                    pageTitle: 'SILQ - Sistema de Integração Lattes - Qualis'
                 },
                 views: {
                     'content@': {
@@ -16,7 +17,7 @@ angular.module('silq2App')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });

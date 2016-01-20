@@ -1,10 +1,10 @@
 package br.ufsc.silq.service;
 
 import br.ufsc.silq.Application;
+import br.ufsc.silq.core.service.util.RandomUtil;
 import br.ufsc.silq.domain.User;
 import br.ufsc.silq.repository.UserRepository;
 import java.time.ZonedDateTime;
-import br.ufsc.silq.service.util.RandomUtil;
 import java.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;

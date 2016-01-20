@@ -7,7 +7,8 @@ angular.module('silq2App')
                 parent: 'account',
                 url: '/reset/request',
                 data: {
-                    authorities: []
+                    authorities: [],
+                    pageTitle: 'Recuperação de senha'
                 },
                 views: {
                     'content@': {
@@ -16,7 +17,7 @@ angular.module('silq2App')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });

@@ -7,7 +7,7 @@ angular.module('silq2App')
             replace: true,
             restrict: 'E',
             template: '<div id="strength">' +
-                '<small translate="global.messages.validate.newpassword.strength">Password strength:</small>' +
+                '<small translate="global.messages.validate.newpassword.strength">Força da senha:</small>' +
                 '<ul id="strengthBar">' +
                 '<li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li>' +
                 '</ul>' +
