@@ -15,11 +15,10 @@ angular.module('silq2App')
                 rememberMe: $scope.rememberMe
             }).then(function () {
                 $scope.authenticationError = false;
-                if ($rootScope.previousStateName === 'register') {
-                    $state.go('home');
-                } else {
-                    $rootScope.back();
-                }
+                // Forçamos o reload para a atualização do MainController
+                // e suas variavéis $scope de usuário no caso da caixa de login
+                // estar na página inicial
+                $state.go('home', {}, {reload: true});
             }).catch(function () {
                 $scope.authenticationError = true;
             });
