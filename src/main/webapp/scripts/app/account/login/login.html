@@ -1,13 +1,12 @@
-<div>
+<div ng-controller="LoginController">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-8 col-md-offset-2">
             <h1>Login</h1>
 
             <div class="alert alert-danger" ng-show="authenticationError">
                 Usuário ou senha incorretos
             </div>
-        </div>
-        <div class="col-md-4 col-md-offset-4">
+
             <form class="form" role="form" ng-submit="login($event)">
                 <div class="form-group">
                     <label for="email">E-mail</label>

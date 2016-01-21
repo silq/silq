@@ -17,16 +17,28 @@
                         <span class="hidden-sm">Home</span>
                     </a>
                 </li>
-                <li ui-sref-active="active" ng-switch-when="false">
-                    <a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse.in">
-                        <span class="glyphicon glyphicon-log-in"></span>
-                        &#xA0;<span>Login</span>
+                <li ui-sref-active="active">
+                    <a ui-sref="about" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        <span class="hidden-sm">Sobre</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="contact" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <span class="hidden-sm">Contato</span>
                     </a>
                 </li>
                 <li ui-sref-active="active" ng-switch-when="false">
                     <a ui-sref="register" data-toggle="collapse" data-target=".navbar-collapse.in">
                         <span class="glyphicon glyphicon-plus-sign"></span>
-                        &#xA0;<span>Cadastrar-se</span>
+                        <span>Cadastrar-se</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" ng-switch-when="false">
+                    <a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-log-in"></span>
+                        <span>Login</span>
                     </a>
                 </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
