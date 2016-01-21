@@ -2,6 +2,16 @@ body {
     /*background: #fafafa;*/
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
+    font-size: 13px;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.footer li {
+    display: inline;
+    margin: 0 3px;
 }
 
 /* ==========================================================================
@@ -65,14 +75,6 @@ Browser Upgrade Prompt
 .error {
     color: white;
     background-color: red;
-}
-
-.hipster {
-    display: inline-block;
-    width: 347px;
-    height: 497px;
-    background: url("../images/hipster.png") no-repeat center top;
-    background-size: contain;
 }
 
 .pad {

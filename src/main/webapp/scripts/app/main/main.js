@@ -51,5 +51,21 @@ angular.module('silq2App')
                 resolve: {
 
                 }
+            })
+            .state('termo', {
+                parent: 'site',
+                url: '/termo',
+                data: {
+                    authorities: [],
+                    pageTitle: 'Termo de serviço'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/main/termo.html'
+                    }
+                },
+                resolve: {
+
+                }
             });
     });
