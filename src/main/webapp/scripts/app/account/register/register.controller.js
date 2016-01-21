@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('RegisterController', function ($scope, $timeout, Auth) {
-        $scope.success = null;
+    .controller('RegisterController', function ($scope, $state, $timeout, Auth) {
         $scope.error = null;
         $scope.doNotMatch = null;
         $scope.registerAccount = {};
@@ -17,9 +16,17 @@ angular.module('silq2App')
                 $scope.errorEmailExists = null;
 
                 Auth.createAccount($scope.registerAccount).then(function () {
-                    $scope.success = 'OK';
+                    // Efetua login após cadastro
+                    Auth.login({
+                        email: $scope.registerAccount.email,
+                        password: $scope.registerAccount.senha,
+                        rememberMe: true
+                    }).then(function() {
+                        $state.go('home');
+                    }).catch(function() {
+                        $scope.error = 'ERROR';
+                    });
                 }).catch(function (response) {
-                    $scope.success = null;
                     if (response.status === 400 && response.data === 'E-mail já encontra-se cadastrado') {
                         $scope.errorEmailExists = 'ERROR';
                     } else {
