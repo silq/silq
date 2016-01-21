@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import br.ufsc.silq.core.entities.Usuario;
-import br.ufsc.silq.security.AuthoritiesConstants;
 import lombok.Data;
 
 /**
@@ -25,8 +24,10 @@ public class UsuarioDTO {
 		this.email = usuario.getEmail();
 		this.nome = usuario.getNome();
 		this.sexo = usuario.getSexo();
+
 		this.authorities = new HashSet<>();
-		this.authorities.add(AuthoritiesConstants.USER);
-		this.authorities.add(AuthoritiesConstants.ADMIN);
+		usuario.getAutoridades().stream().forEach(autoridade -> {
+			this.authorities.add(autoridade.getNome());
+		});
 	}
 }

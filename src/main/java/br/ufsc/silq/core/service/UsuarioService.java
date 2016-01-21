@@ -60,14 +60,13 @@ public class UsuarioService {
 	}
 
 	/**
-	 * Retorna o usuário atualmente logado Joga uma exceção caso não exista
-	 * usuário logado
+	 * Retorna o usuário atualmente logado. Joga uma exceção caso não exista
 	 *
 	 * @return
 	 */
 	public Usuario getUsuarioLogado() {
 		Usuario usuario = this.usuarioRepository.findOneByEmail(SecurityUtils.getCurrentUser().getUsername()).get();
-		// user.getAuthorities().size(); // eagerly load the association
+		usuario.getAutoridades().size(); // força o carregamento das autoridades
 		return usuario;
 	}
 
