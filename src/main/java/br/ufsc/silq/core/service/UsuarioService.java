@@ -1,12 +1,10 @@
 package br.ufsc.silq.core.service;
 
 import java.io.StringReader;
-import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -18,9 +16,6 @@ import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-import com.mysema.query.jpa.impl.JPAQuery;
-
-import br.ufsc.silq.core.entities.QUsuario;
 import br.ufsc.silq.core.entities.Usuario;
 import br.ufsc.silq.core.repository.UsuarioRepository;
 import br.ufsc.silq.core.service.util.RandomUtil;
@@ -106,8 +101,8 @@ public class UsuarioService {
 		log.debug("Reset user password for reset key {}", key);
 
 		return this.usuarioRepository.findOneByResetKey(key).filter(usuario -> {
-			ZonedDateTime oneDayAgo = ZonedDateTime.now().minusHours(24);
 			// TODO (bonetti): expirar key após 24 horas ??
+			// ZonedDateTime oneDayAgo = ZonedDateTime.now().minusHours(24);
 			// return usuario.getResetDate().isAfter(oneDayAgo);
 			return true;
 		}).map(usuario -> {
@@ -140,35 +135,6 @@ public class UsuarioService {
 		}
 
 		return null;
-	}
-
-	public String getUserNameByEmail() {
-		QUsuario qUsuario = QUsuario.usuario;
-
-		// String email = Controller.session("connected");
-		String email = ""; // TODO (bonetti)
-
-		JPAQuery query = new JPAQuery(this.em);
-		query.from(qUsuario).where(qUsuario.email.eq(email));
-
-		Usuario usuario = query.singleResult(qUsuario);
-
-		this.em.close();
-
-		return usuario.getNome();
-	}
-
-	public void saveUsuario(Usuario usuario) {
-		EntityTransaction transaction = this.em.getTransaction();
-
-		transaction.begin();
-		if (usuario.getId() != null) {
-			this.em.merge(usuario);
-		} else {
-			this.em.persist(usuario);
-		}
-		transaction.commit();
-		this.em.close();
 	}
 
 }
