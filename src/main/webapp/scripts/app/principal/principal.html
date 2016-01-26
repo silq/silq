@@ -1,0 +1,43 @@
+<div ng-cloak>
+    <ul class="nav nav-tabs nav-justified">
+      <li role="presentation" class="active"><a href="#">Meus dados</a></li>
+      <li role="presentation"><a href="#">Grupos de avaliação <span class="badge">0</span></a></li>
+      <li role="presentation"><a href="#">Avaliação livre</a></li>
+    </ul>
+
+    <br /><br />
+
+    <div class="align-center">
+        <p>Seja bem-vindo(a), {{ account.nome }}! Personalize sua tela de usuário adicionando seu currículo:</p>
+
+        <br />
+
+        <form name="uploadForm" ng-show="!file.progress">
+            <div name="file" ngf-drop="uploadFile($file)" ngf-select="uploadFile($file)"
+                class="drop-box" ng-model="file"
+                ngf-drag-over-class="'drop-box-active'"
+                accept="image/*,application/pdf"
+                ngf-pattern="'application/xml,text/xml'"
+                ngf-accept="'application/xml,text/xml'"
+                ngf-max-size="50MB"
+                ngf-model-invalid="errorFile">
+                Arraste seu currículo aqui ou clique para adicionar
+
+                <div class="text-danger">
+                    <span ng-show="uploadForm.file.$error.maxSize">Arquivo muito grande. Tamanho máximo: 50MB</span>
+                    <span ng-show="uploadForm.file.$error.pattern">Somente arquivos do tipo XML são permitidos</span>
+                </div>
+            </div>
+            <div ngf-no-file-drop>Arrastar e soltar arquivos não é suportado por este navegador</div>
+        </form>
+
+        <div class="align-center" ng-show="file.progress">
+            {{ file.status }}
+            <div class="progress">
+                <div class="progress-bar" style="width: {{file.progress}}%">
+                    {{file.progress}}%
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

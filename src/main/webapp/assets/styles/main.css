@@ -5,6 +5,16 @@ body {
     font-size: 13px;
 }
 
+.main-content {
+    min-height: 50vh;
+}
+
+.footer {
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+    margin-top: 40px;
+}
+
 .footer ul {
     list-style: none;
 }
@@ -12,6 +22,24 @@ body {
 .footer li {
     display: inline;
     margin: 0 3px;
+}
+
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    padding: 20px;
+    font-size: 14px;
+    text-align: center;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.drop-box:hover {
+    border-color: #ccc;
+}
+
+.drop-box-active {
+    border-color: blue;
 }
 
 /* ==========================================================================

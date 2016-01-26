@@ -29,6 +29,8 @@ security:
     basic:
         enabled: false
 
+multipart.maxFileSize: 100Mb
+
 # ===================================================================
 # JHipster specific properties
 # ===================================================================
@@ -51,14 +53,14 @@ jhipster:
         authentication:
             xauth:
                 secret: myXAuthSecret
-                # Token is valid 30 minutes
-                tokenValidityInSeconds: 1800
+                # Token is valid 1 day
+                tokenValidityInSeconds: 86400
         rememberme:
             # security key (this key should be unique for your application, and kept secret)
             key: fced66382258a4a53d195ad59cc1647d70abdc54
     swagger:
-        title: silq2 API
-        description: silq2 API documentation
+        title: SILQ API
+        description: SILQ API - Documentação
         version: 0.0.1
         termsOfServiceUrl:
         contact:
