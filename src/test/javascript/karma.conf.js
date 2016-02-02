@@ -28,6 +28,8 @@ module.exports = function (config) {
             'main/webapp/bower_components/ng-file-upload/ng-file-upload.js',
             'main/webapp/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
             'main/webapp/bower_components/ng-file-upload-shim/ng-file-upload-shim.js',
+            'main/webapp/bower_components/angular-flash-alert/dist/angular-flash.js',
+            'main/webapp/bower_components/angular-animate/angular-animate.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/scripts/app/app.js',

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import br.ufsc.silq.core.entities.Usuario;
+import br.ufsc.silq.security.AuthoritiesConstants;
 import lombok.Data;
 
 /**
@@ -29,5 +30,10 @@ public class UsuarioDTO {
 		usuario.getAutoridades().stream().forEach(autoridade -> {
 			this.authorities.add(autoridade.getNome());
 		});
+
+		// Todo usuário logado possui a autoridade "ROLE_USER"
+		// Ao invés de salvar esta informação no banco, adicionamos na entidade
+		// sempre que usarmos este atributo
+		this.authorities.add(AuthoritiesConstants.USER);
 	}
 }

@@ -14,17 +14,19 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import org.hibernate.annotations.Type;
 
-@Getter
-@Setter
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Entity
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_dado_geral", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_dado_geral")
+@Data
+@ToString(exclude = "curriculoXml")
 @NoArgsConstructor
 public class DadoGeral {
 
@@ -59,10 +61,12 @@ public class DadoGeral {
 
 	@Type(type = "org.hibernate.type.BinaryType")
 	@Column(name = "xml")
+	@JsonIgnore
 	private byte[] curriculoXml;
 
 	@OneToOne
 	@JoinColumn(name = "co_usuario", unique = true, nullable = false)
+	@JsonIgnore
 	private Usuario usuario;
 
 	@OneToMany(orphanRemoval = true, mappedBy = "coordenador")

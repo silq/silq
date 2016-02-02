@@ -11,6 +11,7 @@
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/angular-flash-alert/dist/angular-flash.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css assets/styles/main.css -->
@@ -24,9 +25,10 @@
         <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
         <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
+            <div flash-message="4000"></div>
             <div class="main-content" ui-view="content"></div>
 
-            <div class="footer align-center">
+            <div class="footer text-center">
                 <ul>
                     <li><a ui-sref="about">Sobre</a></li>
                     <li><a ui-sref="contact">Contato</a></li>
@@ -63,6 +65,8 @@
         <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
         <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
         <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+        <script src="bower_components/angular-flash-alert/dist/angular-flash.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -97,6 +101,7 @@
     <script src="scripts/components/util/capitalize.filter.js"></script>
     <script src="scripts/components/alert/alert.service.js"></script>
     <script src="scripts/components/alert/alert.directive.js"></script>
+    <script src="scripts/components/dado-geral/dado-geral.service.js"></script>
     <script src="scripts/components/util/parse-links.service.js"></script>
     <script src="scripts/components/util/date-util.service.js"></script>
     <script src="scripts/components/util/data-util.service.js"></script>

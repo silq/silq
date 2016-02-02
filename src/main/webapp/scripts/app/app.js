@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App', ['LocalStorageModule',
-    'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload',
+    'ngAnimate', 'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload', 'flash',
     // jhipster-needle-angularjs-add-module JHipster will add new module
     'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar'])
 

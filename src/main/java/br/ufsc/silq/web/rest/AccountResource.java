@@ -41,7 +41,7 @@ public class AccountResource {
 
 	/**
 	 * POST /register -> Cadastra um novo usuário, caso o e-mail já não esteja
-	 * cadastrado em uso
+	 * em uso
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
 	@Timed

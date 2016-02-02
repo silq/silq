@@ -4,8 +4,6 @@ import java.io.StringReader;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.xml.parsers.DocumentBuilder;
@@ -29,15 +27,15 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 public class UsuarioService {
 
-	@PersistenceContext
-	private EntityManager em;
-
 	@Inject
 	private PasswordEncoder passwordEncoder;
 
 	@Delegate
 	@Inject
 	private UsuarioRepository usuarioRepository;
+
+	@Inject
+	private DadoGeralService dadoGeralService;
 
 	/**
 	 * Registra um novo usuário, salvando-o na base de dados e cifrando a senha
@@ -114,14 +112,8 @@ public class UsuarioService {
 		});
 	}
 
-	public boolean hasCurriculum() {
-		DadoGeralService dadoGeralService = new DadoGeralService();
-		return dadoGeralService.getDadoGeral() != null;
-	}
-
 	public Document getUserCurriculum() {
-		DadoGeralService dadoGeralService = new DadoGeralService();
-		byte[] curriculoStringByteArray = dadoGeralService.getDadoGeral().getCurriculoXml();
+		byte[] curriculoStringByteArray = this.dadoGeralService.getDadoGeral().getCurriculoXml();
 		String curriculoString = new String(curriculoStringByteArray);
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -136,5 +128,4 @@ public class UsuarioService {
 
 		return null;
 	}
-
 }

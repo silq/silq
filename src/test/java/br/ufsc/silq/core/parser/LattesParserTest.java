@@ -12,7 +12,7 @@ import br.ufsc.silq.core.exceptions.SilqErrorException;
 
 public class LattesParserTest {
 
-	public static final File CURRICULUM_CHRISTIANE = new File("src/test/resources/fixtures/curricula/christiane.xml");;
+	public static final File CURRICULUM_CHRISTIANE = new File("src/test/resources/fixtures/curricula/christiane.xml");
 
 	@Test
 	public void testParseCurriculaDadosGerais() throws ParseException, SilqErrorException {

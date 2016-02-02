@@ -19,7 +19,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.ufsc.silq.security.AuthoritiesConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -41,6 +40,7 @@ public class Usuario {
 
 	@NotBlank(message = "Campo obrigatório")
 	@Column(name = "ds_senha")
+	@JsonIgnore
 	private String senha;
 
 	@NotBlank(message = "Entre com um e-mail válido")
@@ -54,18 +54,10 @@ public class Usuario {
 
 	@Size(max = 20)
 	@Column(name = "reset_key", length = 20)
+	@JsonIgnore
 	private String resetKey;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuarioId", orphanRemoval = true, fetch = FetchType.LAZY)
 	private Set<Autoridade> autoridades = new HashSet<>();
-
-	public Set<Autoridade> getAutoridades() {
-		// Todo usuário logado possui a autoridade "ROLE_USER"
-		// Ao invés de salvar esta informação no banco, adicionamos na entidade
-		// sempre que usarmos
-		// este atributo
-		this.autoridades.add(new Autoridade(AuthoritiesConstants.USER, this.getId()));
-		return this.autoridades;
-	}
 }

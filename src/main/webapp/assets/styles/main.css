@@ -1,8 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700);
+
 body {
-    /*background: #fafafa;*/
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .main-content {
@@ -40,6 +41,20 @@ body {
 
 .drop-box-active {
     border-color: blue;
+}
+
+.table-dado-geral td:first-child {
+    text-align: right;
+    font-weight: 600;
+}
+
+.alert.alert-dismissible {
+    position: fixed;
+    z-index: 100;
+    width: 500px;
+    left: calc(50% - 250px);
+    top: 40px;
+    line-height: 1.7;
 }
 
 /* ==========================================================================
@@ -227,10 +242,6 @@ ul#strengthBar {
 .readonly {
     background-color: #eee;
     opacity: 1;
-}
-
-.align-center {
-    text-align: center;
 }
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
