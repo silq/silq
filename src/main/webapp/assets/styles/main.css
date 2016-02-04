@@ -57,6 +57,10 @@ body {
     line-height: 1.7;
 }
 
+.control-label {
+    font-weight: 600;
+}
+
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 ========================================================================== */

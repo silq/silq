@@ -1,0 +1,66 @@
+<form name="form" role="form" novalidate ng-submit="submit()" show-validation>
+
+    <div class="form-group">
+        <label class="control-label" for="area">Área de Atuação *</label>
+        <select class="form-control" id="area" name="area" ng-model="model.area" required>
+            <option value=""></option>
+            <option value="Administração, Ciências Contábeis e Turismo">Administração, Ciências Contábeis e Turismo</option>
+            <option value="Antropologia / Arqueologia">Antropologia / Arqueologia</option>
+            <option value="Arquitetura e Urbanismo">Arquitetura e Urbanismo</option>
+            <option value="Artes / Música">Artes / Música</option>
+            <option value="Astronomia / Física">Astronomia / Física</option>
+            <option value="Biodiversidade">Biodiversidade</option>
+            <option value="Biotecnologia">Biotecnologia</option>
+            <option value="Ciência da Computação">Ciência da Computação</option>
+            <option value="Ciência de Alimentos">Ciência de Alimentos</option>
+            <option value="Ciência Política e Relações Internacionais">Ciência Política e Relações Internacionais</option>
+            <option value="Ciências Agrárias I">Ciências Agrárias I</option>
+            <option value="Ciências Ambientais">Ciências Ambientais</option>
+            <option value="Ciências Biológicas I">Ciências Biológicas I</option>
+            <option value="Ciências Biológicas II">Ciências Biológicas II</option>
+            <option value="Ciências Biológicas III">Ciências Biológicas III</option>
+            <option value="Ciências Sociais Aplicadas I">Ciências Sociais Aplicadas I</option>
+            <option value="Direito">Direito</option>
+            <option value="Economia">Economia</option>
+            <option value="Educação">Educação</option>
+            <option value="Educação Física">Educação Física</option>
+            <option value="Enfermagem">Enfermagem</option>
+            <option value="Engenharias I">Engenharias I</option>
+            <option value="Engenharias II">Engenharias II</option>
+            <option value="Engenharias III">Engenharias III</option>
+            <option value="Engenharias IV">Engenharias IV</option>
+            <option value="Ensino">Ensino</option>
+            <option value="Farmácia">Farmácia</option>
+            <option value="Filosofia / Teologia">Filosofia / Teologia</option>
+            <option value="Geociências">Geociências</option>
+            <option value="Geografia">Geografia</option>
+            <option value="História">História</option>
+            <option value="Interdisciplinar">Interdisciplinar</option>
+            <option value="Letras / Lingüística">Letras / Lingüística</option>
+            <option value="Matemática / Probabilidade e Estatística">Matemática / Probabilidade e Estatística</option>
+            <option value="Materiais">Materiais</option>
+            <option value="Medicina I">Medicina I</option>
+            <option value="Medicina II">Medicina II</option>
+            <option value="Medicina III">Medicina III</option>
+            <option value="Medicina Veterinária">Medicina Veterinária</option>
+            <option value="Nutrição">Nutrição</option>
+            <option value="Odontologia">Odontologia</option>
+            <option value="Planejamento Urbano e Regional / Demografia">Planejamento Urbano e Regional / Demografia</option>
+            <option value="Psicologia">Psicologia</option>
+            <option value="Química">Química</option>
+            <option value="Saúde Coletiva">Saúde Coletiva</option>
+            <option value="Serviço Social">Serviço Social</option>
+            <option value="Sociologia">Sociologia</option>
+            <option value="Zootecnia / Recursos Pesqueiros">Zootecnia / Recursos Pesqueiros</option>
+        </select>
+
+        <div ng-show="form.nome.$dirty && form.nome.$invalid" ng-messages="form.nome.$error">
+            <p class="help-block" ng-message="required">
+                Campo requerido<br />
+                As avaliações serão de acordo com a área selecionada.
+            </p>
+        </div>
+
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Avaliar</button>
+    </div>
+</form>

@@ -1,7 +1,7 @@
 package br.ufsc.silq.service;
 
 import br.ufsc.silq.Application;
-import br.ufsc.silq.core.service.util.RandomUtil;
+import br.ufsc.silq.core.business.service.util.RandomUtil;
 import br.ufsc.silq.domain.User;
 import br.ufsc.silq.repository.UserRepository;
 import java.time.ZonedDateTime;
