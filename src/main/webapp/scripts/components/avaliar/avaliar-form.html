@@ -1,4 +1,4 @@
-<form name="form" role="form" novalidate ng-submit="submit()" show-validation>
+<form name="form" role="form" ng-submit="submit()" show-validation>
 
     <div class="form-group">
         <label class="control-label" for="area">Área de Atuação *</label>
@@ -53,14 +53,48 @@
             <option value="Sociologia">Sociologia</option>
             <option value="Zootecnia / Recursos Pesqueiros">Zootecnia / Recursos Pesqueiros</option>
         </select>
-
-        <div ng-show="form.nome.$dirty && form.nome.$invalid" ng-messages="form.nome.$error">
-            <p class="help-block" ng-message="required">
-                Campo requerido<br />
-                As avaliações serão de acordo com a área selecionada.
-            </p>
+        <div ng-show="form.area.$dirty && form.area.$invalid" ng-messages="form.area.$error">
+            <p class="help-block" ng-message="required">Campo requerido</p>
         </div>
 
-        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Avaliar</button>
+        <p class="help-block">
+            As avaliações serão de acordo com a área selecionada.
+        </p>
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label" for="anoPublicacaoDe">Publicações de</label>
+                <select class="form-control" id="anoPublicacaoDe" name="anoPublicacaoDe" ng-model="model.anoPublicacaoDe">
+                    <option value=""></option>
+                    <option ng-repeat="year in years" value="{{ year }}">{{ year }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label" for="anoPublicacaoAte">Até</label>
+                <select class="form-control" id="anoPublicacaoAte" name="anoPublicacaoAte" ng-model="model.anoPublicacaoAte">
+                    <option value=""></option>
+                    <option ng-repeat="year in years" value="{{ year }}">{{ year }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="nivelSimilaridade">Nível de confiança</label>
+        <select class="form-control" id="nivelSimilaridade" name="nivelSimilaridade" ng-model="model.nivelSimilaridade" required>
+            <option value="0.9">Muito alto (90%)</option>
+            <option value="0.8">Alto (80%)</option>
+            <option value="0.6">Normal (60%)</option>
+            <option value="0.4">Baixo (40%)</option>
+            <option value="0.2">Baixo (20%)</option>
+        </select>
+        <p class="help-block">Estabelece um limite mínimo da qualidade da avaliação.</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Avaliar</button>
 </form>

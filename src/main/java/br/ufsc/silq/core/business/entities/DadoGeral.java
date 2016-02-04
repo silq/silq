@@ -70,6 +70,7 @@ public class DadoGeral {
 	private Usuario usuario;
 
 	@OneToMany(orphanRemoval = true, mappedBy = "coordenador")
+	@JsonIgnore
 	private List<Grupo> grupos;
 
 }
