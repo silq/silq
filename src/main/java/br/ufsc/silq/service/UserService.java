@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.ufsc.silq.core.service.util.RandomUtil;
+import br.ufsc.silq.core.business.service.util.RandomUtil;
 import br.ufsc.silq.domain.Authority;
 import br.ufsc.silq.domain.User;
 import br.ufsc.silq.repository.AuthorityRepository;

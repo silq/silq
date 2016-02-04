@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 
-import br.ufsc.silq.core.entities.Usuario;
-import br.ufsc.silq.core.service.UsuarioService;
+import br.ufsc.silq.core.business.entities.Usuario;
+import br.ufsc.silq.core.business.service.UsuarioService;
 import br.ufsc.silq.service.MailService;
 import br.ufsc.silq.web.rest.dto.RecuperarSenhaDTO;
 import br.ufsc.silq.web.rest.dto.UsuarioDTO;

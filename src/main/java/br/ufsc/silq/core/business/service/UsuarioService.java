@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.service;
+package br.ufsc.silq.core.business.service;
 
 import java.io.StringReader;
 import java.util.Optional;
@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-import br.ufsc.silq.core.entities.Usuario;
-import br.ufsc.silq.core.repository.UsuarioRepository;
-import br.ufsc.silq.core.service.util.RandomUtil;
+import br.ufsc.silq.core.business.entities.Usuario;
+import br.ufsc.silq.core.business.repository.UsuarioRepository;
+import br.ufsc.silq.core.business.service.util.RandomUtil;
 import br.ufsc.silq.security.SecurityUtils;
 import br.ufsc.silq.web.rest.dto.UsuarioUpdateDTO;
 import lombok.experimental.Delegate;

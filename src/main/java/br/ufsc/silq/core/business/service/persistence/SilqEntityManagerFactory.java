@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.service.persistence;
+package br.ufsc.silq.core.business.service.persistence;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

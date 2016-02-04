@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.service.util;
+package br.ufsc.silq.core.business.service.util;
 
 import org.apache.commons.lang.RandomStringUtils;
 

@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.service;
+package br.ufsc.silq.core.business.service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.mysema.query.jpa.impl.JPAQuery;
 
-import br.ufsc.silq.core.entities.Grupo;
-import br.ufsc.silq.core.entities.Pesquisador;
-import br.ufsc.silq.core.entities.QGrupo;
-import br.ufsc.silq.core.entities.QPesquisador;
+import br.ufsc.silq.core.business.entities.Grupo;
+import br.ufsc.silq.core.business.entities.Pesquisador;
+import br.ufsc.silq.core.business.entities.QGrupo;
+import br.ufsc.silq.core.business.entities.QPesquisador;
 import br.ufsc.silq.core.exceptions.SilqEntityNotFoundException;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
 import br.ufsc.silq.core.exceptions.SilqForbiddenActionException;

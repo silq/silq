@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.entities;
+package br.ufsc.silq.core.business.entities;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

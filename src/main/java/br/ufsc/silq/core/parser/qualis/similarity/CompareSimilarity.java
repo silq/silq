@@ -12,15 +12,15 @@ import javax.persistence.EntityManager;
 import com.mysema.query.jpa.impl.JPAQuery;
 
 import br.ufsc.silq.core.SilqConfig;
+import br.ufsc.silq.core.business.entities.QQualisGeral;
+import br.ufsc.silq.core.business.entities.QualisGeral;
+import br.ufsc.silq.core.business.service.persistence.SilqEntityManagerFactory;
 import br.ufsc.silq.core.dto.parser.struct.Artigo;
 import br.ufsc.silq.core.dto.parser.struct.Conceito;
 import br.ufsc.silq.core.dto.parser.struct.ParseResult;
 import br.ufsc.silq.core.dto.parser.struct.Trabalho;
-import br.ufsc.silq.core.entities.QQualisGeral;
-import br.ufsc.silq.core.entities.QualisGeral;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.forms.AvaliarForm;
-import br.ufsc.silq.core.service.persistence.SilqEntityManagerFactory;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.combo.ComboValueHelper;
 

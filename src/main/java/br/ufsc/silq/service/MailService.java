@@ -15,7 +15,7 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 
 import br.ufsc.silq.config.JHipsterProperties;
-import br.ufsc.silq.core.entities.Usuario;
+import br.ufsc.silq.core.business.entities.Usuario;
 import br.ufsc.silq.domain.User;
 import lombok.extern.slf4j.Slf4j;
 

@@ -11,13 +11,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.w3c.dom.Document;
 
+import br.ufsc.silq.core.business.entities.Grupo;
+import br.ufsc.silq.core.business.entities.Pesquisador;
+import br.ufsc.silq.core.business.service.GrupoService;
+import br.ufsc.silq.core.business.service.PesquisadorService;
 import br.ufsc.silq.core.dto.graphsdto.PesquisadorEstratoAnoDto;
 import br.ufsc.silq.core.dto.parser.struct.Artigo;
 import br.ufsc.silq.core.dto.parser.struct.Conceito;
 import br.ufsc.silq.core.dto.parser.struct.ParseResult;
 import br.ufsc.silq.core.dto.parser.struct.Trabalho;
-import br.ufsc.silq.core.entities.Grupo;
-import br.ufsc.silq.core.entities.Pesquisador;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.enums.GrupoConceitual;
 import br.ufsc.silq.core.enums.Periodo;
@@ -25,8 +27,6 @@ import br.ufsc.silq.core.exceptions.SilqEntityNotFoundException;
 import br.ufsc.silq.core.exceptions.SilqForbiddenActionException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.LattesParser;
-import br.ufsc.silq.core.service.GrupoService;
-import br.ufsc.silq.core.service.PesquisadorService;
 import br.ufsc.silq.core.utils.files.FileManager;
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
 

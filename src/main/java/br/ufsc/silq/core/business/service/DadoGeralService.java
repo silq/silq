@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.service;
+package br.ufsc.silq.core.business.service;
 
 import java.io.File;
 import java.util.Date;
@@ -8,12 +8,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import br.ufsc.silq.core.business.entities.DadoGeral;
+import br.ufsc.silq.core.business.entities.Usuario;
+import br.ufsc.silq.core.business.repository.DadoGeralRepository;
 import br.ufsc.silq.core.dto.parser.struct.DadosGeraisResult;
-import br.ufsc.silq.core.entities.DadoGeral;
-import br.ufsc.silq.core.entities.Usuario;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
 import br.ufsc.silq.core.parser.LattesParser;
-import br.ufsc.silq.core.repository.DadoGeralRepository;
 import br.ufsc.silq.core.utils.files.FileManager;
 import lombok.experimental.Delegate;
 

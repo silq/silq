@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import br.ufsc.silq.core.business.entities.Grupo;
+import br.ufsc.silq.core.business.entities.Pesquisador;
 import br.ufsc.silq.core.dto.commondto.GroupDto;
 import br.ufsc.silq.core.dto.commondto.PesquisadorDto;
-import br.ufsc.silq.core.entities.Grupo;
-import br.ufsc.silq.core.entities.Pesquisador;
 
 public class GrupoEntity2DtoConverter {
 
