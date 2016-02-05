@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.dto.commondto;
+package br.ufsc.silq.core.commondto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

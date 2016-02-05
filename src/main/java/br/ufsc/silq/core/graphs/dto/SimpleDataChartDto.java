@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.dto.graphsdto;
+package br.ufsc.silq.core.graphs.dto;
 
 import java.util.ArrayList;
 

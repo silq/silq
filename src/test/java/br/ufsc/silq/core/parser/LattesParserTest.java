@@ -7,8 +7,8 @@ import java.text.ParseException;
 
 import org.junit.Test;
 
-import br.ufsc.silq.core.dto.parser.struct.DadosGeraisResult;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
+import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 
 public class LattesParserTest {
 

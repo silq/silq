@@ -8,7 +8,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import br.ufsc.silq.core.dto.parser.struct.ParserSet;
+import br.ufsc.silq.core.parser.dto.ParserSet;
 
 public class AttributeGetter {
 

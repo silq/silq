@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import br.ufsc.silq.core.dto.commondto.DataDto;
+import br.ufsc.silq.core.commondto.DataDto;
 
 public class SilqDataUtils {
 

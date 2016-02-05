@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.dto.parser.struct;
+package br.ufsc.silq.core.parser.dto;
 
 import java.io.Serializable;
 import java.util.HashMap;

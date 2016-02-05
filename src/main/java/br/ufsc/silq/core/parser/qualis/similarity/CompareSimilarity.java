@@ -15,12 +15,12 @@ import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.business.entities.QQualisGeral;
 import br.ufsc.silq.core.business.entities.QualisGeral;
 import br.ufsc.silq.core.business.service.persistence.SilqEntityManagerFactory;
-import br.ufsc.silq.core.dto.parser.struct.Artigo;
-import br.ufsc.silq.core.dto.parser.struct.Conceito;
-import br.ufsc.silq.core.dto.parser.struct.ParseResult;
-import br.ufsc.silq.core.dto.parser.struct.Trabalho;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.forms.AvaliarForm;
+import br.ufsc.silq.core.parser.dto.Artigo;
+import br.ufsc.silq.core.parser.dto.Conceito;
+import br.ufsc.silq.core.parser.dto.ParseResult;
+import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.combo.ComboValueHelper;
 

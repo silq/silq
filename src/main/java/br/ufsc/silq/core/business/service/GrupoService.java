@@ -15,7 +15,7 @@ import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.QDadoGeral;
 import br.ufsc.silq.core.business.entities.QGrupo;
-import br.ufsc.silq.core.dto.commondto.GroupDto;
+import br.ufsc.silq.core.commondto.GroupDto;
 import br.ufsc.silq.core.exceptions.SilqEntityNotFoundException;
 import br.ufsc.silq.core.exceptions.SilqForbiddenActionException;
 import br.ufsc.silq.core.graphs.converter.GrupoEntity2DtoConverter;

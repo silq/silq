@@ -6,8 +6,8 @@ import java.util.Set;
 
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
-import br.ufsc.silq.core.dto.commondto.GroupDto;
-import br.ufsc.silq.core.dto.commondto.PesquisadorDto;
+import br.ufsc.silq.core.commondto.GroupDto;
+import br.ufsc.silq.core.commondto.PesquisadorDto;
 
 public class GrupoEntity2DtoConverter {
 

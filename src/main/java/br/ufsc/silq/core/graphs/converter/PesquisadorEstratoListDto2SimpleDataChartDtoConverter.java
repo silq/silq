@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import br.ufsc.silq.core.dto.graphsdto.PesquisadorEstratoAnoDto;
-import br.ufsc.silq.core.dto.graphsdto.SimpleDataChartDto;
+import br.ufsc.silq.core.graphs.dto.PesquisadorEstratoAnoDto;
+import br.ufsc.silq.core.graphs.dto.SimpleDataChartDto;
 
 public class PesquisadorEstratoListDto2SimpleDataChartDtoConverter {
 

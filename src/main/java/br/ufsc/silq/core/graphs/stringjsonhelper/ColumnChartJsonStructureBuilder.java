@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import br.ufsc.silq.core.dto.graphsdto.PesquisadorEstratoAnoDto;
+import br.ufsc.silq.core.graphs.dto.PesquisadorEstratoAnoDto;
 
 public class ColumnChartJsonStructureBuilder {
 

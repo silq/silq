@@ -9,7 +9,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import br.ufsc.silq.core.dto.parser.struct.Artigo;
+import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
 
 public class ArtigoAttributeGetter {

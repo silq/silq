@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.dto.parser.struct;
+package br.ufsc.silq.core.parser.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,7 +9,9 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
+import lombok.Data;
 
+@Data
 public class ParseResult implements Serializable {
 
 	private static final long serialVersionUID = 2847835713658377152L;
@@ -106,34 +108,6 @@ public class ParseResult implements Serializable {
 		Collections.sort(this.getTrabalhos());
 	}
 
-	public String getNome() {
-		return this.nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getNomeEspecialidade() {
-		return this.nomeEspecialidade;
-	}
-
-	public void setNomeEspecialidade(String nomeEspecialidade) {
-		this.nomeEspecialidade = nomeEspecialidade;
-	}
-
-	public String getNomeSubAreaConhecimento() {
-		return this.nomeSubAreaConhecimento;
-	}
-
-	public void setNomeSubAreaConhecimento(String nomeSubAreaConhecimento) {
-		this.nomeSubAreaConhecimento = nomeSubAreaConhecimento;
-	}
-
-	public List<Trabalho> getTrabalhos() {
-		return this.trabalhos;
-	}
-
 	public List<Trabalho> getTrabalhosByAno() {
 		Integer anoDe = ConverterHelper.parseIntegerSafely(this.getAnoPublicacaoDe());
 		Integer anoAte = ConverterHelper.parseIntegerSafely(this.getAnoPublicacaoAte());
@@ -192,57 +166,5 @@ public class ParseResult implements Serializable {
 		}
 
 		return artigos;
-	}
-
-	public void setArtigos(List<Artigo> artigos) {
-		this.artigos = artigos;
-	}
-
-	public AreaConhecimento getAreaGrandeAreaConhecimento() {
-		return this.areaGrandeAreaConhecimento;
-	}
-
-	public void setAreaGrandeAreaConhecimento(AreaConhecimento areaGrandeAreaConhecimento) {
-		this.areaGrandeAreaConhecimento = areaGrandeAreaConhecimento;
-	}
-
-	public String getNivelSimilaridade() {
-		return this.nivelSimilaridade;
-	}
-
-	public void setNivelSimilaridade(String nivelSimilaridade) {
-		this.nivelSimilaridade = nivelSimilaridade;
-	}
-
-	public String getAnoPublicacaoDe() {
-		return this.anoPublicacaoDe;
-	}
-
-	public void setAnoPublicacaoDe(String anoPublicacaoDe) {
-		this.anoPublicacaoDe = anoPublicacaoDe;
-	}
-
-	public String getAnoPublicacaoAte() {
-		return this.anoPublicacaoAte;
-	}
-
-	public void setAnoPublicacaoAte(String anoPublicacaoAte) {
-		this.anoPublicacaoAte = anoPublicacaoAte;
-	}
-
-	public Boolean getHasConceitosTrabalhos() {
-		return this.hasConceitosTrabalhos;
-	}
-
-	public void setHasConceitosTrabalhos(Boolean hasConceitosTrabalhos) {
-		this.hasConceitosTrabalhos = hasConceitosTrabalhos;
-	}
-
-	public String getAreaAvaliada() {
-		return this.areaAvaliada;
-	}
-
-	public void setAreaAvaliada(String areaAvaliada) {
-		this.areaAvaliada = areaAvaliada;
 	}
 }

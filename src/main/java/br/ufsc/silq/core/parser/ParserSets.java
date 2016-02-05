@@ -2,7 +2,7 @@ package br.ufsc.silq.core.parser;
 
 import java.util.Arrays;
 
-import br.ufsc.silq.core.dto.parser.struct.ParserSet;
+import br.ufsc.silq.core.parser.dto.ParserSet;
 
 public class ParserSets {
 

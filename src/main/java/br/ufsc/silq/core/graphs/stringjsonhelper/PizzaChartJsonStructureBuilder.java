@@ -1,6 +1,6 @@
 package br.ufsc.silq.core.graphs.stringjsonhelper;
 
-import br.ufsc.silq.core.dto.graphsdto.SimpleDataChartDto;
+import br.ufsc.silq.core.graphs.dto.SimpleDataChartDto;
 
 public class PizzaChartJsonStructureBuilder {
 
