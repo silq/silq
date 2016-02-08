@@ -8,13 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Service;
 
 import com.mysema.query.jpa.impl.JPAQuery;
 
 import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.business.entities.QQualisGeral;
 import br.ufsc.silq.core.business.entities.QualisGeral;
-import br.ufsc.silq.core.business.service.persistence.SilqEntityManagerFactory;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.dto.Artigo;
@@ -24,11 +26,13 @@ import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.combo.ComboValueHelper;
 
+@Service
 public class CompareSimilarity {
 
-	public static void compare(ParseResult parseResult, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
-		EntityManager em = SilqEntityManagerFactory.createEntityManager();
+	@PersistenceContext
+	private EntityManager em;
 
+	public void compare(ParseResult parseResult, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
 		List<Artigo> artigos = parseResult.getArtigos();
 		List<Trabalho> trabalhos = parseResult.getTrabalhos();
 		String conhecimento = form.getArea();
@@ -37,20 +41,20 @@ public class CompareSimilarity {
 
 		if (tipoAvaliacao.equals(AvaliacaoType.TRABALHO) || tipoAvaliacao.equals(AvaliacaoType.AMBOS)) {
 			if (conhecimento.equalsIgnoreCase("Ciência da Computação")) {
-				compareTrabalhos(similarity, em, trabalhos);
+				this.compareTrabalhos(similarity, this.em, trabalhos);
 			} else {
 				parseResult.setHasConceitosTrabalhos(false);
 			}
 		}
 
 		if (tipoAvaliacao.equals(AvaliacaoType.ARTIGO) || tipoAvaliacao.equals(AvaliacaoType.AMBOS)) {
-			compareArtigos(similarity, em, artigos, conhecimento);
+			this.compareArtigos(similarity, this.em, artigos, conhecimento);
 		}
 
-		em.close();
+		this.em.close();
 	}
 
-	private static void compareArtigos(String similarity, EntityManager em, List<Artigo> artigos, String conhecimento) {
+	private void compareArtigos(String similarity, EntityManager em, List<Artigo> artigos, String conhecimento) {
 		for (Artigo artigo : artigos) {
 			String issn = artigo.getIssn();
 			List<Conceito> conceitos = new ArrayList<>();
@@ -103,7 +107,7 @@ public class CompareSimilarity {
 		}
 	}
 
-	private static void compareTrabalhos(String similarity, EntityManager em, List<Trabalho> trabalhos) {
+	private void compareTrabalhos(String similarity, EntityManager em, List<Trabalho> trabalhos) {
 		for (Trabalho trabalho : trabalhos) {
 			String titulo = trabalho.getNomeEvento();
 			titulo = SilqStringUtils.normalizeString(titulo);

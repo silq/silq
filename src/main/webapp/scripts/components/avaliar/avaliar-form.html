@@ -63,22 +63,22 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <div class="form-group">
                 <label class="control-label" for="anoPublicacaoDe">Publicações de</label>
                 <select class="form-control" id="anoPublicacaoDe" name="anoPublicacaoDe" ng-model="model.anoPublicacaoDe">
-                    <option value=""></option>
+                    <option value="">(Todas)</option>
                     <option ng-repeat="year in years" value="{{ year }}">{{ year }}</option>
                 </select>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <div class="form-group">
                 <label class="control-label" for="anoPublicacaoAte">Até</label>
-                <select class="form-control" id="anoPublicacaoAte" name="anoPublicacaoAte" ng-model="model.anoPublicacaoAte">
+                <select class="form-control" id="anoPublicacaoAte" name="anoPublicacaoAte" ng-model="model.anoPublicacaoAte" ng-disabled="!model.anoPublicacaoDe">
                     <option value=""></option>
-                    <option ng-repeat="year in years" value="{{ year }}">{{ year }}</option>
+                    <option ng-repeat="year in years | filter: yearFilter" value="{{ year }}">{{ year }}</option>
                 </select>
             </div>
         </div>
@@ -91,7 +91,7 @@
             <option value="0.8">Alto (80%)</option>
             <option value="0.6">Normal (60%)</option>
             <option value="0.4">Baixo (40%)</option>
-            <option value="0.2">Baixo (20%)</option>
+            <option value="0.2">Muito Baixo (20%)</option>
         </select>
         <p class="help-block">Estabelece um limite mínimo da qualidade da avaliação.</p>
     </div>

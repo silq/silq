@@ -47,17 +47,17 @@ public class ParseResult implements Serializable {
 		info += "\nNome Sub Área Conhecimento: " + this.getNomeSubAreaConhecimento();
 		info += "\nNome Grande Área do Conhecimento: " + this.getAreaGrandeAreaConhecimento().getNomeGrandeArea();
 
-		info += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-		info += "\n\nTrabalhos:\n";
-		for (Trabalho trabalho : this.trabalhos) {
-			info += "\t" + trabalho + "\n";
-		}
-
-		info += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-		info += "\nArtigos:\n";
-		for (Artigo artigo : this.artigos) {
-			info += "\t" + artigo + "\n";
-		}
+		// info += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+		// info += "\n\nTrabalhos:\n";
+		// for (Trabalho trabalho : this.trabalhos) {
+		// info += "\t" + trabalho + "\n";
+		// }
+		//
+		// info += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+		// info += "\nArtigos:\n";
+		// for (Artigo artigo : this.artigos) {
+		// info += "\t" + artigo + "\n";
+		// }
 
 		return info;
 	}

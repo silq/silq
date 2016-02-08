@@ -28,6 +28,9 @@ public class DadoGeralService {
 	@Inject
 	private UsuarioService usuarioService;
 
+	@Inject
+	private LattesParser lattesParser;
+
 	/**
 	 * Salva os dados gerais do usuário atualmente logado a partir do arquivo
 	 * XML de seu currículo Lattes. Remove dados gerais anteriores associados a
@@ -39,7 +42,7 @@ public class DadoGeralService {
 	 * @throws SilqErrorException
 	 */
 	public DadoGeral saveFromFile(File curriculumFile) throws SilqErrorException {
-		DadosGeraisResult result = LattesParser.parseCurriculaDadosGerais(curriculumFile);
+		DadosGeraisResult result = this.lattesParser.parseCurriculaDadosGerais(curriculumFile);
 		DadoGeral dadoGeral = new DadoGeral();
 
 		Usuario usuarioLogado = this.usuarioService.getUsuarioLogado();

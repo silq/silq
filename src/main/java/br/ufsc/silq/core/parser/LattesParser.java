@@ -5,9 +5,11 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -30,9 +32,13 @@ import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.files.FileManager;
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
 
+@Service
 public class LattesParser {
 
-	public static DadosGeraisResult parseCurriculaDadosGerais(File file) throws SilqErrorException {
+	@Inject
+	private CompareSimilarity compareSimilarity;
+
+	public DadosGeraisResult parseCurriculaDadosGerais(File file) throws SilqErrorException {
 		DadosGeraisResult dadosGeraisResult = new DadosGeraisResult();
 
 		Node nodoRaiz = FileManager.getNodoRaiz(file);
@@ -64,7 +70,7 @@ public class LattesParser {
 		return dadosGeraisResult;
 	}
 
-	public static PesquisadorResult parseCurriculaPesquisador(File file) throws SilqErrorException {
+	public PesquisadorResult parseCurriculaPesquisador(File file) throws SilqErrorException {
 		PesquisadorResult pesquisadorResult = new PesquisadorResult();
 
 		Node nodoRaiz = FileManager.getNodoRaiz(file);
@@ -83,12 +89,11 @@ public class LattesParser {
 		return pesquisadorResult;
 	}
 
-	public static ParseResult parseCurriculaAvaliacao(Document document, AvaliarForm form,
-			AvaliacaoType tipoAvaliacao) {
-		return parseCurricula(document, form, tipoAvaliacao);
+	public ParseResult parseCurriculaAvaliacao(Document document, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
+		return this.parseCurricula(document, form, tipoAvaliacao);
 	}
 
-	public static ParseResult parseCurriculaAvaliacao(File file, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
+	public ParseResult parseCurriculaAvaliacao(File file, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = null;
 		Document document = null;
@@ -98,7 +103,7 @@ public class LattesParser {
 			document = builder.parse(new FileInputStream(file));
 			document.getDocumentElement().normalize();
 
-			return parseCurricula(document, form, tipoAvaliacao);
+			return this.parseCurricula(document, form, tipoAvaliacao);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -106,7 +111,7 @@ public class LattesParser {
 		return null;
 	}
 
-	public static ParseResult parseCurricula(Document document, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
+	public ParseResult parseCurricula(Document document, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
 		ParseResult parseResult = new ParseResult();
 		parseResult.setAreaAvaliada(form.area);
 
@@ -171,7 +176,7 @@ public class LattesParser {
 		List<Artigo> artigos = ArtigoAttributeGetter.iterateUntilArtigos(raiz);
 		parseResult.setArtigos(artigos);
 
-		CompareSimilarity.compare(parseResult, form, tipoAvaliacao);
+		this.compareSimilarity.compare(parseResult, form, tipoAvaliacao);
 
 		parseResult.order();
 

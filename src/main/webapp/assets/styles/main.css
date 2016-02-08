@@ -43,7 +43,7 @@ body {
     border-color: blue;
 }
 
-.table-dado-geral td:first-child {
+.table-resumo td:first-child {
     text-align: right;
     font-weight: 600;
 }
@@ -59,6 +59,10 @@ body {
 
 .control-label {
     font-weight: 600;
+}
+
+.nowrap {
+    white-space: nowrap;
 }
 
 /* ==========================================================================

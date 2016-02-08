@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .factory('AuthServerProvider', function loginService($http, localStorageService, Base64) {
+    .factory('AuthServerProvider', function loginService($http, localStorageService) {
         return {
             login: function(credentials) {
                 var data = "login=" +  encodeURIComponent(credentials.email) + "&password="

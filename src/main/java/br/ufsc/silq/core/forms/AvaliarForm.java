@@ -7,13 +7,14 @@ import lombok.Data;
 @Data
 public class AvaliarForm {
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	public String area;
 
 	public String anoPublicacaoDe;
 
 	public String anoPublicacaoAte;
 
+	@NotBlank
 	public String nivelSimilaridade;
 
 	public AvaliarForm(String area, String anoPublicacaoDe, String anoPublicacaoAte) {

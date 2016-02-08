@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('AvaliarController', function ($scope, DadoGeral) {
+    .controller('AvaliarController', function ($scope, DadoGeral, Similarity) {
+        $scope.results = null;
         $scope.avaliarForm = {
             nivelSimilaridade: '0.6'
         };
@@ -11,6 +12,8 @@ angular.module('silq2App')
         });
 
         $scope.submit = function() {
-            console.log($scope.avaliarForm);
+            Similarity.compareMine($scope.avaliarForm).$promise.then(function(results) {
+                $scope.results = results;
+            });
         };
     });
