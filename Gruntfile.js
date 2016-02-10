@@ -312,7 +312,8 @@ module.exports = function (grunt) {
                 },
                 constants: {
                     ENV: 'dev',
-                    VERSION: parseVersionFromPomXml()
+                    VERSION: parseVersionFromPomXml(),
+                    LANDING_PAGE: 'principal'
                 }
             },
             prod: {
@@ -380,6 +381,6 @@ module.exports = function (grunt) {
         'buildcontrol:openshift'
     ]);
 
-    
+
     grunt.registerTask('default', ['serve']);
 };

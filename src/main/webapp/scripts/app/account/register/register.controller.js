@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('RegisterController', function ($scope, $state, $timeout, Auth) {
+    .controller('RegisterController', function ($scope, $state, $timeout, Auth, LANDING_PAGE) {
         $scope.error = null;
         $scope.doNotMatch = null;
         $scope.registerAccount = {};
@@ -22,7 +22,7 @@ angular.module('silq2App')
                         password: $scope.registerAccount.senha,
                         rememberMe: true
                     }).then(function() {
-                        $state.go('principal');
+                        $state.go(LANDING_PAGE);
                     }).catch(function() {
                         $scope.error = 'ERROR';
                     });
