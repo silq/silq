@@ -1,4 +1,4 @@
-package br.ufsc.silq.web.rest.dto;
+package br.ufsc.silq.core.forms.usuario;
 
 import javax.validation.constraints.Size;
 
@@ -10,12 +10,12 @@ import lombok.Data;
  * Utilizado para atualização das informações do usuário
  */
 @Data
-public class UsuarioUpdateDTO {
+public class UsuarioUpdateForm {
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	@Size(min = 5, max = 100)
 	private String nome;
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	private String sexo;
 }

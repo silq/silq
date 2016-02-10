@@ -1,4 +1,4 @@
-package br.ufsc.silq.web.rest.dto;
+package br.ufsc.silq.core.forms.usuario;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import lombok.Data;
  *
  */
 @Data
-public class RecuperarSenhaDTO {
+public class RecuperarSenhaForm {
 
 	private String key;
 	private String novaSenha;

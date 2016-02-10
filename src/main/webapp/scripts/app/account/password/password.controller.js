@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('PasswordController', function ($scope, Auth, Principal) {
+    .controller('PasswordController', function ($scope, $state, Auth, Principal, Flash) {
         Principal.identity().then(function(account) {
             $scope.account = account;
         });
 
-        $scope.success = null;
         $scope.error = null;
         $scope.doNotMatch = null;
         $scope.changePassword = function () {
@@ -18,9 +17,9 @@ angular.module('silq2App')
                 $scope.doNotMatch = null;
                 Auth.changePassword($scope.password).then(function () {
                     $scope.error = null;
-                    $scope.success = 'OK';
+                    Flash.create('success', '<strong>Sucesso!</strong> Senha alterada. Execute login novamente');
+                    $state.go('login');
                 }).catch(function () {
-                    $scope.success = null;
                     $scope.error = 'ERROR';
                 });
             }

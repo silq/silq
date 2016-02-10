@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 
-import br.ufsc.silq.core.business.entities.Usuario;
 import br.ufsc.silq.core.business.service.UsuarioService;
+import br.ufsc.silq.core.commondto.UsuarioDTO;
+import br.ufsc.silq.core.forms.usuario.RecuperarSenhaForm;
+import br.ufsc.silq.core.forms.usuario.RegisterForm;
+import br.ufsc.silq.core.forms.usuario.UsuarioUpdateForm;
 import br.ufsc.silq.service.MailService;
-import br.ufsc.silq.web.rest.dto.RecuperarSenhaDTO;
-import br.ufsc.silq.web.rest.dto.UsuarioDTO;
-import br.ufsc.silq.web.rest.dto.UsuarioUpdateDTO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * REST controller for managing the current user's account.
+ * Gerencia o usuário atualmente logado
  */
 @RestController
 @RequestMapping("/api")
@@ -45,7 +45,7 @@ public class AccountResource {
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
 	@Timed
-	public ResponseEntity<?> registerAccount(@Valid @RequestBody Usuario usuario, HttpServletRequest request) {
+	public ResponseEntity<?> registerAccount(@Valid @RequestBody RegisterForm usuario, HttpServletRequest request) {
 		return this.usuarioService.findOneByEmail(usuario.getEmail())
 				.map(user -> new ResponseEntity<>("E-mail já encontra-se cadastrado", HttpStatus.BAD_REQUEST))
 				.orElseGet(() -> {
@@ -94,7 +94,7 @@ public class AccountResource {
 	 */
 	@RequestMapping(value = "/account", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@Timed
-	public ResponseEntity<?> saveAccount(@Valid @RequestBody UsuarioUpdateDTO info) {
+	public ResponseEntity<?> saveAccount(@Valid @RequestBody UsuarioUpdateForm info) {
 		this.usuarioService.updateUsuario(info);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -123,7 +123,7 @@ public class AccountResource {
 
 	@RequestMapping(value = "/account/reset_password/finish", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@Timed
-	public ResponseEntity<String> finishPasswordReset(@RequestBody RecuperarSenhaDTO chaveESenha) {
+	public ResponseEntity<String> finishPasswordReset(@RequestBody RecuperarSenhaForm chaveESenha) {
 		if (!this.checkPasswordLength(chaveESenha.getNovaSenha())) {
 			return new ResponseEntity<>("Senha inválida", HttpStatus.BAD_REQUEST);
 		}

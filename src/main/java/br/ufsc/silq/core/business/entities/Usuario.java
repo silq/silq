@@ -34,21 +34,21 @@ public class Usuario {
 	@Column(name = "co_seq_usuario")
 	private Long id;
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	@Column(name = "no_usuario")
 	private String nome;
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	@Column(name = "ds_senha")
 	@JsonIgnore
 	private String senha;
 
-	@NotBlank(message = "Entre com um e-mail válido")
+	@NotBlank
 	@Email
 	@Column(name = "ds_email")
 	private String email;
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	@Column(name = "no_sexo")
 	private String sexo;
 

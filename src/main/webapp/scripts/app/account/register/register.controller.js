@@ -22,7 +22,7 @@ angular.module('silq2App')
                         password: $scope.registerAccount.senha,
                         rememberMe: true
                     }).then(function() {
-                        $state.go('home');
+                        $state.go('principal');
                     }).catch(function() {
                         $scope.error = 'ERROR';
                     });

@@ -1,4 +1,4 @@
-package br.ufsc.silq.web.rest.dto;
+package br.ufsc.silq.core.commondto;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * Utilizado para retornar informações do usuário atualmente logado para o
- * cliente, via REST
+ * cliente
  */
 @Data
 public class UsuarioDTO {
@@ -32,8 +32,7 @@ public class UsuarioDTO {
 		});
 
 		// Todo usuário logado possui a autoridade "ROLE_USER"
-		// Ao invés de salvar esta informação no banco, adicionamos na entidade
-		// sempre que usarmos este atributo
+		// Ao invés de salvar esta informação no banco, adicionamos aqui
 		this.authorities.add(AuthoritiesConstants.USER);
 	}
 }

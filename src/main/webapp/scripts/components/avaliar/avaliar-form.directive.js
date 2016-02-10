@@ -23,7 +23,6 @@ angular.module('silq2App')
             link: function($scope) {
                 $scope.years = years();
                 $scope.yearFilter = function(value) {
-                    console.log(value);
                     return value >= $scope.model.anoPublicacaoDe;
                 };
             }

@@ -17,8 +17,9 @@ import org.xml.sax.InputSource;
 import br.ufsc.silq.core.business.entities.Usuario;
 import br.ufsc.silq.core.business.repository.UsuarioRepository;
 import br.ufsc.silq.core.business.service.util.RandomUtil;
+import br.ufsc.silq.core.forms.usuario.RegisterForm;
+import br.ufsc.silq.core.forms.usuario.UsuarioUpdateForm;
 import br.ufsc.silq.security.SecurityUtils;
-import br.ufsc.silq.web.rest.dto.UsuarioUpdateDTO;
 import lombok.experimental.Delegate;
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,14 +40,21 @@ public class UsuarioService {
 
 	/**
 	 * Registra um novo usuário, salvando-o na base de dados e cifrando a senha
-	 * da entidade parâmetro
+	 * do formulário parâmetro
 	 *
 	 * @param usuario
-	 * @return
+	 *            Formulário de registro
+	 * @return A nova entidade Usuario criada
 	 */
-	public Usuario registerUsuario(@Valid Usuario usuario) {
-		String senhaCifrada = this.passwordEncoder.encode(usuario.getSenha());
+	public Usuario registerUsuario(@Valid RegisterForm form) {
+		String senhaCifrada = this.passwordEncoder.encode(form.getSenha());
+
+		Usuario usuario = new Usuario();
+		usuario.setNome(form.getNome());
+		usuario.setEmail(form.getEmail());
+		usuario.setSexo(form.getSexo());
 		usuario.setSenha(senhaCifrada);
+
 		Usuario usuarioSalvo = this.usuarioRepository.save(usuario);
 		log.debug("Usuário registrado {}", usuarioSalvo);
 		return usuarioSalvo;
@@ -72,7 +80,7 @@ public class UsuarioService {
 		return SecurityUtils.isAuthenticated();
 	}
 
-	public void updateUsuario(UsuarioUpdateDTO info) {
+	public void updateUsuario(@Valid UsuarioUpdateForm info) {
 		Usuario usuario = this.getUsuarioLogado();
 		usuario.setNome(info.getNome());
 		usuario.setSexo(info.getSexo());

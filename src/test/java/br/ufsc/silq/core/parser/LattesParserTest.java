@@ -14,9 +14,11 @@ public class LattesParserTest {
 
 	public static final File CURRICULUM_CHRISTIANE = new File("src/test/resources/fixtures/curricula/christiane.xml");
 
+	private LattesParser lattesParser = new LattesParser();
+
 	@Test
 	public void testParseCurriculaDadosGerais() throws ParseException, SilqErrorException {
-		DadosGeraisResult dados = LattesParser.parseCurriculaDadosGerais(CURRICULUM_CHRISTIANE);
+		DadosGeraisResult dados = this.lattesParser.parseCurriculaDadosGerais(CURRICULUM_CHRISTIANE);
 		// System.out.println(dados);
 
 		assertEquals("Christiane Anneliese Gresse von Wangenheim", dados.getNome());

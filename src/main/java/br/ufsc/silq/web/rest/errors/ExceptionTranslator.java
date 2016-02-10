@@ -62,17 +62,11 @@ public class ExceptionTranslator {
 		return dto;
 	}
 
+	// TODO: exception handlers não funcionais!
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 	public ErrorDTO processMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
 		return new ErrorDTO(ErrorConstants.ERR_METHOD_NOT_SUPPORTED, exception.getMessage());
-	}
-
-	@ExceptionHandler(Exception.class)
-	@ResponseBody
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ErrorDTO handleException(Exception exception) {
-		return new ErrorDTO(ErrorConstants.ERR_UNKNOWN, exception.getMessage());
 	}
 }
