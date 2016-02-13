@@ -21,12 +21,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_usuario", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_usuario")
 @Data
 @NoArgsConstructor
+@ToString(of = { "id", "nome" })
 public class Usuario {
 
 	@Id
@@ -58,6 +60,6 @@ public class Usuario {
 	private String resetKey;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "usuarioId", orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "usuarioId", orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<Autoridade> autoridades = new HashSet<>();
 }

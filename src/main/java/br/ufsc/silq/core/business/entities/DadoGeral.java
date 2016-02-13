@@ -26,7 +26,7 @@ import lombok.ToString;
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_dado_geral", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_dado_geral")
 @Data
-@ToString(exclude = "curriculoXml")
+@ToString(exclude = { "curriculoXml", "grupos" })
 @NoArgsConstructor
 public class DadoGeral {
 
@@ -69,7 +69,7 @@ public class DadoGeral {
 	@JsonIgnore
 	private Usuario usuario;
 
-	@OneToMany(orphanRemoval = true, mappedBy = "coordenador")
+	@OneToMany(mappedBy = "coordenador", orphanRemoval = true)
 	@JsonIgnore
 	private List<Grupo> grupos;
 

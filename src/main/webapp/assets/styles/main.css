@@ -27,16 +27,19 @@ body {
 
 .drop-box {
     background: #F8F8F8;
-    border: 5px dashed #DDD;
-    padding: 20px;
+    border: 2px dashed #DDD;
+    border-radius: 4px;
+    padding: 30px;
     font-size: 14px;
     text-align: center;
     margin: 10px;
     cursor: pointer;
+    color: #999;
 }
 
 .drop-box:hover {
     border-color: #ccc;
+    color: #444;
 }
 
 .drop-box-active {
@@ -50,7 +53,7 @@ body {
 
 .alert.alert-dismissible {
     position: fixed;
-    z-index: 100;
+    z-index: 10000;
     width: 500px;
     left: calc(50% - 250px);
     top: 40px;
@@ -64,6 +67,18 @@ body {
 .nowrap {
     white-space: nowrap;
 }
+
+.btn-spaced {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.ng-enter { animation: fadeIn 0.2s both ease-in; z-index: 8888; }
 
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak

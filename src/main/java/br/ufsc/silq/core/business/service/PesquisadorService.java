@@ -1,5 +1,6 @@
 package br.ufsc.silq.core.business.service;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
@@ -18,6 +19,9 @@ import br.ufsc.silq.core.exceptions.SilqForbiddenActionException;
 
 @Service
 public class PesquisadorService {
+
+	@Inject
+	private GrupoService grupoService;
 
 	@PersistenceContext
 	private EntityManager em;
@@ -38,7 +42,7 @@ public class PesquisadorService {
 
 	public void deletePesquisador(Long idGrupo, Long idPesquisador) throws SilqForbiddenActionException {
 		try {
-			Grupo grupo = new GrupoService().loadGroup(idGrupo);
+			Grupo grupo = this.grupoService.findOne(idGrupo);
 
 			Boolean encontrou = false;
 			for (Pesquisador pesquisador : grupo.getPesquisadores()) {
@@ -66,7 +70,7 @@ public class PesquisadorService {
 
 	public byte[] loadPesquisadorCurriculum(Long idGrupo, Long idPesquisador) throws SilqForbiddenActionException {
 		try {
-			Grupo grupo = new GrupoService().loadGroup(idGrupo);
+			Grupo grupo = this.grupoService.findOne(idGrupo);
 
 			byte[] curriculoXml = null;
 			Boolean encontrou = false;

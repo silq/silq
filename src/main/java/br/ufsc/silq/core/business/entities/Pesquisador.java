@@ -14,16 +14,16 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 
-@Getter
-@Setter
 @Entity
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_pesquisador", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_pesquisador")
+@Data
 @NoArgsConstructor
+@ToString(exclude = { "curriculoXml" })
 public class Pesquisador {
 
 	@Id

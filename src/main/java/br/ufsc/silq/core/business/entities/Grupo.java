@@ -32,15 +32,15 @@ public class Grupo {
 	@Column(name = "co_seq_grupo")
 	private Long id;
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	@Column(name = "no_grupo")
 	private String nomeGrupo;
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	@Column(name = "no_instituicao")
 	private String nomeInstituicao;
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	@Column(name = "no_area")
 	private String nomeArea;
 
