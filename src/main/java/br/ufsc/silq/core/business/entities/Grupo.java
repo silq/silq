@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,20 +32,18 @@ public class Grupo {
 	@Column(name = "co_seq_grupo")
 	private Long id;
 
-	@NotBlank
 	@Column(name = "no_grupo")
 	private String nomeGrupo;
 
-	@NotBlank
 	@Column(name = "no_instituicao")
 	private String nomeInstituicao;
 
-	@NotBlank
 	@Column(name = "no_area")
 	private String nomeArea;
 
 	@ManyToOne
 	@JoinColumn(name = "co_usuario")
+	@JsonIgnore
 	private DadoGeral coordenador;
 
 	@OneToMany(mappedBy = "grupo", orphanRemoval = true, fetch = FetchType.EAGER)

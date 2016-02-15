@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.stereotype.Service;
 
 import br.ufsc.silq.core.business.entities.DadoGeral;
@@ -32,12 +33,36 @@ public class GrupoService {
 	 */
 	public Grupo create(@Valid GrupoForm form) {
 		Grupo entity = new Grupo();
+		this.mapFormToEntity(form, entity);
+		this.save(entity);
+		return entity;
+	}
+
+	/**
+	 * Edita um Grupo existente, caso o usuário atual tenha permissão
+	 *
+	 * @param form
+	 * @return
+	 */
+	public Grupo update(GrupoForm form) {
+		Grupo entity = this.findOneWithPermission(form.getId())
+				.orElseThrow(() -> new AuthorizationServiceException("Sem permissão para editar este grupo"));
+		this.mapFormToEntity(form, entity);
+		this.save(entity);
+		return entity;
+	}
+
+	/**
+	 * Extrai os dados do formulário para a entidade
+	 *
+	 * @param form
+	 * @param entity
+	 */
+	private void mapFormToEntity(GrupoForm form, Grupo entity) {
 		entity.setNomeGrupo(form.getNomeGrupo());
 		entity.setNomeInstituicao(form.getNomeInstituicao());
 		entity.setNomeArea(form.getNomeArea());
 		entity.setCoordenador(this.getCoordenadorLogado());
-		this.save(entity);
-		return entity;
 	}
 
 	/**

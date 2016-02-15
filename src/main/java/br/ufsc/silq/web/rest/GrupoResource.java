@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,8 @@ import br.ufsc.silq.core.business.service.DadoGeralService;
 import br.ufsc.silq.core.business.service.GrupoService;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
 import br.ufsc.silq.core.forms.GrupoForm;
-import br.ufsc.silq.web.rest.errors.SilqRESTException;
+import br.ufsc.silq.web.rest.exception.HttpBadRequest;
+import br.ufsc.silq.web.rest.exception.HttpNotFound;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -45,30 +45,22 @@ public class GrupoResource {
 
 		DadoGeral dadoGeral = this.dadoGeralService.getDadoGeral();
 		if (dadoGeral == null) {
-			throw new SilqRESTException("Você deve ter um currículo cadastrado para criar grupos");
+			throw new HttpBadRequest("Você deve ter um currículo cadastrado para criar grupos");
 		}
 
 		Grupo result = this.grupoService.create(grupo);
-		return new ResponseEntity<Grupo>(result, HttpStatus.CREATED);
+		return new ResponseEntity<>(result, HttpStatus.CREATED);
 	}
 
 	/**
 	 * PUT /grupos -> Atualiza dados de um grupo
 	 */
 	@RequestMapping(value = "/grupos", method = RequestMethod.PUT)
-	public ResponseEntity<Grupo> updateGrupo(@RequestBody @Valid Grupo updatedGrupo) {
-		log.debug("REST request to update Grupo : {}", updatedGrupo);
-
-		Grupo grupo = this.grupoService.findOne(updatedGrupo.getId());
-
-		DadoGeral dadoGeral = this.dadoGeralService.getDadoGeral();
-		if (grupo.getCoordenador().getId() != dadoGeral.getId()) {
-			throw new AuthorizationServiceException("Você não pode editar este grupo");
-		}
-
-		grupo.setCoordenador(dadoGeral);
-		Grupo result = this.grupoService.save(grupo);
-		return new ResponseEntity<Grupo>(result, HttpStatus.OK);
+	public ResponseEntity<Grupo> updateGrupo(@RequestBody @Valid GrupoForm grupoForm) {
+		log.debug("REST request to update Grupo : {}", grupoForm);
+		this.findOneWithPermissionOr404(grupoForm.getId());
+		Grupo result = this.grupoService.update(grupoForm);
+		return ResponseEntity.ok(result);
 	}
 
 	/**
@@ -86,10 +78,7 @@ public class GrupoResource {
 	@RequestMapping(value = "/grupos/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Grupo> getGrupo(@PathVariable Long id) {
 		log.debug("REST request to get Grupo : {}", id);
-
-		return this.grupoService.findOneWithPermission(id).map(result -> {
-			return new ResponseEntity<>(result, HttpStatus.OK);
-		}).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		return new ResponseEntity<>(this.findOneWithPermissionOr404(id), HttpStatus.OK);
 	}
 
 	/**
@@ -99,10 +88,20 @@ public class GrupoResource {
 	@RequestMapping(value = "/grupos/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteGrupo(@PathVariable Long id) {
 		log.debug("REST request to delete Grupo : {}", id);
+		Grupo grupo = this.findOneWithPermissionOr404(id);
+		this.grupoService.delete(grupo);
+		return ResponseEntity.noContent().build();
+	}
 
-		return this.grupoService.findOneWithPermission(id).map(result -> {
-			this.grupoService.delete(result);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+	/**
+	 * Pesquisa por um Grupo com o ID especificado e que o usuário atual tenha
+	 * permissão de acesso. Retorna 404 caso não encontre
+	 *
+	 * @param id
+	 *            Id do grupo a ser pesquisado
+	 * @return
+	 */
+	protected Grupo findOneWithPermissionOr404(Long id) {
+		return this.grupoService.findOneWithPermission(id).orElseThrow(() -> new HttpNotFound("Grupo não encontrado"));
 	}
 }

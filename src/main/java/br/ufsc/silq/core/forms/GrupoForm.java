@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class GrupoForm {
 
+	private Long id;
+
 	@NotBlank
 	private String nomeGrupo;
 
