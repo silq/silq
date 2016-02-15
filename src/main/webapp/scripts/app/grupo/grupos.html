@@ -10,7 +10,7 @@
         Nenhum grupo cadastrado ainda... Cadastre seu primeiro grupo no botão abaixo!
     </p>
 
-    <div class="center-block" style="max-width: 500px; margin-top: 20px; margin-bottom: 20px">
+    <div ng-show="grupos.length" class="center-block" style="max-width: 500px; margin-top: 20px; margin-bottom: 20px">
         <div class="input-group">
             <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
             <input ng-model="filter" type="search" class="form-control input-sm" placeholder="Filtrar grupos..." />

@@ -41,11 +41,4 @@ angular.module('silq2App')
         $scope.atualizar = function() {
             $scope.dados = null;
         };
-
-        $scope.remover = function() {
-            DadoGeral.delete().$promise.then(function() {
-                $scope.dados = null;
-                Flash.create('success', '<strong>Sucesso!</strong> Currículo removido');
-            });
-        };
     });
