@@ -103,6 +103,12 @@ Developement Ribbon
     background-repeat: no-repeat;
 }
 
+.badge-nav {
+    font-size: 10px;
+    padding: 2px 6px;
+    display: initial;
+}
+
 /* ==========================================================================
 Version number in navbar
 ========================================================================== */
