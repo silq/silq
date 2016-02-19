@@ -62,7 +62,7 @@ public class ExceptionTranslator {
 		return dto;
 	}
 
-	// TODO: exception handlers não funcionais!
+	// TODO(bonetti): exception handlers não funcionais!
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)

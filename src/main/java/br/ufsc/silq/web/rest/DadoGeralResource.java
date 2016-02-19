@@ -32,8 +32,7 @@ public class DadoGeralResource {
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) throws IOException, SilqErrorException {
-		// TODO: checar tipo de arquivo e tamanho
-		log.debug("Received file {}", file.getOriginalFilename());
+		log.debug("Received file upload {}", file.getOriginalFilename());
 
 		String newName = UUID.randomUUID().toString() + file.getOriginalFilename();
 		File tempFile = File.createTempFile(newName, null);

@@ -1,12 +1,13 @@
 package br.ufsc.silq.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
+import br.ufsc.silq.core.business.service.MailService;
 import br.ufsc.silq.domain.Authority;
 import br.ufsc.silq.domain.User;
 import br.ufsc.silq.repository.AuthorityRepository;
 import br.ufsc.silq.repository.UserRepository;
 import br.ufsc.silq.security.AuthoritiesConstants;
-import br.ufsc.silq.service.MailService;
 import br.ufsc.silq.service.UserService;
 import br.ufsc.silq.web.rest.dto.ManagedUserDTO;
 import br.ufsc.silq.web.rest.dto.UserDTO;

@@ -106,15 +106,9 @@ public class UsuarioService {
 	public Optional<Usuario> completePasswordReset(String novaSenha, String key) {
 		log.debug("Reset user password for reset key {}", key);
 
-		return this.usuarioRepository.findOneByResetKey(key).filter(usuario -> {
-			// TODO (bonetti): expirar key após 24 horas ??
-			// ZonedDateTime oneDayAgo = ZonedDateTime.now().minusHours(24);
-			// return usuario.getResetDate().isAfter(oneDayAgo);
-			return true;
-		}).map(usuario -> {
+		return this.usuarioRepository.findOneByResetKey(key).map(usuario -> {
 			usuario.setSenha(this.passwordEncoder.encode(novaSenha));
 			usuario.setResetKey(null);
-			// usuario.setResetDate(null);
 			this.usuarioRepository.save(usuario);
 			return usuario;
 		});

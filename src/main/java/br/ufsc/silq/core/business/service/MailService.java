@@ -1,4 +1,4 @@
-package br.ufsc.silq.service;
+package br.ufsc.silq.core.business.service;
 
 import java.util.Locale;
 

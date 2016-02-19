@@ -1,8 +1,8 @@
 package br.ufsc.silq.security;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -40,20 +40,11 @@ public class UserDetailsService implements org.springframework.security.core.use
 		Optional<Usuario> userFromDatabase = this.usuarioRepository.findOneByEmail(lowercaseLogin);
 
 		return userFromDatabase.map(user -> {
-			// if (!user.getActivated()) {
-			// throw new UserNotActivatedException("User " + lowercaseLogin + "
-			// was not activated");
-			// }
+			List<GrantedAuthority> grantedAuthorities = user.getAutoridades().stream()
+					.map(autoridade -> new SimpleGrantedAuthority(autoridade.getNome())).collect(Collectors.toList());
 
-			// List<GrantedAuthority> grantedAuthorities =
-			// user.getAuthorities().stream()
-			// .map(authority -> new
-			// SimpleGrantedAuthority(authority.getName())).collect(Collectors.toList());
-
-			// TODO (bonetti): fazer relacionamento das Autoridades com Usuario
-			List<GrantedAuthority> grantedAuthorities = Arrays.asList(
-					new SimpleGrantedAuthority(AuthoritiesConstants.USER),
-					new SimpleGrantedAuthority(AuthoritiesConstants.ADMIN));
+			// Todo usuário logado possui a autoridade "ROLE_USER"
+			grantedAuthorities.add(new SimpleGrantedAuthority(AuthoritiesConstants.USER));
 
 			return new org.springframework.security.core.userdetails.User(lowercaseLogin, user.getSenha(),
 					grantedAuthorities);
