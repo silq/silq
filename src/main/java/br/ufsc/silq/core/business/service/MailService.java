@@ -16,7 +16,6 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 
 import br.ufsc.silq.config.JHipsterProperties;
 import br.ufsc.silq.core.business.entities.Usuario;
-import br.ufsc.silq.domain.User;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -63,27 +62,27 @@ public class MailService {
 	}
 
 	@Async
-	public void sendActivationEmail(User user, String baseUrl) {
-		log.debug("Sending activation e-mail to '{}'", user.getEmail());
-		Locale locale = Locale.forLanguageTag(user.getLangKey());
+	public void sendActivationEmail(Usuario usuario, String baseUrl) {
+		log.debug("Sending activation e-mail to '{}'", usuario.getEmail());
+		Locale locale = Locale.forLanguageTag("pt-br");
 		Context context = new Context(locale);
-		context.setVariable("user", user);
+		context.setVariable("user", usuario);
 		context.setVariable("baseUrl", baseUrl);
 		String content = this.templateEngine.process("activationEmail", context);
 		String subject = this.messageSource.getMessage("email.activation.title", null, locale);
-		this.sendEmail(user.getEmail(), subject, content, false, true);
+		this.sendEmail(usuario.getEmail(), subject, content, false, true);
 	}
 
 	@Async
-	public void sendCreationEmail(User user, String baseUrl) {
-		log.debug("Sending creation e-mail to '{}'", user.getEmail());
-		Locale locale = Locale.forLanguageTag(user.getLangKey());
+	public void sendCreationEmail(Usuario usuario, String baseUrl) {
+		log.debug("Sending creation e-mail to '{}'", usuario.getEmail());
+		Locale locale = Locale.forLanguageTag("pt-br");
 		Context context = new Context(locale);
-		context.setVariable("user", user);
+		context.setVariable("user", usuario);
 		context.setVariable("baseUrl", baseUrl);
 		String content = this.templateEngine.process("creationEmail", context);
 		String subject = this.messageSource.getMessage("email.activation.title", null, locale);
-		this.sendEmail(user.getEmail(), subject, content, false, true);
+		this.sendEmail(usuario.getEmail(), subject, content, false, true);
 	}
 
 	@Async

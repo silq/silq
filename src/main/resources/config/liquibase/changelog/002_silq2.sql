@@ -28,3 +28,11 @@ CREATE TABLE tb_pesquisador (
     nome_pesquisador character varying(255),
     co_grupo bigint
 );
+
+CREATE TABLE tb_grupo (
+    co_seq_grupo bigint NOT NULL,
+    no_area character varying(255),
+    no_grupo character varying(255),
+    no_instituicao character varying(255),
+    co_usuario bigint
+);
