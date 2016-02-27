@@ -73,6 +73,7 @@
         <sonar.sources>${project.basedir}/src/main/</sonar.sources>
         <sonar.surefire.reportsPath>${project.testresult.directory}/surefire-reports</sonar.surefire.reportsPath>
         <sonar.tests>${project.basedir}/src/test/</sonar.tests>
+        <querydsl.version>3.7.0</querydsl.version>
     </properties>
 
     <dependencies>
@@ -372,12 +373,12 @@
         <dependency>
         	<groupId>com.mysema.querydsl</groupId>
         	<artifactId>querydsl-jpa</artifactId>
-        	<version>3.7.0</version>
+        	<version>${querydsl.version}</version>
         </dependency>
         <dependency>
         	<groupId>com.mysema.querydsl</groupId>
         	<artifactId>querydsl-apt</artifactId>
-        	<version>3.7.0</version>
+        	<version>${querydsl.version}</version>
         </dependency>
     </dependencies>
     <build>
