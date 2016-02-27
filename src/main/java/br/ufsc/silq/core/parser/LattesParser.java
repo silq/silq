@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -32,7 +32,7 @@ import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.files.FileManager;
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
 
-@Service
+@Component
 public class LattesParser {
 
 	@Inject

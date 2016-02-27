@@ -9,6 +9,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 
 import br.ufsc.silq.core.business.entities.Grupo;
@@ -29,21 +32,29 @@ import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.utils.files.FileManager;
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
 
+@Component
 public class PesquisadorAnualGraphProcessor {
+
+	@Inject
+	private GrupoService grupoService;
+
+	@Inject
+	private PesquisadorService pesquisadorService;
+
+	@Inject
+	private LattesParser lattesParser;
 
 	public PesquisadorEstratoAnoDto getPesquisadorEstratoAnoDto(Long idGrupo, String nivelSimilaridade, String conceito,
 			AvaliacaoType tipoAvaliacao, String ano) throws SilqEntityNotFoundException, SilqForbiddenActionException {
 		PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto = new PesquisadorEstratoAnoDto();
-		GrupoService grupoService = new GrupoService();
-		PesquisadorService pesquisadorService = new PesquisadorService();
 
-		Grupo grupo = grupoService.loadGroup(idGrupo);
+		Grupo grupo = this.grupoService.findOne(idGrupo);
 
 		for (Pesquisador pesquisador : grupo.getPesquisadores()) {
-			byte[] curriculo = pesquisadorService.loadPesquisadorCurriculum(idGrupo, pesquisador.getId());
+			byte[] curriculo = this.pesquisadorService.loadPesquisadorCurriculum(idGrupo, pesquisador.getId());
 			Document document = FileManager.createXmlDocument(new String(curriculo));
 			AvaliarForm avaliarForm = this.getAvaliarForm(pesquisador.getAreaAtuacao(), ano, nivelSimilaridade);
-			ParseResult parseResult = LattesParser.parseCurriculaAvaliacao(document, avaliarForm, tipoAvaliacao);
+			ParseResult parseResult = this.lattesParser.parseCurriculaAvaliacao(document, avaliarForm, tipoAvaliacao);
 			this.processParseResult(pesquisadorEstratoAnoDto, ano, parseResult, conceito);
 			this.processDto(pesquisadorEstratoAnoDto);
 		}
