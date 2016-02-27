@@ -61,7 +61,7 @@ public class DadoGeralService {
 
 		this.deleteByUsuario(usuarioLogado);
 
-		return this.save(dadoGeral);
+		return this.dadoGeralRepository.save(dadoGeral);
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class DadoGeralService {
 	 * @return
 	 */
 	public DadoGeral getDadoGeral() {
-		return this.findByUsuario(this.usuarioService.getUsuarioLogado());
+		return this.dadoGeralRepository.findByUsuario(this.usuarioService.getUsuarioLogado());
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class DadoGeralService {
 	 * dados
 	 */
 	public void removeCurriculum() {
-		this.delete(this.getDadoGeral());
+		this.dadoGeralRepository.delete(this.getDadoGeral());
 	}
 
 }

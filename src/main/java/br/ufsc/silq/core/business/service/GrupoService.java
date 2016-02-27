@@ -13,13 +13,11 @@ import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.repository.GrupoRepository;
 import br.ufsc.silq.core.forms.GrupoForm;
-import lombok.experimental.Delegate;
 
 @Service
 public class GrupoService {
 
 	@Inject
-	@Delegate
 	private GrupoRepository grupoRepository;
 
 	@Inject
@@ -34,7 +32,7 @@ public class GrupoService {
 	public Grupo create(@Valid GrupoForm form) {
 		Grupo entity = new Grupo();
 		this.mapFormToEntity(form, entity);
-		this.save(entity);
+		this.grupoRepository.save(entity);
 		return entity;
 	}
 
@@ -44,11 +42,11 @@ public class GrupoService {
 	 * @param form
 	 * @return
 	 */
-	public Grupo update(GrupoForm form) {
+	public Grupo update(@Valid GrupoForm form) {
 		Grupo entity = this.findOneWithPermission(form.getId())
 				.orElseThrow(() -> new AuthorizationServiceException("Sem permissão para editar este grupo"));
 		this.mapFormToEntity(form, entity);
-		this.save(entity);
+		this.grupoRepository.save(entity);
 		return entity;
 	}
 
@@ -71,7 +69,7 @@ public class GrupoService {
 	 * @return
 	 */
 	public List<Grupo> findAllWithPermission() {
-		return this.findAllByCoordenador(this.getCoordenadorLogado());
+		return this.grupoRepository.findAllByCoordenador(this.getCoordenadorLogado());
 	}
 
 	/**
@@ -82,7 +80,7 @@ public class GrupoService {
 	 * @return
 	 */
 	public Optional<Grupo> findOneWithPermission(Long id) {
-		return this.findOneByIdAndCoordenador(id, this.getCoordenadorLogado());
+		return this.grupoRepository.findOneByIdAndCoordenador(id, this.getCoordenadorLogado());
 	}
 
 	/**
@@ -92,6 +90,25 @@ public class GrupoService {
 	 */
 	protected DadoGeral getCoordenadorLogado() {
 		return this.dadoGeralService.getDadoGeral();
+	}
+
+	/**
+	 * Retorna o grupo correspondente ao ID informado
+	 *
+	 * @param idGrupo
+	 * @return
+	 */
+	public Grupo findOne(Long idGrupo) {
+		return this.grupoRepository.findOne(idGrupo);
+	}
+
+	/**
+	 * Deleta o grupo da base de dados
+	 *
+	 * @param grupo
+	 */
+	public void delete(Grupo grupo) {
+		this.grupoRepository.delete(grupo);
 	}
 
 }
