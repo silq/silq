@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
 import lombok.Data;
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_pesquisador", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_pesquisador")
 @Data

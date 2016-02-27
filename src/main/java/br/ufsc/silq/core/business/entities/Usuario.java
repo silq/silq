@@ -14,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_usuario", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_usuario")
 @Data

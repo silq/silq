@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,6 +25,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_dado_geral", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_dado_geral")
 @Data
