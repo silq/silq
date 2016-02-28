@@ -6,17 +6,17 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Service;
 
-import com.mysema.query.jpa.impl.JPAQuery;
-
 import br.ufsc.silq.core.SilqConfig;
-import br.ufsc.silq.core.business.entities.QQualisGeral;
 import br.ufsc.silq.core.business.entities.QualisGeral;
+import br.ufsc.silq.core.business.repository.QualisGeralRepository;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.dto.Artigo;
@@ -32,6 +32,9 @@ public class CompareSimilarity {
 	@PersistenceContext
 	private EntityManager em;
 
+	@Inject
+	private QualisGeralRepository qualisGeralRepository;
+
 	public void compare(ParseResult parseResult, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
 		List<Artigo> artigos = parseResult.getArtigos();
 		List<Trabalho> trabalhos = parseResult.getTrabalhos();
@@ -41,35 +44,32 @@ public class CompareSimilarity {
 
 		if (tipoAvaliacao.equals(AvaliacaoType.TRABALHO) || tipoAvaliacao.equals(AvaliacaoType.AMBOS)) {
 			if (conhecimento.equalsIgnoreCase("Ciência da Computação")) {
-				this.compareTrabalhos(similarity, this.em, trabalhos);
+				this.compareTrabalhos(similarity, trabalhos);
 			} else {
 				parseResult.setHasConceitosTrabalhos(false);
 			}
 		}
 
 		if (tipoAvaliacao.equals(AvaliacaoType.ARTIGO) || tipoAvaliacao.equals(AvaliacaoType.AMBOS)) {
-			this.compareArtigos(similarity, this.em, artigos, conhecimento);
+			this.compareArtigos(similarity, artigos, conhecimento);
 		}
 
 		this.em.close();
 	}
 
-	private void compareArtigos(String similarity, EntityManager em, List<Artigo> artigos, String conhecimento) {
+	private void compareArtigos(String similarity, List<Artigo> artigos, String conhecimento) {
 		for (Artigo artigo : artigos) {
 			String issn = artigo.getIssn();
 			List<Conceito> conceitos = new ArrayList<>();
 			Conceito conceito;
 
-			QQualisGeral qQualisGeral = QQualisGeral.qualisGeral;
-			JPAQuery queryJPA = new JPAQuery(em);
-			queryJPA.from(qQualisGeral)
-					.where(qQualisGeral.issn.eq(issn).and(qQualisGeral.areaAvaliacao.eq(conhecimento.toUpperCase())));
+			Optional<QualisGeral> singleResult = this.qualisGeralRepository.findOneByIssnAndAreaAvaliacao(issn,
+					conhecimento.toUpperCase());
 
-			QualisGeral singleResult = queryJPA.singleResult(qQualisGeral);
-			if (singleResult != null) {
+			if (singleResult.isPresent()) {
 				conceito = new Conceito();
-				conceito.setConceito(singleResult.getEstrato());
-				conceito.setNomeEvento(singleResult.getTitulo());
+				conceito.setConceito(singleResult.get().getEstrato());
+				conceito.setNomeEvento(singleResult.get().getTitulo());
 				conceito.setSimilaridade("1.0");
 				conceitos.add(conceito);
 			} else if (SilqStringUtils.isBlank(issn)) {
@@ -107,7 +107,7 @@ public class CompareSimilarity {
 		}
 	}
 
-	private void compareTrabalhos(String similarity, EntityManager em, List<Trabalho> trabalhos) {
+	private void compareTrabalhos(String similarity, List<Trabalho> trabalhos) {
 		for (Trabalho trabalho : trabalhos) {
 			String titulo = trabalho.getNomeEvento();
 			titulo = SilqStringUtils.normalizeString(titulo);

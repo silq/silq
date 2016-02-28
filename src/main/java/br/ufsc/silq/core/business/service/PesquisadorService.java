@@ -1,17 +1,15 @@
 package br.ufsc.silq.core.business.service;
 
+import java.util.Optional;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Service;
 
-import com.mysema.query.jpa.impl.JPAQuery;
-
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
-import br.ufsc.silq.core.business.entities.QGrupo;
-import br.ufsc.silq.core.business.entities.QPesquisador;
 import br.ufsc.silq.core.business.repository.PesquisadorRepository;
 import br.ufsc.silq.core.exceptions.SilqEntityNotFoundException;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
@@ -88,34 +86,12 @@ public class PesquisadorService {
 		}
 	}
 
-	public Pesquisador loadPesquisador(Long idPesquisador, Long idGrupo) {
-		QPesquisador qPesquisador = QPesquisador.pesquisador;
-		QGrupo qGrupo = QGrupo.grupo;
-
-		// @formatter:off
-		JPAQuery query = new JPAQuery(this.em).from(qPesquisador).innerJoin(qPesquisador.grupo, qGrupo)
-				.where(qPesquisador.id.eq(idPesquisador).and(qGrupo.id.eq(idGrupo)));
-		// @formatter:on
-
-		Pesquisador pesquisador = query.singleResult(qPesquisador);
-		this.em.close();
-
-		return pesquisador;
+	public Optional<Pesquisador> loadPesquisador(Long idPesquisador, Long idGrupo) {
+		return this.pesquisadorRepository.findOneByIdAndGrupoId(idPesquisador, idGrupo);
 	}
 
 	public boolean existsPesquisadorCurriculo(Long idCurriculoPesquisador, Long idGrupo) {
-		QPesquisador qPesquisador = QPesquisador.pesquisador;
-		QGrupo qGrupo = QGrupo.grupo;
-
-		// @formatter:off
-		JPAQuery query = new JPAQuery(this.em).from(qPesquisador).innerJoin(qPesquisador.grupo, qGrupo)
-				.where(qPesquisador.idCurriculo.eq(idCurriculoPesquisador).and(qGrupo.id.eq(idGrupo)));
-		// @formatter:on
-
-		long count = query.count();
-		this.em.close();
-
-		return count > 0;
+		return this.pesquisadorRepository.findOneByIdCurriculoAndGrupoId(idCurriculoPesquisador, idGrupo).isPresent();
 	}
 
 	public void verifyPesquisador(Long idPesquisador, Long idGrupo, boolean isUpdate, Long idCurriculoPesquisador)
@@ -127,7 +103,7 @@ public class PesquisadorService {
 						"Pequisador com o ID " + idCurriculoPesquisador + " já é membro desse grupo.");
 			}
 		} else if (isUpdate) {
-			Pesquisador loadPesquisador = this.loadPesquisador(idPesquisador, idGrupo);
+			Pesquisador loadPesquisador = this.loadPesquisador(idPesquisador, idGrupo).get();
 			if (loadPesquisador != null && !loadPesquisador.getIdCurriculo().equals(idCurriculoPesquisador)) {
 				throw new SilqErrorException(
 						"Tentando atualizar pesquisador com currículo de ID diferente: " + idCurriculoPesquisador);
