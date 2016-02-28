@@ -2,7 +2,6 @@ package br.ufsc.silq.core.business.service;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
 import br.ufsc.silq.core.business.entities.QGrupo;
 import br.ufsc.silq.core.business.entities.QPesquisador;
+import br.ufsc.silq.core.business.repository.PesquisadorRepository;
 import br.ufsc.silq.core.exceptions.SilqEntityNotFoundException;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
 import br.ufsc.silq.core.exceptions.SilqForbiddenActionException;
@@ -21,23 +21,16 @@ import br.ufsc.silq.core.exceptions.SilqForbiddenActionException;
 public class PesquisadorService {
 
 	@Inject
+	private PesquisadorRepository pesquisadorRepository;
+
+	@Inject
 	private GrupoService grupoService;
 
 	@PersistenceContext
 	private EntityManager em;
 
-	public void savePesquisador(Pesquisador pesquisador) {
-		EntityTransaction transaction = this.em.getTransaction();
-		transaction.begin();
-
-		if (pesquisador.getId() != null) {
-			this.em.merge(pesquisador);
-		} else {
-			this.em.persist(pesquisador);
-		}
-
-		transaction.commit();
-		this.em.close();
+	public void save(Pesquisador pesquisador) {
+		this.pesquisadorRepository.save(pesquisador);
 	}
 
 	public void deletePesquisador(Long idGrupo, Long idPesquisador) throws SilqForbiddenActionException {
