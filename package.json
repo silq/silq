@@ -10,6 +10,12 @@
   "dependencies": {
     "bower": "^1.6.3"
   },
+  "scripts": {
+    "postinstall": "bower install",
+    "test": "grunt test",
+    "start": "grunt",
+    "heroku": "mvn package -Pprod,heroku -DskipTests && heroku deploy:jar --jar target/*.war"
+  },
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-autoprefixer": "3.0.3",
@@ -60,10 +66,5 @@
   },
   "engines": {
     "node": "^0.12 || ^4.2"
-  },
-  "scripts": {
-    "postinstall": "bower install",
-    "test": "grunt test",
-    "start": "grunt"
   }
 }
