@@ -23,7 +23,7 @@ public class HerokuDatabaseConfiguration {
 	public DataSource dataSource(DataSourceProperties dataSourceProperties, JHipsterProperties jHipsterProperties) {
 		this.log.debug("Configuring Heroku Datasource");
 
-		String herokuUrl = System.getenv("DATABASE_URL");
+		String herokuUrl = System.getenv("JDBC_DATABASE_URL");
 		if (herokuUrl != null) {
 			HikariConfig config = new HikariConfig();
 
@@ -41,7 +41,8 @@ public class HerokuDatabaseConfiguration {
 			config.addDataSourceProperty("url", herokuUrl);
 			return new HikariDataSource(config);
 		} else {
-			throw new ApplicationContextException("Heroku database URL is not configured, you must set $DATABASE_URL");
+			throw new ApplicationContextException(
+					"Heroku database URL is not configured, you must set $JDBC_DATABASE_URL");
 		}
 	}
 }
