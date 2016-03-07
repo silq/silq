@@ -1,7 +1,6 @@
 package br.ufsc.silq.core.parser.qualis.similarity;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import java.util.Optional;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.sql.DataSource;
 
 import org.springframework.stereotype.Service;
 
@@ -25,12 +25,17 @@ import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.combo.ComboValueHelper;
+import lombok.extern.log4j.Log4j;
 
 @Service
+@Log4j
 public class CompareSimilarity {
 
 	@PersistenceContext
 	private EntityManager em;
+
+	@Inject
+	private DataSource dataSource;
 
 	@Inject
 	private QualisGeralRepository qualisGeralRepository;
@@ -78,8 +83,8 @@ public class CompareSimilarity {
 					titulo = artigo.getTituloPeriodico();
 					titulo = SilqStringUtils.normalizeString(titulo);
 
-					Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/silq",
-							"postgres", "mingaudeaveia");
+					Connection connection = this.dataSource.getConnection();
+
 					Statement st = connection.createStatement();
 					st.executeQuery("SELECT set_limit(" + similarity + "::real)");
 					ResultSet rsSimilarity = st.executeQuery("SELECT NO_ESTRATO, NO_TITULO, SIMILARITY(NO_TITULO, \'"
@@ -99,8 +104,8 @@ public class CompareSimilarity {
 					st.close();
 					connection.close();
 				} catch (Exception e) {
-					// TODO Lançar exceção;
-					System.out.println(e.getMessage() + "\n" + artigo);
+					// TODO Lançar exceção ?
+					log.error(e.getMessage() + "\nArtigo: " + artigo);
 				}
 			}
 			artigo.setConceitos(conceitos);
@@ -116,8 +121,7 @@ public class CompareSimilarity {
 			Conceito conceito;
 
 			try {
-				Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/silq", "postgres",
-						"mingaudeaveia");
+				Connection connection = this.dataSource.getConnection();
 				Statement st = connection.createStatement();
 				st.executeQuery("SELECT set_limit(" + similarity + "::real)");
 				ResultSet rs = st.executeQuery("SELECT NO_ESTRATO, NO_TITULO, SIMILARITY(NO_TITULO, \'" + titulo
@@ -138,8 +142,8 @@ public class CompareSimilarity {
 				connection.close();
 			} catch (Exception e) {
 				// TODO Lançar exceções ou montar uma estrutura pq podem ser
-				// vários;
-				System.out.println(e.getMessage() + "\n" + e.getMessage());
+				// vários
+				log.error(e.getMessage() + "\nTrabalho: " + trabalho);
 			}
 		}
 	}
