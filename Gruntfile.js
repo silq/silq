@@ -60,23 +60,6 @@ module.exports = function (grunt) {
                 exclude: [
                     /angular-i18n/  // localizations are loaded dynamically
                 ]
-            },
-            test: {
-                src: 'src/test/javascript/karma.conf.js',
-                exclude: [/angular-i18n/, /angular-scenario/],
-                ignorePath: /\.\.\/\.\.\//, // remove ../../ from paths of injected javascripts
-                devDependencies: true,
-                fileTypes: {
-                    js: {
-                        block: /(([\s\t]*)\/\/\s*bower:*(\S*))(\n|\r|.)*?(\/\/\s*endbower)/gi,
-                        detect: {
-                            js: /'(.*\.js)'/gi
-                        },
-                        replace: {
-                            js: '\'{{filePath}}\','
-                        }
-                    }
-                }
             }
         },
         browserSync: {
@@ -269,12 +252,6 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        karma: {
-            unit: {
-                configFile: 'src/test/javascript/karma.conf.js',
-                singleRun: true
-            }
-        },
         ngAnnotate: {
             dist: {
                 files: [{
@@ -341,12 +318,7 @@ module.exports = function (grunt) {
         grunt.task.run([target ? ('serve:' + target) : 'serve']);
     });
 
-    grunt.registerTask('test', [
-        'clean:server',
-        'wiredep:test',
-        'ngconstant:dev',
-        'karma'
-    ]);
+    grunt.registerTask('test', []);
 
     grunt.registerTask('build', [
         'clean:dist',
@@ -369,13 +341,11 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('buildOpenshift', [
-        'test',
         'build',
         'copy:generateOpenshiftDirectory',
     ]);
 
     grunt.registerTask('deployOpenshift', [
-        'test',
         'build',
         'copy:generateOpenshiftDirectory',
         'buildcontrol:openshift'
