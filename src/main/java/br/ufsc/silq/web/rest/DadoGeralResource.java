@@ -1,8 +1,6 @@
 package br.ufsc.silq.web.rest;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -28,22 +26,19 @@ public class DadoGeralResource {
 	private DadoGeralService dadoGeralService;
 
 	/**
-	 * POST /api/upload -> envia um currículo, processa-o e retorna o dado geral
+	 * POST /api/dado-geral -> envia um currículo, processa-o e retorna o dado
+	 * geral, salvando o DadoGeral na base de dados e associando ao usuário
+	 * logado.
 	 */
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/dado-geral", method = RequestMethod.POST)
 	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) throws IOException, SilqErrorException {
 		log.debug("Received file upload {}", file.getOriginalFilename());
-
-		String newName = UUID.randomUUID().toString() + file.getOriginalFilename();
-		File tempFile = File.createTempFile(newName, null);
-		file.transferTo(tempFile);
-		DadoGeral dadoGeral = this.dadoGeralService.saveFromFile(tempFile);
-
+		DadoGeral dadoGeral = this.dadoGeralService.saveFromUpload(file);
 		return new ResponseEntity<>(dadoGeral, HttpStatus.OK);
 	}
 
 	/**
-	 * GET /dado-geral -> retorna os dados gerais do usuário atualmente logado
+	 * GET /api/dado-geral -> retorna os dados gerais do usuário logado
 	 */
 	@RequestMapping(value = "/dado-geral", method = RequestMethod.GET)
 	public ResponseEntity<DadoGeral> getDadoGeral() {
@@ -51,7 +46,7 @@ public class DadoGeralResource {
 	}
 
 	/**
-	 * DELETE /dado-geral -> remove os dados gerais do usuário atualmente logado
+	 * DELETE /api/dado-geral -> remove os dados gerais do usuário logado
 	 */
 	@RequestMapping(value = "/dado-geral", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeDadoGeral() {

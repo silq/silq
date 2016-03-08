@@ -1,12 +1,15 @@
 package br.ufsc.silq.core.business.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Usuario;
@@ -32,16 +35,16 @@ public class DadoGeralService {
 	private LattesParser lattesParser;
 
 	/**
-	 * Salva os dados gerais do usuário atualmente logado a partir do arquivo
-	 * XML de seu currículo Lattes. Remove dados gerais anteriores associados a
-	 * este usuário.
+	 * Salva os dados gerais do usuário logado a partir do arquivo XML de seu
+	 * currículo Lattes. Remove dados gerais anteriores associados a este
+	 * usuário.
 	 *
 	 * @param curriculumFile
 	 *            Currículo Lattes do usuário. Deve ser em formato XML válido.
 	 * @return
 	 * @throws SilqErrorException
 	 */
-	public DadoGeral saveFromFile(File curriculumFile) throws SilqErrorException {
+	protected DadoGeral saveFromFile(File curriculumFile) throws SilqErrorException {
 		DadosGeraisResult result = this.lattesParser.parseCurriculaDadosGerais(curriculumFile);
 		DadoGeral dadoGeral = new DadoGeral();
 
@@ -65,7 +68,25 @@ public class DadoGeralService {
 	}
 
 	/**
-	 * Retorna o dado geral do usuário atual
+	 * Salva os dados gerais do usuário logado a partir do arquivo XML de seu
+	 * currículo Lattes. Remove dados gerais anteriores associados a este
+	 * usuário.
+	 *
+	 * @param uploadedFile
+	 *            Upload do arquivo contendo o Lattes
+	 * @return
+	 * @throws IOException
+	 * @throws SilqErrorException
+	 */
+	public DadoGeral saveFromUpload(MultipartFile uploadedFile) throws IOException, SilqErrorException {
+		String newName = UUID.randomUUID().toString() + uploadedFile.getOriginalFilename();
+		File tempFile = File.createTempFile(newName, null);
+		uploadedFile.transferTo(tempFile);
+		return this.saveFromFile(tempFile);
+	}
+
+	/**
+	 * Retorna o dado geral do usuário logado.
 	 *
 	 * @return
 	 */
@@ -74,8 +95,8 @@ public class DadoGeralService {
 	}
 
 	/**
-	 * Remove o currículo do usuário atual, deletando seu Dado Geral da base de
-	 * dados
+	 * Remove o currículo do usuário logado, deletando seu DadoGeral da base de
+	 * dados.
 	 */
 	public void removeCurriculum() {
 		this.dadoGeralRepository.delete(this.getDadoGeral());

@@ -24,7 +24,7 @@ angular.module('silq2App')
             file.status = 'Enviando arquivo...';
 
             Upload.upload({
-                url: 'api/upload/',
+                url: 'api/dado-geral/',
                 data: {file: file}
             }).then(function () {
                 Flash.create('success', '<strong>Sucesso!</strong> Currículo enviado');
