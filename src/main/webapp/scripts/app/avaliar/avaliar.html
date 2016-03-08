@@ -32,6 +32,11 @@
                         <li ng-repeat="file in files">
                             <span class="file-name">{{ file.name }}</span>
                             <span class="file-size">{{ file.size | bytes }}</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: {{file.progress}}%">
+                                    {{ file.progress }}%
+                                </div>
+                            </div>
                         </li>
                     </ul>
 

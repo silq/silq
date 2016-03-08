@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('AvaliarController', function ($scope, DadoGeral, Similarity, Flash) {
+    .controller('AvaliarController', function ($scope, Similarity, Upload, Flash) {
         $scope.files = [];
         $scope.avaliarForm = {
             nivelSimilaridade: '0.6'
@@ -13,17 +13,30 @@ angular.module('silq2App')
                 return;
             }
 
-            // Similarity.compareMine($scope.avaliarForm).$promise.then(function(results) {
-            //     $scope.results = results;
-            //     Flash.create('success', 'Avaliação concluída');
-            // });
+            $scope.files.forEach(function(file) {
+                console.log(file);
+            });
         };
 
         $scope.uploadFiles = function(files) {
             if (!files) return;
             files.forEach(function(file) {
-                console.log(file);
                 $scope.files.push(file);
+                file.uploading = true;
+
+                // TODO: upload service
+                Upload.upload({
+                    url: 'api/dado-geral/',
+                    data: {file: file}
+                }).then(function () {
+                    file.uploading = false;
+                }, function (resp) {
+                    Flash.create('danger', '<strong>Ops!</strong> Ocorreu um erro');
+                    file.uploading = false;
+                    console.error(resp);
+                }, function (evt) {
+                    file.progress = parseInt(100.0 * evt.loaded / evt.total);
+                });
             });
         };
     });
