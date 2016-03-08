@@ -14,26 +14,6 @@
 
     <defaultCache
             eternal="false"
-            overflowToDisk="false"
+            overflowToDisk="false"      
             />
-
-    <cache name="br.ufsc.silq.domain.User"
-           timeToLiveSeconds="3600">
-    </cache>
-
-    <cache name="br.ufsc.silq.domain.Authority"
-           timeToLiveSeconds="3600">
-    </cache>
-
-    <cache name="br.ufsc.silq.domain.User.authorities"
-           timeToLiveSeconds="3600">
-    </cache>
-
-    <cache name="br.ufsc.silq.domain.PersistentToken"
-           timeToLiveSeconds="3600">
-    </cache>
-
-    <cache name="br.ufsc.silq.domain.User.persistentTokens"
-           timeToLiveSeconds="3600">
-    </cache>
-    </ehcache>
+</ehcache>
