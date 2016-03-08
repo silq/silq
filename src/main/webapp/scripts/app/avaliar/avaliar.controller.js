@@ -7,10 +7,6 @@ angular.module('silq2App')
             nivelSimilaridade: '0.6'
         };
 
-        DadoGeral.get().$promise.then(function(dados) {
-            $scope.avaliarForm.area = dados.areaConhecimento;
-        });
-
         $scope.submit = function() {
             Similarity.compareMine($scope.avaliarForm).$promise.then(function(results) {
                 $scope.results = results;

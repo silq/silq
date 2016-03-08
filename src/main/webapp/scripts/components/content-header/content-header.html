@@ -1,11 +1,11 @@
 <ul class="nav nav-tabs nav-justified">
-    <li ui-sref-active="active">
+    <li ng-class="{active: $state.includes('principal')}">
         <a ui-sref="principal">Meus dados</a>
     </li>
     <li ui-sref-active="active">
         <a ui-sref="grupo">Grupos de avaliação <span class="badge badge-nav">{{ countGrupos }}</span></a>
     </li>
     <li ui-sref-active="active">
-        <a href="#">Avaliação livre</a>
+        <a ui-sref="avaliar">Avaliação livre</a>
     </li>
 </ul>
