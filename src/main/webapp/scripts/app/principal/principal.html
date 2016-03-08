@@ -9,16 +9,15 @@
         <div name="file" ngf-drop="uploadFile($file)" ngf-select="uploadFile($file)"
             class="drop-box" ng-model="file"
             ngf-drag-over-class="'drop-box-active'"
-            accept="image/*,application/pdf"
             ngf-pattern="'application/xml,text/xml'"
             ngf-accept="'application/xml,text/xml'"
-            ngf-max-size="50MB"
-            ngf-model-invalid="errorFile">
-            Arraste seu currículo aqui ou clique para adicionar
+            ngf-max-size="50MB">
+
+            <p>Arraste para cá seu currículo Lattes em XML ou clique para adicioná-lo</p>
 
             <div class="text-danger">
-                <span ng-show="uploadForm.file.$error.maxSize">Arquivo muito grande. Tamanho máximo: 50MB</span>
-                <span ng-show="uploadForm.file.$error.pattern">Somente arquivos do tipo XML são permitidos</span>
+                <p ng-show="uploadForm.file.$error.maxSize">Arquivo muito grande. Tamanho máximo: 50MB</p>
+                <p ng-show="uploadForm.file.$error.pattern">Somente arquivos do tipo XML são permitidos</p>
             </div>
         </div>
         <div ngf-no-file-drop>Arrastar e soltar arquivos não é suportado por este navegador</div>

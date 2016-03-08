@@ -31,10 +31,9 @@ body {
     border-radius: 4px;
     padding: 30px;
     font-size: 14px;
-    text-align: center;
     margin: 10px;
     cursor: pointer;
-    color: #999;
+    color: #888;
 }
 
 .drop-box:hover {
@@ -44,6 +43,43 @@ body {
 
 .drop-box-active {
     border-color: blue;
+}
+
+.drop-box p {
+    text-align: center;
+    margin: 0;
+}
+
+.drop-box ul {
+    margin: 0;
+    padding: 20px 0 0 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.drop-box li {
+    background-color: #fff;
+    margin: 5px;
+    padding: 0;
+    flex: 1 1 140px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    text-align: center;
+    padding: 5px;
+    color: #444;
+    box-shadow: 1px 1px 5px -1px #ccc;
+}
+
+.drop-box .file-name {
+    display: block;
+    word-wrap: break-word;
+}
+
+.drop-box .file-size {
+    font-weight: 600;
+    font-size: 0.9em;
 }
 
 .table-resumo td:first-child {
@@ -71,6 +107,11 @@ body {
 .btn-spaced {
     padding-left: 100px;
     padding-right: 100px;
+}
+
+.title-border {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.35em;
 }
 
 @keyframes fadeIn {
