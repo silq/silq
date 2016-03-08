@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.parser.qualis.similarity;
+package br.ufsc.silq.core.business.service;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -29,7 +29,7 @@ import lombok.extern.log4j.Log4j;
 
 @Service
 @Log4j
-public class CompareSimilarity {
+public class SimilarityService {
 
 	@PersistenceContext
 	private EntityManager em;

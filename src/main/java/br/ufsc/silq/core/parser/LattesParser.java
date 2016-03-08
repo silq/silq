@@ -14,6 +14,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import br.ufsc.silq.core.business.service.SimilarityService;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
 import br.ufsc.silq.core.forms.AvaliarForm;
@@ -26,7 +27,6 @@ import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.PesquisadorResult;
 import br.ufsc.silq.core.parser.dto.TipoOrigemCurriculo;
 import br.ufsc.silq.core.parser.dto.Trabalho;
-import br.ufsc.silq.core.parser.qualis.similarity.CompareSimilarity;
 import br.ufsc.silq.core.utils.SilqDataUtils;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.files.FileManager;
@@ -36,7 +36,7 @@ import br.ufsc.silq.core.utils.parser.ConverterHelper;
 public class LattesParser {
 
 	@Inject
-	private CompareSimilarity compareSimilarity;
+	private SimilarityService compareSimilarity;
 
 	public DadosGeraisResult parseCurriculaDadosGerais(File file) throws SilqErrorException {
 		DadosGeraisResult dadosGeraisResult = new DadosGeraisResult();
