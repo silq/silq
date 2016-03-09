@@ -16,6 +16,8 @@ angular.module('silq2App')
             $scope.files.forEach(function(file) {
                 console.log(file);
             });
+
+            Flash.create('info', 'Em desenvolvimento!');
         };
 
         $scope.uploadFiles = function(files) {
@@ -24,7 +26,6 @@ angular.module('silq2App')
                 $scope.files.push(file);
                 file.uploading = true;
 
-                // TODO: upload service
                 Upload.upload({
                     url: 'api/dado-geral/',
                     data: {file: file}
