@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api")
 @Slf4j
-public class SimilarityResource {
+public class AvaliarResource {
 
 	@Inject
 	private UsuarioService usuarioService;
@@ -30,9 +30,9 @@ public class SimilarityResource {
 	private LattesParser lattesParser;
 
 	/**
-	 * POST /api/compare/my -> Compara o currículo do usuário atualmente logado
+	 * POST /api/avaliar/atual -> Compara o currículo do usuário atual
 	 */
-	@RequestMapping(value = "/compare/my", method = RequestMethod.POST)
+	@RequestMapping(value = "/avaliar/atual", method = RequestMethod.POST)
 	public ResponseEntity<?> upload(@Valid @RequestBody AvaliarForm avaliarForm) {
 		Document curriculum = this.usuarioService.getUserCurriculum();
 		ParseResult result = this.lattesParser.parseCurriculaAvaliacao(curriculum, avaliarForm, AvaliacaoType.AMBOS);

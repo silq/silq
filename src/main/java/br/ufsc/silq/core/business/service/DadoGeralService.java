@@ -79,10 +79,13 @@ public class DadoGeralService {
 	 * @throws SilqErrorException
 	 */
 	public DadoGeral saveFromUpload(MultipartFile uploadedFile) throws IOException, SilqErrorException {
-		String newName = UUID.randomUUID().toString() + uploadedFile.getOriginalFilename();
+		// TODO(bonetti): é mesmo necessário criar um File ??
+		String newName = UUID.randomUUID().toString();
 		File tempFile = File.createTempFile(newName, null);
 		uploadedFile.transferTo(tempFile);
-		return this.saveFromFile(tempFile);
+		DadoGeral dadoGeral = this.saveFromFile(tempFile);
+		tempFile.delete();
+		return dadoGeral;
 	}
 
 	/**

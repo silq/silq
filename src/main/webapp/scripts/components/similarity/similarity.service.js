@@ -2,7 +2,7 @@
 
 angular.module('silq2App')
     .factory('Similarity', function ($resource) {
-        return $resource('api/compare/my', {}, {
+        return $resource('api/avaliar/atual', {}, {
                 'compareMine': {
                     method: 'POST',
                     isArray: false,
