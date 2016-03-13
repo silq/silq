@@ -54,7 +54,7 @@ public class PesquisadorAnualGraphProcessor {
 			byte[] curriculo = this.pesquisadorService.loadPesquisadorCurriculum(idGrupo, pesquisador.getId());
 			Document document = FileManager.createXmlDocument(new String(curriculo));
 			AvaliarForm avaliarForm = this.getAvaliarForm(pesquisador.getAreaAtuacao(), ano, nivelSimilaridade);
-			ParseResult parseResult = this.lattesParser.parseCurriculaAvaliacao(document, avaliarForm, tipoAvaliacao);
+			ParseResult parseResult = this.lattesParser.parseCurricula(document, avaliarForm, tipoAvaliacao);
 			this.processParseResult(pesquisadorEstratoAnoDto, ano, parseResult, conceito);
 			this.processDto(pesquisadorEstratoAnoDto);
 		}

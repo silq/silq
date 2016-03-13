@@ -36,8 +36,16 @@ import br.ufsc.silq.core.utils.parser.ConverterHelper;
 public class LattesParser {
 
 	@Inject
-	private SimilarityService compareSimilarity;
+	private SimilarityService similarityService;
 
+	/**
+	 * Extrai os dados gerais do currículo Lattes (em XML) de um pesquisador
+	 *
+	 * @param file
+	 *            Currículo Lattes em XML do pesquisador.
+	 * @return Os dados gerais do pesquisador extraídos do currículo.
+	 * @throws SilqErrorException
+	 */
 	public DadosGeraisResult parseCurriculaDadosGerais(File file) throws SilqErrorException {
 		DadosGeraisResult dadosGeraisResult = new DadosGeraisResult();
 
@@ -70,6 +78,15 @@ public class LattesParser {
 		return dadosGeraisResult;
 	}
 
+	/**
+	 * Extrai alguns dados gerais do currículo Lattes (em XML) de um
+	 * pesquisador.
+	 *
+	 * @param file
+	 *            Currículo Lattes em XML do pesquisador.
+	 * @return
+	 * @throws SilqErrorException
+	 */
 	public PesquisadorResult parseCurriculaPesquisador(File file) throws SilqErrorException {
 		PesquisadorResult pesquisadorResult = new PesquisadorResult();
 
@@ -89,11 +106,19 @@ public class LattesParser {
 		return pesquisadorResult;
 	}
 
-	public ParseResult parseCurriculaAvaliacao(Document document, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
-		return this.parseCurricula(document, form, tipoAvaliacao);
-	}
-
-	public ParseResult parseCurriculaAvaliacao(File file, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
+	/**
+	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
+	 * currículo Lattes (em XML) e avalia-os utilizando os dados do banco.
+	 *
+	 * @param file
+	 *            Currículo Lattes (em XML) a ser avaliado
+	 * @param form
+	 *            Opções de avaliação
+	 * @param tipoAvaliacao
+	 *            Se devem ser avaliados artigos, trabalhos ou ambos
+	 * @return
+	 */
+	public ParseResult parseCurricula(File file, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
 		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = null;
 		Document document = null;
@@ -111,6 +136,18 @@ public class LattesParser {
 		return null;
 	}
 
+	/**
+	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
+	 * currículo Lattes (em XML) e avalia-os utilizando os dados do banco.
+	 *
+	 * @param document
+	 *            Currículo Lattes (em XML) a ser avaliado
+	 * @param form
+	 *            Opções de avaliação
+	 * @param tipoAvaliacao
+	 *            Se devem ser avaliados artigos, trabalhos ou ambos
+	 * @return
+	 */
 	public ParseResult parseCurricula(Document document, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
 		ParseResult parseResult = new ParseResult();
 		parseResult.setAreaAvaliada(form.area);
@@ -176,7 +213,7 @@ public class LattesParser {
 		List<Artigo> artigos = ArtigoAttributeGetter.iterateUntilArtigos(raiz);
 		parseResult.setArtigos(artigos);
 
-		this.compareSimilarity.compare(parseResult, form, tipoAvaliacao);
+		this.similarityService.compare(parseResult, form, tipoAvaliacao);
 
 		parseResult.order();
 

@@ -35,7 +35,7 @@ public class AvaliarResource {
 	@RequestMapping(value = "/avaliar/atual", method = RequestMethod.POST)
 	public ResponseEntity<?> upload(@Valid @RequestBody AvaliarForm avaliarForm) {
 		Document curriculum = this.usuarioService.getUserCurriculum();
-		ParseResult result = this.lattesParser.parseCurriculaAvaliacao(curriculum, avaliarForm, AvaliacaoType.AMBOS);
+		ParseResult result = this.lattesParser.parseCurricula(curriculum, avaliarForm, AvaliacaoType.AMBOS);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 

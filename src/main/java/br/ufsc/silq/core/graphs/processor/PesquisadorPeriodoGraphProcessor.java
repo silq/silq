@@ -56,7 +56,7 @@ public class PesquisadorPeriodoGraphProcessor {
 			byte[] curriculo = this.pesquisadorService.loadPesquisadorCurriculum(idGrupo, pesquisador.getId());
 			Document document = FileManager.createXmlDocument(new String(curriculo));
 			AvaliarForm avaliarForm = this.getAvaliarForm(pesquisador.getAreaAtuacao(), periodo, nivelSimilaridade);
-			ParseResult parseResult = this.lattesParser.parseCurriculaAvaliacao(document, avaliarForm, tipoAvaliacao);
+			ParseResult parseResult = this.lattesParser.parseCurricula(document, avaliarForm, tipoAvaliacao);
 			this.processParseResult(pesquisadorEstratoAnoDto, periodo, parseResult, conceito);
 			this.processDto(pesquisadorEstratoAnoDto);
 		}
