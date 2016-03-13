@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class Artigo implements Comparable<Artigo>, Serializable {
 
 	private static final long serialVersionUID = 1265140499533405908L;
@@ -27,53 +30,17 @@ public class Artigo implements Comparable<Artigo>, Serializable {
 	public String toString() {
 		String info = "";
 
-		info += "\nNome do Artigo: " + nomeArtigo;
-		info += "\nAno: " + ano;
-		info += "\nTítulo do Periódico: " + tituloPeriodico;
-		info += "\nISSN: " + issn;
-		info += "\nConceitos: " + conceitos.toString() + ";";
+		info += "\nNome do Artigo: " + this.nomeArtigo;
+		info += "\nAno: " + this.ano;
+		info += "\nTítulo do Periódico: " + this.tituloPeriodico;
+		info += "\nISSN: " + this.issn;
+		info += "\nConceitos: " + this.conceitos.toString() + ";";
 
 		return info;
 	}
 
-	public String getNomeArtigo() {
-		return nomeArtigo;
-	}
-
-	public void setNomeArtigo(String nomeArtigo) {
-		this.nomeArtigo = nomeArtigo;
-	}
-
-	public Integer getAno() {
-		return ano;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
-	public String getTituloPeriodico() {
-		return tituloPeriodico;
-	}
-
-	public void setTituloPeriodico(String tituloPeriodico) {
-		this.tituloPeriodico = tituloPeriodico;
-	}
-
-	public String getIssn() {
-		return issn;
-	}
-
 	public void setIssn(String issn) {
-		this.issn = (issn.length() == 8 ? (issn.substring(0, 4) + "-" + issn.substring(4, 8)) : "-");
-	}
-
-	public List<Conceito> getConceitos() {
-		return conceitos;
-	}
-
-	public void setConceitos(List<Conceito> conceitos) {
-		this.conceitos = conceitos;
+		this.issn = issn.length() == 8 ? issn.substring(0, 4) + "-" + issn.substring(4, 8) : "-";
 	}
 
 	@Override

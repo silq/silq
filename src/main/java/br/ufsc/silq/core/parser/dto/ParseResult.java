@@ -10,19 +10,24 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString(of = { "nome", "areaGrandeAreaConhecimento", "nomeEspecialidade", "nomeSubAreaConhecimento" })
 public class ParseResult implements Serializable {
 
 	private static final long serialVersionUID = 2847835713658377152L;
 
+	// Dados extraídos do currículo Lattes:
 	private String nome;
-	private String areaAvaliada;
 	private AreaConhecimento areaGrandeAreaConhecimento;
 	private String nomeEspecialidade;
 	private String nomeSubAreaConhecimento;
-	private List<Trabalho> trabalhos;
-	private List<Artigo> artigos;
+	private List<Trabalho> trabalhos; // conceitos são setados posteriormente pelo serviço de similaridade
+	private List<Artigo> artigos; // conceitos são setados posteriormente pelo serviço de similaridade
+
+	// Dados setados após extração:
+	private String areaAvaliada;
 	private String nivelSimilaridade;
 	private String anoPublicacaoDe;
 	private String anoPublicacaoAte;
@@ -35,31 +40,6 @@ public class ParseResult implements Serializable {
 		this.nomeSubAreaConhecimento = "";
 		this.trabalhos = new ArrayList<>();
 		this.artigos = new ArrayList<>();
-	}
-
-	@Override
-	public String toString() {
-		String info = "";
-
-		info += "Nome do pesquisador: " + this.getNome();
-		info += "\nNome Área do Conhecimento: " + this.getAreaGrandeAreaConhecimento().getNomeArea();
-		info += "\nNome da Especialidade: " + this.getNomeEspecialidade();
-		info += "\nNome Sub Área Conhecimento: " + this.getNomeSubAreaConhecimento();
-		info += "\nNome Grande Área do Conhecimento: " + this.getAreaGrandeAreaConhecimento().getNomeGrandeArea();
-
-		// info += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-		// info += "\n\nTrabalhos:\n";
-		// for (Trabalho trabalho : this.trabalhos) {
-		// info += "\t" + trabalho + "\n";
-		// }
-		//
-		// info += "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-		// info += "\nArtigos:\n";
-		// for (Artigo artigo : this.artigos) {
-		// info += "\t" + artigo + "\n";
-		// }
-
-		return info;
 	}
 
 	public String getTotalizador() {
@@ -132,14 +112,6 @@ public class ParseResult implements Serializable {
 		}
 
 		return trabalhos;
-	}
-
-	public void setTrabalhos(List<Trabalho> trabalhos) {
-		this.trabalhos = trabalhos;
-	}
-
-	public List<Artigo> getArtigos() {
-		return this.artigos;
 	}
 
 	public List<Artigo> getArtigosByAno() {

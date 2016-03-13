@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class Trabalho implements Comparable<Trabalho>, Serializable {
 
 	private static final long serialVersionUID = -2890991030815261275L;
@@ -24,44 +27,12 @@ public class Trabalho implements Comparable<Trabalho>, Serializable {
 	public String toString() {
 		String info = "";
 
-		info += "\nTítulo: " + tituloTrabalho + "; ";
-		info += "\nAno de publicação: " + anoPublicacao + "; ";
-		info += "\nNome do Evento: " + nomeEvento + ";";
-		info += "\nConceitos: " + conceitos.toString() + ";";
+		info += "\nTítulo: " + this.tituloTrabalho + "; ";
+		info += "\nAno de publicação: " + this.anoPublicacao + "; ";
+		info += "\nNome do Evento: " + this.nomeEvento + ";";
+		info += "\nConceitos: " + this.conceitos.toString() + ";";
 
 		return info;
-	}
-
-	public String getTituloTrabalho() {
-		return tituloTrabalho;
-	}
-
-	public void setTituloTrabalho(String tituloTrabalho) {
-		this.tituloTrabalho = tituloTrabalho;
-	}
-
-	public String getNomeEvento() {
-		return nomeEvento;
-	}
-
-	public void setNomeEvento(String nomeEvento) {
-		this.nomeEvento = nomeEvento;
-	}
-
-	public Integer getAnoPublicacao() {
-		return anoPublicacao;
-	}
-
-	public void setAnoPublicacao(Integer anoPublicacao) {
-		this.anoPublicacao = anoPublicacao;
-	}
-
-	public List<Conceito> getConceitos() {
-		return conceitos;
-	}
-
-	public void setConceitos(List<Conceito> conceitos) {
-		this.conceitos = conceitos;
 	}
 
 	@Override

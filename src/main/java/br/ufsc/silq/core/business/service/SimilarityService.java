@@ -49,6 +49,8 @@ public class SimilarityService {
 
 		if (tipoAvaliacao.equals(AvaliacaoType.TRABALHO) || tipoAvaliacao.equals(AvaliacaoType.AMBOS)) {
 			if (conhecimento.equalsIgnoreCase("Ciência da Computação")) {
+				// TODO (bonetti): somente avaliações de trabalhos de CCO são
+				// pesquisados atualmente... Permitir outras áreas!
 				this.compareTrabalhos(similarity, trabalhos);
 			} else {
 				parseResult.setHasConceitosTrabalhos(false);
