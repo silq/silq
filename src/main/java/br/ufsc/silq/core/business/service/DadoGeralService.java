@@ -3,7 +3,6 @@ package br.ufsc.silq.core.business.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -14,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Usuario;
 import br.ufsc.silq.core.business.repository.DadoGeralRepository;
+import br.ufsc.silq.core.business.service.util.UploadManager;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
@@ -80,9 +80,7 @@ public class DadoGeralService {
 	 */
 	public DadoGeral saveFromUpload(MultipartFile uploadedFile) throws IOException, SilqErrorException {
 		// TODO(bonetti): é mesmo necessário criar um File ??
-		String newName = UUID.randomUUID().toString();
-		File tempFile = File.createTempFile(newName, null);
-		uploadedFile.transferTo(tempFile);
+		File tempFile = UploadManager.createTempFileFromUpload(uploadedFile);
 		DadoGeral dadoGeral = this.saveFromFile(tempFile);
 		tempFile.delete();
 		return dadoGeral;
