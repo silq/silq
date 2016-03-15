@@ -1,0 +1,19 @@
+<div ng-cloak>
+    <h3 class="text-center">Resultados da avaliação</h3>
+    <br />
+
+    <div class="alert alert-info" ng-show="!results.length">
+        Nenhum resultado.
+    </div>
+
+    <div ng-show="results.length">
+        <table class="table table-striped table-resumo">
+            <tr ng-repeat="result in results | orderBy: 'nome'">
+                <td>{{ result.nome }}</td>
+                <td><a>Visualizar resultados</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{{ results | json }}

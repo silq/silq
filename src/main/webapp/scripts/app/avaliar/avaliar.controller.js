@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('AvaliarController', function ($scope, Similarity, Upload, Flash) {
+    .controller('AvaliarController', function ($scope, $state, Similarity, Upload, Flash) {
         var cacheId = Math.random().toString(36).substring(7);
 
         $scope.files = [];
@@ -9,7 +9,6 @@ angular.module('silq2App')
             nivelSimilaridade: '0.6',
             cacheId: cacheId
         };
-        $scope.results = null;
 
         $scope.uploadFiles = function(files) {
             if (!files) return;
@@ -37,8 +36,8 @@ angular.module('silq2App')
 
         $scope.submit = function() {
             if ($scope.files.length <= 0) {
-                // Flash.create('warning', 'Selecione ao menos um currículo para avaliar');
-                // return; // TODO
+                Flash.create('warning', 'Selecione ao menos um currículo para avaliar');
+                return;
             }
 
             var abort = false;
@@ -55,8 +54,10 @@ angular.module('silq2App')
             }
 
             Similarity.avaliar($scope.avaliarForm).then(function(response) {
-                $scope.results = response.data;
                 Flash.create('success', 'Avaliação concluída');
+                $state.go('result', {
+                    cacheId: cacheId
+                });
             }).catch(function(err) {
                 console.error(err);
             });

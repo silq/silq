@@ -2,20 +2,15 @@ package br.ufsc.silq.web.cache;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.ufsc.silq.core.business.service.util.UploadManager;
+import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * Cache utilizado para guardar os currículos Lattes enviados de forma
@@ -23,12 +18,7 @@ import lombok.ToString;
  * graças ao escopo "session" definido na classe.
  */
 @Service
-@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-@ToString
-public class CurriculumCache {
-	private static final long serialVersionUID = 6545739383868346008L;
-
-	private Map<String, ArrayList<Curriculum>> map = new HashMap<>();
+public class CurriculumCache extends AbstractCache<Curriculum> {
 
 	/**
 	 * Salva um currículo em cache e associa-o ao cacheId especificado
@@ -42,26 +32,9 @@ public class CurriculumCache {
 	 * @throws IOException
 	 */
 	public Curriculum insert(String cacheId, MultipartFile upload) throws IOException {
-		if (!this.map.containsKey(cacheId)) {
-			this.map.put(cacheId, new ArrayList<>());
-		}
-
-		ArrayList<Curriculum> list = this.map.get(cacheId);
 		Curriculum curriculum = new Curriculum(upload, cacheId);
-		list.add(curriculum);
+		this.insert(cacheId, curriculum);
 		return curriculum;
-	}
-
-	/**
-	 * Retorna os currículos salvos relacionados ao cacheId informado.
-	 *
-	 * @param cacheId
-	 * @return A lista de currículos associado ao ID ou uma lista vazia caso
-	 *         nada foi encontrado.
-	 */
-	public ArrayList<Curriculum> get(String cacheId) {
-		ArrayList<Curriculum> list = this.map.get(cacheId);
-		return list != null ? list : new ArrayList<>();
 	}
 
 	/**
@@ -70,12 +43,13 @@ public class CurriculumCache {
 	 *
 	 * @param cacheId
 	 */
+	@Override
 	public void clear(String cacheId) {
 		for (Curriculum curriculum : this.get(cacheId)) {
 			curriculum.getFile().delete();
 		}
 
-		this.map.remove(cacheId);
+		super.clear(cacheId);
 	}
 
 	@Data

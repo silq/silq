@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,7 @@ import br.ufsc.silq.core.exceptions.SilqErrorException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.ParseResult;
+import br.ufsc.silq.web.cache.AvaliacaoCache;
 import br.ufsc.silq.web.cache.CurriculumCache;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
 import br.ufsc.silq.web.rest.form.AvaliacaoLivreForm;
@@ -41,6 +43,9 @@ public class AvaliarResource {
 
 	@Inject
 	private CurriculumCache curriculumCache;
+
+	@Inject
+	private AvaliacaoCache avaliacaoCache;
 
 	/**
 	 * POST /api/avaliar/atual -> Compara o currículo do usuário atual
@@ -75,21 +80,32 @@ public class AvaliarResource {
 	 * POST /api/avaliar/ -> avalia os currículos anteriormente enviados via
 	 * 'api/avaliar/upload' (e salvos na cache) de acordo com as opções de
 	 * avaliação informadas. O formulário de configuração deve conter o cacheId
-	 * dos currículos a serem utilizados na avaliação.
+	 * dos currículos a serem utilizados na avaliação. O resultado desta
+	 * avaliação também é salvo na cache {@link AvaliacaoCache} para consultas
+	 * posteriores.
 	 */
 	@RequestMapping(value = "/avaliar/", method = RequestMethod.POST)
 	public ResponseEntity<List<ParseResult>> avaliar(@Valid @RequestBody AvaliacaoLivreForm avaliacaoForm) {
 		List<ParseResult> results = new ArrayList<>();
 
+		// TODO: limpar cache??
+
 		for (Curriculum curriculum : this.curriculumCache.get(avaliacaoForm.getCacheId())) {
 			ParseResult result = this.lattesParser.parseCurricula(curriculum.getFile(), avaliacaoForm,
 					AvaliacaoType.AMBOS);
 			results.add(result);
+			this.avaliacaoCache.insert(avaliacaoForm.getCacheId(), result);
 		}
 
-		// TODO: tem certeza que é bom limpar o cache aqui?
-		this.curriculumCache.clear(avaliacaoForm.getCacheId());
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
 
+	/**
+	 * GET /api/avaliar/result/{cacheId} -> Retorna os resultados de avaliação
+	 * previamente realizada e salvas no cache com ID especificado.
+	 */
+	@RequestMapping(value = "/avaliar/result/{cacheId}", method = RequestMethod.GET)
+	public ResponseEntity<List<ParseResult>> avaliarAtual(@PathVariable String cacheId) {
+		return new ResponseEntity<>(this.avaliacaoCache.get(cacheId), HttpStatus.OK);
+	}
 }

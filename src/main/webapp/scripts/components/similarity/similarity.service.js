@@ -8,6 +8,9 @@ angular.module('silq2App')
             },
             avaliar: function(avaliacaoLivreForm, cacheId) {
                 return $http.post('api/avaliar/', avaliacaoLivreForm);
+            },
+            result: function(cacheId) {
+                return $http.get('api/avaliar/result/' + cacheId);
             }
         };
     });
