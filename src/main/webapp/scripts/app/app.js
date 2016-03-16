@@ -4,7 +4,8 @@ angular.module('silq2App', ['LocalStorageModule',
     'ngAnimate', 'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster',
     'ngFileUpload', 'flash', 'ngMessages',
     // jhipster-needle-angularjs-add-module JHipster will add new module
-    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar'])
+    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar',
+    'angular-cache'])
 
     .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, ENV, VERSION) {
 
@@ -48,10 +49,7 @@ angular.module('silq2App', ['LocalStorageModule',
             }
         };
     })
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,  httpRequestInterceptorCacheBusterProvider, AlertServiceProvider) {
-        // uncomment below to make alerts look like toast
-        //AlertServiceProvider.showAsToast(true);
-
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,  httpRequestInterceptorCacheBusterProvider) {
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
 
@@ -76,7 +74,6 @@ angular.module('silq2App', ['LocalStorageModule',
         $httpProvider.interceptors.push('errorHandlerInterceptor');
         $httpProvider.interceptors.push('authExpiredInterceptor');
         $httpProvider.interceptors.push('authInterceptor');
-        $httpProvider.interceptors.push('notificationInterceptor');
 
     })
     // jhipster-needle-angularjs-add-config JHipster will add new application configuration
@@ -89,4 +86,14 @@ angular.module('silq2App', ['LocalStorageModule',
             is: function(val) { return [true,false,0,1].indexOf(val) >= 0 },
             pattern: /bool|true|0|1/
         });
-    }]);
+    }])
+    .config(function(CacheFactoryProvider) {
+        angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
+    })
+    .run(function ($http, CacheFactory) {
+      $http.defaults.cache = CacheFactory('defaultCache', {
+        maxAge: 15 * 60 * 1000, // Items added to this cache expire after 15 minutes
+        cacheFlushInterval: 60 * 60 * 1000, // This cache will clear itself every hour
+        deleteOnExpire: 'aggressive' // Items will be deleted from this cache when they expire
+      });
+    });

@@ -88,8 +88,6 @@ public class AvaliarResource {
 	public ResponseEntity<List<ParseResult>> avaliar(@Valid @RequestBody AvaliacaoLivreForm avaliacaoForm) {
 		List<ParseResult> results = new ArrayList<>();
 
-		// TODO: limpar cache??
-
 		for (Curriculum curriculum : this.curriculumCache.get(avaliacaoForm.getCacheId())) {
 			ParseResult result = this.lattesParser.parseCurricula(curriculum.getFile(), avaliacaoForm,
 					AvaliacaoType.AMBOS);
@@ -102,10 +100,12 @@ public class AvaliarResource {
 
 	/**
 	 * GET /api/avaliar/result/{cacheId} -> Retorna os resultados de avaliação
-	 * previamente realizada e salvas no cache com ID especificado.
+	 * previamente realizada e salvas na cache com ID especificado. Limpa o item
+	 * de {@link CurriculumCache} associado ao cacheId especificado.
 	 */
 	@RequestMapping(value = "/avaliar/result/{cacheId}", method = RequestMethod.GET)
 	public ResponseEntity<List<ParseResult>> avaliarAtual(@PathVariable String cacheId) {
+		this.curriculumCache.clear(cacheId);
 		return new ResponseEntity<>(this.avaliacaoCache.get(cacheId), HttpStatus.OK);
 	}
 }

@@ -6,6 +6,7 @@ angular.module('silq2App')
                 'query': {method: 'GET', isArray: true},
                 'get': {
                     method: 'GET',
+                    cache: true,
                     transformResponse: function (data) {
                         data = angular.fromJson(data);
                         return data;

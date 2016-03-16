@@ -3,6 +3,7 @@ package br.ufsc.silq.web.cache;
 import java.io.File;
 import java.io.IOException;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,6 +45,7 @@ public class CurriculumCache extends AbstractCache<Curriculum> {
 	 * @param cacheId
 	 */
 	@Override
+	@Async
 	public void clear(String cacheId) {
 		for (Curriculum curriculum : this.get(cacheId)) {
 			curriculum.getFile().delete();

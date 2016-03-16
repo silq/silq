@@ -5,6 +5,7 @@ angular.module('silq2App')
         return $resource('api/dado-geral/', {}, {
                 'get': {
                     method: 'GET',
+                    cache: true,
                     transformResponse: function (data) {
                         if (data) {
                             return angular.fromJson(data);

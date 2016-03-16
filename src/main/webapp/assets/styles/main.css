@@ -6,6 +6,10 @@ body {
     font-size: 12px;
 }
 
+a {
+    cursor: pointer;
+}
+
 .main-content {
     min-height: 50vh;
 }
@@ -94,6 +98,7 @@ body {
 }
 
 .table-resumo td:first-child {
+    width: 50%;
     text-align: right;
     font-weight: 600;
 }
@@ -130,7 +135,10 @@ body {
     to   { opacity: 1; }
 }
 
-.ng-enter { animation: fadeIn 0.2s both ease-in; z-index: 8888; }
+.ng-enter {
+    animation: fadeIn 0.2s both ease-in;
+    z-index: 8888;
+}
 
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
@@ -179,23 +187,6 @@ Browser Upgrade Prompt
     padding: 0.2em 0;
 }
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    font-size: 18px;
-    font-weight: 200;
-    line-height: 30px;
-    background-color: #eee;
-    border-radius: 6px;
-    padding: 60px;
-}
-
-.hero-unit h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-}
-
 .error {
     color: white;
     background-color: red;
@@ -203,23 +194,6 @@ Browser Upgrade Prompt
 
 .pad {
     padding: 10px;
-}
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (   min--moz-device-pixel-ratio: 2),
-only screen and (     -o-min-device-pixel-ratio: 2/1),
-only screen and (        min-device-pixel-ratio: 2),
-only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) {
-    .hipster {
-        background: url("../images/hipster2x.png") no-repeat center top;
-        background-size: contain;
-    }
-}
-
-.hand {
-    cursor: pointer;
 }
 
 #threadDump .popover, #healthCheck .popover {
