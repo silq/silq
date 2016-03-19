@@ -1,17 +1,30 @@
-<div>
-    <br />
-    <table class="table table-striped table-resumo">
-        <tr ng-repeat="result in results | orderBy: 'nome'">
-            <td>{{ result.nome }}</td>
-            <td><a ui-sref="result({ resultId: $index })">Visualizar resultados</a></td>
-        </tr>
-    </table>
-
+<div ng-show="ready">
     <h3 class="text-center">Resultados da avaliação</h3>
-    <br />
 
-    <div class="alert alert-info" ng-show="!results.length">
-        Nenhum resultado de avaliação foi encontrado.
+    <div ng-show="multiple && !active">
+        <br />
+        <table class="table table-striped table-resumo">
+            <tr ng-repeat="result in results | orderBy: 'nome'">
+                <td>{{ result.nome }}</td>
+                <td><a ui-sref="result({ resultId: $index })">Visualizar resultados</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <p ng-show="multiple && active" class="text-center">
+        <a class="btn btn-primary btn-spaced" ui-sref="result({ resultId: null })">
+            &larr; Voltar para todos resultados
+        </a>
+    </p>
+
+    <div ng-show="!results.length" class="text-center">
+        <div class="alert alert-warning">
+            Nenhum resultado de avaliação foi encontrado.
+        </div>
+
+        <button ui-sref="avaliar" class="btn btn-primary btn-spaced">
+            &larr; Voltar às opções de Avaliação Livre
+        </button>
     </div>
 
     <div ng-show="results.length">
