@@ -45,7 +45,7 @@ public class AccountResource {
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
 	@Timed
-	public ResponseEntity<?> registerAccount(@Valid @RequestBody RegisterForm usuario, HttpServletRequest request) {
+	public ResponseEntity<?> registerAccount(@Valid @RequestBody RegisterForm usuario) {
 		return this.usuarioService.findOneByEmail(usuario.getEmail())
 				.map(user -> new ResponseEntity<>("E-mail já encontra-se cadastrado", HttpStatus.BAD_REQUEST))
 				.orElseGet(() -> {

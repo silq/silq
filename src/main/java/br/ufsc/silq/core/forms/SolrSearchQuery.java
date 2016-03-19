@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class SolrSearchQuery {
 
-	@NotBlank(message = "Campo obrigatório")
+	@NotBlank
 	public String query;
 
 }

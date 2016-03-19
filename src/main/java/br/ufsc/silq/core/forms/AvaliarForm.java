@@ -10,12 +10,12 @@ public class AvaliarForm {
 	@NotBlank
 	public String area;
 
+	@NotBlank
+	public String nivelSimilaridade;
+
 	public String anoPublicacaoDe;
 
 	public String anoPublicacaoAte;
-
-	@NotBlank
-	public String nivelSimilaridade;
 
 	public AvaliarForm(String area, String anoPublicacaoDe, String anoPublicacaoAte) {
 		this.area = area;

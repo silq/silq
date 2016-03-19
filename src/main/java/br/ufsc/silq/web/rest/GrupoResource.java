@@ -73,7 +73,7 @@ public class GrupoResource {
 	}
 
 	/**
-	 * GET /grupos/:id -> Otém dados do Grupo com id especificado
+	 * GET /grupos/:id -> Obtém dados do Grupo com id especificado
 	 */
 	@RequestMapping(value = "/grupos/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Grupo> getGrupo(@PathVariable Long id) {

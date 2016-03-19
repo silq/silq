@@ -53,7 +53,7 @@ public class Usuario {
 	@Column(name = "ds_email")
 	private String email;
 
-	@NotBlank
+	// TODO (bonetti): remover sexo?
 	@Column(name = "no_sexo")
 	private String sexo;
 

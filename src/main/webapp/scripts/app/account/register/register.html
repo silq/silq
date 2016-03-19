@@ -8,7 +8,7 @@
             </div>
 
             <div class="alert alert-danger" ng-show="errorEmailExists">
-                E-mail já cadastrado
+                <strong>E-mail já cadastrado.</strong> Escolha outro e-mail para cadastro ou <a ui-sref="login">efetue login</a> utilizando este e-mail.
             </div>
 
             <div class="alert alert-danger" ng-show="doNotMatch">
@@ -36,7 +36,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="control-label" for="sexo">Sexo</label>
                     <select class="form-control" id="sexo" name="sexo"
                            ng-model="registerAccount.sexo" required>
@@ -49,7 +49,7 @@
                             Campo requerido
                         </p>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label class="control-label" for="email">E-mail</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Seu endereço de e-mail"
