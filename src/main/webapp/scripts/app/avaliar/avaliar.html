@@ -14,39 +14,9 @@
         </div>
         <div class="col-md-6">
             <h4 class="title-border">Currículos para avaliar</h4>
-            <form name="uploadForm">
-                <div name="files" ngf-drop="uploadFiles($files)" ngf-select="uploadFiles($files)"
-                    class="drop-box"
-                    ngf-drag-over-class="'drop-box-active'"
-                    ngf-pattern="'application/xml,text/xml'"
-                    ngf-accept="'application/xml,text/xml'"
-                    ngf-max-size="50MB"
-                    ngf-multiple="true"
-                    ngf-max-files="10"
-                    ngf-model-invalid="invalidFiles"
-                    >
-
-                    <p>Arraste para cá os currículos Lattes em XML ou clique para adicioná-los</p>
-
-                    <ul ng-show="files.length">
-                        <li ng-repeat="file in files">
-                            <span class="file-name">{{ file.name }}</span>
-                            <span class="file-size">{{ file.size | bytes }}</span>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: {{file.progress}}%">
-                                    {{ file.progress }}%
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="text-danger">
-                        <p ng-show="invalidFiles[0].$error == 'maxSize'">Arquivo(s) muito grande. Tamanho máximo: 50MB</p>
-                        <p ng-show="invalidFiles[0].$error == 'pattern'">Somente arquivos do tipo XML são permitidos</p>
-                    </div>
-                </div>
-                <div ngf-no-file-drop>Arrastar e soltar arquivos não é suportado por este navegador</div>
-            </form>
+            <dropbox config="uploadConfig" files="files">
+                Arraste para cá os currículos Lattes em XML ou clique para adicioná-los
+            </dropbox>
         </div>
     </div>
 </div>

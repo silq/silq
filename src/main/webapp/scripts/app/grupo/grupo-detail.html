@@ -1,41 +1,59 @@
 
 <div>
-    <h2><span>Grupo</span> {{grupo.id}}</h2>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Field</th>
-                <th>Value</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <span>NomeGrupo</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{grupo.nomeGrupo}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>NomeInstituicao</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{grupo.nomeInstituicao}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>NomeArea</span>
-                </td>
-                <td>
-                    <span class="form-control-static">{{grupo.nomeArea}}</span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <h2 class="text-center">Grupo <small>{{grupo.nomeGrupo}}</small></h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="title-border">Informações do grupo</h3>
+
+            <div class="table-responsive">
+                <table class="table table-resumo">
+                    <tbody>
+                        <tr>
+                            <td>Nome</td>
+                            <td>{{grupo.nomeGrupo}}</td>
+                        </tr>
+                        <tr>
+                            <td>Instituição</td>
+                            <td>{{grupo.nomeInstituicao}}</td>
+                        </tr>
+                        <tr>
+                            <td>Área de Atuação</td>
+                            <td>{{grupo.nomeArea}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h3 class="title-border">Pesquisadores</h3>
+
+            <div ng-show="grupo.pesquisadores.length == 0" class="help-block">
+                Nenhum pesquisador cadastrado!
+            </div>
+
+            <div class="table-responsive" ng-show="grupo.pesquisadores.length > 0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pesquisador in grupo.pesquisadores">
+                            <td>{{ pesquisador.nome }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br />
+
+            <dropbox config="uploadConfig" files="files">
+                Arraste para cá os currículos Lattes em XML dos pesquisadores ou clique para adicioná-los ao grupo
+            </dropbox>
+        </div>
     </div>
 
     <button type="submit"

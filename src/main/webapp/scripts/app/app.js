@@ -87,9 +87,6 @@ angular.module('silq2App', ['LocalStorageModule',
             pattern: /bool|true|0|1/
         });
     }])
-    .config(function(CacheFactoryProvider) {
-        angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
-    })
     .run(function ($http, CacheFactory) {
       $http.defaults.cache = CacheFactory('defaultCache', {
         maxAge: 15 * 60 * 1000, // Items added to this cache expire after 15 minutes

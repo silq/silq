@@ -35,7 +35,7 @@ a {
     border-radius: 4px;
     padding: 30px;
     font-size: 14px;
-    margin: 10px;
+    margin: 10px 0;
     cursor: pointer;
     color: #888;
 }

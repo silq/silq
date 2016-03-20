@@ -10,28 +10,11 @@ angular.module('silq2App')
             cacheId: cacheId
         };
 
-        $scope.uploadFiles = function(files) {
-            if (!files) return;
-            files.forEach(function(file) {
-                $scope.files.push(file);
-                file.uploading = true;
-
-                Upload.upload({
-                    url: 'api/avaliar/upload',
-                    data: {
-                        file: file,
-                        cacheId: cacheId
-                    }
-                }).then(function (resp) {
-                    file.uploading = false;
-                }, function (resp) {
-                    Flash.create('danger', '<strong>Ops!</strong> Ocorreu um erro');
-                    file.uploading = false;
-                    console.error(resp);
-                }, function (evt) {
-                    file.progress = parseInt(100.0 * evt.loaded / evt.total);
-                });
-            });
+        $scope.uploadConfig = {
+            url: 'api/avaliar/upload',
+            data: {
+                cacheId: cacheId
+            }
         };
 
         $scope.submit = function() {

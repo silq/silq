@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Grupo;
@@ -91,6 +92,16 @@ public class GrupoResource {
 		Grupo grupo = this.findOneWithPermissionOr404(id);
 		this.grupoService.delete(grupo);
 		return ResponseEntity.noContent().build();
+	}
+
+	/**
+	 * POST /grupos/:id/addPesquisador -> Adiciona um @{link Pesquisador} ao
+	 * grupo, através do envio de seu currículo Lattes em XML.
+	 */
+	@RequestMapping(value = "/grupos/{id}/addPesquisador", method = RequestMethod.POST)
+	public ResponseEntity<Grupo> addPesquisador(@PathVariable Long id, MultipartFile upload) {
+		log.debug("REST request to add Pesquisador to Grupo : {}, {}", id, upload);
+		return new ResponseEntity<>(this.findOneWithPermissionOr404(id), HttpStatus.OK);
 	}
 
 	/**
