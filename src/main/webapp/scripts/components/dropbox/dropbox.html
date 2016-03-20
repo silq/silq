@@ -14,6 +14,9 @@
 
         <ul ng-show="files.length">
             <li ng-repeat="file in files">
+                <span class="file-success" ng-show="file.uploading === false">
+                    <span class="glyphicon glyphicon-ok-circle"></span>
+                </span>
                 <span class="file-name">{{ file.name }}</span>
                 <span class="file-size">{{ file.size | bytes }}</span>
                 <div class="progress">

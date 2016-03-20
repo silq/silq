@@ -2,7 +2,7 @@
     <li ng-class="{active: $state.includes('principal')}">
         <a ui-sref="principal">Meus dados</a>
     </li>
-    <li ui-sref-active="active">
+    <li ng-class="{active: $state.includes('grupo')}">
         <a ui-sref="grupo">Grupos de avaliação <span class="badge badge-nav">{{ countGrupos }}</span></a>
     </li>
     <li ui-sref-active="active">

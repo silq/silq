@@ -1,7 +1,6 @@
 package br.ufsc.silq.core.business.entities;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,6 +50,6 @@ public class Grupo {
 	private DadoGeral coordenador;
 
 	@OneToMany(mappedBy = "grupo", orphanRemoval = true, fetch = FetchType.EAGER)
-	private Set<Pesquisador> pesquisadores = new LinkedHashSet<>();
+	private List<Pesquisador> pesquisadores;
 
 }

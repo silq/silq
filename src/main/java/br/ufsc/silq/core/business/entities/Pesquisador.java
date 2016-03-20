@@ -16,6 +16,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -26,7 +28,7 @@ import lombok.ToString;
 @Table(name = "tb_pesquisador")
 @Data
 @NoArgsConstructor
-@ToString(exclude = { "curriculoXml" })
+@ToString(exclude = { "curriculoXml", "grupo" })
 public class Pesquisador {
 
 	@Id
@@ -36,6 +38,7 @@ public class Pesquisador {
 
 	@ManyToOne
 	@JoinColumn(name = "co_grupo")
+	@JsonIgnore
 	private Grupo grupo;
 
 	@Column(name = "nome_pesquisador")
@@ -55,5 +58,6 @@ public class Pesquisador {
 
 	@Type(type = "org.hibernate.type.BinaryType")
 	@Column(name = "xml")
+	@JsonIgnore
 	private byte[] curriculoXml;
 }

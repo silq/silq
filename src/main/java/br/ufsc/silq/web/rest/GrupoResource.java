@@ -1,5 +1,6 @@
 package br.ufsc.silq.web.rest;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,13 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Grupo;
+import br.ufsc.silq.core.business.entities.Pesquisador;
 import br.ufsc.silq.core.business.service.DadoGeralService;
 import br.ufsc.silq.core.business.service.GrupoService;
+import br.ufsc.silq.core.business.service.PesquisadorService;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
 import br.ufsc.silq.core.forms.GrupoForm;
 import br.ufsc.silq.web.rest.exception.HttpBadRequest;
@@ -31,6 +35,9 @@ public class GrupoResource {
 
 	@Inject
 	private GrupoService grupoService;
+
+	@Inject
+	private PesquisadorService pesquisadorService;
 
 	@Inject
 	private DadoGeralService dadoGeralService;
@@ -97,11 +104,20 @@ public class GrupoResource {
 	/**
 	 * POST /grupos/:id/addPesquisador -> Adiciona um @{link Pesquisador} ao
 	 * grupo, através do envio de seu currículo Lattes em XML.
+	 *
+	 * @throws IOException
+	 * @throws SilqErrorException
+	 * @throws IllegalStateException
 	 */
 	@RequestMapping(value = "/grupos/{id}/addPesquisador", method = RequestMethod.POST)
-	public ResponseEntity<Grupo> addPesquisador(@PathVariable Long id, MultipartFile upload) {
+	public ResponseEntity<Pesquisador> addPesquisador(@PathVariable Long id, @RequestParam("file") MultipartFile upload)
+			throws IllegalStateException, SilqErrorException, IOException {
 		log.debug("REST request to add Pesquisador to Grupo : {}, {}", id, upload);
-		return new ResponseEntity<>(this.findOneWithPermissionOr404(id), HttpStatus.OK);
+
+		Grupo grupo = this.findOneWithPermissionOr404(id);
+		Pesquisador pesquisador = this.pesquisadorService.addToGroupFromUpload(grupo, upload);
+
+		return new ResponseEntity<>(pesquisador, HttpStatus.OK);
 	}
 
 	/**

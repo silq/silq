@@ -36,3 +36,10 @@ CREATE TABLE tb_grupo (
     no_instituicao character varying(255),
     co_usuario bigint
 );
+
+CREATE SEQUENCE sq_pesquisador
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;

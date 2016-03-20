@@ -23,6 +23,9 @@ public class GrupoService {
 	@Inject
 	private DadoGeralService dadoGeralService;
 
+	@Inject
+	private PesquisadorService pesquisadorService;
+
 	/**
 	 * Cria um novo Grupo e associa-o ao usuário atualmente logado
 	 *

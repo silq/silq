@@ -1,5 +1,8 @@
 package br.ufsc.silq.core.business.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.Optional;
 
 import javax.inject.Inject;
@@ -7,13 +10,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
 import br.ufsc.silq.core.business.repository.PesquisadorRepository;
+import br.ufsc.silq.core.business.service.util.UploadManager;
 import br.ufsc.silq.core.exceptions.SilqEntityNotFoundException;
 import br.ufsc.silq.core.exceptions.SilqErrorException;
 import br.ufsc.silq.core.exceptions.SilqForbiddenActionException;
+import br.ufsc.silq.core.parser.LattesParser;
+import br.ufsc.silq.core.parser.dto.PesquisadorResult;
+import br.ufsc.silq.core.utils.files.FileManager;
 
 @Service
 public class PesquisadorService {
@@ -23,6 +31,9 @@ public class PesquisadorService {
 
 	@Inject
 	private GrupoService grupoService;
+
+	@Inject
+	private LattesParser lattesParser;
 
 	@PersistenceContext
 	private EntityManager em;
@@ -113,4 +124,53 @@ public class PesquisadorService {
 		this.em.close();
 	}
 
+	/**
+	 * Cria uma nova entidade {@link Pesquisador} a partir do upload de um
+	 * currículo Lattes em XML
+	 *
+	 * @param upload
+	 *            Currículo XML do pesquisador
+	 * @return
+	 * @throws IOException
+	 * @throws IllegalStateException
+	 * @throws SilqErrorException
+	 */
+	public Pesquisador parseUploadPesquisador(MultipartFile upload)
+			throws IllegalStateException, IOException, SilqErrorException {
+		File tempFile = UploadManager.createTempFileFromUpload(upload);
+		PesquisadorResult result = this.lattesParser.parseCurriculaPesquisador(tempFile);
+
+		Pesquisador pesquisador = new Pesquisador();
+		String curriculum = FileManager.extractCurriculum(tempFile);
+		pesquisador.setCurriculoXml(curriculum.getBytes());
+		pesquisador.setNome(result.getNome());
+		pesquisador.setIdCurriculo(result.getIdCurriculo());
+		pesquisador.setDataAtualizacaoCurriculo(result.getUltimaAtualizacao());
+		pesquisador.setDataAtualizacaoUsuario(new Date());
+
+		tempFile.delete();
+		return pesquisador;
+	}
+
+	/**
+	 * Cria um novo {@link Pesquisador} a partir do upload de seu currículo
+	 * Lattes em XML e o adiciona ao grupo.
+	 *
+	 * @param grupo
+	 *            Grupo ao qual o Pesquisador criado será adicionado.
+	 * @param upload
+	 *            Upload do currículo Lattes.
+	 * @return A nova entidade {@link Pesquisador} criada.
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 * @throws SilqErrorException
+	 */
+	public Pesquisador addToGroupFromUpload(Grupo grupo, MultipartFile upload)
+			throws IllegalStateException, IOException, SilqErrorException {
+		Pesquisador pesquisador = this.parseUploadPesquisador(upload);
+		// TODO (bonetti): area de atuação?
+		pesquisador.setGrupo(grupo);
+		this.pesquisadorRepository.save(pesquisador);
+		return pesquisador;
+	}
 }

@@ -24,8 +24,8 @@ angular.module('silq2App')
                 }
             })
             .state('grupo.detail', {
-                parent: 'site',
-                url: '/grupo/{id}',
+                parent: 'grupo',
+                url: '/{id}',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Grupo'

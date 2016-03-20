@@ -4,7 +4,10 @@
 
     <div class="row">
         <div class="col-md-4">
-            <h3 class="title-border">Informações do grupo</h3>
+            <h3 class="title-border">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                Informações do grupo
+            </h3>
 
             <div class="table-responsive">
                 <table class="table table-resumo">
@@ -27,30 +30,38 @@
         </div>
 
         <div class="col-md-8">
-            <h3 class="title-border">Pesquisadores</h3>
+            <h3 class="title-border">
+                <span class="glyphicon glyphicon-user"></span>
+                Pesquisadores
+            </h3>
 
             <div ng-show="grupo.pesquisadores.length == 0" class="help-block">
                 Nenhum pesquisador cadastrado!
             </div>
 
             <div class="table-responsive" ng-show="grupo.pesquisadores.length > 0">
-                <table>
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Nome</th>
+                            <th>Dt. atualização currículo</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="pesquisador in grupo.pesquisadores">
+                        <tr ng-repeat="pesquisador in grupo.pesquisadores | orderBy: 'nome'">
                             <td>{{ pesquisador.nome }}</td>
+                            <td>{{ pesquisador.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy' }}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <br />
+            <h3 class="title-border">
+                <span class="glyphicon glyphicon-upload"></span>
+                Adicionar pesquisador
+            </h3>
 
-            <dropbox config="uploadConfig" files="files">
+            <dropbox config="uploadConfig" success="uploaded" files="files">
                 Arraste para cá os currículos Lattes em XML dos pesquisadores ou clique para adicioná-los ao grupo
             </dropbox>
         </div>

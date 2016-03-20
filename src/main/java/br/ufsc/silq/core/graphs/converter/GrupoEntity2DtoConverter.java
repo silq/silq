@@ -2,7 +2,6 @@ package br.ufsc.silq.core.graphs.converter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
@@ -35,7 +34,7 @@ public class GrupoEntity2DtoConverter {
 		return groupList;
 	}
 
-	public static List<PesquisadorDto> convertPesquisadores(Set<Pesquisador> pesquisadores) {
+	public static List<PesquisadorDto> convertPesquisadores(List<Pesquisador> pesquisadores) {
 		List<PesquisadorDto> pesquisadorList = new ArrayList<>();
 
 		for (Pesquisador pesquisador : pesquisadores) {
