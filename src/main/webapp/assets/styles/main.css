@@ -37,7 +37,7 @@ a {
     margin: 0 3px;
 }
 
-.drop-box {
+.dropbox {
     background: #F8F8F8;
     border: 2px dashed #DDD;
     border-radius: 4px;
@@ -48,21 +48,21 @@ a {
     color: #888;
 }
 
-.drop-box:hover {
+.dropbox:hover {
     border-color: #ccc;
     color: #444;
 }
 
-.drop-box-active {
+.dropbox-active {
     border-color: blue;
 }
 
-.drop-box p {
+.dropbox p {
     text-align: center;
     margin: 0;
 }
 
-.drop-box ul {
+.dropbox ul {
     margin: 0;
     padding: 20px 0 0 0;
     list-style: none;
@@ -71,12 +71,11 @@ a {
     align-items: stretch;
 }
 
-.drop-box li {
+.dropbox li {
     background-color: #fff;
     margin: 5px;
     padding: 0;
     flex: 1 1 140px;
-    max-width: 200px;
     border: 1px solid #d9d9d9;
     border-radius: 2px;
     text-align: center;
@@ -86,27 +85,27 @@ a {
     position: relative;;
 }
 
-.drop-box .file-name {
+.dropbox .file-name {
     display: block;
     word-wrap: break-word;
 }
 
-.drop-box .file-size {
+.dropbox .file-size {
     font-weight: 600;
     font-size: 0.9em;
 }
 
-.drop-box .progress {
+.dropbox .progress {
     margin: 0;
     height: 14px;
 }
 
-.drop-box .progress-bar {
+.dropbox .progress-bar {
     font-size: 11px;
     line-height: 14px;
 }
 
-.drop-box .file-success {
+.dropbox .file-success {
     position: absolute;
     right: -2px;
     top: -5px;

@@ -5,23 +5,9 @@
 
     <br />
 
-    <form name="uploadForm" ng-show="!file.progress">
-        <div name="file" ngf-drop="uploadFile($file)" ngf-select="uploadFile($file)"
-            class="drop-box" ng-model="file"
-            ngf-drag-over-class="'drop-box-active'"
-            ngf-pattern="'application/xml,text/xml'"
-            ngf-accept="'application/xml,text/xml'"
-            ngf-max-size="50MB">
-
-            <p>Arraste para cá seu currículo Lattes em XML ou clique para adicioná-lo</p>
-
-            <div class="text-danger">
-                <p ng-show="uploadForm.file.$error.maxSize">Arquivo muito grande. Tamanho máximo: 50MB</p>
-                <p ng-show="uploadForm.file.$error.pattern">Somente arquivos do tipo XML são permitidos</p>
-            </div>
-        </div>
-        <div ngf-no-file-drop>Arrastar e soltar arquivos não é suportado por este navegador</div>
-    </form>
+    <dropbox multiple="false" config="uploadConfig" success="uploaded" files="files">
+        Arraste para cá seu currículo Lattes em XML ou clique para adicioná-lo.
+    </dropbox>
 
     <div class="text-center" ng-show="file.progress">
         {{ file.status }}

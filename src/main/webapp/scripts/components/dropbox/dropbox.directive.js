@@ -7,15 +7,17 @@ angular.module('silq2App')
             scope: {
                 config: '=config',
                 files: '=files',
-                success: '=?success'
+                success: '=?success',
+                multiple: '=?multiple'
             },
             transclude: true,
             templateUrl: 'scripts/components/dropbox/dropbox.html',
-            link: function($scope) {
-                if (!$scope.success) {
-                    $scope.success = function() {};
-                }
-
+            compile: function(element, attrs) {
+                attrs.success = angular.isDefined(attrs.success) ? attrs.success : function() {};
+                attrs.multiple = angular.isDefined(attrs.multiple) ? attrs.multiple : 'true';
+                console.log(attrs.multiple);
+            },
+            controller: function($scope) {
                 if (!$scope.config.data) {
                     $scope.config.data = {};
                 }

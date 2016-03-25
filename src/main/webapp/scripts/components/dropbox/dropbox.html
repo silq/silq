@@ -1,11 +1,11 @@
 <form name="uploadForm">
     <div name="files" ngf-drop="uploadFiles($files)" ngf-select="uploadFiles($files)"
-        class="drop-box"
-        ngf-drag-over-class="'drop-box-active'"
+        class="dropbox"
+        ngf-drag-over-class="'dropbox-active'"
         ngf-pattern="'application/xml,text/xml'"
         ngf-accept="'application/xml,text/xml'"
         ngf-max-size="50MB"
-        ngf-multiple="true"
+        ngf-multiple="{{ multiple }}"
         ngf-max-files="10"
         ngf-model-invalid="invalidFiles"
         >
