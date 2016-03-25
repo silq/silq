@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('silq2App')
-    .factory('Grupo', function ($resource) {
-        return $resource('api/grupos/:id', {}, {
-            'query': { method: 'GET', isArray: true},
+    .factory('Grupo', function ($resource, $http) {
+        var Grupo = $resource('api/grupos/:id', {}, {
             'get': {
                 method: 'GET',
                 cache: true,
@@ -14,4 +13,10 @@ angular.module('silq2App')
             },
             'update': { method:'PUT' }
         });
+
+        Grupo.removePesquisador = function(grupoId, pesquisadorId) {
+            return $http.delete('api/grupos/' + grupoId + '/removePesquisador/' + pesquisadorId);
+        };
+
+        return Grupo;
     });

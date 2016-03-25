@@ -43,6 +43,18 @@ public class GrupoResource {
 	private DadoGeralService dadoGeralService;
 
 	/**
+	 * Pesquisa por um Grupo com o ID especificado e que o usuário atual tenha
+	 * permissão de acesso. Retorna 404 caso não encontre
+	 *
+	 * @param id
+	 *            Id do grupo a ser pesquisado
+	 * @return
+	 */
+	protected Grupo findOneWithPermissionOr404(Long id) {
+		return this.grupoService.findOneWithPermission(id).orElseThrow(() -> new HttpNotFound("Grupo não encontrado"));
+	}
+
+	/**
 	 * POST /grupos -> Cria um novo grupo associado ao usuário atual
 	 *
 	 * @throws SilqErrorException
@@ -121,14 +133,18 @@ public class GrupoResource {
 	}
 
 	/**
-	 * Pesquisa por um Grupo com o ID especificado e que o usuário atual tenha
-	 * permissão de acesso. Retorna 404 caso não encontre
-	 *
-	 * @param id
-	 *            Id do grupo a ser pesquisado
-	 * @return
+	 * DELETE /grupos/:grupoId/removePesquisador/:pesquisadorId -> Remove um
+	 * pesquisador do grupo especificado.
 	 */
-	protected Grupo findOneWithPermissionOr404(Long id) {
-		return this.grupoService.findOneWithPermission(id).orElseThrow(() -> new HttpNotFound("Grupo não encontrado"));
+	@RequestMapping(value = "/grupos/{grupoId}/removePesquisador/{pesquisadorId}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> removePesquisador(@PathVariable Long grupoId, @PathVariable Long pesquisadorId) {
+		log.debug("REST request to remove Pesquisador: {}, {}", grupoId, pesquisadorId);
+
+		// Vê se o grupo existe e se o usuário atual tem permissão sobre ele:
+		this.findOneWithPermissionOr404(grupoId);
+
+		this.pesquisadorService.remove(pesquisadorId);
+
+		return ResponseEntity.noContent().build();
 	}
 }

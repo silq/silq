@@ -173,4 +173,14 @@ public class PesquisadorService {
 		this.pesquisadorRepository.save(pesquisador);
 		return pesquisador;
 	}
+
+	/**
+	 * Remove o Pesquisador.
+	 *
+	 * @param pesquisadorId
+	 *            ID do pesquisador a ser removido.
+	 */
+	public void remove(Long pesquisadorId) {
+		this.pesquisadorRepository.delete(pesquisadorId);
+	}
 }

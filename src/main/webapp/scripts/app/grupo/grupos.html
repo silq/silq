@@ -8,17 +8,33 @@
     <p class="help-block text-center" ng-show="!grupos.length">
         <br />
         Nenhum grupo cadastrado ainda... Cadastre seu primeiro grupo no botão abaixo!
+
+        <br /><br />
+        <button class="btn btn-spaced center-block btn-primary" ui-sref="grupo.new">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+            Adicionar grupo
+        </button>
     </p>
 
-    <div ng-show="grupos.length" class="center-block" style="max-width: 500px; margin-top: 20px; margin-bottom: 20px">
-        <div class="input-group">
-            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
-            <input ng-model="filter" type="search" class="form-control input-sm" placeholder="Filtrar grupos..." />
+    <div class="flex justify-center" ng-show="grupos.length">
+        <div class="flex-grow" style="max-width: 500px">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                <input ng-model="filter" type="search" class="form-control input-sm" placeholder="Filtrar grupos..." />
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-primary" ui-sref="grupo.new">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+                Adicionar grupo
+            </button>
         </div>
     </div>
 
+    <br />
+
     <div class="table-responsive" ng-show="grupos.length">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -55,11 +71,4 @@
             </tbody>
         </table>
     </div>
-
-    <hr />
-
-    <button class="btn btn-primary btn-spaced center-block" ui-sref="grupo.new">
-        <span class="glyphicon glyphicon-plus-sign"></span>
-        Adicionar grupo
-    </button>
 </div>

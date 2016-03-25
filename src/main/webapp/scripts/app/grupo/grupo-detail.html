@@ -24,6 +24,10 @@
                             <td>Área de Atuação</td>
                             <td>{{grupo.nomeArea}}</td>
                         </tr>
+                        <tr>
+                            <td>Pesquisadores</td>
+                            <td>{{grupo.pesquisadores.length}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -37,20 +41,39 @@
 
             <div ng-show="grupo.pesquisadores.length == 0" class="help-block">
                 Nenhum pesquisador cadastrado!
+                Utilize a seção abaixo para cadastrá-los.
             </div>
+
+            <div class="input-group" ng-show="grupo.pesquisadores.length > 0">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                <input ng-model="filter" type="search" class="form-control input-sm" placeholder="Filtrar pesquisadores..." />
+            </div>
+
+            <br />
 
             <div class="table-responsive" ng-show="grupo.pesquisadores.length > 0">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Nome</th>
+                            <th>ID Lattes</th>
                             <th>Dt. atualização currículo</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="pesquisador in grupo.pesquisadores | orderBy: 'nome'">
+                        <tr ng-repeat="pesquisador in grupo.pesquisadores | filter: filter | orderBy: 'nome'">
                             <td>{{ pesquisador.nome }}</td>
+                            <td>{{ pesquisador.idCurriculo }}</td>
                             <td>{{ pesquisador.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy' }}</td>
+                            <td class="text-right">
+                                <a confirm-click="removePesquisador(pesquisador)"
+                                    confirm-message="Tem certeza que deseja remover o pesquisador deste grupo?"
+                                    class="text-danger"
+                                >
+                                    <span class="glyphicon glyphicon-remove-circle"></span> Remover
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -66,10 +89,4 @@
             </dropbox>
         </div>
     </div>
-
-    <button type="submit"
-            onclick="window.history.back()"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
-    </button>
 </div>

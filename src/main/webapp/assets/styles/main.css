@@ -10,6 +10,14 @@ a {
     cursor: pointer;
 }
 
+.flex {  display: flex; }
+.flex > *:not(:first-child) { margin-left: 5px; }
+.flex > *:not(:last-child) { margin-right: 5px; }
+
+.justify-center { justify-content: center; }
+
+.flex-grow { flex-grow: 1; }
+
 .main-content {
     min-height: 50vh;
 }
