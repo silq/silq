@@ -26,18 +26,18 @@ angular.module('silq2App')
                     if (!files) return;
                     files.forEach(function(file) {
                         $scope.files.push(file);
-                        file.uploading = true;
+                        file.status = 'uploading';
 
                         var params = JSON.parse(JSON.stringify($scope.config)); // clone config
                         params.data.file = file;
 
                         Upload.upload(params)
                             .then(function (resp) {
-                                file.uploading = false;
+                                file.status = 'success';
                                 $scope.success(resp);
                             }, function (resp) {
-                                Flash.create('danger', '<strong>Ops!</strong> Ocorreu um erro');
-                                file.uploading = false;
+                                Flash.create('danger', '<strong>Ops!</strong> Ocorreu um erro ao processar o arquivo "' + file.name + '".');
+                                file.status = 'error';
                                 console.error(resp);
                             }, function (evt) {
                                 file.progress = parseInt(100.0 * evt.loaded / evt.total);

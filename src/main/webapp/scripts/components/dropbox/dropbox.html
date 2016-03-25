@@ -14,9 +14,16 @@
 
         <ul ng-show="files.length">
             <li ng-repeat="file in files">
-                <span class="file-success" ng-show="file.uploading === false">
+                <span class="file-icon" ng-show="file.status === 'uploading'">
+                    <span class="glyphicon glyphicon-upload"></span>
+                </span>
+                <span class="file-icon success" ng-show="file.status === 'success'">
                     <span class="glyphicon glyphicon-ok-circle"></span>
                 </span>
+                <span class="file-icon error" ng-show="file.status === 'error'">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                </span>
+
                 <span class="file-name">{{ file.name }}</span>
                 <span class="file-size">{{ file.size | bytes }}</span>
                 <div class="progress">
@@ -24,6 +31,9 @@
                         {{ file.progress }}%
                     </div>
                 </div>
+                <p class="text-danger" ng-show="file.status === 'error'">
+                    O arquivo enviado não é um currículo Lattes válido.
+                </p>
             </li>
         </ul>
 
