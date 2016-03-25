@@ -13,11 +13,11 @@ angular.module('silq2App')
             transclude: true,
             templateUrl: 'scripts/components/dropbox/dropbox.html',
             compile: function(element, attrs) {
-                attrs.success = angular.isDefined(attrs.success) ? attrs.success : function() {};
                 attrs.multiple = angular.isDefined(attrs.multiple) ? attrs.multiple : 'true';
-                console.log(attrs.multiple);
             },
             controller: function($scope) {
+                $scope.success = $scope.success || function() {};
+
                 if (!$scope.config.data) {
                     $scope.config.data = {};
                 }

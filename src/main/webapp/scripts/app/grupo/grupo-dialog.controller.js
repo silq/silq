@@ -18,7 +18,7 @@ angular.module('silq2App').controller('GrupoDialogController', function($scope, 
 
         var onSaveError = function(e) {
             $scope.isSaving = false;
-            Flash.create('danger', e.data.description || e.data.message);            
+            Flash.create('danger', e.data.description || e.data.message);
         };
 
         $scope.save = function () {

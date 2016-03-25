@@ -28,7 +28,7 @@ angular.module('silq2App')
                 url: '/{id}',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Grupo'
+                    pageTitle: 'Dados do grupo'
                 },
                 views: {
                     'content@': {
@@ -48,9 +48,10 @@ angular.module('silq2App')
             })
             .state('grupo.new', {
                 parent: 'grupo',
-                url: '/new',
+                url: '/-/new',
                 data: {
                     authorities: ['ROLE_USER'],
+                    pageTitle: 'Novo grupo'
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({

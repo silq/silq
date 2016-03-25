@@ -6,16 +6,13 @@ angular.module('silq2App')
             $scope.account = account;
         });
 
-        var loadDadosGerais = function() {
-            DadoGeral.get().$promise.then(function(dados) {
-                if (dados.nome) {
-                    $scope.dados = dados;
-                } else {
-                    $scope.dados = null;
-                }
-            });
-        };
-        loadDadosGerais();
+        DadoGeral.get().$promise.then(function(dados) {
+            if (dados.nome) {
+                $scope.dados = dados;
+            } else {
+                $scope.dados = null;
+            }
+        });
 
         $scope.atualizar = function() {
             $scope.dados = null;
@@ -27,9 +24,8 @@ angular.module('silq2App')
             url: 'api/dado-geral'
         };
         $scope.uploaded = function(resp) {
-            console.log(resp);
             $scope.files = [];
-            loadDadosGerais();
+            $scope.dados = resp.data;
             Flash.create('success', '<strong>Sucesso!</strong> Currículo enviado');
         };
     });
