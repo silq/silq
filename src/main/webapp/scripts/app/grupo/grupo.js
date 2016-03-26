@@ -80,6 +80,7 @@ angular.module('silq2App')
                 url: '/{id}/edit',
                 data: {
                     authorities: ['ROLE_USER'],
+                    pageTitle: 'Editar grupo'
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -103,6 +104,7 @@ angular.module('silq2App')
                 url: '/{id}/delete',
                 data: {
                     authorities: ['ROLE_USER'],
+                    pageTitle: 'Deletar grupo'
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({

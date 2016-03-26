@@ -6,6 +6,12 @@ import java.util.Map;
 
 import lombok.ToString;
 
+/**
+ * Cache abstrato que mapeia IDs (String) para listas de dados do tipo definido.
+ *
+ * @param <T>
+ *            Tipo de dado cacheado.
+ */
 @ToString
 public abstract class AbstractCache<T> {
 	protected Map<String, ArrayList<T>> map = new HashMap<>();
@@ -15,9 +21,10 @@ public abstract class AbstractCache<T> {
 	 *
 	 * @param cacheId
 	 *            ID do cache a ser utilizado. Um mesmo ID mapeia vários itens
-	 *            de cache
+	 *            de cache.
 	 * @param T
-	 *            Dado a ser salvo no cache com ID especificado
+	 *            Dado a ser salvo no cache com ID especificado, junto com os
+	 *            demais itens já salvos com este ID.
 	 */
 	public void insert(String cacheId, T data) {
 		if (!this.map.containsKey(cacheId)) {
@@ -40,10 +47,10 @@ public abstract class AbstractCache<T> {
 	}
 
 	/**
-	 * Remove os itens do cache com ID especificado
+	 * Remove os itens do cache com ID especificado.
 	 *
 	 * @param cacheId
-	 *            ID do cache que deve ser limpo
+	 *            ID do cache que deve ser limpo.
 	 */
 	public void clear(String cacheId) {
 		this.map.remove(cacheId);

@@ -15,14 +15,13 @@ import lombok.Data;
 
 /**
  * Cache utilizado para guardar os currículos Lattes enviados de forma
- * assíncrona ao servidor. Cada cache é específico à sessão (usuário) atual,
- * graças ao escopo "session" definido na classe.
+ * assíncrona ao servidor.
  */
 @Service
 public class CurriculumCache extends AbstractCache<Curriculum> {
 
 	/**
-	 * Salva um currículo em cache e associa-o ao cacheId especificado
+	 * Salva um currículo em cache e associa-o ao cacheId especificado.
 	 *
 	 * @param cacheId
 	 *            ID do cache a ser utilizado. Um mesmo ID mapeia vários
