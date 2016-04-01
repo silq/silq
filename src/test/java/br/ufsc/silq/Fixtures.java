@@ -17,6 +17,8 @@ public class Fixtures {
 	public static final String CHRISTIANE_ZIP = CHRISTIANE_XML + ".zip";
 	public static final String RAUL_ZIP = RAUL_XML + ".zip";
 	public static final String RONALDO_ZIP = RONALDO_XML + ".zip";
+	public static final String EMPTY_ZIP = "src/test/resources/fixtures/curricula/empty.zip";
+	public static final String NO_XML_ZIP = "src/test/resources/fixtures/curricula/no-xml.zip";
 
 	public static final MockMultipartFile CHRISTIANE_XML_UPLOAD = createMockUpload(CHRISTIANE_XML);
 	public static final MockMultipartFile RAUL_XML_UPLOAD = createMockUpload(RAUL_XML);
@@ -27,6 +29,8 @@ public class Fixtures {
 	public static final MockMultipartFile CHRISTIANE_ZIP_UPLOAD = createMockZipUpload(CHRISTIANE_ZIP);
 	public static final MockMultipartFile RAUL_ZIP_UPLOAD = createMockZipUpload(RAUL_ZIP);
 	public static final MockMultipartFile RONALDO_ZIP_UPLOAD = createMockZipUpload(RONALDO_ZIP);
+	public static final MockMultipartFile EMPTY_ZIP_UPLOAD = createMockZipUpload(EMPTY_ZIP);
+	public static final MockMultipartFile NO_XML_ZIP_UPLOAD = createMockZipUpload(NO_XML_ZIP);
 
 	public static MockMultipartFile createMockUpload(String filepath) {
 		return createMockUpload(filepath, "application/xml");

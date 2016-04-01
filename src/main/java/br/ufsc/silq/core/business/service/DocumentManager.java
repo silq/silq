@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.business.service.util;
+package br.ufsc.silq.core.business.service;
 
 import java.io.File;
 import java.io.IOException;

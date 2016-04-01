@@ -8,7 +8,7 @@ import org.w3c.dom.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.ufsc.silq.core.business.service.util.DocumentManager;
+import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.exception.SilqUploadException;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
 import lombok.Data;

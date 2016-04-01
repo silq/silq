@@ -13,7 +13,7 @@ import org.w3c.dom.Document;
 
 import br.ufsc.silq.Fixtures;
 import br.ufsc.silq.WebContextTest;
-import br.ufsc.silq.core.business.service.util.DocumentManager;
+import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqUploadException;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;

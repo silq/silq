@@ -10,8 +10,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.business.service.SimilarityService;
-import br.ufsc.silq.core.business.service.util.DocumentManager;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.attribute.ArtigoAttributeGetter;

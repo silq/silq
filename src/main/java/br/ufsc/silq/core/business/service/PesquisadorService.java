@@ -13,7 +13,6 @@ import org.w3c.dom.Document;
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
 import br.ufsc.silq.core.business.repository.PesquisadorRepository;
-import br.ufsc.silq.core.business.service.util.DocumentManager;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqUploadException;
 import br.ufsc.silq.core.parser.LattesParser;

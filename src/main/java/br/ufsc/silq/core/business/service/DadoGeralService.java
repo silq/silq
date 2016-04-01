@@ -12,7 +12,6 @@ import org.w3c.dom.Document;
 import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Usuario;
 import br.ufsc.silq.core.business.repository.DadoGeralRepository;
-import br.ufsc.silq.core.business.service.util.DocumentManager;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
