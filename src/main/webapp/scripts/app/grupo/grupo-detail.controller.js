@@ -19,6 +19,10 @@ angular.module('silq2App')
             Flash.create('success', '<strong>Sucesso!</strong> Pesquisador(es) adicionado(s)');
         };
 
+        $scope.avaliarPesquisador = function(pesquisador) {
+            Flash.create('warning', 'Em desenvolvimento...');
+        };
+
         $scope.removePesquisador = function(pesquisador) {
             Grupo.removePesquisador($stateParams.id, pesquisador.id).then(function() {
                 var index = $scope.grupo.pesquisadores.indexOf(pesquisador);

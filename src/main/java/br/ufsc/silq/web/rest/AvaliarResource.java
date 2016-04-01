@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.w3c.dom.Document;
 
-import br.ufsc.silq.core.business.service.UsuarioService;
-import br.ufsc.silq.core.enums.AvaliacaoType;
-import br.ufsc.silq.core.exceptions.SilqErrorException;
+import br.ufsc.silq.core.business.entities.DadoGeral;
+import br.ufsc.silq.core.business.service.DadoGeralService;
+import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.ParseResult;
@@ -36,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AvaliarResource {
 
 	@Inject
-	private UsuarioService usuarioService;
+	private DadoGeralService dadoGeralService;
 
 	@Inject
 	private LattesParser lattesParser;
@@ -48,12 +47,12 @@ public class AvaliarResource {
 	private AvaliacaoCache avaliacaoCache;
 
 	/**
-	 * POST /api/avaliar/atual -> Compara o currículo do usuário atual
+	 * POST /api/avaliar/atual -> Avalia o currículo do usuário atual
 	 */
 	@RequestMapping(value = "/avaliar/atual", method = RequestMethod.POST)
 	public ResponseEntity<?> avaliarAtual(@Valid @RequestBody AvaliarForm avaliarForm) {
-		Document curriculum = this.usuarioService.getUserCurriculum();
-		ParseResult result = this.lattesParser.parseCurricula(curriculum, avaliarForm, AvaliacaoType.AMBOS);
+		DadoGeral dadoGeral = this.dadoGeralService.getDadoGeral();
+		ParseResult result = this.lattesParser.parseCurriculum(dadoGeral.getCurriculoXml(), avaliarForm);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
@@ -70,7 +69,7 @@ public class AvaliarResource {
 	 */
 	@RequestMapping(value = "/avaliar/upload", method = RequestMethod.POST)
 	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("cacheId") String cacheId)
-			throws IOException, SilqErrorException {
+			throws IOException, SilqException {
 		log.debug("Received file upload {}", file.getOriginalFilename());
 		this.curriculumCache.insert(cacheId, file);
 		return new ResponseEntity<>(this.curriculumCache.get(cacheId), HttpStatus.OK);
@@ -89,8 +88,7 @@ public class AvaliarResource {
 		List<ParseResult> results = new ArrayList<>();
 
 		for (Curriculum curriculum : this.curriculumCache.get(avaliacaoForm.getCacheId())) {
-			ParseResult result = this.lattesParser.parseCurricula(curriculum.getFile(), avaliacaoForm,
-					AvaliacaoType.AMBOS);
+			ParseResult result = this.lattesParser.parseCurriculum(curriculum.getDocument(), avaliacaoForm);
 			results.add(result);
 			this.avaliacaoCache.insert(avaliacaoForm.getCacheId(), result);
 		}

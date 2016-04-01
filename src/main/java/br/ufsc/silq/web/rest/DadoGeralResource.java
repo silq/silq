@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.service.DadoGeralService;
-import br.ufsc.silq.core.exceptions.SilqErrorException;
+import br.ufsc.silq.core.exception.SilqException;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -31,7 +31,7 @@ public class DadoGeralResource {
 	 * logado.
 	 */
 	@RequestMapping(value = "/dado-geral", method = RequestMethod.POST)
-	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) throws IOException, SilqErrorException {
+	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) throws IOException, SilqException {
 		log.debug("Received file upload {}", file.getOriginalFilename());
 		DadoGeral dadoGeral = this.dadoGeralService.saveFromUpload(file);
 		return new ResponseEntity<>(dadoGeral, HttpStatus.OK);

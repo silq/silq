@@ -1,18 +1,13 @@
 package br.ufsc.silq.core.business.service;
 
-import java.io.StringReader;
 import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
 
 import br.ufsc.silq.core.business.entities.Usuario;
 import br.ufsc.silq.core.business.repository.UsuarioRepository;
@@ -112,22 +107,5 @@ public class UsuarioService {
 			this.usuarioRepository.save(usuario);
 			return usuario;
 		});
-	}
-
-	public Document getUserCurriculum() {
-		byte[] curriculoStringByteArray = this.dadoGeralService.getDadoGeral().getCurriculoXml();
-		String curriculoString = new String(curriculoStringByteArray);
-
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder;
-		try {
-			builder = factory.newDocumentBuilder();
-			Document document = builder.parse(new InputSource(new StringReader(curriculoString)));
-			return document;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
 	}
 }

@@ -1,7 +1,10 @@
 package br.ufsc.silq.core.forms;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotBlank;
 
+import br.ufsc.silq.core.enums.AvaliacaoType;
 import lombok.Data;
 
 @Data
@@ -17,12 +20,6 @@ public class AvaliarForm {
 
 	public String anoPublicacaoAte;
 
-	public AvaliarForm(String area, String anoPublicacaoDe, String anoPublicacaoAte) {
-		this.area = area;
-		this.anoPublicacaoDe = anoPublicacaoDe;
-		this.anoPublicacaoAte = anoPublicacaoAte;
-	}
-
-	public AvaliarForm() {
-	}
+	@NotNull
+	public AvaliacaoType tipoAvaliacao = AvaliacaoType.AMBOS;
 }

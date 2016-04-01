@@ -1,13 +1,9 @@
 package br.ufsc.silq.core.parser;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
@@ -15,8 +11,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import br.ufsc.silq.core.business.service.SimilarityService;
-import br.ufsc.silq.core.enums.AvaliacaoType;
-import br.ufsc.silq.core.exceptions.SilqErrorException;
+import br.ufsc.silq.core.business.service.util.DocumentManager;
+import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.attribute.ArtigoAttributeGetter;
 import br.ufsc.silq.core.parser.attribute.AttributeGetter;
@@ -29,7 +25,6 @@ import br.ufsc.silq.core.parser.dto.TipoOrigemCurriculo;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.utils.SilqDataUtils;
 import br.ufsc.silq.core.utils.SilqStringUtils;
-import br.ufsc.silq.core.utils.files.FileManager;
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
 
 @Component
@@ -38,18 +33,22 @@ public class LattesParser {
 	@Inject
 	private SimilarityService similarityService;
 
+	@Inject
+	private DocumentManager documentManager;
+
 	/**
 	 * Extrai os dados gerais do currículo Lattes (em XML) de um pesquisador
 	 *
 	 * @param file
 	 *            Currículo Lattes em XML do pesquisador.
 	 * @return Os dados gerais do pesquisador extraídos do currículo.
-	 * @throws SilqErrorException
+	 * @throws SilqException
 	 */
-	public DadosGeraisResult parseCurriculaDadosGerais(File file) throws SilqErrorException {
+	public DadosGeraisResult parseDadosGerais(Document curriculumXml) throws SilqException {
 		DadosGeraisResult dadosGeraisResult = new DadosGeraisResult();
 
-		Node nodoRaiz = FileManager.getNodoRaiz(file);
+		NodeList qualisList = curriculumXml.getElementsByTagName("CURRICULO-VITAE");
+		Node nodoRaiz = qualisList.item(0);
 
 		List<String> dadoGeralList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
 		// TODO Currículo sem ID! Desatualizado!
@@ -82,15 +81,16 @@ public class LattesParser {
 	 * Extrai alguns dados gerais do currículo Lattes (em XML) de um
 	 * pesquisador.
 	 *
-	 * @param file
+	 * @param curriculumXml
 	 *            Currículo Lattes em XML do pesquisador.
 	 * @return
-	 * @throws SilqErrorException
+	 * @throws SilqException
 	 */
-	public PesquisadorResult parseCurriculaPesquisador(File file) throws SilqErrorException {
+	public PesquisadorResult parseCurriculumPesquisador(Document curriculumXml) {
 		PesquisadorResult pesquisadorResult = new PesquisadorResult();
 
-		Node nodoRaiz = FileManager.getNodoRaiz(file);
+		NodeList qualisList = curriculumXml.getElementsByTagName("CURRICULO-VITAE");
+		Node nodoRaiz = qualisList.item(0);
 
 		List<String> pesquisadorList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
 		// TODO Currículo sem ID! Desatualizado!
@@ -110,30 +110,14 @@ public class LattesParser {
 	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
 	 * currículo Lattes (em XML) e avalia-os utilizando os dados do banco.
 	 *
-	 * @param file
-	 *            Currículo Lattes (em XML) a ser avaliado
+	 * @param curriculum
+	 *            Byte array do Currículo Lattes (em XML) a ser avaliado.
 	 * @param form
-	 *            Opções de avaliação
-	 * @param tipoAvaliacao
-	 *            Se devem ser avaliados artigos, trabalhos ou ambos
-	 * @return
+	 *            Opções de avaliação.
+	 * @return Os resultados ({@link ParseResult}) da avaliação.
 	 */
-	public ParseResult parseCurricula(File file, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
-		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = null;
-		Document document = null;
-
-		try {
-			builder = builderFactory.newDocumentBuilder();
-			document = builder.parse(new FileInputStream(file));
-			document.getDocumentElement().normalize();
-
-			return this.parseCurricula(document, form, tipoAvaliacao);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
+	public ParseResult parseCurriculum(byte[] curriculum, AvaliarForm form) {
+		return this.parseCurriculum(this.documentManager.stringToDocument(new String(curriculum)), form);
 	}
 
 	/**
@@ -141,14 +125,12 @@ public class LattesParser {
 	 * currículo Lattes (em XML) e avalia-os utilizando os dados do banco.
 	 *
 	 * @param document
-	 *            Currículo Lattes (em XML) a ser avaliado
+	 *            Currículo Lattes (em XML) a ser avaliado.
 	 * @param form
-	 *            Opções de avaliação
-	 * @param tipoAvaliacao
-	 *            Se devem ser avaliados artigos, trabalhos ou ambos
-	 * @return
+	 *            Opções de avaliação.
+	 * @return Os resultados ({@link ParseResult}) da avaliação.
 	 */
-	public ParseResult parseCurricula(Document document, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
+	public ParseResult parseCurriculum(Document document, AvaliarForm form) {
 		ParseResult parseResult = new ParseResult();
 		parseResult.setAreaAvaliada(form.area);
 
@@ -213,7 +195,7 @@ public class LattesParser {
 		List<Artigo> artigos = ArtigoAttributeGetter.iterateUntilArtigos(raiz);
 		parseResult.setArtigos(artigos);
 
-		this.similarityService.compare(parseResult, form, tipoAvaliacao);
+		this.similarityService.compare(parseResult, form);
 
 		parseResult.order();
 

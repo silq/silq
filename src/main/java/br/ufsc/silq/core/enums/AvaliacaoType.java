@@ -7,8 +7,8 @@ import lombok.Getter;
 @Getter
 public enum AvaliacaoType {
 
-	ARTIGO("artigo"),
-	TRABALHO("trabalho"),
+	ARTIGO("artigo"), 
+	TRABALHO("trabalho"), 
 	AMBOS("ambos");
 
 	private String name;
@@ -21,5 +21,17 @@ public enum AvaliacaoType {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Checa se o tipo de avaliação inclui o tipo parâmetro.
+	 *
+	 * @param type
+	 *            Tipo a ser comparado.
+	 * @return Verdadeiro caso o parâmetro a ser comparado seja igual ao objeto
+	 *         comparado ou caso este seja AMBOS.
+	 */
+	public boolean includes(AvaliacaoType type) {
+		return this.equals(type) || this.equals(AMBOS);
 	}
 }

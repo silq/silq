@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Document;
 
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
@@ -21,8 +20,6 @@ import br.ufsc.silq.core.business.service.PesquisadorService;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.enums.GrupoConceitual;
 import br.ufsc.silq.core.enums.Periodo;
-import br.ufsc.silq.core.exceptions.SilqEntityNotFoundException;
-import br.ufsc.silq.core.exceptions.SilqForbiddenActionException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.graphs.dto.PesquisadorEstratoAnoDto;
 import br.ufsc.silq.core.parser.LattesParser;
@@ -30,7 +27,6 @@ import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
-import br.ufsc.silq.core.utils.files.FileManager;
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
 
 @Component
@@ -46,17 +42,16 @@ public class PesquisadorPeriodoGraphProcessor {
 	private LattesParser lattesParser;
 
 	public PesquisadorEstratoAnoDto getPesquisadorEstratoAnoDto(Long idGrupo, Periodo periodo, String nivelSimilaridade,
-			String conceito, AvaliacaoType tipoAvaliacao)
-					throws SilqEntityNotFoundException, SilqForbiddenActionException {
+			String conceito, AvaliacaoType tipoAvaliacao) {
 		PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto = new PesquisadorEstratoAnoDto();
 
 		Grupo grupo = this.grupoService.findOne(idGrupo);
 
 		for (Pesquisador pesquisador : grupo.getPesquisadores()) {
-			byte[] curriculo = this.pesquisadorService.loadPesquisadorCurriculum(idGrupo, pesquisador.getId());
-			Document document = FileManager.createXmlDocument(new String(curriculo));
-			AvaliarForm avaliarForm = this.getAvaliarForm(pesquisador.getAreaAtuacao(), periodo, nivelSimilaridade);
-			ParseResult parseResult = this.lattesParser.parseCurricula(document, avaliarForm, tipoAvaliacao);
+			Pesquisador entity = this.pesquisadorService.findOneByIdAndGrupoId(idGrupo, pesquisador.getId()).get();
+			AvaliarForm avaliarForm = this.getAvaliarForm(pesquisador.getAreaAtuacao(), periodo, nivelSimilaridade,
+					tipoAvaliacao);
+			ParseResult parseResult = this.lattesParser.parseCurriculum(entity.getCurriculoXml(), avaliarForm);
 			this.processParseResult(pesquisadorEstratoAnoDto, periodo, parseResult, conceito);
 			this.processDto(pesquisadorEstratoAnoDto);
 		}
@@ -64,13 +59,15 @@ public class PesquisadorPeriodoGraphProcessor {
 		return pesquisadorEstratoAnoDto;
 	}
 
-	private AvaliarForm getAvaliarForm(String areaAtuacao, Periodo periodo, String nivelSimilaridade) {
+	private AvaliarForm getAvaliarForm(String areaAtuacao, Periodo periodo, String nivelSimilaridade,
+			AvaliacaoType tipoAvaliacao) {
 		AvaliarForm avaliarForm = new AvaliarForm();
 
 		avaliarForm.setArea("Ciência da Computação");
 		avaliarForm.setNivelSimilaridade(nivelSimilaridade);
 		avaliarForm.setAnoPublicacaoDe(periodo.getPrimeiroAno());
 		avaliarForm.setAnoPublicacaoAte(periodo.getUltimoAno());
+		avaliarForm.setTipoAvaliacao(tipoAvaliacao);
 
 		return avaliarForm;
 	}

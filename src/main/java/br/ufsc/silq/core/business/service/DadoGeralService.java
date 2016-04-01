@@ -1,7 +1,5 @@
 package br.ufsc.silq.core.business.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -9,22 +7,20 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.w3c.dom.Document;
 
 import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Usuario;
 import br.ufsc.silq.core.business.repository.DadoGeralRepository;
-import br.ufsc.silq.core.business.service.util.UploadManager;
-import br.ufsc.silq.core.exceptions.SilqErrorException;
+import br.ufsc.silq.core.business.service.util.DocumentManager;
+import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
-import br.ufsc.silq.core.utils.files.FileManager;
-import lombok.experimental.Delegate;
 
 @Service
 @Transactional
 public class DadoGeralService {
 
-	@Delegate
 	@Inject
 	private DadoGeralRepository dadoGeralRepository;
 
@@ -34,23 +30,26 @@ public class DadoGeralService {
 	@Inject
 	private LattesParser lattesParser;
 
+	@Inject
+	private DocumentManager uploadManager;
+
 	/**
 	 * Salva os dados gerais do usuário logado a partir do arquivo XML de seu
 	 * currículo Lattes. Remove dados gerais anteriores associados a este
 	 * usuário.
 	 *
-	 * @param curriculumFile
-	 *            Currículo Lattes do usuário. Deve ser em formato XML válido.
+	 * @param curriculumXml
+	 *            Currículo Lattes do usuário em formato XML.
 	 * @return
-	 * @throws SilqErrorException
+	 * @throws SilqException
 	 */
-	protected DadoGeral saveFromFile(File curriculumFile) throws SilqErrorException {
-		DadosGeraisResult result = this.lattesParser.parseCurriculaDadosGerais(curriculumFile);
+	protected DadoGeral saveFromDocument(Document curriculumXml) throws SilqException {
+		DadosGeraisResult result = this.lattesParser.parseDadosGerais(curriculumXml);
 		DadoGeral dadoGeral = new DadoGeral();
 
 		Usuario usuarioLogado = this.usuarioService.getUsuarioLogado();
 
-		String curriculum = FileManager.extractCurriculum(curriculumFile);
+		String curriculum = this.uploadManager.documentToString(curriculumXml);
 		dadoGeral.setCurriculoXml(curriculum.getBytes());
 		dadoGeral.setUsuario(usuarioLogado);
 		dadoGeral.setAreaConhecimento(result.getAreaGrandeAreaConhecimento().getNomeArea());
@@ -62,7 +61,7 @@ public class DadoGeralService {
 		dadoGeral.setIdCurriculo(result.getIdCurriculo());
 		dadoGeral.setNome(result.getNome());
 
-		this.deleteByUsuario(usuarioLogado);
+		this.dadoGeralRepository.deleteByUsuario(usuarioLogado);
 
 		return this.dadoGeralRepository.save(dadoGeral);
 	}
@@ -73,23 +72,20 @@ public class DadoGeralService {
 	 * usuário.
 	 *
 	 * @param uploadedFile
-	 *            Upload do arquivo contendo o Lattes
+	 *            Upload do arquivo contendo o currículo Lattes.
 	 * @return
-	 * @throws IOException
-	 * @throws SilqErrorException
+	 * @throws SilqException
 	 */
-	public DadoGeral saveFromUpload(MultipartFile uploadedFile) throws IOException, SilqErrorException {
-		// TODO(bonetti): é mesmo necessário criar um File ??
-		File tempFile = UploadManager.createTempFileFromUpload(uploadedFile);
-		DadoGeral dadoGeral = this.saveFromFile(tempFile);
-		tempFile.delete();
+	public DadoGeral saveFromUpload(MultipartFile uploadedFile) throws SilqException {
+		Document document = this.uploadManager.extractXmlDocumentFromUpload(uploadedFile);
+		DadoGeral dadoGeral = this.saveFromDocument(document);
 		return dadoGeral;
 	}
 
 	/**
 	 * Retorna o dado geral do usuário logado.
 	 *
-	 * @return
+	 * @return O {@link DadoGeral} do usuário logado.
 	 */
 	public DadoGeral getDadoGeral() {
 		return this.dadoGeralRepository.findByUsuario(this.usuarioService.getUsuarioLogado());

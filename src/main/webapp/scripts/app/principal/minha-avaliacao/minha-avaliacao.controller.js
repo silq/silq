@@ -14,7 +14,7 @@ angular.module('silq2App')
         $scope.submit = function() {
             Similarity.avaliarAtual($scope.avaliarForm).then(function(response) {
                 $scope.results = response.data;
-                Flash.create('success', 'Avaliação concluída');
+                Flash.create('success', '<strong>Sucesso!</strong> Avaliação concluída');
             });
         };
     });

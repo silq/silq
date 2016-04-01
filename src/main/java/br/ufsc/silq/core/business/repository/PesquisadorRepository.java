@@ -11,4 +11,6 @@ public interface PesquisadorRepository extends JpaRepository<Pesquisador, Long> 
 	Optional<Pesquisador> findOneByIdAndGrupoId(Long id, Long grupoId);
 
 	Optional<Pesquisador> findOneByIdCurriculoAndGrupoId(Long idCurriculo, Long grupoId);
+
+	Optional<Pesquisador> findOneById(Long pesquisadorId);
 }

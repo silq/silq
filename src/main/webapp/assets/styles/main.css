@@ -146,13 +146,14 @@ a {
 .title-border {
     border-bottom: 1px solid #eee;
     padding-bottom: 0.35em;
+    margin-bottom: 15px;
 }
 
 h1 .glyphicon,
 h2 .glyphicon,
 h3 .glyphicon,
 h4 .glyphicon {
-    font-size: 0.75em;
+    font-size: 0.8em;
     color: #23527c;
 }
 

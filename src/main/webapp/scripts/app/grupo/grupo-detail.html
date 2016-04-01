@@ -1,4 +1,3 @@
-
 <div>
     <h2 class="text-center">Grupo <small>{{grupo.nomeGrupo}}</small></h2>
 
@@ -67,6 +66,10 @@
                             <td>{{ pesquisador.idCurriculo }}</td>
                             <td>{{ pesquisador.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy' }}</td>
                             <td class="text-right">
+                                <a ng-click="avaliarPesquisador(pesquisador)">
+                                    <span class="glyphicon glyphicon-check"></span> Avaliar
+                                </a>
+                                |
                                 <a confirm-click="removePesquisador(pesquisador)"
                                     confirm-message="Tem certeza que deseja remover o pesquisador deste grupo?"
                                     class="text-danger"

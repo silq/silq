@@ -40,14 +40,14 @@ public class SimilarityService {
 	@Inject
 	private QualisGeralRepository qualisGeralRepository;
 
-	public void compare(ParseResult parseResult, AvaliarForm form, AvaliacaoType tipoAvaliacao) {
+	public void compare(ParseResult parseResult, AvaliarForm form) {
 		List<Artigo> artigos = parseResult.getArtigos();
 		List<Trabalho> trabalhos = parseResult.getTrabalhos();
 		String conhecimento = form.getArea();
 		String similarity = form.getNivelSimilaridade();
 		parseResult.setNivelSimilaridade(ComboValueHelper.getNivelSimilaridadeTexto(form.getNivelSimilaridade()));
 
-		if (tipoAvaliacao.equals(AvaliacaoType.TRABALHO) || tipoAvaliacao.equals(AvaliacaoType.AMBOS)) {
+		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
 			if (conhecimento.equalsIgnoreCase("Ciência da Computação")) {
 				// TODO (bonetti): somente avaliações de trabalhos de CCO são
 				// pesquisados atualmente... Permitir outras áreas!
@@ -57,7 +57,7 @@ public class SimilarityService {
 			}
 		}
 
-		if (tipoAvaliacao.equals(AvaliacaoType.ARTIGO) || tipoAvaliacao.equals(AvaliacaoType.AMBOS)) {
+		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
 			this.compareArtigos(similarity, artigos, conhecimento);
 		}
 

@@ -12,24 +12,21 @@
 
 spring:
     datasource:
-        driver-class-name: org.h2.jdbcx.JdbcDataSource
-        url: jdbc:h2:mem:silq2;DB_CLOSE_DELAY=-1
+        driver-class-name: org.postgresql.ds.PGSimpleDataSource
+        # TODO: alterar banco
+        url: jdbc:postgresql://localhost:5432/silq2
         name:
-        username:
-        password:
+        username: postgres
+        password: mingaudeaveia
     jpa:
-        database-platform: br.ufsc.silq.domain.util.FixedH2Dialect
-        database: H2
-        open-in-view: false
+        database-platform: br.ufsc.silq.domain.util.FixedPostgreSQL82Dialect
+        database: POSTGRESQL
         show_sql: true
-        hibernate:
-            ddl-auto: none
-            naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
         properties:
-            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
-            hibernate.hbm2ddl.auto: validate
+            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
     mail:
         host: localhost
     mvc:

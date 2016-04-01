@@ -1,26 +1,46 @@
 package br.ufsc.silq.core.parser;
 
-import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import javax.inject.Inject;
 
-import br.ufsc.silq.core.exceptions.SilqErrorException;
+import org.assertj.core.api.Assertions;
+import org.junit.Before;
+import org.junit.Test;
+import org.w3c.dom.Document;
+
+import br.ufsc.silq.Fixtures;
+import br.ufsc.silq.WebContextTest;
+import br.ufsc.silq.core.business.service.util.DocumentManager;
+import br.ufsc.silq.core.exception.SilqException;
+import br.ufsc.silq.core.exception.SilqUploadException;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.parser.dto.PesquisadorResult;
 
-public class LattesParserTest {
+public class LattesParserTest extends WebContextTest {
 
-	public static final File CURRICULUM_CHRISTIANE = new File("src/test/resources/fixtures/curricula/christiane.xml");
-	public static final File CURRICULUM_RAUL = new File("src/test/resources/fixtures/curricula/raul.xml");
-	public static final File CURRICULUM_RONALDO = new File("src/test/resources/fixtures/curricula/ronaldo.xml");
+	public Document documentXmlChristiane;
+	public Document documentXmlRaul;
+	public Document documentXmlRonaldo;
 
-	private LattesParser lattesParser = new LattesParser();
+	@Inject
+	private LattesParser lattesParser;
+
+	@Inject
+	private DocumentManager documentManager;
+
+	@Before
+	public void setup() throws FileNotFoundException, IOException, SilqUploadException {
+		this.documentXmlChristiane = this.documentManager.extractXmlDocumentFromUpload(Fixtures.CHRISTIANE_XML_UPLOAD);
+		this.documentXmlRaul = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RAUL_XML_UPLOAD);
+		this.documentXmlRonaldo = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RONALDO_XML_UPLOAD);
+	}
 
 	@Test
-	public void testParseCurriculaDadosGerais() throws ParseException, SilqErrorException {
-		DadosGeraisResult dados = this.lattesParser.parseCurriculaDadosGerais(CURRICULUM_CHRISTIANE);
+	public void testParseCurriculaDadosGerais() throws ParseException, SilqException {
+		DadosGeraisResult dados = this.lattesParser.parseDadosGerais(this.documentXmlChristiane);
 		// System.out.println(dados);
 
 		Assertions.assertThat(dados.getNome()).isEqualTo("Christiane Anneliese Gresse von Wangenheim");
@@ -29,20 +49,20 @@ public class LattesParserTest {
 		Assertions.assertThat(dados.getNomeSubAreaConhecimento()).isEqualTo("Metodologia e Técnicas da Computação");
 		Assertions.assertThat(dados.getIdCurriculo()).isEqualTo("3879944876244096");
 
-		Assertions.assertThat(this.lattesParser.parseCurriculaDadosGerais(CURRICULUM_RAUL)).isNotNull();
-		Assertions.assertThat(this.lattesParser.parseCurriculaDadosGerais(CURRICULUM_RONALDO)).isNotNull();
+		Assertions.assertThat(this.lattesParser.parseDadosGerais(this.documentXmlRaul)).isNotNull();
+		Assertions.assertThat(this.lattesParser.parseDadosGerais(this.documentXmlRonaldo)).isNotNull();
 	}
 
 	@Test
-	public void testParseCurriculaPesquisador() throws SilqErrorException {
-		PesquisadorResult result = this.lattesParser.parseCurriculaPesquisador(CURRICULUM_RAUL);
+	public void testParseCurriculaPesquisador() throws SilqException {
+		PesquisadorResult result = this.lattesParser.parseCurriculumPesquisador(this.documentXmlRaul);
 		// System.out.println(result);
 
 		Assertions.assertThat(result.getNome()).isEqualTo("Raul Sidnei Wazlawick");
 		Assertions.assertThat(result.getIdCurriculo()).isEqualTo(7541399131195077L);
 
-		Assertions.assertThat(this.lattesParser.parseCurriculaPesquisador(CURRICULUM_CHRISTIANE)).isNotNull();
-		Assertions.assertThat(this.lattesParser.parseCurriculaPesquisador(CURRICULUM_RONALDO)).isNotNull();
+		Assertions.assertThat(this.lattesParser.parseCurriculumPesquisador(this.documentXmlChristiane)).isNotNull();
+		Assertions.assertThat(this.lattesParser.parseCurriculumPesquisador(this.documentXmlRonaldo)).isNotNull();
 	}
 
 }
