@@ -25,7 +25,7 @@ angular.module('silq2App')
 
             var abort = false;
             $scope.files.forEach(function(file) {
-                if (file.uploading === true) {
+                if (file.status === 'uploading') {
                     abort = true;
                     return;
                 }

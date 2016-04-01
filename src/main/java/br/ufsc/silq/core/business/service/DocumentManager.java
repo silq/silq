@@ -62,7 +62,7 @@ public class DocumentManager {
 			document = builder.parse(upload.getInputStream());
 		} catch (SAXException | IOException | ParserConfigurationException e) {
 			e.printStackTrace();
-			throw new SilqUploadException("Currículo Lattes inválido");
+			throw new SilqUploadException();
 		}
 
 		document.getDocumentElement().normalize();
@@ -147,8 +147,9 @@ public class DocumentManager {
 	 *
 	 * @param curriculo
 	 * @return
+	 * @throws SilqUploadException
 	 */
-	public Document stringToDocument(String curriculo) {
+	public Document stringToDocument(String curriculo) throws SilqUploadException {
 		DocumentBuilder builder;
 		Document document = null;
 		try {
@@ -156,12 +157,13 @@ public class DocumentManager {
 			document = builder.parse(new InputSource(new StringReader(curriculo)));
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new SilqUploadException();
 		}
 
 		return document;
 	}
 
-	protected void validateAgainstDTD(Document document) {
+	protected void validateAgainstDTD(Document document) throws SilqUploadException {
 		try {
 			DocumentBuilder documentBuilder = this.builderFactory.newDocumentBuilder();
 
@@ -178,6 +180,7 @@ public class DocumentManager {
 			documentBuilder.parse(new InputSource(new StringReader(writer.toString())));
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new SilqUploadException();
 		}
 	}
 

@@ -7,4 +7,8 @@ public class SilqUploadException extends SilqException {
 		super(msg);
 	}
 
+	public SilqUploadException() {
+		super("Currículo Lattes inválido");
+	}
+
 }
