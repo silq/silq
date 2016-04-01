@@ -1,10 +1,8 @@
-silq2-dev-postgresql:
-  container_name: silq2-dev-postgresql
+silq2-postgresql:
+  container_name: silq2-postgresql
   image: postgres:9.4.5
-  # volumes:
-  #   - ~/volumes/jhipster/silq2/dev-postgresql/:/var/lib/postgresql/
   environment:
-    - POSTGRES_USER=silq2
-    - POSTGRES_PASSWORD=
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=mingaudeaveia
   ports:
     - "5432:5432"
