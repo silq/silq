@@ -15,7 +15,7 @@ import br.ufsc.silq.Fixtures;
 import br.ufsc.silq.WebContextTest;
 import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.exception.SilqException;
-import br.ufsc.silq.core.exception.SilqUploadException;
+import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.parser.dto.PesquisadorResult;
 
@@ -32,7 +32,7 @@ public class LattesParserTest extends WebContextTest {
 	private DocumentManager documentManager;
 
 	@Before
-	public void setup() throws FileNotFoundException, IOException, SilqUploadException {
+	public void setup() throws FileNotFoundException, IOException, SilqLattesException {
 		this.documentXmlChristiane = this.documentManager.extractXmlDocumentFromUpload(Fixtures.CHRISTIANE_XML_UPLOAD);
 		this.documentXmlRaul = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RAUL_XML_UPLOAD);
 		this.documentXmlRonaldo = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RONALDO_XML_UPLOAD);

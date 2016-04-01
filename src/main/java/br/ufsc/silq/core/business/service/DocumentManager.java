@@ -25,7 +25,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import br.ufsc.silq.core.exception.SilqUploadException;
+import br.ufsc.silq.core.exception.SilqLattesException;
 
 @Service
 public class DocumentManager {
@@ -46,10 +46,10 @@ public class DocumentManager {
 	 *            Upload contendo o currículo Lattes em XML ou ZIP de um
 	 *            pesquisador.
 	 * @return O documento XML extraído do upload.
-	 * @throws SilqUploadException
+	 * @throws SilqLattesException
 	 *             Caso o upload não seja um currículo Lattes XML ou ZIP válido.
 	 */
-	public Document extractXmlDocumentFromUpload(MultipartFile upload) throws SilqUploadException {
+	public Document extractXmlDocumentFromUpload(MultipartFile upload) throws SilqLattesException {
 		if (this.isZipUpload(upload)) {
 			return this.extractXmlDocumentFromZipUpload(upload);
 		}
@@ -62,7 +62,7 @@ public class DocumentManager {
 			document = builder.parse(upload.getInputStream());
 		} catch (SAXException | IOException | ParserConfigurationException e) {
 			e.printStackTrace();
-			throw new SilqUploadException();
+			throw new SilqLattesException();
 		}
 
 		document.getDocumentElement().normalize();
@@ -88,10 +88,10 @@ public class DocumentManager {
 	 * @param upload
 	 *            Upload de um arquivo ZIP contendo um currículo Lattes em XML.
 	 * @return O documento XML extraído do upload.
-	 * @throws SilqUploadException
+	 * @throws SilqLattesException
 	 *             Caso o arquivo ZIP seja inválido.
 	 */
-	public Document extractXmlDocumentFromZipUpload(MultipartFile upload) throws SilqUploadException {
+	public Document extractXmlDocumentFromZipUpload(MultipartFile upload) throws SilqLattesException {
 		ZipInputStream zis;
 		ZipEntry entry;
 		int bufferSize = 1024;
@@ -114,7 +114,7 @@ public class DocumentManager {
 
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new SilqUploadException("Arquivo ZIP inválido");
+			throw new SilqLattesException("Arquivo ZIP inválido");
 		}
 
 		return this.stringToDocument(curriculumStr);
@@ -147,9 +147,9 @@ public class DocumentManager {
 	 *
 	 * @param curriculo
 	 * @return
-	 * @throws SilqUploadException
+	 * @throws SilqLattesException
 	 */
-	public Document stringToDocument(String curriculo) throws SilqUploadException {
+	public Document stringToDocument(String curriculo) throws SilqLattesException {
 		DocumentBuilder builder;
 		Document document = null;
 		try {
@@ -157,13 +157,13 @@ public class DocumentManager {
 			document = builder.parse(new InputSource(new StringReader(curriculo)));
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new SilqUploadException();
+			throw new SilqLattesException();
 		}
 
 		return document;
 	}
 
-	protected void validateAgainstDTD(Document document) throws SilqUploadException {
+	protected void validateAgainstDTD(Document document) throws SilqLattesException {
 		try {
 			DocumentBuilder documentBuilder = this.builderFactory.newDocumentBuilder();
 
@@ -180,7 +180,7 @@ public class DocumentManager {
 			documentBuilder.parse(new InputSource(new StringReader(writer.toString())));
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new SilqUploadException();
+			throw new SilqLattesException();
 		}
 	}
 

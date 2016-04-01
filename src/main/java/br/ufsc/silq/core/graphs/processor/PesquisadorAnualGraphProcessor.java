@@ -19,6 +19,7 @@ import br.ufsc.silq.core.business.service.GrupoService;
 import br.ufsc.silq.core.business.service.PesquisadorService;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.enums.GrupoConceitual;
+import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.graphs.dto.PesquisadorEstratoAnoDto;
 import br.ufsc.silq.core.parser.LattesParser;
@@ -40,16 +41,15 @@ public class PesquisadorAnualGraphProcessor {
 	@Inject
 	private LattesParser lattesParser;
 
-	public PesquisadorEstratoAnoDto getPesquisadorEstratoAnoDto(Long idGrupo, String nivelSimilaridade, String conceito,
-			AvaliacaoType tipoAvaliacao, String ano) {
+	public PesquisadorEstratoAnoDto getPesquisadorEstratoAnoDto(Long idGrupo, String nivelSimilaridade, String conceito, AvaliacaoType tipoAvaliacao, String ano)
+			throws SilqLattesException {
 		PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto = new PesquisadorEstratoAnoDto();
 
 		Grupo grupo = this.grupoService.findOne(idGrupo);
 
 		for (Pesquisador pesquisador : grupo.getPesquisadores()) {
 			Pesquisador entity = this.pesquisadorService.findOneByIdAndGrupoId(idGrupo, pesquisador.getId()).get();
-			AvaliarForm avaliarForm = this.getAvaliarForm(pesquisador.getAreaAtuacao(), ano, nivelSimilaridade,
-					tipoAvaliacao);
+			AvaliarForm avaliarForm = this.getAvaliarForm(pesquisador.getAreaAtuacao(), ano, nivelSimilaridade, tipoAvaliacao);
 			ParseResult parseResult = this.lattesParser.parseCurriculum(entity.getCurriculoXml(), avaliarForm);
 			this.processParseResult(pesquisadorEstratoAnoDto, ano, parseResult, conceito);
 			this.processDto(pesquisadorEstratoAnoDto);
@@ -58,8 +58,7 @@ public class PesquisadorAnualGraphProcessor {
 		return pesquisadorEstratoAnoDto;
 	}
 
-	private AvaliarForm getAvaliarForm(String areaAtuacao, String ano, String nivelSimilaridade,
-			AvaliacaoType tipoAvaliacao) {
+	private AvaliarForm getAvaliarForm(String areaAtuacao, String ano, String nivelSimilaridade, AvaliacaoType tipoAvaliacao) {
 		AvaliarForm avaliarForm = new AvaliarForm();
 
 		avaliarForm.setArea("Ciência da Computação");
@@ -71,10 +70,8 @@ public class PesquisadorAnualGraphProcessor {
 		return avaliarForm;
 	}
 
-	private void processParseResult(PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto, String anoPublicacao,
-			ParseResult parseResult, String conceitoFiltro) {
-		Map<Integer, ConcurrentMap<String, AtomicInteger>> mapAnoConceito = pesquisadorEstratoAnoDto
-				.getMapConceitoQuantidade();
+	private void processParseResult(PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto, String anoPublicacao, ParseResult parseResult, String conceitoFiltro) {
+		Map<Integer, ConcurrentMap<String, AtomicInteger>> mapAnoConceito = pesquisadorEstratoAnoDto.getMapConceitoQuantidade();
 
 		Integer ano = ConverterHelper.parseIntegerSafely(anoPublicacao);
 
@@ -117,8 +114,7 @@ public class PesquisadorAnualGraphProcessor {
 		}
 	}
 
-	private void putConceitosIntoMap(ConcurrentMap<String, AtomicInteger> mapConceitoQuantidade,
-			String conceitoFiltro) {
+	private void putConceitosIntoMap(ConcurrentMap<String, AtomicInteger> mapConceitoQuantidade, String conceitoFiltro) {
 		List<String> conceitosFromGrupo = GrupoConceitual.getConceitosFromGrupo(conceitoFiltro);
 
 		for (String conceito : conceitosFromGrupo) {
@@ -129,8 +125,7 @@ public class PesquisadorAnualGraphProcessor {
 	private void processDto(PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto) {
 		List<String> conceitos = new ArrayList<>();
 		List<String> anos = new ArrayList<>();
-		Map<Integer, ConcurrentMap<String, AtomicInteger>> mapAnosConceitos = pesquisadorEstratoAnoDto
-				.getMapConceitoQuantidade();
+		Map<Integer, ConcurrentMap<String, AtomicInteger>> mapAnosConceitos = pesquisadorEstratoAnoDto.getMapConceitoQuantidade();
 		Set<Integer> keySet = mapAnosConceitos.keySet();
 
 		for (Integer ano : keySet) {

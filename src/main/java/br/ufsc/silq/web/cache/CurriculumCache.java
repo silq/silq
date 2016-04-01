@@ -9,7 +9,7 @@ import org.w3c.dom.Document;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.ufsc.silq.core.business.service.DocumentManager;
-import br.ufsc.silq.core.exception.SilqUploadException;
+import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
 import lombok.Data;
 
@@ -32,9 +32,9 @@ public class CurriculumCache extends AbstractCache<Curriculum> {
 	 * @param upload
 	 *            Arquivo a ser salvo.
 	 * @return
-	 * @throws SilqUploadException
+	 * @throws SilqLattesException
 	 */
-	public Curriculum insert(String cacheId, MultipartFile upload) throws SilqUploadException {
+	public Curriculum insert(String cacheId, MultipartFile upload) throws SilqLattesException {
 		Document document = this.documentManager.extractXmlDocumentFromUpload(upload);
 		Curriculum curriculum = new Curriculum(document, upload.getOriginalFilename(), upload.getSize(), cacheId);
 		this.insert(cacheId, curriculum);

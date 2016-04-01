@@ -13,6 +13,7 @@ import org.w3c.dom.NodeList;
 import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.business.service.SimilarityService;
 import br.ufsc.silq.core.exception.SilqException;
+import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.attribute.ArtigoAttributeGetter;
 import br.ufsc.silq.core.parser.attribute.AttributeGetter;
@@ -95,8 +96,7 @@ public class LattesParser {
 		List<String> pesquisadorList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
 		// TODO Currículo sem ID! Desatualizado!
 		pesquisadorResult.setIdCurriculo(Long.parseLong(pesquisadorList.get(2)));
-		pesquisadorResult
-				.setUltimaAtualizacao(SilqDataUtils.formatDates(pesquisadorList.get(0), pesquisadorList.get(1)));
+		pesquisadorResult.setUltimaAtualizacao(SilqDataUtils.formatDates(pesquisadorList.get(0), pesquisadorList.get(1)));
 
 		List<String> nomeList = AttributeGetter.iterateNodes(ParserSets.NOME_SET, nodoRaiz);
 		if (nomeList.size() == 1) {
@@ -115,8 +115,9 @@ public class LattesParser {
 	 * @param form
 	 *            Opções de avaliação.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
+	 * @throws SilqLattesException
 	 */
-	public ParseResult parseCurriculum(byte[] curriculum, AvaliarForm form) {
+	public ParseResult parseCurriculum(byte[] curriculum, AvaliarForm form) throws SilqLattesException {
 		return this.parseCurriculum(this.documentManager.stringToDocument(new String(curriculum)), form);
 	}
 

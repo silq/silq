@@ -14,7 +14,7 @@ import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
 import br.ufsc.silq.core.business.repository.PesquisadorRepository;
 import br.ufsc.silq.core.exception.SilqException;
-import br.ufsc.silq.core.exception.SilqUploadException;
+import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.PesquisadorResult;
 
@@ -46,12 +46,12 @@ public class PesquisadorService {
 	 * @param upload
 	 *            Currículo XML do pesquisador.
 	 * @return
-	 * @throws SilqUploadException
+	 * @throws SilqLattesException
 	 * @throws IOException
 	 * @throws IllegalStateException
 	 * @throws SilqException
 	 */
-	public Pesquisador parseUploadPesquisador(MultipartFile upload) throws SilqUploadException {
+	public Pesquisador parseUploadPesquisador(MultipartFile upload) throws SilqLattesException {
 		Document document = this.documentManager.extractXmlDocumentFromUpload(upload);
 		PesquisadorResult result = this.lattesParser.parseCurriculumPesquisador(document);
 
