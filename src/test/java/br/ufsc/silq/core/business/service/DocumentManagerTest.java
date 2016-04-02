@@ -37,4 +37,26 @@ public class DocumentManagerTest extends WebContextTest {
 		Document document = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RAUL_ZIP_UPLOAD);
 		Assertions.assertThat(document).isNotNull();
 	}
+
+	@Test
+	public void testUploadCurriculumXmlWithError() throws SilqLattesException {
+		Assertions.assertThatThrownBy(() -> {
+			this.documentManager.extractXmlDocumentFromUpload(Fixtures.ERROR_XML_UPLOAD);
+		}).isInstanceOf(SilqLattesException.class);
+
+		Assertions.assertThatThrownBy(() -> {
+			this.documentManager.extractXmlDocumentFromUpload(Fixtures.EMPTY_XML_UPLOAD);
+		}).isInstanceOf(SilqLattesException.class);
+	}
+
+	@Test
+	public void testUploadCurriculumZipWithError() {
+		Assertions.assertThatThrownBy(() -> {
+			this.documentManager.extractXmlDocumentFromUpload(Fixtures.EMPTY_ZIP_UPLOAD);
+		}).isInstanceOf(SilqLattesException.class);
+
+		Assertions.assertThatThrownBy(() -> {
+			this.documentManager.extractXmlDocumentFromUpload(Fixtures.NO_XML_ZIP_UPLOAD);
+		}).isInstanceOf(SilqLattesException.class);
+	}
 }
