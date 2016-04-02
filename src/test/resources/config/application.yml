@@ -13,8 +13,7 @@
 spring:
     datasource:
         driver-class-name: org.postgresql.ds.PGSimpleDataSource
-        # TODO: alterar banco
-        url: jdbc:postgresql://localhost:5432/silq2
+        url: jdbc:postgresql://localhost:5431/silq2
         name:
         username: postgres
         password: mingaudeaveia

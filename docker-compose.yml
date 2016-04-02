@@ -2,7 +2,8 @@ silq2-postgresql:
   container_name: silq2-postgresql
   image: postgres:9.4.5
   environment:
+    - POSTGRES_DB=silq2
     - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=mingaudeaveia
   ports:
-    - "5432:5432"
+    - "5431:5432"
