@@ -1,0 +1,227 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700);
+
+$icon-font-path: "../fonts/bootstrap/";
+
+$brand-primary: #0A6B74;
+$brand-success: #0B941C;
+$brand-warning: #BF860E;
+$brand-danger:  #BF170E;
+$brand-info:    #6C4E82;
+
+$state-success-text: $brand-success;
+$state-success-bg:   lighten($brand-success, 55%);
+
+$state-info-text:    $brand-info;
+$state-info-bg:      lighten($brand-info, 55%);
+
+$state-warning-text: $brand-warning;
+$state-warning-bg:   lighten($brand-warning, 55%);
+
+$state-danger-text:  $brand-danger;
+$state-danger-bg:    lighten($brand-danger, 55%);
+
+$font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base: 13px;
+
+// bower:scss
+@import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+@import 'dropbox';
+
+a {
+    cursor: pointer;
+}
+
+.flex {  display: flex; }
+.flex > *:not(:first-child) { margin-left: 5px; }
+.flex > *:not(:last-child) { margin-right: 5px; }
+
+.justify-center { justify-content: center; }
+
+.flex-grow { flex-grow: 1; }
+
+.main-content {
+    min-height: 50vh;
+}
+
+.footer {
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+    margin-top: 40px;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.footer li {
+    display: inline;
+    margin: 0 3px;
+}
+
+.table-resumo td:first-child {
+    width: 50%;
+    text-align: right;
+    font-weight: 600;
+}
+
+.alert.alert-dismissible {
+    position: fixed;
+    z-index: 10000;
+    width: 500px;
+    left: calc(50% - 250px);
+    top: 40px;
+    line-height: 1.7;
+}
+
+@media screen and (max-width: 480px) {
+    .alert.alert-dismissible {
+        left: 2.5%;
+        max-width: 95%;
+    }
+}
+
+.control-label {
+    font-weight: 600;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.btn-spaced {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.title-border {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.35em;
+    margin-bottom: 15px;
+}
+
+h1 .glyphicon,
+h2 .glyphicon,
+h3 .glyphicon,
+h4 .glyphicon {
+    font-size: 0.8em;
+    color: $brand-primary;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.ng-enter {
+    animation: fadeIn 0.2s both ease-in;
+    z-index: 8888;
+}
+
+/* ==========================================================================
+Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
+========================================================================== */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+/* ==========================================================================
+Developement Ribbon
+========================================================================== */
+.development {
+    position: absolute;
+    width: 149px;
+    height: 149px;
+    top: 0;
+    left: 0;
+    border: 0;
+    z-index: 1000;
+    background-image: url("../images/development_ribbon.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.badge-nav {
+    font-size: 10px;
+    padding: 2px 6px;
+    display: initial;
+}
+
+/* ==========================================================================
+Version number in navbar
+========================================================================== */
+.navbar-version {
+    font-size: 10px;
+    color: #ccc
+}
+
+/* ==========================================================================
+Browser Upgrade Prompt
+========================================================================== */
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+#threadDump .popover, #healthCheck .popover {
+    top: inherit;
+    display: block;
+    font-size: 10px;
+    max-width: 1024px;
+}
+
+#healthCheck .popover {
+    margin-left: -50px;
+}
+
+.health-details {
+    min-width: 400px;
+}
+
+/* start Password strength bar style */
+ul#strengthBar {
+    display:inline;
+    list-style:none;
+    margin:0;
+    margin-left:15px;
+    padding:0;
+    vertical-align:2px;
+}
+
+.point:last {
+    margin:0 !important;
+}
+.point {
+    background:#DDD;
+    border-radius:2px;
+    display:inline-block;
+    height:5px;
+    margin-right:1px;
+    width:20px;
+}
+/* end Password strength bar style */
+
+.readonly {
+    background-color: #eee;
+    opacity: 1;
+}
+
+// Overrides de cores de componentes externos:
+#loading-bar .bar {
+    background: $brand-primary;
+}
+
+#loading-bar .peg {
+  -moz-box-shadow: $brand-primary 1px 0 6px 1px;
+  -ms-box-shadow: $brand-primary 1px 0 6px 1px;
+  -webkit-box-shadow: $brand-primary 1px 0 6px 1px;
+  box-shadow: $brand-primary 1px 0 6px 1px;
+}
+
+#loading-bar-spinner .spinner-icon {
+    border-top-color: $brand-primary;
+    border-left-color: $brand-primary;
+}

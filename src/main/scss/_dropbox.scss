@@ -1,0 +1,82 @@
+.dropbox {
+    background: #F8F8F8;
+    border: 2px dashed #DDD;
+    border-radius: 4px;
+    padding: 30px;
+    font-size: 14px;
+    margin: 10px 0;
+    cursor: pointer;
+    color: #888;
+}
+
+.dropbox:hover {
+    border-color: #ccc;
+    color: #444;
+}
+
+.dropbox-active {
+    border-color: blue;
+}
+
+.dropbox p {
+    text-align: center;
+    margin: 0;
+}
+
+.dropbox ul {
+    margin: 0;
+    padding: 20px 0 0 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.dropbox li {
+    background-color: #fff;
+    margin: 5px;
+    padding: 0;
+    flex: 1 1 140px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    text-align: center;
+    padding: 5px;
+    color: #444;
+    box-shadow: 1px 1px 5px -1px #ccc;
+    position: relative;;
+}
+
+.dropbox .file-name {
+    display: block;
+    word-wrap: break-word;
+}
+
+.dropbox .file-size {
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.dropbox .progress {
+    margin: 0;
+    height: 14px;
+}
+
+.dropbox .progress-bar {
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.dropbox .file-icon {
+    position: absolute;
+    right: -2px;
+    top: -5px;
+    font-size: 1.4em;
+}
+
+.dropbox .file-icon.success {
+    color: $brand-success;
+}
+
+.dropbox .file-icon.error {
+    color: $brand-danger;
+}
