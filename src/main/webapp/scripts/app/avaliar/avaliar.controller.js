@@ -18,20 +18,27 @@ angular.module('silq2App')
         };
 
         $scope.submit = function() {
-            if ($scope.files.length <= 0) {
-                Flash.create('warning', 'Selecione ao menos um currículo para avaliar');
-                return;
-            }
+            var hasValidCurriculum = false; // Se ao menos um currículo válido foi enviado
+            var hasUploadingCurriculum = false; // Se existe algum currículo em processo de envio
 
-            var abort = false;
             $scope.files.forEach(function(file) {
                 if (file.status === 'uploading') {
-                    abort = true;
+                    hasUploadingCurriculum = true;
+                    return;
+                }
+
+                if (file.status === 'success') {
+                    hasValidCurriculum = true;
                     return;
                 }
             });
 
-            if (abort) {
+            if (!hasValidCurriculum) {
+                Flash.create('warning', 'Selecione ao menos um currículo válido para avaliar');
+                return;
+            }
+
+            if (hasUploadingCurriculum) {
                 Flash.create('warning', '<strong>Uploads em andamento!</strong> Aguarde o carregamento dos currículos terminar.');
                 return;
             }
