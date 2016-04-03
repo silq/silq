@@ -96,7 +96,8 @@ public class LattesParser {
 		List<String> pesquisadorList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
 		// TODO Currículo sem ID! Desatualizado!
 		pesquisadorResult.setIdCurriculo(Long.parseLong(pesquisadorList.get(2)));
-		pesquisadorResult.setUltimaAtualizacao(SilqDataUtils.formatDates(pesquisadorList.get(0), pesquisadorList.get(1)));
+		pesquisadorResult
+				.setUltimaAtualizacao(SilqDataUtils.formatDates(pesquisadorList.get(0), pesquisadorList.get(1)));
 
 		List<String> nomeList = AttributeGetter.iterateNodes(ParserSets.NOME_SET, nodoRaiz);
 		if (nomeList.size() == 1) {
@@ -130,8 +131,11 @@ public class LattesParser {
 	 * @param form
 	 *            Opções de avaliação.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
+	 * @throws SilqLattesException
+	 *             Caso o documento XML enviado não seja um currículo Lattes
+	 *             válido.
 	 */
-	public ParseResult parseCurriculum(Document document, AvaliarForm form) {
+	public ParseResult parseCurriculum(Document document, AvaliarForm form) throws SilqLattesException {
 		ParseResult parseResult = new ParseResult();
 		parseResult.setAreaAvaliada(form.area);
 
@@ -158,7 +162,8 @@ public class LattesParser {
 			NodeList qualisList = document.getElementsByTagName("CURRICULO-VITAE");
 			raiz = qualisList.item(0);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			throw new SilqLattesException(e);
 		}
 
 		List<String> nomeList = AttributeGetter.iterateNodes(ParserSets.NOME_SET, raiz);

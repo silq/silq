@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
-import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -61,8 +60,8 @@ public class DocumentManager {
 			builder = this.builderFactory.newDocumentBuilder();
 			document = builder.parse(upload.getInputStream());
 		} catch (SAXException | IOException | ParserConfigurationException e) {
-			e.printStackTrace();
-			throw new SilqLattesException();
+			// e.printStackTrace();
+			throw new SilqLattesException(e);
 		}
 
 		document.getDocumentElement().normalize();
@@ -93,7 +92,6 @@ public class DocumentManager {
 	 */
 	public Document extractXmlDocumentFromZipUpload(MultipartFile upload) throws SilqLattesException {
 		ZipInputStream zis;
-		ZipEntry entry;
 		int bufferSize = 1024;
 		byte buffer[] = new byte[bufferSize];
 		ByteArrayOutputStream dest = new ByteArrayOutputStream();
@@ -102,7 +100,7 @@ public class DocumentManager {
 		try {
 			zis = new ZipInputStream(upload.getInputStream());
 
-			while ((entry = zis.getNextEntry()) != null) {
+			while (zis.getNextEntry() != null) {
 				int count;
 				while ((count = zis.read(buffer, 0, bufferSize)) != -1) {
 					dest.write(buffer, 0, count);
@@ -113,8 +111,8 @@ public class DocumentManager {
 			dest.close();
 
 		} catch (IOException e) {
-			e.printStackTrace();
-			throw new SilqLattesException("Arquivo ZIP inválido");
+			// e.printStackTrace();
+			throw new SilqLattesException(e, "Arquivo ZIP inválido");
 		}
 
 		return this.stringToDocument(curriculumStr);
@@ -125,8 +123,9 @@ public class DocumentManager {
 	 *
 	 * @param document
 	 * @return
+	 * @throws SilqLattesException
 	 */
-	public String documentToString(Document document) {
+	public String documentToString(Document document) throws SilqLattesException {
 		DOMSource domSource = new DOMSource(document);
 		StringWriter writer = new StringWriter();
 		StreamResult result = new StreamResult(writer);
@@ -136,7 +135,8 @@ public class DocumentManager {
 			transformer = tf.newTransformer();
 			transformer.transform(domSource, result);
 		} catch (TransformerException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			throw new SilqLattesException(e, "Erro ao converter currículo para String");
 		}
 		return writer.toString();
 	}
@@ -156,8 +156,8 @@ public class DocumentManager {
 			builder = this.builderFactory.newDocumentBuilder();
 			document = builder.parse(new InputSource(new StringReader(curriculo)));
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new SilqLattesException();
+			// e.printStackTrace();
+			throw new SilqLattesException(e);
 		}
 
 		return document;
@@ -179,8 +179,8 @@ public class DocumentManager {
 
 			documentBuilder.parse(new InputSource(new StringReader(writer.toString())));
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new SilqLattesException();
+			// e.printStackTrace();
+			throw new SilqLattesException(e, "XML fora do padrão Lattes");
 		}
 	}
 

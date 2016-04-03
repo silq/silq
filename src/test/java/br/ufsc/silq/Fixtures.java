@@ -47,6 +47,7 @@ public class Fixtures {
 					FileCopyUtils.copyToByteArray(fis));
 			return upload;
 		} catch (IOException e) {
+			System.err.println("Falha ao criar MockMultipartFile de testes: " + filepath);
 			e.printStackTrace();
 			return null;
 		}

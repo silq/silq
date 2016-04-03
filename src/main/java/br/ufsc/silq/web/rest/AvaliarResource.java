@@ -7,8 +7,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +28,7 @@ import br.ufsc.silq.web.cache.AvaliacaoCache;
 import br.ufsc.silq.web.cache.CurriculumCache;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
 import br.ufsc.silq.web.rest.form.AvaliacaoLivreForm;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api")
@@ -50,7 +49,7 @@ public class AvaliarResource {
 
 	/**
 	 * POST /api/avaliar/atual -> Avalia o currículo do usuário atual
-	 * 
+	 *
 	 * @throws SilqLattesException
 	 */
 	@RequestMapping(value = "/avaliar/atual", method = RequestMethod.POST)
@@ -72,7 +71,8 @@ public class AvaliarResource {
 	 *            utilizar os currículos salvos no cache especificado.
 	 */
 	@RequestMapping(value = "/avaliar/upload", method = RequestMethod.POST)
-	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("cacheId") String cacheId) throws IOException, SilqException {
+	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("cacheId") String cacheId)
+			throws IOException, SilqException {
 		log.debug("Received file upload {}", file.getOriginalFilename());
 		this.curriculumCache.insert(cacheId, file);
 		return new ResponseEntity<>(this.curriculumCache.get(cacheId), HttpStatus.OK);
@@ -87,7 +87,8 @@ public class AvaliarResource {
 	 * posteriores.
 	 */
 	@RequestMapping(value = "/avaliar/", method = RequestMethod.POST)
-	public ResponseEntity<List<ParseResult>> avaliar(@Valid @RequestBody AvaliacaoLivreForm avaliacaoForm) {
+	public ResponseEntity<List<ParseResult>> avaliar(@Valid @RequestBody AvaliacaoLivreForm avaliacaoForm)
+			throws SilqLattesException {
 		List<ParseResult> results = new ArrayList<>();
 
 		for (Curriculum curriculum : this.curriculumCache.get(avaliacaoForm.getCacheId())) {
