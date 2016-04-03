@@ -137,7 +137,7 @@ module.exports = function (grunt) {
                         '<%= yeoman.dist %>/scripts/**/*.js',
                         '<%= yeoman.dist %>/assets/styles/**/*.css',
                         '<%= yeoman.dist %>/assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
-                        '<%= yeoman.dist %>/assets/fonts/*'
+                        '<%= yeoman.dist %>/assets/fonts/bootstrap/*'
                     ]
                 }
             }
@@ -230,18 +230,6 @@ module.exports = function (grunt) {
         },
         // Put files not handled in other tasks here
         copy: {
-            fonts: {
-                files: [{
-                    expand: true,
-                    dot: true,
-                    flatten: true,
-                    cwd: 'src/main/webapp',
-                    dest: '<%= yeoman.dist %>/assets/fonts',
-                    src: [
-                      'bower_components/bootstrap/fonts/*.*'
-                    ]
-                }]
-            },
             dist: {
                 files: [{
                     expand: true,
@@ -252,7 +240,7 @@ module.exports = function (grunt) {
                         '*.html',
                         'scripts/**/*.html',
                         'assets/images/**/*.{png,gif,webp,jpg,jpeg,svg}',
-                        'assets/fonts/*'
+                        'assets/fonts/**'
                     ]
                 }, {
                     expand: true,
@@ -351,8 +339,7 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin',
         'concat',
-        'copy:fonts',
-        'copy:dist',
+        'copy',
         'ngAnnotate',
         'cssmin',
         'autoprefixer',
