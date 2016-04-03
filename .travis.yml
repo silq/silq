@@ -1,15 +1,17 @@
-language: node_js
-node_js:
-  - "node"
-sudo: false
-before_install: npm install -g grunt-cli
-install: npm install
+sudo: required
+language: java
+jdk:
+  - oraclejdk8
+services:
+  - docker
 cache:
   directories:
     - node_modules
     - src/main/webapp/bower_components
     - $HOME/.m2
-before_script: grunt build
+before_install:
+  - docker-compose up -d
+  - docker ps -a
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
