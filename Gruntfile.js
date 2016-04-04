@@ -42,6 +42,10 @@ module.exports = function (grunt) {
             dist: 'src/main/webapp/dist'
         },
         watch: {
+            injector: {
+                files: ['src/main/webapp/scripts/**/*.js'],
+                tasks: ['injector']
+            },
             bower: {
                 files: ['bower.json'],
                 tasks: ['wiredep']
@@ -310,12 +314,24 @@ module.exports = function (grunt) {
                     VERSION: parseVersionFromPomXml()
                 }
             }
-        }
+        },
+        injector: {
+            options: {
+                relative: true,
+                addRootSlash: false
+            },
+            scripts: {
+                files: {
+                    'src/main/webapp/index.html': ['src/main/webapp/scripts/**/*.js']
+                }
+            },
+        },
     });
 
     grunt.registerTask('serve', [
         'clean:server',
         'wiredep',
+        'injector',
         'ngconstant:dev',
         'sass:server',
         'browserSync',
@@ -332,6 +348,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'wiredep:app',
+        'injector',
         'ngconstant:prod',
         'useminPrepare',
         'ngtemplates',

@@ -74,104 +74,98 @@
         <!-- endbuild -->
 
     <!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
-    <script src="scripts/app/app.js"></script>
+    <!-- injector:js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/app/account/account.js"></script>
+    <script src="scripts/app/account/activate/activate.controller.js"></script>
+    <script src="scripts/app/account/activate/activate.js"></script>
+    <script src="scripts/app/account/login/login.controller.js"></script>
+    <script src="scripts/app/account/login/login.js"></script>
+    <script src="scripts/app/account/password/password.controller.js"></script>
+    <script src="scripts/app/account/password/password.directive.js"></script>
+    <script src="scripts/app/account/password/password.js"></script>
+    <script src="scripts/app/account/register/register.controller.js"></script>
+    <script src="scripts/app/account/register/register.js"></script>
+    <script src="scripts/app/account/reset/finish/reset.finish.controller.js"></script>
+    <script src="scripts/app/account/reset/finish/reset.finish.js"></script>
+    <script src="scripts/app/account/reset/request/reset.request.controller.js"></script>
+    <script src="scripts/app/account/reset/request/reset.request.js"></script>
+    <script src="scripts/app/account/settings/settings.controller.js"></script>
+    <script src="scripts/app/account/settings/settings.js"></script>
+    <script src="scripts/app/admin/admin.js"></script>
+    <script src="scripts/app/admin/configuration/configuration.controller.js"></script>
+    <script src="scripts/app/admin/configuration/configuration.js"></script>
+    <script src="scripts/app/admin/docs/docs.js"></script>
+    <script src="scripts/app/admin/health/health.controller.js"></script>
+    <script src="scripts/app/admin/health/health.js"></script>
+    <script src="scripts/app/admin/health/health.modal.controller.js"></script>
+    <script src="scripts/app/admin/logs/logs.controller.js"></script>
+    <script src="scripts/app/admin/logs/logs.js"></script>
+    <script src="scripts/app/admin/metrics/metrics.controller.js"></script>
+    <script src="scripts/app/admin/metrics/metrics.js"></script>
+    <script src="scripts/app/admin/metrics/metrics.modal.controller.js"></script>
+    <script src="scripts/app/admin/user-management/user-management-delete-dialog.controller.js"></script>
+    <script src="scripts/app/admin/user-management/user-management-detail.controller.js"></script>
+    <script src="scripts/app/admin/user-management/user-management-dialog.controller.js"></script>
+    <script src="scripts/app/admin/user-management/user-management.controller.js"></script>
+    <script src="scripts/app/admin/user-management/user-management.js"></script>
     <script src="scripts/app/app.constants.js"></script>
+    <script src="scripts/app/avaliar/avaliar.controller.js"></script>
+    <script src="scripts/app/avaliar/avaliar.js"></script>
+    <script src="scripts/app/avaliar/result/result.controller.js"></script>
+    <script src="scripts/app/avaliar/result/result.js"></script>
     <script src="scripts/app/error/error.js"></script>
-    <script src="scripts/app/main/main.js"></script>
+    <script src="scripts/app/grupo/grupo-delete-dialog.controller.js"></script>
+    <script src="scripts/app/grupo/grupo-detail.controller.js"></script>
+    <script src="scripts/app/grupo/grupo-dialog.controller.js"></script>
+    <script src="scripts/app/grupo/grupo.controller.js"></script>
+    <script src="scripts/app/grupo/grupo.js"></script>
     <script src="scripts/app/main/main.controller.js"></script>
-
+    <script src="scripts/app/main/main.js"></script>
+    <script src="scripts/app/principal/minha-avaliacao/minha-avaliacao.controller.js"></script>
+    <script src="scripts/app/principal/minha-avaliacao/minha-avaliacao.js"></script>
+    <script src="scripts/app/principal/principal.controller.js"></script>
+    <script src="scripts/app/principal/principal.js"></script>
+    <script src="scripts/app/principal/remover-curriculum/remover-curriculum.controller.js"></script>
+    <script src="scripts/app/principal/remover-curriculum/remover-curriculum.js"></script>
+    <script src="scripts/components/admin/configuration.service.js"></script>
+    <script src="scripts/components/admin/logs.service.js"></script>
+    <script src="scripts/components/admin/monitoring.service.js"></script>
     <script src="scripts/components/auth/auth.service.js"></script>
-    <script src="scripts/components/auth/principal.service.js"></script>
     <script src="scripts/components/auth/authority.directive.js"></script>
+    <script src="scripts/components/auth/principal.service.js"></script>
+    <script src="scripts/components/auth/provider/auth.xauth.service.js"></script>
     <script src="scripts/components/auth/services/account.service.js"></script>
     <script src="scripts/components/auth/services/activate.service.js"></script>
     <script src="scripts/components/auth/services/password.service.js"></script>
     <script src="scripts/components/auth/services/register.service.js"></script>
-
-    <script src="scripts/components/interceptor/auth.interceptor.js"></script>
-    <script src="scripts/components/interceptor/errorhandler.interceptor.js"></script>
-
+    <script src="scripts/components/avaliar/avaliar-form.directive.js"></script>
+    <script src="scripts/components/avaliar/avaliar-result.directive.js"></script>
+    <script src="scripts/components/confirm/confirm.directive.js"></script>
+    <script src="scripts/components/content-header/content-header.controller.js"></script>
+    <script src="scripts/components/dado-geral/dado-geral.service.js"></script>
+    <script src="scripts/components/dropbox/dropbox.directive.js"></script>
     <script src="scripts/components/form/form.directive.js"></script>
     <script src="scripts/components/form/maxbytes.directive.js"></script>
     <script src="scripts/components/form/minbytes.directive.js"></script>
     <script src="scripts/components/form/uib-pager.config.js"></script>
     <script src="scripts/components/form/uib-pagination.config.js"></script>
-
-    <script src="scripts/components/confirm/confirm.directive.js"></script>
-    <script src="scripts/components/navbar/navbar.directive.js"></script>
+    <script src="scripts/components/grupo/grupo.service.js"></script>
+    <script src="scripts/components/interceptor/auth.interceptor.js"></script>
+    <script src="scripts/components/interceptor/errorhandler.interceptor.js"></script>
     <script src="scripts/components/navbar/navbar.controller.js"></script>
+    <script src="scripts/components/navbar/navbar.directive.js"></script>
+    <script src="scripts/components/similarity/similarity.service.js"></script>
     <script src="scripts/components/user/user.service.js"></script>
-    <script src="scripts/components/util/truncate.filter.js"></script>
     <script src="scripts/components/util/base64.service.js"></script>
     <script src="scripts/components/util/bytes.filter.js"></script>
     <script src="scripts/components/util/capitalize.filter.js"></script>
-    <script src="scripts/components/util/parse-links.service.js"></script>
-    <script src="scripts/components/util/date-util.service.js"></script>
     <script src="scripts/components/util/data-util.service.js"></script>
+    <script src="scripts/components/util/date-util.service.js"></script>
+    <script src="scripts/components/util/parse-links.service.js"></script>
     <script src="scripts/components/util/sort.directive.js"></script>
-    <script src="scripts/components/avaliar/avaliar-form.directive.js"></script>
-    <script src="scripts/components/avaliar/avaliar-result.directive.js"></script>
-    <script src="scripts/components/dropbox/dropbox.directive.js"></script>
-
-    <script src="scripts/app/avaliar/avaliar.controller.js"></script>
-    <script src="scripts/app/avaliar/avaliar.js"></script>
-    <script src="scripts/app/avaliar/result/result.controller.js"></script>
-    <script src="scripts/app/avaliar/result/result.js"></script>
-    <script src="scripts/app/account/account.js"></script>
-    <script src="scripts/app/account/activate/activate.js"></script>
-    <script src="scripts/app/account/activate/activate.controller.js"></script>
-    <script src="scripts/app/account/login/login.js"></script>
-    <script src="scripts/app/account/login/login.controller.js"></script>
-    <script src="scripts/app/account/password/password.js"></script>
-    <script src="scripts/app/account/password/password.controller.js"></script>
-    <script src="scripts/app/account/password/password.directive.js"></script>
-    <script src="scripts/app/account/register/register.js"></script>
-    <script src="scripts/app/account/register/register.controller.js"></script>
-    <script src="scripts/app/account/settings/settings.js"></script>
-    <script src="scripts/app/account/settings/settings.controller.js"></script>
-    <script src="scripts/app/account/reset/finish/reset.finish.controller.js"></script>
-    <script src="scripts/app/account/reset/finish/reset.finish.js"></script>
-    <script src="scripts/app/account/reset/request/reset.request.controller.js"></script>
-    <script src="scripts/app/account/reset/request/reset.request.js"></script>
-    <script src="scripts/components/auth/provider/auth.xauth.service.js"></script>
-
-    <script src="scripts/components/dado-geral/dado-geral.service.js"></script>
-    <script src="scripts/components/similarity/similarity.service.js"></script>
-    <script src="scripts/app/principal/principal.controller.js"></script>
-    <script src="scripts/app/principal/principal.js"></script>
-    <script src="scripts/app/principal/minha-avaliacao/minha-avaliacao.controller.js"></script>
-    <script src="scripts/app/principal/minha-avaliacao/minha-avaliacao.js"></script>
-    <script src="scripts/app/principal/remover-curriculum/remover-curriculum.controller.js"></script>
-    <script src="scripts/app/principal/remover-curriculum/remover-curriculum.js"></script>
-    <script src="scripts/components/content-header/content-header.controller.js"></script>
-
-    <script src="scripts/components/grupo/grupo.service.js"></script>
-    <script src="scripts/app/grupo/grupo.js"></script>
-    <script src="scripts/app/grupo/grupo.controller.js"></script>
-    <script src="scripts/app/grupo/grupo-dialog.controller.js"></script>
-    <script src="scripts/app/grupo/grupo-delete-dialog.controller.js"></script>
-    <script src="scripts/app/grupo/grupo-detail.controller.js"></script>
-
-    <script src="scripts/components/admin/logs.service.js"></script>
-    <script src="scripts/components/admin/configuration.service.js"></script>
-    <script src="scripts/components/admin/monitoring.service.js"></script>
-    <script src="scripts/app/admin/admin.js"></script>
-    <script src="scripts/app/admin/configuration/configuration.js"></script>
-    <script src="scripts/app/admin/configuration/configuration.controller.js"></script>
-    <script src="scripts/app/admin/docs/docs.js"></script>
-    <script src="scripts/app/admin/health/health.js"></script>
-    <script src="scripts/app/admin/health/health.controller.js"></script>
-    <script src="scripts/app/admin/health/health.modal.controller.js"></script>
-    <script src="scripts/app/admin/logs/logs.js"></script>
-    <script src="scripts/app/admin/logs/logs.controller.js"></script>
-    <script src="scripts/app/admin/metrics/metrics.js"></script>
-    <script src="scripts/app/admin/metrics/metrics.controller.js"></script>
-    <script src="scripts/app/admin/metrics/metrics.modal.controller.js"></script>
-    <script src="scripts/app/admin/user-management/user-management-detail.controller.js"></script>
-    <script src="scripts/app/admin/user-management/user-management-dialog.controller.js"></script>
-    <script src="scripts/app/admin/user-management/user-management-delete-dialog.controller.js"></script>
-    <script src="scripts/app/admin/user-management/user-management.controller.js"></script>
-    <script src="scripts/app/admin/user-management/user-management.js"></script>
+    <script src="scripts/components/util/truncate.filter.js"></script>
+    <!-- endinjector -->
     <!-- endbuild -->
 </body>
 </html>
