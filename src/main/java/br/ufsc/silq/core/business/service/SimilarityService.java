@@ -8,15 +8,13 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 import org.springframework.stereotype.Service;
 
 import br.ufsc.silq.core.SilqConfig;
-import br.ufsc.silq.core.business.entities.QualisGeral;
-import br.ufsc.silq.core.business.repository.QualisGeralRepository;
+import br.ufsc.silq.core.business.entities.QualisPeriodico;
+import br.ufsc.silq.core.business.repository.QualisPeriodicoRepository;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.dto.Artigo;
@@ -31,14 +29,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class SimilarityService {
 
-	@PersistenceContext
-	private EntityManager em;
-
 	@Inject
 	private DataSource dataSource;
 
 	@Inject
-	private QualisGeralRepository qualisGeralRepository;
+	private QualisPeriodicoRepository qualisPeriodicoRepository;
 
 	public void compare(ParseResult parseResult, AvaliarForm form) {
 		List<Artigo> artigos = parseResult.getArtigos();
@@ -47,21 +42,13 @@ public class SimilarityService {
 		String similarity = form.getNivelSimilaridade();
 		parseResult.setNivelSimilaridade(ComboValueHelper.getNivelSimilaridadeTexto(form.getNivelSimilaridade()));
 
-		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
-			if (conhecimento.equalsIgnoreCase("Ciência da Computação")) {
-				// TODO (bonetti): somente avaliações de trabalhos de CCO são
-				// pesquisados atualmente... Permitir outras áreas!
-				this.compareTrabalhos(similarity, trabalhos);
-			} else {
-				parseResult.setHasConceitosTrabalhos(false);
-			}
-		}
-
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
 			this.compareArtigos(similarity, artigos, conhecimento);
 		}
 
-		this.em.close();
+		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
+			this.compareTrabalhos(similarity, trabalhos, conhecimento);
+		}
 	}
 
 	private void compareArtigos(String similarity, List<Artigo> artigos, String conhecimento) {
@@ -70,7 +57,7 @@ public class SimilarityService {
 			List<Conceito> conceitos = new ArrayList<>();
 			Conceito conceito;
 
-			Optional<QualisGeral> singleResult = this.qualisGeralRepository.findOneByIssnAndAreaAvaliacao(issn,
+			Optional<QualisPeriodico> singleResult = this.qualisPeriodicoRepository.findOneByIssnAndAreaAvaliacao(issn,
 					conhecimento.toUpperCase());
 
 			if (singleResult.isPresent()) {
@@ -90,7 +77,7 @@ public class SimilarityService {
 					Statement st = connection.createStatement();
 					st.executeQuery("SELECT set_limit(" + similarity + "::real)");
 					ResultSet rsSimilarity = st.executeQuery("SELECT NO_ESTRATO, NO_TITULO, SIMILARITY(NO_TITULO, \'"
-							+ titulo + "\') AS SML FROM TB_QUALIS_GERAL WHERE NO_TITULO % \'" + titulo
+							+ titulo + "\') AS SML FROM TB_QUALIS_PERIODICO WHERE NO_TITULO % \'" + titulo
 							+ "\' AND NO_AREA_AVALIACAO LIKE \'%" + conhecimento.toUpperCase()
 							+ "%\' ORDER BY SML DESC LIMIT " + SilqConfig.MAX_PARSE_RESULTS);
 
@@ -114,7 +101,7 @@ public class SimilarityService {
 		}
 	}
 
-	private void compareTrabalhos(String similarity, List<Trabalho> trabalhos) {
+	private void compareTrabalhos(String similarity, List<Trabalho> trabalhos, String conhecimento) {
 		for (Trabalho trabalho : trabalhos) {
 			String titulo = trabalho.getNomeEvento();
 			titulo = SilqStringUtils.normalizeString(titulo);
@@ -127,8 +114,9 @@ public class SimilarityService {
 				Statement st = connection.createStatement();
 				st.executeQuery("SELECT set_limit(" + similarity + "::real)");
 				ResultSet rs = st.executeQuery("SELECT NO_ESTRATO, NO_TITULO, SIMILARITY(NO_TITULO, \'" + titulo
-						+ "\') AS SML FROM TB_QUALIS_CCO WHERE NO_TITULO % \'" + titulo + "\' ORDER BY SML DESC LIMIT "
-						+ SilqConfig.MAX_PARSE_RESULTS);
+						+ "\') AS SML FROM TB_QUALIS_EVENTO WHERE NO_TITULO % \'" + titulo
+						+ "\' AND NO_AREA_AVALIACAO LIKE \'%" + conhecimento.toUpperCase()
+						+ "\' ORDER BY SML DESC LIMIT " + SilqConfig.MAX_PARSE_RESULTS);
 
 				while (rs.next()) {
 					conceito = new Conceito();

@@ -31,7 +31,6 @@ public class ParseResult implements Serializable {
 	private String nivelSimilaridade;
 	private String anoPublicacaoDe;
 	private String anoPublicacaoAte;
-	private Boolean hasConceitosTrabalhos = true;
 
 	public ParseResult() {
 		this.nome = "";
