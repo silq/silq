@@ -23,7 +23,7 @@ public class DocumentManagerTest extends WebContextTest {
 
 	@Test
 	public void testIsZipUpload() throws SilqLattesException {
-		Assertions.assertThat(this.documentManager.isZipUpload(Fixtures.CHRISTIANE_XML_UPLOAD)).isFalse();
+		Assertions.assertThat(this.documentManager.isZipUpload(Fixtures.RAUL_XML_UPLOAD)).isFalse();
 		Assertions.assertThat(this.documentManager.isZipUpload(Fixtures.EMPTY_XML_UPLOAD)).isFalse();
 		Assertions.assertThat(this.documentManager.isZipUpload(Fixtures.ERROR_XML_UPLOAD)).isFalse();
 
@@ -34,7 +34,7 @@ public class DocumentManagerTest extends WebContextTest {
 
 	@Test
 	public void testUploadCurriculumZip() throws SilqLattesException {
-		Document document = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RAUL_ZIP_UPLOAD);
+		Document document = this.documentManager.extractXmlDocumentFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
 		Assertions.assertThat(document).isNotNull();
 	}
 

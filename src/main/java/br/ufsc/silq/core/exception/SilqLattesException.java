@@ -9,15 +9,21 @@ public class SilqLattesException extends SilqException {
 	 * Exception que originou esta
 	 */
 	@Getter
-	private Exception originalException;
+	private Exception rootException;
 
-	public SilqLattesException(Exception originalException, String msg) {
+	public SilqLattesException(Exception rootException, String msg) {
 		super(msg);
-		this.originalException = originalException;
+		this.rootException = rootException;
 	}
 
 	public SilqLattesException(Exception originalException) {
 		this(originalException, "Currículo Lattes inválido");
+	}
+
+	@Override
+	public void printStackTrace() {
+		super.printStackTrace();
+		this.rootException.printStackTrace();
 	}
 
 }
