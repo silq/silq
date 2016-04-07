@@ -1,74 +1,78 @@
-<h2 class="text-center">Meus grupos</h2>
+<loader ng-show="status === 'loading'"></loader>
 
-<div ng-hide="hasCurriculum" class="text-center alert alert-danger">
-    Você precisa ter um currículo cadastrado para criar grupos...
-</div>
+<div ng-show="status === 'success'">
+    <h2 class="text-center">Meus grupos</h2>
 
-<div ng-show="hasCurriculum">
-    <p class="help-block text-center" ng-show="!grupos.length">
-        <br />
-        Nenhum grupo cadastrado ainda... Cadastre seu primeiro grupo no botão abaixo!
+    <div ng-hide="hasCurriculum" class="text-center alert alert-danger">
+        Você precisa ter um currículo cadastrado para criar grupos...
+    </div>
 
-        <br /><br />
-        <button class="btn btn-spaced center-block btn-primary" ui-sref="grupo.new">
-            <span class="glyphicon glyphicon-plus-sign"></span>
-            Criar grupo
-        </button>
-    </p>
+    <div ng-show="hasCurriculum">
+        <p class="help-block text-center" ng-show="!grupos.length">
+            <br />
+            Nenhum grupo cadastrado ainda... Cadastre seu primeiro grupo no botão abaixo!
 
-    <div class="flex justify-center" ng-show="grupos.length">
-        <div class="flex-grow" style="max-width: 500px">
-            <div class="input-group">
-                <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
-                <input ng-model="filter" type="search" class="form-control input-sm" placeholder="Filtrar grupos..." />
-            </div>
-        </div>
-        <div>
-            <button class="btn btn-sm btn-primary" ui-sref="grupo.new">
+            <br /><br />
+            <button class="btn btn-spaced center-block btn-primary" ui-sref="grupo.new">
                 <span class="glyphicon glyphicon-plus-sign"></span>
                 Criar grupo
             </button>
+        </p>
+
+        <div class="flex justify-center" ng-show="grupos.length">
+            <div class="flex-grow" style="max-width: 500px">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                    <input ng-model="filter" type="search" class="form-control input-sm" placeholder="Filtrar grupos..." />
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-primary" ui-sref="grupo.new">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    Criar grupo
+                </button>
+            </div>
         </div>
-    </div>
 
-    <br />
+        <br />
 
-    <div class="table-responsive" ng-show="grupos.length">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Instituição</th>
-                    <th>Área</th>
-                    <th>Participantes</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="grupo in grupos | filter: filter track by grupo.id">
-                    <td>{{grupo.nomeGrupo}}</td>
-                    <td>{{grupo.nomeInstituicao}}</td>
-                    <td>{{grupo.nomeArea}}</td>
-                    <td>{{grupo.pesquisadores.length}}</td>
-                    <td class="text-right">
-                        <button type="submit"
-                                ui-sref="grupo.detail({id:grupo.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Ver</span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="grupo.edit({id:grupo.id})"
-                                class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Editar</span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="grupo.delete({id:grupo.id})"
-                                class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Excluir</span>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive" ng-show="grupos.length">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Instituição</th>
+                        <th>Área</th>
+                        <th>Participantes</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="grupo in grupos | filter: filter track by grupo.id">
+                        <td>{{grupo.nomeGrupo}}</td>
+                        <td>{{grupo.nomeInstituicao}}</td>
+                        <td>{{grupo.nomeArea}}</td>
+                        <td>{{grupo.pesquisadores.length}}</td>
+                        <td class="text-right">
+                            <button type="submit"
+                                    ui-sref="grupo.detail({id:grupo.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> Ver</span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="grupo.edit({id:grupo.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Editar</span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="grupo.delete({id:grupo.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Excluir</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

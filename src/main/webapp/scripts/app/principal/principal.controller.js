@@ -2,6 +2,8 @@
 
 angular.module('silq2App')
     .controller('PrincipalController', function ($scope, $state, Principal, Upload, DadoGeral, Flash) {
+        $scope.status = 'loading';
+        
         Principal.identity().then(function(account) {
             $scope.account = account;
         });
@@ -12,6 +14,8 @@ angular.module('silq2App')
             } else {
                 $scope.dados = null;
             }
+
+            $scope.status = 'success';
         });
 
         $scope.atualizar = function() {

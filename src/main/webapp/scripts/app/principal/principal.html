@@ -1,73 +1,77 @@
-<div class="text-center" ng-show="!dados">
-    <br /><br />
+<loader ng-show="status === 'loading'"></loader>
 
-    <p>Seja bem-vindo(a), {{ account.nome }}! Personalize sua tela de usuário adicionando seu currículo:</p>
+<div ng-show="status === 'success'">
+    <div class="text-center" ng-show="!dados">
+        <br /><br />
 
-    <br />
+        <p>Seja bem-vindo(a), {{ account.nome }}! Personalize sua tela de usuário adicionando seu currículo:</p>
 
-    <dropbox multiple="false" config="uploadConfig" success="uploaded" files="files">
-        Arraste para cá seu currículo Lattes em ZIP ou XML ou clique para adicioná-lo.
-    </dropbox>
+        <br />
 
-    <div class="text-center" ng-show="file.progress">
-        {{ file.status }}
-        <div class="progress">
-            <div class="progress-bar" style="width: {{file.progress}}%">
-                {{file.progress}}%
+        <dropbox multiple="false" config="uploadConfig" success="uploaded" files="files">
+            Arraste para cá seu currículo Lattes em ZIP ou XML ou clique para adicioná-lo.
+        </dropbox>
+
+        <div class="text-center" ng-show="file.progress">
+            {{ file.status }}
+            <div class="progress">
+                <div class="progress-bar" style="width: {{file.progress}}%">
+                    {{file.progress}}%
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div ng-show="dados">
-    <h3 class="text-center">Meu currículo</h3>
-    <br />
+    <div ng-show="dados">
+        <h3 class="text-center">Meu currículo</h3>
+        <br />
 
-    <p class="text-center">
+        <p class="text-center">
 
-    </p>
+        </p>
 
-    <table class="table table-striped table-hover table-resumo">
-        <tbody>
-            <tr>
-                <td>Nome</td>
-                <td>{{ dados.nome }}</td>
-            </tr>
-            <tr>
-                <td>Especialidade</td>
-                <td>{{ dados.especialidade }}</td>
-            </tr>
-            <tr>
-                <td>Área do conhecimento</td>
-                <td>{{ dados.areaConhecimento }}</td>
-            </tr>
-            <tr>
-                <td>Sub área do conhecimento</td>
-                <td>{{ dados.subAreaConhecimento }}</td>
-            </tr>
-            <tr>
-                <td>Grande área do conhecimento</td>
-                <td>{{ dados.grandeAreaConhecimento }}</td>
-            </tr>
-            <tr>
-                <td>ID do currículo</td>
-                <td>{{ dados.idCurriculo }}</td>
-            </tr>
-            <tr>
-                <td>Data da versão atual do currículo</td>
-                <td>{{ dados.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy, hh:mm' }}</td>
-            </tr>
-            <tr>
-                <td>Data da última atualização</td>
-                <td>{{ dados.dataAtualizacaoUsuario | date: 'dd/MM/yyyy, hh:mm' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table table-striped table-hover table-resumo">
+            <tbody>
+                <tr>
+                    <td>Nome</td>
+                    <td>{{ dados.nome }}</td>
+                </tr>
+                <tr>
+                    <td>Especialidade</td>
+                    <td>{{ dados.especialidade }}</td>
+                </tr>
+                <tr>
+                    <td>Área do conhecimento</td>
+                    <td>{{ dados.areaConhecimento }}</td>
+                </tr>
+                <tr>
+                    <td>Sub área do conhecimento</td>
+                    <td>{{ dados.subAreaConhecimento }}</td>
+                </tr>
+                <tr>
+                    <td>Grande área do conhecimento</td>
+                    <td>{{ dados.grandeAreaConhecimento }}</td>
+                </tr>
+                <tr>
+                    <td>ID do currículo</td>
+                    <td>{{ dados.idCurriculo }}</td>
+                </tr>
+                <tr>
+                    <td>Data da versão atual do currículo</td>
+                    <td>{{ dados.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy, hh:mm' }}</td>
+                </tr>
+                <tr>
+                    <td>Data da última atualização</td>
+                    <td>{{ dados.dataAtualizacaoUsuario | date: 'dd/MM/yyyy, hh:mm' }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <div class="text-center">
-        <button ui-sref="minha-avaliacao" class="btn btn-primary btn-spaced"><i class="glyphicon glyphicon-check"></i> Avaliar meu currículo</button>
-        <hr />
-        <button class="btn btn-warning" ng-click="atualizar()"><i class="glyphicon glyphicon-refresh"></i> Atualizar meu currículo</button>
-        <button class="btn btn-danger" ui-sref="remover-curriculum"><i class="glyphicon glyphicon-trash"></i> Remover meu currículo</button>
+        <div class="text-center">
+            <button ui-sref="minha-avaliacao" class="btn btn-primary btn-spaced"><i class="glyphicon glyphicon-check"></i> Avaliar meu currículo</button>
+            <hr />
+            <button class="btn btn-warning" ng-click="atualizar()"><i class="glyphicon glyphicon-refresh"></i> Atualizar meu currículo</button>
+            <button class="btn btn-danger" ui-sref="remover-curriculum"><i class="glyphicon glyphicon-trash"></i> Remover meu currículo</button>
+        </div>
     </div>
 </div>

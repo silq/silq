@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('GrupoDetailController', function ($scope, $stateParams, entity, Grupo, Upload, Flash) {
-        $scope.grupo = entity;
-        $scope.load = function (id) {
-            Grupo.get({id: id}, function(result) {
-                $scope.grupo = result;
-            });
-        };
+    .controller('GrupoDetailController', function ($scope, $state, $stateParams, Grupo, Flash) {
+        $scope.status = 'loading';
+        Grupo.get({id: $stateParams.id}, function(result) {
+            $scope.grupo = result;
+            $scope.status = 'success';
+        });
 
         $scope.files = [];
         $scope.uploadConfig = {
@@ -20,7 +19,10 @@ angular.module('silq2App')
         };
 
         $scope.avaliarPesquisador = function(pesquisador) {
-            Flash.create('warning', 'Em desenvolvimento...');
+            $state.go('pesquisador-result', {
+                grupoId: $stateParams.id,
+                pesquisadorId: pesquisador.id
+            });
         };
 
         $scope.removePesquisador = function(pesquisador) {

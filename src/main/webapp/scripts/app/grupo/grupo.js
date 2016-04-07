@@ -39,11 +39,6 @@ angular.module('silq2App')
                         templateUrl: 'scripts/components/content-header/content-header.html',
                         controller: 'ContentHeaderController'
                     }
-                },
-                resolve: {
-                    entity: ['$stateParams', 'Grupo', function($stateParams, Grupo) {
-                        return Grupo.get({id : $stateParams.id});
-                    }]
                 }
             })
             .state('grupo.new', {

@@ -6,8 +6,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +30,7 @@ import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.web.rest.exception.HttpBadRequest;
 import br.ufsc.silq.web.rest.exception.HttpNotFound;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api")
@@ -130,7 +129,8 @@ public class GrupoResource {
 	 * @throws IllegalStateException
 	 */
 	@RequestMapping(value = "/grupos/{id}/addPesquisador", method = RequestMethod.POST)
-	public ResponseEntity<Pesquisador> addPesquisador(@PathVariable Long id, @RequestParam("file") MultipartFile upload) throws IllegalStateException, SilqException, IOException {
+	public ResponseEntity<Pesquisador> addPesquisador(@PathVariable Long id, @RequestParam("file") MultipartFile upload)
+			throws IllegalStateException, SilqException, IOException {
 		log.debug("REST request to add Pesquisador to Grupo : {}, {}", id, upload);
 
 		Grupo grupo = this.findGrupoBydIdWithPermissionOr404(id);
@@ -156,20 +156,26 @@ public class GrupoResource {
 	}
 
 	/**
-	 * POST /grupos/{grupoId}/avaliar/{pesquisadorId} -> Avalia o currículo de
-	 * um {@link Pesquisador} de um grupo.
-	 * 
+	 * GET /grupos/{grupoId}/avaliar/{pesquisadorId} -> Avalia o currículo de um
+	 * {@link Pesquisador} de um grupo.
+	 *
 	 * @throws SilqLattesException
 	 */
-	@RequestMapping(value = "/grupos/{grupoId}/avaliar/{pesquisadorId}", method = RequestMethod.POST)
-	public ResponseEntity<?> avaliarPesquisador(@PathVariable Long grupoId, @PathVariable Long pesquisadorId, @Valid @RequestBody AvaliarForm avaliarForm)
+	@RequestMapping(value = "/grupos/{grupoId}/avaliar/{pesquisadorId}", method = RequestMethod.GET)
+	public ResponseEntity<?> avaliarPesquisador(@PathVariable Long grupoId, @PathVariable Long pesquisadorId)
 			throws SilqLattesException {
 		log.debug("Avaliar Pesquisador: {}, {}", grupoId, pesquisadorId);
 
 		// Vê se o grupo existe e se o usuário atual tem permissão sobre ele:
-		this.findGrupoBydIdWithPermissionOr404(grupoId);
+		Grupo grupo = this.findGrupoBydIdWithPermissionOr404(grupoId);
 
-		Pesquisador pesquisador = this.pesquisadorService.findOneById(pesquisadorId).orElseThrow(() -> new HttpNotFound("Pesquisador não encontrado"));
+		// TODO (bonetti) passar do cliente!
+		AvaliarForm avaliarForm = new AvaliarForm();
+		avaliarForm.setNivelSimilaridade("0.4");
+		avaliarForm.setArea(grupo.getNomeArea());
+
+		Pesquisador pesquisador = this.pesquisadorService.findOneById(pesquisadorId)
+				.orElseThrow(() -> new HttpNotFound("Pesquisador não encontrado"));
 
 		ParseResult result = this.lattesParser.parseCurriculum(pesquisador.getCurriculoXml(), avaliarForm);
 

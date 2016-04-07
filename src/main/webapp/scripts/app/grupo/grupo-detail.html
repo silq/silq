@@ -1,4 +1,6 @@
-<div>
+<loader ng-show="status === 'loading'"></loader>
+
+<div ng-show="status === 'success'">
     <h2 class="text-center">Grupo <small>{{grupo.nomeGrupo}}</small></h2>
 
     <div class="row">
