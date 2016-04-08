@@ -6,7 +6,7 @@ angular.module('silq2App')
                 'query': {method: 'GET', isArray: true},
                 'get': {
                     method: 'GET',
-                    cache: true,
+                    // cache: true, // TODO habilitar cache
                     transformResponse: function (data) {
                         data = angular.fromJson(data);
                         return data;
@@ -14,6 +14,6 @@ angular.module('silq2App')
                 },
                 'save': { method:'POST' },
                 'update': { method:'PUT' },
-                'delete':{ method:'DELETE'}
+                'delete': { method:'DELETE'}
             });
         });
