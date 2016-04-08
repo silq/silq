@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App', ['LocalStorageModule',
-    'ngAnimate', 'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster',
+    'ngAnimate', 'ngResource', 'ngCookies', 'ngAria',
     'ngFileUpload', 'flash', 'ngMessages',
     // jhipster-needle-angularjs-add-module JHipster will add new module
     'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar',
@@ -49,10 +49,7 @@ angular.module('silq2App', ['LocalStorageModule',
             }
         };
     })
-    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,  httpRequestInterceptorCacheBusterProvider) {
-        //Cache everything except rest api requests
-        httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
-
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/');
         $stateProvider.state('site', {
             'abstract': true,

@@ -14,12 +14,15 @@ angular.module('silq2App')
             'update': { method:'PUT' }
         });
 
+
         Grupo.removePesquisador = function(grupoId, pesquisadorId) {
             return $http.delete('api/grupos/' + grupoId + '/removePesquisador/' + pesquisadorId);
         };
 
         Grupo.avaliarPesquisador = function(grupoId, pesquisadorId) {
-            return $http.get('api/grupos/'+grupoId+'/avaliar/' + pesquisadorId);
+            return $http.get('api/grupos/'+grupoId+'/avaliar/' + pesquisadorId, {
+                cache: true
+            });
         };
 
         return Grupo;

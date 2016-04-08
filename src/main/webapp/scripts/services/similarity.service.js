@@ -4,7 +4,9 @@ angular.module('silq2App')
     .factory('Similarity', function ($resource, $http) {
         return {
             avaliarAtual: function(avaliarForm) {
-                return $http.post('api/avaliar/atual/', avaliarForm);
+                return $http.post('api/avaliar/atual/', avaliarForm, {
+                    cache: true
+                });
             },
             avaliar: function(avaliacaoLivreForm, cacheId) {
                 return $http.post('api/avaliar/', avaliacaoLivreForm);
