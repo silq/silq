@@ -48,7 +48,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="grupo in grupos | filter: filter track by grupo.id">
+                    <tr ng-repeat="grupo in grupos | orderBy: 'nomeGrupo' | filter: filter track by grupo.id">
                         <td>{{grupo.nomeGrupo}}</td>
                         <td>{{grupo.nomeInstituicao}}</td>
                         <td>{{grupo.nomeArea}}</td>

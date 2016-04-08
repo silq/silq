@@ -14,6 +14,16 @@ angular.module('silq2App')
             'update': { method:'PUT' }
         });
 
+        /**
+         * Invalida o cache de grupos.
+         * Necessário ao alterar um grupo ou pesquisador para atulizar o cache.
+         */
+        Grupo.cacheInvalidate = function(grupo) {
+            $http.defaults.cache.remove('api/grupos');
+            if (grupo) {
+                $http.defaults.cache.remove('api/grupos/' + grupo.id);
+            }
+        };
 
         Grupo.removePesquisador = function(grupoId, pesquisadorId) {
             return $http.delete('api/grupos/' + grupoId + '/removePesquisador/' + pesquisadorId);

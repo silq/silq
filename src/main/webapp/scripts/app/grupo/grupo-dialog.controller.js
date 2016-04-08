@@ -10,7 +10,7 @@ angular.module('silq2App').controller('GrupoDialogController', function($scope, 
         };
 
         var onSaveSuccess = function(result) {
-            $scope.$emit('silq2App:grupoUpdate', result);
+            Grupo.cacheInvalidate(result);
             $uibModalInstance.close(result);
             $scope.isSaving = false;
             Flash.create('success', '<strong>Sucesso!</strong> Grupo "<i>' + result.nomeGrupo + '"</i> foi salvo');

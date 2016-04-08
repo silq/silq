@@ -1,11 +1,9 @@
 'use strict';
 
 angular.module('silq2App', ['LocalStorageModule',
-    'ngAnimate', 'ngResource', 'ngCookies', 'ngAria',
-    'ngFileUpload', 'flash', 'ngMessages',
-    // jhipster-needle-angularjs-add-module JHipster will add new module
-    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar',
-    'angular-cache'])
+    'ngAnimate', 'ngResource', 'ngCookies', 'ngAria', 'ngFileUpload', 'flash',
+    'ngMessages', 'ui.bootstrap', 'ui.router',  'infinite-scroll',
+    'angular-loading-bar', 'angular-cache'])
 
     .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, ENV, VERSION) {
 
@@ -22,7 +20,7 @@ angular.module('silq2App', ['LocalStorageModule',
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
-            var titleKey = 'SILQ - Sistema de Integração Lattes-Qualis';
+            var titleKey = 'SILQ – Sistema de Integração Lattes-Qualis';
 
             // Remember previous state unless we've been redirected to login or we've just
             // reset the state memory after logout. If we're redirected to login, our
@@ -35,7 +33,7 @@ angular.module('silq2App', ['LocalStorageModule',
 
             // Set the page title key to the one configured in state or use default one
             if (toState.data.pageTitle) {
-                titleKey = toState.data.pageTitle;
+                titleKey = toState.data.pageTitle + ' – SILQ';
             }
             $window.document.title = titleKey;
         });

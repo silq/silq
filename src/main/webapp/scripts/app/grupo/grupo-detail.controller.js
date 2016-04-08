@@ -15,6 +15,7 @@ angular.module('silq2App')
 
         $scope.uploaded = function(resp) {
             $scope.grupo.pesquisadores.push(resp.data);
+            Grupo.cacheInvalidate($scope.grupo);
             Flash.create('success', '<strong>Sucesso!</strong> Pesquisador(es) adicionado(s)');
         };
 
@@ -29,6 +30,7 @@ angular.module('silq2App')
             Grupo.removePesquisador($stateParams.id, pesquisador.id).then(function() {
                 var index = $scope.grupo.pesquisadores.indexOf(pesquisador);
                 index != -1 && $scope.grupo.pesquisadores.splice(index, 1);
+                Grupo.cacheInvalidate($scope.grupo);
                 Flash.create('success', '<strong>Sucesso!</strong> O pesquisador "'+pesquisador.nome+'" foi removido do grupo.');
             }).catch(function(err) {
                 console.error(err);

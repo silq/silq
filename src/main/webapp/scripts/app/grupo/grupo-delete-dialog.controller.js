@@ -12,6 +12,7 @@ angular.module('silq2App')
                 function () {
 					Flash.create('success', '<strong>Sucesso!</strong> Grupo excluído');
                     $uibModalInstance.close(true);
+					Grupo.cacheInvalidate($scope.grupo);
                 });
         };
 
