@@ -59,8 +59,10 @@ angular.module('silq2App')
                         }
                     });
             },
+            
             createAccount: function (account, callback) {
                 var cb = callback || angular.noop;
+                Cache.invalidate();
 
                 return Register.save(account,
                     function () {
@@ -74,6 +76,7 @@ angular.module('silq2App')
 
             updateAccount: function (account, callback) {
                 var cb = callback || angular.noop;
+                Cache.invalidate();
 
                 return Account.save(account,
                     function () {
@@ -98,6 +101,7 @@ angular.module('silq2App')
 
             changePassword: function (newPassword, callback) {
                 var cb = callback || angular.noop;
+                Cache.invalidate();
 
                 return Password.save(newPassword, function () {
                     return cb();
