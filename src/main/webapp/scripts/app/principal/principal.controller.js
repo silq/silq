@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('PrincipalController', function ($scope, $state, Principal, Upload, DadoGeral, Flash) {
+    .controller('PrincipalController', function ($scope, Principal, Upload, DadoGeral, Cache, Flash) {
         $scope.status = 'loading';
 
         Principal.identity().then(function(account) {
             $scope.account = account;
         });
 
-        DadoGeral.get().$promise.then(function(dados) {
+        DadoGeral.get().then(function(resp) {
+            var dados = resp.data;
             if (dados.nome) {
                 $scope.dados = dados;
             } else {
@@ -30,7 +31,7 @@ angular.module('silq2App')
         $scope.uploaded = function(resp) {
             $scope.files = [];
             $scope.dados = resp.data;
-            DadoGeral.cacheInvalidate();
+            Cache.invalidate();
             Flash.create('success', '<strong>Sucesso!</strong> Currículo enviado');
         };
     });

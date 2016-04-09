@@ -1,32 +1,16 @@
 'use strict';
 
 angular.module('silq2App')
-    .factory('DadoGeral', function ($resource, $http, Grupo) {
-        var DadoGeral = $resource('api/dado-geral/', {}, {
-            'get': {
-                method: 'GET',
-                cache: true,
-                transformResponse: function (data) {
-                    if (data) {
-                        return angular.fromJson(data);
-                    }
-                    return null;
-                }
+    .factory('DadoGeral', function ($http, Cache) {
+        return {
+            get: function() {
+                return $http.get('api/dado-geral', {
+                    cache: true
+                });
             },
-            'delete': { method: 'DELETE' }
-        });
-
-        /**
-         * Invalida o cache do dado geral.
-         * Necessário ao excluir/alterar o currículo do usuário atual.
-         */
-        DadoGeral.cacheInvalidate = function(dadoGeral) {
-            $http.defaults.cache.remove('api/dado-geral');
-
-            // Como os grupos são removidos ao alterar o currículo, limpamos
-            // os grupos em cache também
-            Grupo.cacheInvalidate();
+            delete: function() {
+                Cache.invalidate();
+                return $http.delete('api/dado-geral');
+            }
         };
-
-        return DadoGeral;
     });

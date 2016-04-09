@@ -2,8 +2,8 @@
 
 angular.module('silq2App')
     .controller('ContentHeaderController', function ($scope, $state, Grupo) {
-        Grupo.query(function(grupos) {
+        Grupo.query().then(function(resp) {
             $scope.$state = $state;
-            $scope.countGrupos = grupos.length;
+            $scope.countGrupos = resp.data.length;
         });
     });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, Account, Register, Activate, Password, PasswordResetInit, PasswordResetFinish) {
+    .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, Account, Register, Activate, Password, PasswordResetInit, PasswordResetFinish, Cache) {
         return {
             login: function (credentials, callback) {
                 var cb = callback || angular.noop;
@@ -19,6 +19,7 @@ angular.module('silq2App')
                     return cb(err);
                 }.bind(this));
 
+                Cache.invalidate();
                 return deferred.promise;
             },
 
@@ -26,6 +27,7 @@ angular.module('silq2App')
                 AuthServerProvider.logout();
                 Principal.authenticate(null);
                 // Reset state memory
+                Cache.invalidate();
                 $rootScope.previousStateName = undefined;
                 $rootScope.previousStateNameParams = undefined;
             },

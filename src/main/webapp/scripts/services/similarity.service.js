@@ -8,7 +8,7 @@ angular.module('silq2App')
                     cache: true
                 });
             },
-            avaliar: function(avaliacaoLivreForm, cacheId) {
+            avaliar: function(avaliacaoLivreForm) {
                 return $http.post('api/avaliar/', avaliacaoLivreForm);
             },
             result: function(cacheId) {

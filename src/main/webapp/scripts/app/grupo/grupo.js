@@ -19,8 +19,6 @@ angular.module('silq2App')
                         templateUrl: 'scripts/components/content-header/content-header.html',
                         controller: 'ContentHeaderController'
                     }
-                },
-                resolve: {
                 }
             })
             .state('grupo.detail', {
@@ -81,12 +79,7 @@ angular.module('silq2App')
                     $uibModal.open({
                         templateUrl: 'scripts/app/grupo/grupo-dialog.html',
                         controller: 'GrupoDialogController',
-                        size: 'lg',
-                        resolve: {
-                            entity: ['Grupo', function(Grupo) {
-                                return Grupo.get({id : $stateParams.id});
-                            }]
-                        }
+                        size: 'lg'
                     }).result.then(function() {
                         $state.go('grupo', null, { reload: true });
                     }, function() {
@@ -105,12 +98,7 @@ angular.module('silq2App')
                     $uibModal.open({
                         templateUrl: 'scripts/app/grupo/grupo-delete-dialog.html',
                         controller: 'GrupoDeleteController',
-                        size: 'md',
-                        resolve: {
-                            entity: ['Grupo', function(Grupo) {
-                                return Grupo.get({id : $stateParams.id});
-                            }]
-                        }
+                        size: 'md'
                     }).result.then(function() {
                         $state.go('grupo', null, { reload: true });
                     }, function() {

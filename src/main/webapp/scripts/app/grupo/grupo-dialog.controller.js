@@ -1,19 +1,18 @@
 'use strict';
 
-angular.module('silq2App').controller('GrupoDialogController', function($scope, $stateParams, $uibModalInstance, entity, Grupo, Flash) {
+angular.module('silq2App').controller('GrupoDialogController', function($scope, $stateParams, $uibModalInstance, Grupo, Flash) {
+        $scope.grupo = {};
 
-        $scope.grupo = entity;
-        $scope.load = function(id) {
-            Grupo.get({id : id}, function(result) {
-                $scope.grupo = result;
+        if ($stateParams.id) {
+            Grupo.get($stateParams.id).then(function(resp) {
+                $scope.grupo = resp.data;
             });
-        };
+        }
 
-        var onSaveSuccess = function(result) {
-            Grupo.cacheInvalidate(result);
-            $uibModalInstance.close(result);
+        var onSaveSuccess = function(resp) {
+            $uibModalInstance.close(resp.data);
             $scope.isSaving = false;
-            Flash.create('success', '<strong>Sucesso!</strong> Grupo "<i>' + result.nomeGrupo + '"</i> foi salvo');
+            Flash.create('success', '<strong>Sucesso!</strong> Grupo "<i>' + resp.data.nomeGrupo + '"</i> foi salvo');
         };
 
         var onSaveError = function(e) {
@@ -21,12 +20,11 @@ angular.module('silq2App').controller('GrupoDialogController', function($scope, 
             Flash.create('danger', e.data.description || e.data.message);
         };
 
-        $scope.save = function () {
-            $scope.isSaving = true;
-            if ($scope.grupo.id !== null) {
-                Grupo.update($scope.grupo, onSaveSuccess, onSaveError);
+        $scope.save = function() {
+            if ($scope.grupo.id !== undefined) {
+                Grupo.update($scope.grupo).then(onSaveSuccess).catch(onSaveError);
             } else {
-                Grupo.save($scope.grupo, onSaveSuccess, onSaveError);
+                Grupo.create($scope.grupo).then(onSaveSuccess).catch(onSaveError);
             }
         };
 
