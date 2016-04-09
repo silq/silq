@@ -25,9 +25,9 @@
         <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
             <div flash-message="4000"></div>
-            <jh-alert></jh-alert>
             <div ui-view="content-header"></div>
-            <div class="main-content" ui-view="content"></div>
+            <loader ng-show="loading"></loader>
+            <div ng-hide="loading" class="main-content" ui-view="content"></div>
 
             <div class="footer text-center">
                 <ul>
@@ -152,6 +152,7 @@
     <script src="scripts/components/util/truncate.filter.js"></script>
     <script src="scripts/interceptors/auth.interceptor.js"></script>
     <script src="scripts/interceptors/errorhandler.interceptor.js"></script>
+    <script src="scripts/interceptors/loading.interceptor.js"></script>
     <script src="scripts/services/admin/configuration.service.js"></script>
     <script src="scripts/services/admin/logs.service.js"></script>
     <script src="scripts/services/admin/monitoring.service.js"></script>

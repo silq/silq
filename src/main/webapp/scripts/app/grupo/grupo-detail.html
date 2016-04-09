@@ -1,96 +1,92 @@
-<loader ng-show="status === 'loading'"></loader>
+<h2 class="text-center">Grupo <small>{{grupo.nomeGrupo}}</small></h2>
 
-<div ng-show="status === 'success'">
-    <h2 class="text-center">Grupo <small>{{grupo.nomeGrupo}}</small></h2>
+<div class="row">
+    <div class="col-md-4">
+        <h3 class="title-border">
+            <span class="glyphicon glyphicon-list-alt"></span>
+            Informações do grupo
+        </h3>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h3 class="title-border">
-                <span class="glyphicon glyphicon-list-alt"></span>
-                Informações do grupo
-            </h3>
+        <div class="table-responsive">
+            <table class="table table-resumo">
+                <tbody>
+                    <tr>
+                        <td>Nome</td>
+                        <td>{{grupo.nomeGrupo}}</td>
+                    </tr>
+                    <tr>
+                        <td>Instituição</td>
+                        <td>{{grupo.nomeInstituicao}}</td>
+                    </tr>
+                    <tr>
+                        <td>Área de Atuação</td>
+                        <td>{{grupo.nomeArea}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pesquisadores</td>
+                        <td>{{grupo.pesquisadores.length}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-            <div class="table-responsive">
-                <table class="table table-resumo">
-                    <tbody>
-                        <tr>
-                            <td>Nome</td>
-                            <td>{{grupo.nomeGrupo}}</td>
-                        </tr>
-                        <tr>
-                            <td>Instituição</td>
-                            <td>{{grupo.nomeInstituicao}}</td>
-                        </tr>
-                        <tr>
-                            <td>Área de Atuação</td>
-                            <td>{{grupo.nomeArea}}</td>
-                        </tr>
-                        <tr>
-                            <td>Pesquisadores</td>
-                            <td>{{grupo.pesquisadores.length}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="col-md-8">
+        <h3 class="title-border">
+            <span class="glyphicon glyphicon-user"></span>
+            Pesquisadores
+        </h3>
+
+        <div ng-show="grupo.pesquisadores.length == 0" class="help-block">
+            Nenhum pesquisador cadastrado!
+            Utilize a seção abaixo para cadastrá-los.
         </div>
 
-        <div class="col-md-8">
-            <h3 class="title-border">
-                <span class="glyphicon glyphicon-user"></span>
-                Pesquisadores
-            </h3>
-
-            <div ng-show="grupo.pesquisadores.length == 0" class="help-block">
-                Nenhum pesquisador cadastrado!
-                Utilize a seção abaixo para cadastrá-los.
-            </div>
-
-            <div class="input-group" ng-show="grupo.pesquisadores.length > 0">
-                <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
-                <input ng-model="filter" type="search" class="form-control input-sm" placeholder="Filtrar pesquisadores..." />
-            </div>
-
-            <br />
-
-            <div class="table-responsive" ng-show="grupo.pesquisadores.length > 0">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>ID Lattes</th>
-                            <th>Dt. atualização currículo</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="pesquisador in grupo.pesquisadores | filter: filter | orderBy: 'nome'">
-                            <td>{{ pesquisador.nome }}</td>
-                            <td>{{ pesquisador.idCurriculo }}</td>
-                            <td>{{ pesquisador.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy' }}</td>
-                            <td class="table-actions">
-                                <a ng-click="avaliarPesquisador(pesquisador)">
-                                    <span class="glyphicon glyphicon-check"></span> Avaliar
-                                </a>
-                                <a confirm-click="removePesquisador(pesquisador)"
-                                    confirm-message="Tem certeza que deseja remover o pesquisador deste grupo?"
-                                    class="text-danger"
-                                >
-                                    <span class="glyphicon glyphicon-remove-circle"></span> Remover
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h3 class="title-border">
-                <span class="glyphicon glyphicon-upload"></span>
-                Adicionar pesquisador
-            </h3>
-
-            <dropbox config="uploadConfig" success="uploaded" files="files">
-                Arraste para cá os currículos Lattes em ZIP ou XML dos pesquisadores ou clique para adicioná-los ao grupo
-            </dropbox>
+        <div class="input-group" ng-show="grupo.pesquisadores.length > 0">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+            <input ng-model="filter" type="search" class="form-control input-sm" placeholder="Filtrar pesquisadores..." />
         </div>
+
+        <br />
+
+        <div class="table-responsive" ng-show="grupo.pesquisadores.length > 0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>ID Lattes</th>
+                        <th>Dt. atualização currículo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="pesquisador in grupo.pesquisadores | filter: filter | orderBy: 'nome'">
+                        <td>{{ pesquisador.nome }}</td>
+                        <td>{{ pesquisador.idCurriculo }}</td>
+                        <td>{{ pesquisador.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy' }}</td>
+                        <td class="table-actions">
+                            <a ng-click="avaliarPesquisador(pesquisador)">
+                                <span class="glyphicon glyphicon-check"></span> Avaliar
+                            </a>
+                            <a confirm-click="removePesquisador(pesquisador)"
+                                confirm-message="Tem certeza que deseja remover o pesquisador deste grupo?"
+                                class="text-danger"
+                            >
+                                <span class="glyphicon glyphicon-remove-circle"></span> Remover
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="title-border">
+            <span class="glyphicon glyphicon-upload"></span>
+            Adicionar pesquisador
+        </h3>
+
+        <dropbox config="uploadConfig" success="uploaded" files="files">
+            Arraste para cá os currículos Lattes em ZIP ou XML dos pesquisadores ou clique para adicioná-los ao grupo
+        </dropbox>
     </div>
 </div>

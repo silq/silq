@@ -1,9 +1,5 @@
-<loader ng-show="status === 'loading'"></loader>
+<h3 class="text-center">Resultados da avaliação</h3>
+<button ui-sref="grupo.detail({id: grupoId})" class="btn btn-primary btn-spaced center-block">&larr; Voltar ao grupo</button>
+<br />
 
-<div ng-show="status === 'success'">
-    <h3 class="text-center">Resultados da avaliação</h3>
-    <button ui-sref="grupo.detail({id: grupoId})" class="btn btn-primary btn-spaced center-block">&larr; Voltar ao grupo</button>
-    <br />
-
-    <avaliar-result results="result"></avaliar-result>
-</div>
+<avaliar-result results="result"></avaliar-result>

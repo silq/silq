@@ -7,7 +7,7 @@ angular.module('silq2App')
             nivelSimilaridade: '0.6'
         };
 
-        DadoGeral.get().$promise.then(function(dados) {
+        DadoGeral.get().then(function(dados) {
             $scope.avaliarForm.area = dados.areaConhecimento;
         });
 

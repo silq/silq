@@ -2,10 +2,8 @@
 
 angular.module('silq2App')
     .controller('GrupoDetailController', function ($scope, $state, $stateParams, Grupo, Cache, Flash) {
-        $scope.status = 'loading';
         Grupo.get($stateParams.id).then(function(resp) {
             $scope.grupo = resp.data;
-            $scope.status = 'success';
         });
 
         $scope.files = [];
