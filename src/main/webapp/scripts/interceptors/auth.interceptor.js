@@ -7,11 +7,11 @@ angular.module('silq2App')
             request: function (config) {
                 config.headers = config.headers || {};
                 var token = localStorageService.get('token');
-                
+
                 if (token && token.expires && token.expires > new Date().getTime()) {
                   config.headers['x-auth-token'] = token.token;
                 }
-                
+
                 return config;
             }
         };
@@ -31,4 +31,8 @@ angular.module('silq2App')
                 return $q.reject(response);
             }
         };
-    });
+    })
+    .config(['$httpProvider', function($httpProvider) {
+        $httpProvider.interceptors.push('authExpiredInterceptor');
+        $httpProvider.interceptors.push('authInterceptor');
+    }]);

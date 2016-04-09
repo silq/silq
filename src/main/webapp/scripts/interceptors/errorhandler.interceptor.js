@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('silq2App')
-    .factory('errorHandlerInterceptor', function ($q, $rootScope) {
+    .factory('errorHandlerInterceptor', function ($q, $rootScope, Flash) {
         return {
-            'responseError': function (response) {
-                if (!(response.status == 401 && response.data.path.indexOf("/api/account") == 0 )){
-	                $rootScope.$emit('silq2App.httpError', response);
-	            }
+            responseError: function (response) {
+                $rootScope.$emit('silq:httpError', response);
                 return $q.reject(response);
             }
         };
-    });
+    })
+    .config(['$httpProvider', function($httpProvider) {
+        $httpProvider.interceptors.push('errorHandlerInterceptor');
+    }]);

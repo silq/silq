@@ -5,7 +5,7 @@ angular.module('silq2App', ['LocalStorageModule',
     'ngMessages', 'ui.bootstrap', 'ui.router',  'infinite-scroll',
     'angular-loading-bar', 'angular-cache'])
 
-    .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, ENV, VERSION) {
+    .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, Flash, ENV, VERSION) {
 
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
@@ -17,6 +17,13 @@ angular.module('silq2App', ['LocalStorageModule',
                 Auth.authorize();
             }
 
+        });
+
+        $rootScope.$on('silq:httpError', function(event, response) {
+            if (response.status === 401) return;
+            if (response.data.message || response.data.description) {
+                Flash.create('danger', '<strong>Ops! </strong>' + response.data.message || response.data.description);
+            }
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
@@ -65,11 +72,6 @@ angular.module('silq2App', ['LocalStorageModule',
                 ]
             }
         });
-
-        $httpProvider.interceptors.push('errorHandlerInterceptor');
-        $httpProvider.interceptors.push('authExpiredInterceptor');
-        $httpProvider.interceptors.push('authInterceptor');
-
     })
     // jhipster-needle-angularjs-add-config JHipster will add new application configuration
     .config(['$urlMatcherFactoryProvider', function($urlMatcherFactory) {
