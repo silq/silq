@@ -2,23 +2,33 @@
 
 angular.module('silq2App')
     .factory('loadingInterceptor', function ($rootScope, $q) {
-        var loadingCount = 0;
+        $rootScope.loadingCount = 0;
 
         return {
             request: function (config) {
-                if(++loadingCount === 1) $rootScope.loading = true;
-                $rootScope.loading = true;
+                if (config.loadingIndicator !== false) {
+                    if(++$rootScope.loadingCount === 1) {
+                        $rootScope.loading = true;
+                    }
+                }
                 return config || $q.when(config);
             },
 
-            response: function (response) {
-                if(--loadingCount === 0) $rootScope.loading = false;
-                $rootScope.loading = false;
+            response: function(response) {
+                if (response.config.loadingIndicator !== false) {
+                    if(--$rootScope.loadingCount === 0) {
+                        $rootScope.loading = false;
+                    }
+                }
                 return response || $q.when(response);
             },
 
-            responseError: function (response) {
-                if(--loadingCount === 0) $rootScope.loading = false;
+            responseError: function(response) {
+                if (response.config.loadingIndicator !== false) {
+                    if(--$rootScope.loadingCount === 0) {
+                        $rootScope.loading = false;
+                    }
+                }
                 return $q.reject(response);
             }
         };

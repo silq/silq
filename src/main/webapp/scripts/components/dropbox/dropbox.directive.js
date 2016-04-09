@@ -15,7 +15,7 @@ angular.module('silq2App')
             compile: function(element, attrs) {
                 attrs.multiple = angular.isDefined(attrs.multiple) ? attrs.multiple : 'true';
             },
-            controller: function($scope) {
+            controller: function($rootScope, $scope) {
                 $scope.success = $scope.success || function() {};
 
                 if (!$scope.config.data) {
@@ -30,6 +30,10 @@ angular.module('silq2App')
 
                         var params = JSON.parse(JSON.stringify($scope.config)); // clone config
                         params.data.file = file;
+
+                        // Não mostramos o loader para uploads já que o
+                        // dropbox mostra uma barra de progresso
+                        params.loadingIndicator = false;
 
                         Upload.upload(params)
                             .then(function (resp) {
