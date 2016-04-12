@@ -109,7 +109,8 @@ public class LattesParser {
 
 	/**
 	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
-	 * currículo Lattes (em XML) e avalia-os utilizando os dados do banco.
+	 * currículo Lattes (em XML) e avalia-os utilizando @{link
+	 * SimilarityService}.
 	 *
 	 * @param curriculum
 	 *            Byte array do Currículo Lattes (em XML) a ser avaliado.
@@ -124,7 +125,8 @@ public class LattesParser {
 
 	/**
 	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
-	 * currículo Lattes (em XML) e avalia-os utilizando os dados do banco.
+	 * currículo Lattes (em XML) e avalia-os utilizando @{link
+	 * SimilarityService}.
 	 *
 	 * @param document
 	 *            Currículo Lattes (em XML) a ser avaliado.

@@ -52,7 +52,7 @@ public class SimilarityService {
 	}
 
 	private void compareArtigos(String similarity, List<Artigo> artigos, String conhecimento) {
-		for (Artigo artigo : artigos) {
+		artigos.parallelStream().forEach((artigo) -> {
 			String issn = artigo.getIssn();
 			List<Conceito> conceitos = new ArrayList<>();
 			Conceito conceito;
@@ -98,11 +98,11 @@ public class SimilarityService {
 				}
 			}
 			artigo.setConceitos(conceitos);
-		}
+		});
 	}
 
 	private void compareTrabalhos(String similarity, List<Trabalho> trabalhos, String conhecimento) {
-		for (Trabalho trabalho : trabalhos) {
+		trabalhos.parallelStream().forEach(trabalho -> {
 			String titulo = trabalho.getNomeEvento();
 			titulo = SilqStringUtils.normalizeString(titulo);
 
@@ -135,7 +135,7 @@ public class SimilarityService {
 				// vários
 				log.error(e.getMessage() + "\nTrabalho: " + trabalho);
 			}
-		}
+		});
 	}
 
 }
