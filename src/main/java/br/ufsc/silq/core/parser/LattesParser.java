@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
@@ -96,8 +97,7 @@ public class LattesParser {
 		List<String> pesquisadorList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
 		// TODO Currículo sem ID! Desatualizado!
 		pesquisadorResult.setIdCurriculo(Long.parseLong(pesquisadorList.get(2)));
-		pesquisadorResult
-				.setUltimaAtualizacao(SilqDataUtils.formatDates(pesquisadorList.get(0), pesquisadorList.get(1)));
+		pesquisadorResult.setUltimaAtualizacao(SilqDataUtils.formatDates(pesquisadorList.get(0), pesquisadorList.get(1)));
 
 		List<String> nomeList = AttributeGetter.iterateNodes(ParserSets.NOME_SET, nodoRaiz);
 		if (nomeList.size() == 1) {
@@ -119,43 +119,24 @@ public class LattesParser {
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
 	 * @throws SilqLattesException
 	 */
-	public ParseResult parseCurriculum(byte[] curriculum, AvaliarForm form) throws SilqLattesException {
+	public ParseResult parseCurriculum(byte[] curriculum, @Valid AvaliarForm form) throws SilqLattesException {
 		return this.parseCurriculum(this.documentManager.stringToDocument(new String(curriculum)), form);
 	}
 
 	/**
 	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
-	 * currículo Lattes (em XML) e avalia-os utilizando @{link
-	 * SimilarityService}.
+	 * currículo Lattes (em XML) e avalia-os utilizando @{link SimilarityService}.
 	 *
-	 * @param document
-	 *            Currículo Lattes (em XML) a ser avaliado.
-	 * @param form
-	 *            Opções de avaliação.
+	 * @param document Currículo Lattes (em XML) a ser avaliado.
+	 * @param form Opções de avaliação.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
-	 * @throws SilqLattesException
-	 *             Caso o documento XML enviado não seja um currículo Lattes
-	 *             válido.
+	 * @throws SilqLattesException Caso o documento XML enviado não seja um currículo Lattes válido.
 	 */
-	public ParseResult parseCurriculum(Document document, AvaliarForm form) throws SilqLattesException {
+	public ParseResult parseCurriculum(Document document, @Valid AvaliarForm form) throws SilqLattesException {
 		ParseResult parseResult = new ParseResult();
-		parseResult.setAreaAvaliada(form.area);
-
-		String anoPublicacaoDe = form.getAnoPublicacaoDe();
-		if (anoPublicacaoDe == null || anoPublicacaoDe.equals("")) {
-			parseResult.setAnoPublicacaoDe(1985 + "");
-		} else {
-			parseResult.setAnoPublicacaoDe(anoPublicacaoDe);
-		}
-
-		String anoPublicacaoAte = form.getAnoPublicacaoAte();
-		if (anoPublicacaoAte == null || anoPublicacaoDe.equals("")) {
-			parseResult.setAnoPublicacaoAte(10000 + ""); // TODO Pegar data
-															// atual;
-		} else {
-
-			parseResult.setAnoPublicacaoAte(anoPublicacaoAte);
-		}
+		parseResult.setAreaAvaliada(form.getArea());
+		parseResult.setAnoPublicacaoDe(form.getAnoPublicacaoDe());
+		parseResult.setAnoPublicacaoAte(form.getAnoPublicacaoAte());
 
 		Node raiz = null;
 

@@ -171,7 +171,6 @@ public class GrupoResource {
 
 		// TODO (bonetti) passar do cliente!
 		AvaliarForm avaliarForm = new AvaliarForm();
-		avaliarForm.setNivelSimilaridade("0.4");
 		avaliarForm.setArea(grupo.getNomeArea());
 
 		Pesquisador pesquisador = this.pesquisadorService.findOneById(pesquisadorId)

@@ -11,20 +11,29 @@ import lombok.Data;
 public class AvaliarForm {
 
 	@NotBlank
-	public String area;
+	private String area;
 
 	@NotBlank
-	public String nivelSimilaridade;
+	private String nivelSimilaridade = "0.4";
 
-	public String anoPublicacaoDe;
+	@NotBlank
+	private String anoPublicacaoDe = "1985";
 
-	public String anoPublicacaoAte;
+	@NotBlank
+	private String anoPublicacaoAte = "10000";
 
 	@NotNull
-	public AvaliacaoType tipoAvaliacao = AvaliacaoType.AMBOS;
+	private AvaliacaoType tipoAvaliacao = AvaliacaoType.AMBOS;
 
-	public String getAnoPublicacaoAte() {
-		// Retorna o mesmo valor de 'anoPublicacaoDe' caso valor inexistente
-		return this.anoPublicacaoAte != null ? this.anoPublicacaoAte : this.anoPublicacaoDe;
+	public void setAnoPublicacaoDe(String anoPublicacaoDe) {
+		if (anoPublicacaoDe != null && !anoPublicacaoDe.isEmpty()) {
+			this.anoPublicacaoDe = anoPublicacaoDe;
+		}
+	}
+
+	public void setAnoPublicacaoAte(String anoPublicacaoAte) {
+		if (anoPublicacaoAte != null && !anoPublicacaoAte.isEmpty()) {
+			this.anoPublicacaoAte = anoPublicacaoAte;
+		}
 	}
 }
