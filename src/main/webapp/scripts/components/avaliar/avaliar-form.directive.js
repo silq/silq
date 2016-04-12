@@ -22,6 +22,11 @@ angular.module('silq2App')
             templateUrl: 'scripts/components/avaliar/avaliar-form.html',
             link: function($scope) {
                 $scope.years = years();
+                
+                $scope.changeAnoDe = function() {
+                    $scope.model.anoPublicacaoAte = $scope.model.anoPublicacaoDe;
+                };
+
                 $scope.yearFilter = function(value) {
                     return value >= $scope.model.anoPublicacaoDe;
                 };

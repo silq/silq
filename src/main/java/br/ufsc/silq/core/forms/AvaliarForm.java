@@ -22,4 +22,9 @@ public class AvaliarForm {
 
 	@NotNull
 	public AvaliacaoType tipoAvaliacao = AvaliacaoType.AMBOS;
+
+	public String getAnoPublicacaoAte() {
+		// Retorna o mesmo valor de 'anoPublicacaoDe' caso valor inexistente
+		return this.anoPublicacaoAte != null ? this.anoPublicacaoAte : this.anoPublicacaoDe;
+	}
 }

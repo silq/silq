@@ -18,7 +18,7 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label class="control-label" for="anoPublicacaoDe">Publicações de</label>
-                <select class="form-control" id="anoPublicacaoDe" name="anoPublicacaoDe" ng-model="model.anoPublicacaoDe">
+                <select class="form-control" id="anoPublicacaoDe" name="anoPublicacaoDe" ng-model="model.anoPublicacaoDe" ng-change="changeAnoDe()">
                     <option value="">(Todas)</option>
                     <option ng-repeat="year in years" value="{{ year }}">{{ year }}</option>
                 </select>
