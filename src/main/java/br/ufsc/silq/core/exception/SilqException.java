@@ -7,4 +7,12 @@ public class SilqException extends Exception {
 	public SilqException(String msg) {
 		super(msg);
 	}
+
+	public SilqException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public SilqException(Throwable cause) {
+		super(cause);
+	}
 }

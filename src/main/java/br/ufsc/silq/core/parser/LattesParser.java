@@ -164,7 +164,6 @@ public class LattesParser {
 			NodeList qualisList = document.getElementsByTagName("CURRICULO-VITAE");
 			raiz = qualisList.item(0);
 		} catch (Exception e) {
-			// e.printStackTrace();
 			throw new SilqLattesException(e);
 		}
 

@@ -60,7 +60,6 @@ public class DocumentManager {
 			builder = this.builderFactory.newDocumentBuilder();
 			document = builder.parse(upload.getInputStream());
 		} catch (SAXException | IOException | ParserConfigurationException e) {
-			// e.printStackTrace();
 			throw new SilqLattesException(e);
 		}
 
@@ -111,8 +110,7 @@ public class DocumentManager {
 			dest.close();
 
 		} catch (IOException e) {
-			// e.printStackTrace();
-			throw new SilqLattesException(e, "Arquivo ZIP inválido");
+			throw new SilqLattesException("Arquivo ZIP inválido", e);
 		}
 
 		return this.stringToDocument(curriculumStr);
@@ -135,8 +133,7 @@ public class DocumentManager {
 			transformer = tf.newTransformer();
 			transformer.transform(domSource, result);
 		} catch (TransformerException e) {
-			// e.printStackTrace();
-			throw new SilqLattesException(e, "Erro ao converter currículo para String");
+			throw new SilqLattesException("Erro ao converter currículo para String", e);
 		}
 		return writer.toString();
 	}
@@ -156,7 +153,6 @@ public class DocumentManager {
 			builder = this.builderFactory.newDocumentBuilder();
 			document = builder.parse(new InputSource(new StringReader(curriculo)));
 		} catch (Exception e) {
-			// e.printStackTrace();
 			throw new SilqLattesException(e);
 		}
 
@@ -179,8 +175,7 @@ public class DocumentManager {
 
 			documentBuilder.parse(new InputSource(new StringReader(writer.toString())));
 		} catch (Exception e) {
-			// e.printStackTrace();
-			throw new SilqLattesException(e, "XML fora do padrão Lattes");
+			throw new SilqLattesException("XML fora do padrão Lattes", e);
 		}
 	}
 
