@@ -93,7 +93,7 @@ public class ParseResult implements Serializable {
 		ArrayList<Trabalho> trabalhos = new ArrayList<Trabalho>();
 
 		for (Trabalho trabalho : this.getTrabalhos()) {
-			if (anoDe <= trabalho.getAnoPublicacao() && trabalho.getAnoPublicacao() <= anoAte) {
+			if (anoDe <= trabalho.getAno() && trabalho.getAno() <= anoAte) {
 				trabalhos.add(trabalho);
 			}
 		}
@@ -105,7 +105,7 @@ public class ParseResult implements Serializable {
 		ArrayList<Trabalho> trabalhos = new ArrayList<Trabalho>();
 
 		for (Trabalho trabalho : this.getTrabalhos()) {
-			if (ano.equals(trabalho.getAnoPublicacao())) {
+			if (ano.equals(trabalho.getAno())) {
 				trabalhos.add(trabalho);
 			}
 		}

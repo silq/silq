@@ -41,11 +41,11 @@ public class ArtigoAttributeGetter {
 
 			if (nodeName.equals("dados-basicos-do-artigo")) {
 				List<String> result = getAttribute(filho, Arrays.asList("titulo-do-artigo", "ano-do-artigo"));
-				artigo.setNomeArtigo(result.get(1));
+				artigo.setTitulo(result.get(1));
 				artigo.setAno(ConverterHelper.parseIntegerSafely(result.get(0)));
 			} else if (nodeName.equals("detalhamento-do-artigo")) {
 				List<String> result = getAttribute(filho, Arrays.asList("titulo-do-periodico-ou-revista", "issn"));
-				artigo.setTituloPeriodico(result.get(1));
+				artigo.setTituloVeiculo(result.get(1));
 				artigo.setIssn(result.get(0));
 			}
 		}

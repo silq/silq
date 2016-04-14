@@ -1,0 +1,35 @@
+<div class="avaliacao-result-item">
+    <div class="result-conceito-box">
+        <p class="result-conceito" title="Conceito calculado" ng-show="item.conceitos[0].conceito">
+            {{ item.conceitos[0].conceito }}
+        </p>
+        <p  ng-show="item.conceitos[0].similaridade"
+            ng-class="'bg-dark-' + (item.conceitos[0].similaridade | similarityClass)"
+            class="result-porcentagem"
+            title="Grau de confiança para o cálculo de conceito">
+            {{ item.conceitos[0].similaridade * 100 | number: 0 }}%
+        </p>
+        <span ng-show="item.conceitos.length === 0" title="Nenhum conceito encontrado">-</span>
+    </div>
+    <div class="result-content-box">
+        <p class="result-titulo" title="Título do trabalho" highlight-text="filter">
+            <span class="result-ano">{{ item.ano }} |</span>
+            {{ item.titulo }}
+        </p>
+
+        <p>
+            <span class="result-veiculo" title="Título do periódico ou evento" highlight-text="filter">{{ item.tituloVeiculo }}</span>
+            <span class="result-issn" title="ISSN" ng-show="item.issn" highlight-text="filter"> | ISSN: {{ item.issn }}</span>
+        </p>
+
+        <p class="result-conceito-item" ng-repeat="conceito in item.conceitos">
+            <span class="label-conceito">
+                <span class="titulo" title="Título do periódico ou evento similar">{{ conceito.nomeEvento }}</span><span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span>
+            </span>
+        </p>
+
+        <p class="help-block" ng-show="item.conceitos.length === 0">
+            <i>Nenhum conceito encontrado</i>
+        </p>
+    </div>
+</div>

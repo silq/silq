@@ -27,8 +27,9 @@ $font-size-base: 13px;
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-@import 'dropbox';
 @import 'loader';
+@import 'dropbox';
+@import 'avaliacao';
 
 a { cursor: pointer; }
 
@@ -39,6 +40,11 @@ a { cursor: pointer; }
 .justify-center { justify-content: center; }
 
 .flex-grow { flex-grow: 1; }
+
+.bg-dark-success { background-color: $brand-success; border-color: $brand-success; }
+.bg-dark-warning { background-color: $brand-warning; border-color: $brand-warning; }
+.bg-dark-error { background-color: $brand-danger; border-color: $brand-danger; }
+.bg-dark-info { background-color: $brand-info; border-color: $brand-info; }
 
 .main-content {
     min-height: 50vh;
@@ -239,4 +245,8 @@ ul#strengthBar {
 #loading-bar-spinner .spinner-icon {
     border-top-color: $brand-primary;
     border-left-color: $brand-primary;
+}
+
+.highlight {
+    background-color: yellow;
 }

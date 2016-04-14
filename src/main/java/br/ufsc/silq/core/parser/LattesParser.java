@@ -49,8 +49,7 @@ public class LattesParser {
 	public DadosGeraisResult parseDadosGerais(Document curriculumXml) throws SilqException {
 		DadosGeraisResult dadosGeraisResult = new DadosGeraisResult();
 
-		NodeList qualisList = curriculumXml.getElementsByTagName("CURRICULO-VITAE");
-		Node nodoRaiz = qualisList.item(0);
+		Node nodoRaiz = this.getNodoRaiz(curriculumXml);
 
 		List<String> dadoGeralList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
 		// TODO Currículo sem ID! Desatualizado!
@@ -91,8 +90,7 @@ public class LattesParser {
 	public PesquisadorResult parseCurriculumPesquisador(Document curriculumXml) {
 		PesquisadorResult pesquisadorResult = new PesquisadorResult();
 
-		NodeList qualisList = curriculumXml.getElementsByTagName("CURRICULO-VITAE");
-		Node nodoRaiz = qualisList.item(0);
+		Node nodoRaiz = this.getNodoRaiz(curriculumXml);
 
 		List<String> pesquisadorList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
 		// TODO Currículo sem ID! Desatualizado!
@@ -138,15 +136,7 @@ public class LattesParser {
 		parseResult.setAnoPublicacaoDe(form.getAnoPublicacaoDe());
 		parseResult.setAnoPublicacaoAte(form.getAnoPublicacaoAte());
 
-		Node raiz = null;
-
-		try {
-			document.getDocumentElement().normalize();
-			NodeList qualisList = document.getElementsByTagName("CURRICULO-VITAE");
-			raiz = qualisList.item(0);
-		} catch (Exception e) {
-			throw new SilqLattesException(e);
-		}
+		Node raiz = this.getNodoRaiz(document);
 
 		List<String> nomeList = AttributeGetter.iterateNodes(ParserSets.NOME_SET, raiz);
 		if (nomeList.size() == 1) {
@@ -170,9 +160,9 @@ public class LattesParser {
 			for (int i = 0; i < trabalhos.size(); i += 3) {
 				Trabalho trabalho = new Trabalho();
 
-				trabalho.setAnoPublicacao(ConverterHelper.parseIntegerSafely(trabalhos.get(i)));
-				trabalho.setTituloTrabalho(trabalhos.get(i + 1));
-				trabalho.setNomeEvento(trabalhos.get(i + 2));
+				trabalho.setAno(ConverterHelper.parseIntegerSafely(trabalhos.get(i)));
+				trabalho.setTitulo(trabalhos.get(i + 1));
+				trabalho.setTituloVeiculo(trabalhos.get(i + 2));
 
 				trabalhosParse.add(trabalho);
 			}
@@ -188,5 +178,10 @@ public class LattesParser {
 		parseResult.order();
 
 		return parseResult;
+	}
+
+	protected Node getNodoRaiz(Document document) {
+		NodeList qualisList = document.getElementsByTagName("CURRICULO-VITAE");
+		return qualisList.item(0);
 	}
 }

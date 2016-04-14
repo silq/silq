@@ -69,7 +69,7 @@ public class SimilarityService {
 			} else if (SilqStringUtils.isBlank(issn)) {
 				String titulo;
 				try {
-					titulo = artigo.getTituloPeriodico();
+					titulo = artigo.getTituloVeiculo();
 					titulo = SilqStringUtils.normalizeString(titulo);
 
 					Connection connection = this.dataSource.getConnection();
@@ -103,7 +103,7 @@ public class SimilarityService {
 
 	private void compareTrabalhos(String similarity, List<Trabalho> trabalhos, String conhecimento) {
 		trabalhos.parallelStream().forEach(trabalho -> {
-			String titulo = trabalho.getNomeEvento();
+			String titulo = trabalho.getTituloVeiculo();
 			titulo = SilqStringUtils.normalizeString(titulo);
 
 			List<Conceito> conceitos = new ArrayList<>();

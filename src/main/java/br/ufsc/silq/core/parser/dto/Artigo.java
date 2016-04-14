@@ -11,15 +11,15 @@ public class Artigo implements Comparable<Artigo>, Serializable {
 
 	private static final long serialVersionUID = 1265140499533405908L;
 
-	private String nomeArtigo;
+	private String titulo;
 	private Integer ano;
-	private String tituloPeriodico;
+	private String tituloVeiculo;
 	private String issn;
 	private List<Conceito> conceitos;
 
 	public Artigo() {
-		this.nomeArtigo = "";
-		this.tituloPeriodico = "";
+		this.titulo = "";
+		this.tituloVeiculo = "";
 		this.issn = "";
 		this.ano = new Integer(0);
 		this.conceitos = new ArrayList<Conceito>();
@@ -30,9 +30,9 @@ public class Artigo implements Comparable<Artigo>, Serializable {
 	public String toString() {
 		String info = "";
 
-		info += "\nNome do Artigo: " + this.nomeArtigo;
+		info += "\nNome do Artigo: " + this.titulo;
 		info += "\nAno: " + this.ano;
-		info += "\nTítulo do Periódico: " + this.tituloPeriodico;
+		info += "\nTítulo do Periódico: " + this.tituloVeiculo;
 		info += "\nISSN: " + this.issn;
 		info += "\nConceitos: " + this.conceitos.toString() + ";";
 
