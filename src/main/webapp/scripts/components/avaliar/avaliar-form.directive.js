@@ -1,18 +1,20 @@
 'use strict';
 
-function years() {
-    var currentYear = new Date().getFullYear(), years = [];
-    var finalYear = 1980;
-
-    while (currentYear >= finalYear) {
-        years.push(currentYear--);
-    }
-
-    return years;
-}
-
 angular.module('silq2App')
     .directive('avaliarForm', function() {
+        var currentYear = new Date().getFullYear();
+        var years = function() {
+            var years = [];
+            var initialYear = 1980;
+
+            var i = parseInt(currentYear);
+            while (i >= initialYear) {
+                years.push(i--);
+            }
+
+            return years;
+        };
+
         return {
             restrict: 'E',
             scope: {
@@ -22,9 +24,9 @@ angular.module('silq2App')
             templateUrl: 'scripts/components/avaliar/avaliar-form.html',
             link: function($scope) {
                 $scope.years = years();
-                
+
                 $scope.changeAnoDe = function() {
-                    $scope.model.anoPublicacaoAte = $scope.model.anoPublicacaoDe;
+                    $scope.model.anoPublicacaoAte = currentYear.toString();
                 };
 
                 $scope.yearFilter = function(value) {
