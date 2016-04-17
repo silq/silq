@@ -57,17 +57,12 @@ public class AvaliacaoService {
 
 			String issn = artigo.getIssn();
 			List<Conceito> conceitos = new ArrayList<>();
-			Conceito conceito;
-
 			Optional<QualisPeriodico> singleResult = this.qualisPeriodicoRepository.findOneByIssnAndAreaAvaliacao(issn,
 					avaliarForm.getArea().toUpperCase());
 
 			if (singleResult.isPresent()) {
-				conceito = new Conceito();
-				conceito.setConceito(singleResult.get().getEstrato());
-				conceito.setNomeEvento(singleResult.get().getTitulo());
-				conceito.setSimilaridade("1.0");
-				conceitos.add(conceito);
+				QualisPeriodico periodico = singleResult.get();
+				conceitos.add(new Conceito(periodico.getTitulo(), periodico.getEstrato(), "1.0"));
 			} else if (SilqStringUtils.isBlank(issn)) {
 				String tituloVeiculo;
 				try {
@@ -82,11 +77,7 @@ public class AvaliacaoService {
 							this.createSqlStatement("TB_QUALIS_PERIODICO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
 					while (rs.next()) {
-						conceito = new Conceito();
-						conceito.setConceito(rs.getString("NO_ESTRATO"));
-						conceito.setNomeEvento(rs.getString("NO_TITULO"));
-						conceito.setSimilaridade(rs.getFloat("SML") + "");
-						conceitos.add(conceito);
+						conceitos.add(new Conceito(rs.getString("NO_TITULO"), rs.getString("NO_ESTRATO"), rs.getFloat("SML") + ""));
 					}
 
 					rs.close();
@@ -111,7 +102,6 @@ public class AvaliacaoService {
 			tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
 
 			List<Conceito> conceitos = new ArrayList<>();
-			Conceito conceito;
 
 			try {
 				Connection connection = this.dataSource.getConnection();
@@ -121,11 +111,7 @@ public class AvaliacaoService {
 						this.createSqlStatement("TB_QUALIS_EVENTO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
 				while (rs.next()) {
-					conceito = new Conceito();
-					conceito.setConceito(rs.getString("NO_ESTRATO"));
-					conceito.setNomeEvento(rs.getString("NO_TITULO"));
-					conceito.setSimilaridade(rs.getFloat("SML") + "");
-					conceitos.add(conceito);
+					conceitos.add(new Conceito(rs.getString("NO_TITULO"), rs.getString("NO_ESTRATO"), rs.getFloat("SML") + ""));
 				}
 				trabalho.setConceitos(conceitos);
 

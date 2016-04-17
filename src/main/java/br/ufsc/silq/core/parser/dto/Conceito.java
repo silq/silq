@@ -1,33 +1,13 @@
 package br.ufsc.silq.core.parser.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-public class Conceito implements Comparable<Conceito>{
+@Data
+public class Conceito implements Comparable<Conceito> {
 
-	private String nomeEvento;
-	private String conceito;
-	private String similaridade;
-
-	public Conceito() {
-	}
-
-	@Override
-	public String toString() {
-		String info = "";
-
-		info += this.conceito;
-
-		if (this.similaridade != null && this.similaridade.length() > 4) {
-			this.similaridade = this.similaridade.substring(0, 4);
-		}
-
-		info += " (" + this.similaridade + ")";
-
-		return info;
-	}
+	private final String tituloVeiculo;
+	private final String conceito;
+	private final String similaridade;
 
 	@Override
 	public int compareTo(Conceito o) {
