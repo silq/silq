@@ -16,6 +16,7 @@ import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.business.entities.QualisPeriodico;
 import br.ufsc.silq.core.business.repository.QualisPeriodicoRepository;
 import br.ufsc.silq.core.enums.AvaliacaoType;
+import br.ufsc.silq.core.exception.SilqError;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
@@ -67,34 +68,31 @@ public class SimilarityService {
 				conceito.setSimilaridade("1.0");
 				conceitos.add(conceito);
 			} else if (SilqStringUtils.isBlank(issn)) {
-				String titulo;
+				String tituloVeiculo;
 				try {
-					titulo = artigo.getTituloVeiculo();
-					titulo = SilqStringUtils.normalizeString(titulo);
+					tituloVeiculo = artigo.getTituloVeiculo();
+					tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
 
 					Connection connection = this.dataSource.getConnection();
 
 					Statement st = connection.createStatement();
 					st.executeQuery("SELECT set_limit(" + similarity + "::real)");
-					ResultSet rsSimilarity = st.executeQuery("SELECT NO_ESTRATO, NO_TITULO, SIMILARITY(NO_TITULO, \'"
-							+ titulo + "\') AS SML FROM TB_QUALIS_PERIODICO WHERE NO_TITULO % \'" + titulo
-							+ "\' AND NO_AREA_AVALIACAO LIKE \'%" + conhecimento.toUpperCase()
-							+ "%\' ORDER BY SML DESC LIMIT " + SilqConfig.MAX_PARSE_RESULTS);
+					ResultSet rs = st.executeQuery(
+							this.createSqlStatement("TB_QUALIS_PERIODICO", tituloVeiculo, conhecimento, SilqConfig.MAX_PARSE_RESULTS));
 
-					while (rsSimilarity.next()) {
+					while (rs.next()) {
 						conceito = new Conceito();
-						conceito.setConceito(rsSimilarity.getString("NO_ESTRATO"));
-						conceito.setNomeEvento(rsSimilarity.getString("NO_TITULO"));
-						conceito.setSimilaridade(rsSimilarity.getFloat("SML") + "");
+						conceito.setConceito(rs.getString("NO_ESTRATO"));
+						conceito.setNomeEvento(rs.getString("NO_TITULO"));
+						conceito.setSimilaridade(rs.getFloat("SML") + "");
 						conceitos.add(conceito);
 					}
 
-					rsSimilarity.close();
+					rs.close();
 					st.close();
 					connection.close();
 				} catch (Exception e) {
-					// TODO Lançar exceção ?
-					log.error(e.getMessage() + "\nArtigo: " + artigo);
+					throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
 				}
 			}
 			artigo.setConceitos(conceitos);
@@ -103,8 +101,8 @@ public class SimilarityService {
 
 	private void compareTrabalhos(String similarity, List<Trabalho> trabalhos, String conhecimento) {
 		trabalhos.parallelStream().forEach(trabalho -> {
-			String titulo = trabalho.getTituloVeiculo();
-			titulo = SilqStringUtils.normalizeString(titulo);
+			String tituloVeiculo = trabalho.getTituloVeiculo();
+			tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
 
 			List<Conceito> conceitos = new ArrayList<>();
 			Conceito conceito;
@@ -113,10 +111,8 @@ public class SimilarityService {
 				Connection connection = this.dataSource.getConnection();
 				Statement st = connection.createStatement();
 				st.executeQuery("SELECT set_limit(" + similarity + "::real)");
-				ResultSet rs = st.executeQuery("SELECT NO_ESTRATO, NO_TITULO, SIMILARITY(NO_TITULO, \'" + titulo
-						+ "\') AS SML FROM TB_QUALIS_EVENTO WHERE NO_TITULO % \'" + titulo
-						+ "\' AND NO_AREA_AVALIACAO LIKE \'%" + conhecimento.toUpperCase()
-						+ "\' ORDER BY SML DESC LIMIT " + SilqConfig.MAX_PARSE_RESULTS);
+				ResultSet rs = st.executeQuery(
+						this.createSqlStatement("TB_QUALIS_EVENTO", tituloVeiculo, conhecimento, SilqConfig.MAX_PARSE_RESULTS));
 
 				while (rs.next()) {
 					conceito = new Conceito();
@@ -131,11 +127,27 @@ public class SimilarityService {
 				st.close();
 				connection.close();
 			} catch (Exception e) {
-				// TODO Lançar exceções ou montar uma estrutura pq podem ser
-				// vários
-				log.error(e.getMessage() + "\nTrabalho: " + trabalho);
+				throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
 			}
 		});
+	}
+
+	/**
+	 * Cria uma instrução SQL (Postgres) que, ao executada, retorna os veículos mais similares ao artigo ou trabalho parâmetro.
+	 *
+	 * @param table Tabela a ser utilizada na avaliação.
+	 * @param tituloVeiculo Título do veículo onde o artigo ou trabalho foi publicado/apresentado.
+	 * @param area Área de avaliação a ser utilizada.
+	 * @param limit Número máximo de registros similares a serem retornados.
+	 * @return Uma instrução SQL que utiliza a função de similaridade do PostgreSQL.
+	 */
+	private String createSqlStatement(String table, String tituloVeiculo, String area, int limit) {
+		String sql = "";
+		sql += "SELECT NO_ESTRATO, NO_TITULO, SIMILARITY(NO_TITULO, \'" + tituloVeiculo + "\') AS SML";
+		sql += " FROM " + table + " WHERE NO_TITULO % \'" + tituloVeiculo + "\'";
+		sql += " AND NO_AREA_AVALIACAO LIKE \'%" + area.toUpperCase() + "\'";
+		sql += " ORDER BY SML DESC LIMIT " + limit;
+		return sql;
 	}
 
 }
