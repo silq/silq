@@ -24,11 +24,9 @@ import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.combo.ComboValueHelper;
-import lombok.extern.log4j.Log4j;
 
 @Service
-@Log4j
-public class SimilarityService {
+public class AvaliacaoService {
 
 	@Inject
 	private DataSource dataSource;
@@ -36,7 +34,7 @@ public class SimilarityService {
 	@Inject
 	private QualisPeriodicoRepository qualisPeriodicoRepository;
 
-	public void compare(ParseResult parseResult, AvaliarForm form) {
+	public void avaliar(ParseResult parseResult, AvaliarForm form) {
 		List<Artigo> artigos = parseResult.getArtigos();
 		List<Trabalho> trabalhos = parseResult.getTrabalhos();
 		parseResult.setNivelSimilaridade(ComboValueHelper.getNivelSimilaridadeTexto(form.getNivelSimilaridade()));

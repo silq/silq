@@ -12,7 +12,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import br.ufsc.silq.core.business.service.DocumentManager;
-import br.ufsc.silq.core.business.service.SimilarityService;
+import br.ufsc.silq.core.business.service.AvaliacaoService;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
@@ -33,7 +33,7 @@ import br.ufsc.silq.core.utils.parser.ConverterHelper;
 public class LattesParser {
 
 	@Inject
-	private SimilarityService similarityService;
+	private AvaliacaoService avaliacaoService;
 
 	@Inject
 	private DocumentManager documentManager;
@@ -173,7 +173,7 @@ public class LattesParser {
 		List<Artigo> artigos = ArtigoAttributeGetter.iterateUntilArtigos(raiz);
 		parseResult.setArtigos(artigos);
 
-		this.similarityService.compare(parseResult, form);
+		this.avaliacaoService.avaliar(parseResult, form);
 
 		parseResult.order();
 
