@@ -16,9 +16,22 @@
             <dd>{{results.nomeEspecialidade}}</dd>
             <dt>Área utilizada na avaliação</dt>
             <dd>{{results.areaAvaliada}}</dd>
-            <dt>Totalizador (para nível de confiança {{results.nivelSimilaridade}})</td>
-            <dd>{{results.totalizador}}</dd>
         </dl>
+
+        <h4 class="title-border">Totalizador <small>Nível de confiança: {{results.nivelSimilaridade}}</small></h4>
+
+        <table class="table table-condensed table-striped">
+            <thead>
+                <th>Conceito</th>
+                <th>Qtde.</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="total in results.totalizador">
+                    <td><strong>{{total.conceito}}</strong></td>
+                    <td>{{total.qtde}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="col-md-9">
@@ -43,100 +56,3 @@
         </div>
     </div>
 </div>
-
-<!-- <table class="table table-striped table-hover table-resumo">
-    <tbody>
-        <tr>
-            <td>Nome</td>
-            <td>{{results.nome}}</td>
-        </tr>
-        <tr>
-            <td>Área do conhecimento</td>
-            <td>{{results.areaGrandeAreaConhecimento.nomeArea}}</td>
-        </tr>
-        <tr>
-            <td>Sub área do conhecimento</td>
-            <td>{{results.nomeSubAreaConhecimento}}</td>
-        </tr>
-        <tr>
-            <td>Grande área do conhecimento</td>
-            <td>{{results.areaGrandeAreaConhecimento.nomeGrandeArea}}</td>
-        </tr>
-        <tr>
-            <td>Especialidade</td>
-            <td>{{results.nomeEspecialidade}}</td>
-        </tr>
-        <tr>
-            <td>Totalizador (para nível de confiança {{results.nivelSimilaridade}})</td>
-            <td>{{results.totalizador}}</td>
-        </tr>
-        <tr>
-            <td>Área utilizada na avaliação</td>
-            <td><strong>{{results.areaAvaliada}}</strong></td>
-        </tr>
-    </tbody>
-</table>
-
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>Título do artigo</th>
-            <th>Ano de publicação</th>
-            <th>Título Periódico ou Revista</th>
-            <th>ISSN</th>
-            <th>Conceito</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="artigo in results.artigos | filter: filter">
-            <td>{{ artigo.titulo }}</td>
-            <td>{{ artigo.ano }}</td>
-            <td>{{ artigo.tituloVeiculo }}</td>
-            <td class="nowrap">{{ artigo.issn }}</td>
-            <td class="nowrap text-center" ng-switch="!!artigo.conceitos[0]">
-                <span ng-switch-when="true" title="">
-                    {{ artigo.conceitos[0].conceito }}
-                    ({{ artigo.conceitos[0].similaridade * 100 | number: 0 }}%)
-                    <span ng-switch="artigo.conceitos[0].similaridade == '1.0'">
-                        <i ng-switch-when="true" class="text-success glyphicon glyphicon-ok"></i>
-                        <i ng-switch-when="false" class="text-warning glyphicon glyphicon-ok"></i>
-                    </span>
-                </span>
-                <span title="Nenhum resultado" ng-switch-when="false">
-                    <i class="text-danger glyphicon glyphicon-remove"></i>
-                </span>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>Título do trabalho</th>
-            <th>Ano de publicação</th>
-            <th>Título do Evento</th>
-            <th>Conceito</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="trabalho in results.trabalhos | filter: filter">
-            <td>{{ trabalho.titulo }}</td>
-            <td>{{ trabalho.ano }}</td>
-            <td>{{ trabalho.tituloVeiculo }}</td>
-            <td class="nowrap text-center" ng-switch="!!trabalho.conceitos[0]">
-                <span ng-switch-when="true">
-                    {{ trabalho.conceitos[0].conceito }}
-                    ({{ trabalho.conceitos[0].similaridade * 100 | number: 0 }}%)
-                    <span ng-switch="trabalho.conceitos[0].similaridade == '1.0'">
-                        <i ng-switch-when="true" class="text-success glyphicon glyphicon-ok"></i>
-                        <i ng-switch-when="false" class="text-warning glyphicon glyphicon-ok"></i>
-                    </span>
-                </span>
-                <span title="Nenhum resultado" ng-switch-when="false">
-                    <i class="text-danger glyphicon glyphicon-remove"></i>
-                </span>
-            </td>
-        </tr>
-    </tbody>
-</table> -->

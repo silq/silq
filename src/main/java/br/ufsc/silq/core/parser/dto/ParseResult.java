@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import br.ufsc.silq.core.parser.dto.Conceito.TotalizadorConceito;
 import lombok.Data;
 import lombok.ToString;
 
@@ -40,7 +41,7 @@ public class ParseResult implements Serializable {
 		this.artigos = new ArrayList<>();
 	}
 
-	public String getTotalizador() {
+	public List<TotalizadorConceito> getTotalizador() {
 		ConcurrentMap<String, AtomicInteger> totalizadorMap = new ConcurrentHashMap<String, AtomicInteger>();
 
 		for (Artigo artigo : this.getArtigos()) {
@@ -61,23 +62,12 @@ public class ParseResult implements Serializable {
 			}
 		}
 
-		List<String> keySetList = new ArrayList<>();
-		for (String key : totalizadorMap.keySet()) {
-			keySetList.add(key);
+		List<TotalizadorConceito> totalizador = new ArrayList<>();
+		for (String conceito : totalizadorMap.keySet()) {
+			totalizador.add(new TotalizadorConceito(conceito, totalizadorMap.get(conceito).get()));
 		}
 
-		Collections.sort(keySetList);
-
-		String totalizador = "";
-
-		for (String key : keySetList) {
-			totalizador += totalizadorMap.get(key) + "x " + key + " - ";
-		}
-
-		if (totalizador.length() > 3) {
-			totalizador = totalizador.substring(0, totalizador.length() - 3);
-		}
-
+		Collections.sort(totalizador);
 		return totalizador;
 	}
 
