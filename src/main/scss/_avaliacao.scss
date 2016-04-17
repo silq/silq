@@ -96,12 +96,17 @@
     .similaridade {
     }
 
-    .titulo {
+    .titulo, .ano {
         background-color: #fff;
         color: $text-color;
         font-weight: normal;
         border-color: #ccc;
         max-width: 100%;
+    }
+
+    .ano {
+        border-left-width: 0;
+        font-weight: 600;
     }
 }
 

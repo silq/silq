@@ -24,7 +24,7 @@
 
         <p class="result-conceito-item" ng-repeat="conceito in item.conceitos">
             <span class="label-conceito">
-                <span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span><span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span>
+                <span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span><span class="ano" title="Ano base da avaliação Qualis">{{ conceito.ano }}</span><span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span>
             </span>
         </p>
 

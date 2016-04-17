@@ -36,4 +36,7 @@ public class QualisPeriodico {
 
 	@Column(name = "no_titulo")
 	private String titulo;
+
+	@Column(name = "nu_ano")
+	private Integer ano;
 }

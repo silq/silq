@@ -3,8 +3,18 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-  
+
+    <changeSet id="001" author="silq2">
+    	<sqlFile path="sql/001_structure.sql" relativeToChangelogFile="true"/>
+    	<sqlFile path="sql/002_eventos.sql" relativeToChangelogFile="true"/>
+    	<sqlFile path="sql/003_silq2.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    
     <changeSet id="004" author="silq2">
 			<sqlFile path="sql/004_silq2_db_refactoring.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    
+    <changeSet id="005" author="silq2">
+			<sqlFile path="sql/005_silq2_add_ano_column.sql" relativeToChangelogFile="true"/>
     </changeSet>
 </databaseChangeLog>

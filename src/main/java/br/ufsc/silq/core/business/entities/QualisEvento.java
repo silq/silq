@@ -36,4 +36,7 @@ public class QualisEvento {
 
 	@Column(name = "no_area_avaliacao")
 	private String areaAvaliacao;
+
+	@Column(name = "nu_ano")
+	private Integer ano;
 }

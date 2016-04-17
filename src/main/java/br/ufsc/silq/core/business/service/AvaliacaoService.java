@@ -2,6 +2,7 @@ package br.ufsc.silq.core.business.service;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +63,7 @@ public class AvaliacaoService {
 
 			if (singleResult.isPresent()) {
 				QualisPeriodico periodico = singleResult.get();
-				conceitos.add(new Conceito(periodico.getTitulo(), periodico.getEstrato(), "1.0"));
+				conceitos.add(new Conceito(periodico.getTitulo(), periodico.getEstrato(), "1.0", periodico.getAno()));
 			} else if (SilqStringUtils.isBlank(issn)) {
 				String tituloVeiculo;
 				try {
@@ -77,7 +78,7 @@ public class AvaliacaoService {
 							this.createSqlStatement("TB_QUALIS_PERIODICO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
 					while (rs.next()) {
-						conceitos.add(new Conceito(rs.getString("NO_TITULO"), rs.getString("NO_ESTRATO"), rs.getFloat("SML") + ""));
+						conceitos.add(this.createConceito(rs));
 					}
 
 					rs.close();
@@ -111,7 +112,7 @@ public class AvaliacaoService {
 						this.createSqlStatement("TB_QUALIS_EVENTO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
 				while (rs.next()) {
-					conceitos.add(new Conceito(rs.getString("NO_TITULO"), rs.getString("NO_ESTRATO"), rs.getFloat("SML") + ""));
+					conceitos.add(this.createConceito(rs));
 				}
 				trabalho.setConceitos(conceitos);
 
@@ -125,6 +126,17 @@ public class AvaliacaoService {
 	}
 
 	/**
+	 * Cria um conceito a partir de um ResultSet.
+	 *
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	protected Conceito createConceito(ResultSet rs) throws SQLException {
+		return new Conceito(rs.getString("NO_TITULO"), rs.getString("NO_ESTRATO"), rs.getFloat("SML") + "", rs.getInt("NU_ANO"));
+	}
+
+	/**
 	 * Cria uma instrução SQL (Postgres) que, ao executada, retorna os veículos mais similares ao artigo ou trabalho parâmetro.
 	 *
 	 * @param table Tabela a ser utilizada na avaliação.
@@ -135,7 +147,7 @@ public class AvaliacaoService {
 	 */
 	private String createSqlStatement(String table, String tituloVeiculo, String area, int limit) {
 		String sql = "";
-		sql += "SELECT NO_ESTRATO, NO_TITULO, SIMILARITY(NO_TITULO, \'" + tituloVeiculo + "\') AS SML";
+		sql += "SELECT *, SIMILARITY(NO_TITULO, \'" + tituloVeiculo + "\') AS SML";
 		sql += " FROM " + table + " WHERE NO_TITULO % \'" + tituloVeiculo + "\'";
 		sql += " AND NO_AREA_AVALIACAO LIKE \'%" + area.toUpperCase() + "\'";
 		sql += " ORDER BY SML DESC LIMIT " + limit;

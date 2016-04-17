@@ -29,3 +29,7 @@ ALTER SEQUENCE sq_qualis_cco RENAME TO sq_qualis_evento;
 -- Adição coluna área de avaliação em tb_qualis_evento
 ALTER TABLE tb_qualis_evento ADD COLUMN no_area_avaliacao character varying(50);
 UPDATE tb_qualis_evento SET no_area_avaliacao = 'CIÊNCIA DA COMPUTAÇÃO';
+
+-- Remove a coluna 'nu_ano' de tb_usuario
+ALTER TABLE tb_usuario DROP COLUMN nu_ano;
+
