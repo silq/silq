@@ -39,27 +39,30 @@ public class SimilarityService {
 	public void compare(ParseResult parseResult, AvaliarForm form) {
 		List<Artigo> artigos = parseResult.getArtigos();
 		List<Trabalho> trabalhos = parseResult.getTrabalhos();
-		String conhecimento = form.getArea();
-		String similarity = form.getNivelSimilaridade();
 		parseResult.setNivelSimilaridade(ComboValueHelper.getNivelSimilaridadeTexto(form.getNivelSimilaridade()));
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
-			this.compareArtigos(similarity, artigos, conhecimento);
+			this.avaliarArtigos(artigos, form);
 		}
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
-			this.compareTrabalhos(similarity, trabalhos, conhecimento);
+			this.avaliarTrabalhos(trabalhos, form);
 		}
 	}
 
-	private void compareArtigos(String similarity, List<Artigo> artigos, String conhecimento) {
+	private void avaliarArtigos(List<Artigo> artigos, AvaliarForm avaliarForm) {
 		artigos.parallelStream().forEach((artigo) -> {
+			if (!avaliarForm.periodoInclui(artigo.getAno())) {
+				// Não realiza avaliação do artigo caso não seja do período informado
+				return;
+			}
+
 			String issn = artigo.getIssn();
 			List<Conceito> conceitos = new ArrayList<>();
 			Conceito conceito;
 
 			Optional<QualisPeriodico> singleResult = this.qualisPeriodicoRepository.findOneByIssnAndAreaAvaliacao(issn,
-					conhecimento.toUpperCase());
+					avaliarForm.getArea().toUpperCase());
 
 			if (singleResult.isPresent()) {
 				conceito = new Conceito();
@@ -76,9 +79,9 @@ public class SimilarityService {
 					Connection connection = this.dataSource.getConnection();
 
 					Statement st = connection.createStatement();
-					st.executeQuery("SELECT set_limit(" + similarity + "::real)");
+					st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade() + "::real)");
 					ResultSet rs = st.executeQuery(
-							this.createSqlStatement("TB_QUALIS_PERIODICO", tituloVeiculo, conhecimento, SilqConfig.MAX_PARSE_RESULTS));
+							this.createSqlStatement("TB_QUALIS_PERIODICO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
 					while (rs.next()) {
 						conceito = new Conceito();
@@ -99,8 +102,13 @@ public class SimilarityService {
 		});
 	}
 
-	private void compareTrabalhos(String similarity, List<Trabalho> trabalhos, String conhecimento) {
+	private void avaliarTrabalhos(List<Trabalho> trabalhos, AvaliarForm avaliarForm) {
 		trabalhos.parallelStream().forEach(trabalho -> {
+			if (!avaliarForm.periodoInclui(trabalho.getAno())) {
+				// Não realiza avaliação do trabalho caso não seja do período informado
+				return;
+			}
+
 			String tituloVeiculo = trabalho.getTituloVeiculo();
 			tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
 
@@ -110,9 +118,9 @@ public class SimilarityService {
 			try {
 				Connection connection = this.dataSource.getConnection();
 				Statement st = connection.createStatement();
-				st.executeQuery("SELECT set_limit(" + similarity + "::real)");
+				st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade() + "::real)");
 				ResultSet rs = st.executeQuery(
-						this.createSqlStatement("TB_QUALIS_EVENTO", tituloVeiculo, conhecimento, SilqConfig.MAX_PARSE_RESULTS));
+						this.createSqlStatement("TB_QUALIS_EVENTO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
 				while (rs.next()) {
 					conceito = new Conceito();

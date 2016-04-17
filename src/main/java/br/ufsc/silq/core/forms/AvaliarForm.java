@@ -36,4 +36,18 @@ public class AvaliarForm {
 			this.anoPublicacaoAte = anoPublicacaoAte;
 		}
 	}
+
+	/**
+	 * Checa se o período setado no form (anoPublicacaoDe, anoPublicacaoAte) inclui o ano passado como parâmetro.
+	 *
+	 * @param ano
+	 * @return
+	 */
+	public boolean periodoInclui(int ano) {
+		if (this.getAnoPublicacaoDe() == null || this.getAnoPublicacaoAte() == null) {
+			return true;
+		}
+
+		return true; // TODO (bonetti)
+	}
 }
