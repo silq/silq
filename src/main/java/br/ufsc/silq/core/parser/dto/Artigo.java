@@ -1,46 +1,20 @@
 package br.ufsc.silq.core.parser.dto;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class Artigo implements Comparable<Artigo>, Serializable {
+public class Artigo implements Comparable<Artigo> {
+	private final String titulo;
+	private final Integer ano;
+	private final String tituloVeiculo;
+	private final String issn;
+	private List<Conceito> conceitos = new ArrayList<>();
 
-	private static final long serialVersionUID = 1265140499533405908L;
-
-	private String titulo;
-	private Integer ano;
-	private String tituloVeiculo;
-	private String issn;
-	private List<Conceito> conceitos;
-
-	public Artigo() {
-		this.titulo = "";
-		this.tituloVeiculo = "";
-		this.issn = "";
-		this.ano = new Integer(0);
-		this.conceitos = new ArrayList<Conceito>();
-		this.conceitos.add(new Conceito());
-	}
-
-	@Override
-	public String toString() {
-		String info = "";
-
-		info += "\nNome do Artigo: " + this.titulo;
-		info += "\nAno: " + this.ano;
-		info += "\nTítulo do Periódico: " + this.tituloVeiculo;
-		info += "\nISSN: " + this.issn;
-		info += "\nConceitos: " + this.conceitos.toString() + ";";
-
-		return info;
-	}
-
-	public void setIssn(String issn) {
-		this.issn = issn.length() == 8 ? issn.substring(0, 4) + "-" + issn.substring(4, 8) : "-";
+	public String getIssn() {
+		return this.issn.length() == 8 ? this.issn.substring(0, 4) + "-" + this.issn.substring(4, 8) : "-";
 	}
 
 	@Override

@@ -33,24 +33,27 @@ public class ArtigoAttributeGetter {
 	private static Artigo getArtigoInfo(Node raizLocal) {
 		NodeList filhos = raizLocal.getChildNodes();
 
-		Artigo artigo = new Artigo();
-		for (int i = 0; i < filhos.getLength(); i++) {
+		String titulo = null;
+		Integer ano = null;
+		String tituloVeiculo = null;
+		String issn = null;
 
+		for (int i = 0; i < filhos.getLength(); i++) {
 			Node filho = filhos.item(i);
 			String nodeName = filho.getNodeName().toLowerCase();
 
 			if (nodeName.equals("dados-basicos-do-artigo")) {
 				List<String> result = getAttribute(filho, Arrays.asList("titulo-do-artigo", "ano-do-artigo"));
-				artigo.setTitulo(result.get(1));
-				artigo.setAno(ConverterHelper.parseIntegerSafely(result.get(0)));
+				titulo = result.get(1);
+				ano = ConverterHelper.parseIntegerSafely(result.get(0));
 			} else if (nodeName.equals("detalhamento-do-artigo")) {
 				List<String> result = getAttribute(filho, Arrays.asList("titulo-do-periodico-ou-revista", "issn"));
-				artigo.setTituloVeiculo(result.get(1));
-				artigo.setIssn(result.get(0));
+				tituloVeiculo = result.get(1);
+				issn = result.get(0);
 			}
 		}
 
-		return artigo;
+		return new Artigo(titulo, ano, tituloVeiculo, issn);
 	}
 
 	public static List<String> getAttribute(Node nodo, List<String> attrList) {

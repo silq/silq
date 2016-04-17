@@ -11,8 +11,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.business.service.AvaliacaoService;
+import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
@@ -107,8 +107,7 @@ public class LattesParser {
 
 	/**
 	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
-	 * currículo Lattes (em XML) e avalia-os utilizando @{link
-	 * SimilarityService}.
+	 * currículo Lattes (em XML) e avalia-os utilizando {@link AvaliacaoService}.
 	 *
 	 * @param curriculum
 	 *            Byte array do Currículo Lattes (em XML) a ser avaliado.
@@ -123,7 +122,7 @@ public class LattesParser {
 
 	/**
 	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
-	 * currículo Lattes (em XML) e avalia-os utilizando @{link SimilarityService}.
+	 * currículo Lattes (em XML) e avalia-os utilizando {@link AvaliacaoService}.
 	 *
 	 * @param document Currículo Lattes (em XML) a ser avaliado.
 	 * @param form Opções de avaliação.
@@ -158,13 +157,11 @@ public class LattesParser {
 		if (trabalhos.size() > 0) {
 			List<Trabalho> trabalhosParse = new ArrayList<>();
 			for (int i = 0; i < trabalhos.size(); i += 3) {
-				Trabalho trabalho = new Trabalho();
+				String titulo = trabalhos.get(i + 1);
+				Integer ano = ConverterHelper.parseIntegerSafely(trabalhos.get(i));
+				String tituloVeiculo = trabalhos.get(i + 2);
 
-				trabalho.setAno(ConverterHelper.parseIntegerSafely(trabalhos.get(i)));
-				trabalho.setTitulo(trabalhos.get(i + 1));
-				trabalho.setTituloVeiculo(trabalhos.get(i + 2));
-
-				trabalhosParse.add(trabalho);
+				trabalhosParse.add(new Trabalho(titulo, ano, tituloVeiculo));
 			}
 
 			parseResult.setTrabalhos(trabalhosParse);
