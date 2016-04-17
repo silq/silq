@@ -28,7 +28,6 @@ import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
-import br.ufsc.silq.core.utils.parser.ConverterHelper;
 
 @Component
 public class PesquisadorPeriodoGraphProcessor {
@@ -74,10 +73,7 @@ public class PesquisadorPeriodoGraphProcessor {
 	private void processParseResult(PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto, Periodo periodo, ParseResult parseResult, String conceitoFiltro) {
 		Map<Integer, ConcurrentMap<String, AtomicInteger>> mapAnoConceito = pesquisadorEstratoAnoDto.getMapConceitoQuantidade();
 
-		Integer primeiroAno = ConverterHelper.parseIntegerSafely(periodo.getPrimeiroAno());
-		Integer ultimoAno = ConverterHelper.parseIntegerSafely(periodo.getUltimoAno());
-
-		for (int ano = primeiroAno; ano <= ultimoAno; ano++) {
+		for (int ano = periodo.getPrimeiroAno(); ano <= periodo.getUltimoAno(); ano++) {
 			ConcurrentMap<String, AtomicInteger> mapConceitoQuantidade = mapAnoConceito.get(ano);
 			if (mapConceitoQuantidade == null) {
 				mapAnoConceito.put(ano, new ConcurrentHashMap<String, AtomicInteger>());

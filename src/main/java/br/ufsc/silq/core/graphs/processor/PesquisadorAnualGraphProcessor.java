@@ -27,7 +27,6 @@ import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
-import br.ufsc.silq.core.utils.parser.ConverterHelper;
 
 @Component
 public class PesquisadorAnualGraphProcessor {
@@ -41,7 +40,7 @@ public class PesquisadorAnualGraphProcessor {
 	@Inject
 	private LattesParser lattesParser;
 
-	public PesquisadorEstratoAnoDto getPesquisadorEstratoAnoDto(Long idGrupo, String nivelSimilaridade, String conceito, AvaliacaoType tipoAvaliacao, String ano)
+	public PesquisadorEstratoAnoDto getPesquisadorEstratoAnoDto(Long idGrupo, String nivelSimilaridade, String conceito, AvaliacaoType tipoAvaliacao, Integer ano)
 			throws SilqLattesException {
 		PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto = new PesquisadorEstratoAnoDto();
 
@@ -58,7 +57,7 @@ public class PesquisadorAnualGraphProcessor {
 		return pesquisadorEstratoAnoDto;
 	}
 
-	private AvaliarForm getAvaliarForm(String areaAtuacao, String ano, String nivelSimilaridade, AvaliacaoType tipoAvaliacao) {
+	private AvaliarForm getAvaliarForm(String areaAtuacao, Integer ano, String nivelSimilaridade, AvaliacaoType tipoAvaliacao) {
 		AvaliarForm avaliarForm = new AvaliarForm();
 
 		avaliarForm.setArea("Ciência da Computação");
@@ -70,10 +69,8 @@ public class PesquisadorAnualGraphProcessor {
 		return avaliarForm;
 	}
 
-	private void processParseResult(PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto, String anoPublicacao, ParseResult parseResult, String conceitoFiltro) {
+	private void processParseResult(PesquisadorEstratoAnoDto pesquisadorEstratoAnoDto, Integer ano, ParseResult parseResult, String conceitoFiltro) {
 		Map<Integer, ConcurrentMap<String, AtomicInteger>> mapAnoConceito = pesquisadorEstratoAnoDto.getMapConceitoQuantidade();
-
-		Integer ano = ConverterHelper.parseIntegerSafely(anoPublicacao);
 
 		ConcurrentMap<String, AtomicInteger> mapConceitoQuantidade = mapAnoConceito.get(ano);
 		if (mapConceitoQuantidade == null) {

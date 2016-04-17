@@ -16,23 +16,23 @@ public class AvaliarForm {
 	@NotBlank
 	private String nivelSimilaridade = "0.4";
 
-	@NotBlank
-	private String anoPublicacaoDe = "1985";
+	@NotNull
+	private Integer anoPublicacaoDe = 1980;
 
-	@NotBlank
-	private String anoPublicacaoAte = "10000";
+	@NotNull
+	private Integer anoPublicacaoAte = 2016000;
 
 	@NotNull
 	private AvaliacaoType tipoAvaliacao = AvaliacaoType.AMBOS;
 
-	public void setAnoPublicacaoDe(String anoPublicacaoDe) {
-		if (anoPublicacaoDe != null && !anoPublicacaoDe.isEmpty()) {
+	public void setAnoPublicacaoDe(Integer anoPublicacaoDe) {
+		if (anoPublicacaoDe != null) {
 			this.anoPublicacaoDe = anoPublicacaoDe;
 		}
 	}
 
-	public void setAnoPublicacaoAte(String anoPublicacaoAte) {
-		if (anoPublicacaoAte != null && !anoPublicacaoAte.isEmpty()) {
+	public void setAnoPublicacaoAte(Integer anoPublicacaoAte) {
+		if (anoPublicacaoAte != null) {
 			this.anoPublicacaoAte = anoPublicacaoAte;
 		}
 	}
@@ -48,6 +48,6 @@ public class AvaliarForm {
 			return true;
 		}
 
-		return true; // TODO (bonetti)
+		return ano >= this.getAnoPublicacaoDe() && ano <= this.getAnoPublicacaoAte();
 	}
 }

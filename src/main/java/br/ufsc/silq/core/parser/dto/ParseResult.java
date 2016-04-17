@@ -8,7 +8,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import br.ufsc.silq.core.utils.parser.ConverterHelper;
 import lombok.Data;
 import lombok.ToString;
 
@@ -29,8 +28,8 @@ public class ParseResult implements Serializable {
 	// Dados setados após extração:
 	private String areaAvaliada;
 	private String nivelSimilaridade;
-	private String anoPublicacaoDe;
-	private String anoPublicacaoAte;
+	private Integer anoPublicacaoDe;
+	private Integer anoPublicacaoAte;
 
 	public ParseResult() {
 		this.nome = "";
@@ -87,20 +86,6 @@ public class ParseResult implements Serializable {
 		Collections.sort(this.getTrabalhos());
 	}
 
-	public List<Trabalho> getTrabalhosByAno() {
-		Integer anoDe = ConverterHelper.parseIntegerSafely(this.getAnoPublicacaoDe());
-		Integer anoAte = ConverterHelper.parseIntegerSafely(this.getAnoPublicacaoAte());
-		ArrayList<Trabalho> trabalhos = new ArrayList<Trabalho>();
-
-		for (Trabalho trabalho : this.getTrabalhos()) {
-			if (anoDe <= trabalho.getAno() && trabalho.getAno() <= anoAte) {
-				trabalhos.add(trabalho);
-			}
-		}
-
-		return trabalhos;
-	}
-
 	public List<Trabalho> getTrabalhosByAno(Integer ano) {
 		ArrayList<Trabalho> trabalhos = new ArrayList<Trabalho>();
 
@@ -111,20 +96,6 @@ public class ParseResult implements Serializable {
 		}
 
 		return trabalhos;
-	}
-
-	public List<Artigo> getArtigosByAno() {
-		Integer anoDe = ConverterHelper.parseIntegerSafely(this.getAnoPublicacaoDe());
-		Integer anoAte = ConverterHelper.parseIntegerSafely(this.getAnoPublicacaoAte());
-		ArrayList<Artigo> artigos = new ArrayList<Artigo>();
-
-		for (Artigo artigo : this.getArtigos()) {
-			if (anoDe <= artigo.getAno() && artigo.getAno() <= anoAte) {
-				artigos.add(artigo);
-			}
-		}
-
-		return artigos;
 	}
 
 	public List<Artigo> getArtigosByAno(Integer ano) {
