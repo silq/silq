@@ -17,7 +17,6 @@ import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
-import br.ufsc.silq.core.parser.dto.PesquisadorResult;
 
 public class LattesParserTest extends WebContextTest {
 
@@ -51,18 +50,6 @@ public class LattesParserTest extends WebContextTest {
 
 		Assertions.assertThat(this.lattesParser.extractDadosGerais(this.documentXmlRaul)).isNotNull();
 		Assertions.assertThat(this.lattesParser.extractDadosGerais(this.documentXmlRonaldo)).isNotNull();
-	}
-
-	@Test
-	public void testParseCurriculaPesquisador() throws SilqException {
-		PesquisadorResult result = this.lattesParser.parseCurriculumPesquisador(this.documentXmlRaul);
-		// System.out.println(result);
-
-		Assertions.assertThat(result.getNome()).isEqualTo("Raul Sidnei Wazlawick");
-		Assertions.assertThat(result.getIdCurriculo()).isEqualTo(7541399131195077L);
-
-		Assertions.assertThat(this.lattesParser.parseCurriculumPesquisador(this.documentXmlChristiane)).isNotNull();
-		Assertions.assertThat(this.lattesParser.parseCurriculumPesquisador(this.documentXmlRonaldo)).isNotNull();
 	}
 
 }

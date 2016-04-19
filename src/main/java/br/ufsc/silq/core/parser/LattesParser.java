@@ -19,7 +19,6 @@ import br.ufsc.silq.core.parser.dto.AreaConhecimento;
 import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.parser.dto.ParseResult;
-import br.ufsc.silq.core.parser.dto.PesquisadorResult;
 import br.ufsc.silq.core.parser.dto.TipoOrigemCurriculo;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.utils.SilqDataUtils;
@@ -68,31 +67,6 @@ public class LattesParser {
 		}
 
 		return dadosGeraisResult;
-	}
-
-	/**
-	 * Extrai alguns dados gerais do currículo Lattes (em XML) de um pesquisador.
-	 *
-	 * @param curriculumXml Currículo Lattes em XML do pesquisador.
-	 * @return
-	 * @throws SilqException
-	 */
-	public PesquisadorResult parseCurriculumPesquisador(Document curriculumXml) {
-		PesquisadorResult pesquisadorResult = new PesquisadorResult();
-
-		Node nodoRaiz = this.getNodoRaiz(curriculumXml);
-
-		List<String> pesquisadorList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
-		// TODO Currículo sem ID! Desatualizado!
-		pesquisadorResult.setIdCurriculo(Long.parseLong(pesquisadorList.get(2)));
-		pesquisadorResult.setUltimaAtualizacao(SilqDataUtils.formatDates(pesquisadorList.get(0), pesquisadorList.get(1)));
-
-		List<String> nomeList = AttributeGetter.iterateNodes(ParserSets.NOME_SET, nodoRaiz);
-		if (nomeList.size() == 1) {
-			pesquisadorResult.setNome(nomeList.get(0));
-		}
-
-		return pesquisadorResult;
 	}
 
 	/**

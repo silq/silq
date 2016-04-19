@@ -16,7 +16,7 @@ import br.ufsc.silq.core.business.repository.PesquisadorRepository;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.LattesParser;
-import br.ufsc.silq.core.parser.dto.PesquisadorResult;
+import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 
 @Service
 public class PesquisadorService {
@@ -52,14 +52,14 @@ public class PesquisadorService {
 	 * @throws SilqException
 	 */
 	public Pesquisador parseUploadPesquisador(MultipartFile upload) throws SilqLattesException {
-		Document document = this.documentManager.extractXmlDocumentFromUpload(upload);
-		PesquisadorResult result = this.lattesParser.parseCurriculumPesquisador(document);
+		Document lattes = this.documentManager.extractXmlDocumentFromUpload(upload);
+		DadosGeraisResult result = this.lattesParser.extractDadosGerais(lattes);
 
 		Pesquisador pesquisador = new Pesquisador();
-		String curriculum = this.documentManager.documentToString(document);
+		String curriculum = this.documentManager.documentToString(lattes);
 		pesquisador.setCurriculoXml(curriculum.getBytes());
 		pesquisador.setNome(result.getNome());
-		pesquisador.setIdCurriculo(result.getIdCurriculo());
+		pesquisador.setIdCurriculo(Long.parseLong(result.getIdCurriculo())); // TODO (bonetti): alterar para String ou manter Long?
 		pesquisador.setDataAtualizacaoCurriculo(result.getUltimaAtualizacao());
 		pesquisador.setDataAtualizacaoUsuario(new Date());
 		return pesquisador;
