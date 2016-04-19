@@ -10,21 +10,25 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Document;
 
 import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.business.entities.QualisPeriodico;
 import br.ufsc.silq.core.business.repository.QualisPeriodicoRepository;
+import br.ufsc.silq.core.commondto.AvaliacaoResult;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.exception.SilqError;
+import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
+import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.utils.SilqStringUtils;
-import br.ufsc.silq.core.utils.combo.ComboValueHelper;
 
 @Service
 public class AvaliacaoService {
@@ -35,94 +39,142 @@ public class AvaliacaoService {
 	@Inject
 	private QualisPeriodicoRepository qualisPeriodicoRepository;
 
-	public void avaliar(ParseResult parseResult, AvaliarForm form) {
-		List<Artigo> artigos = parseResult.getArtigos();
-		List<Trabalho> trabalhos = parseResult.getTrabalhos();
-		parseResult.setNivelSimilaridade(ComboValueHelper.getNivelSimilaridadeTexto(form.getNivelSimilaridade()));
+	@Inject
+	private LattesParser lattesParser;
+
+	/**
+	 * Extrai dados do currículo Lattes utilizando {@link LattesParser} e avalia-o.
+	 *
+	 * @param lattes XML do currículo Lattes do pesquisador a ser avaliado.
+	 * @param avaliarForm Formulário contendo as opções de avaliação.
+	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
+	 * @throws SilqLattesException
+	 */
+	public AvaliacaoResult avaliar(Document lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
+		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
+		return this.avaliar(parseResult, avaliarForm);
+	}
+
+	/**
+	 * Extrai dados do currículo Lattes utilizando {@link LattesParser} e avalia-o.
+	 *
+	 * @param lattes Byte array do XML do currículo Lattes do pesquisador a ser avaliado.
+	 * @param avaliarForm Formulário contendo as opções de avaliação.
+	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
+	 * @throws SilqLattesException
+	 */
+	public AvaliacaoResult avaliar(byte[] lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
+		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
+		return this.avaliar(parseResult, avaliarForm);
+	}
+
+	/**
+	 * Avalia dados de um currículo Lattes já parseados pelo {@link LattesParser}.
+	 *
+	 * @param parseResult Resultado do parsing do currículo Lattes de um pesquisador.
+	 * @param avaliarForm Formulário contendo as opções de avaliação.
+	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
+	 * @throws SilqLattesException
+	 */
+	public AvaliacaoResult avaliar(ParseResult parseResult, AvaliarForm form) {
+		AvaliacaoResult result = new AvaliacaoResult(form);
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
-			this.avaliarArtigos(artigos, form);
+			parseResult.getArtigos().parallelStream().forEach((artigo) -> {
+				if (!form.periodoInclui(artigo.getAno())) {
+					// Não avalia artigo que não pertence ao período de avaliação informado.
+					return;
+				}
+
+				result.getArtigos().add(this.avaliarArtigo(artigo, form));
+			});
 		}
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
-			this.avaliarTrabalhos(trabalhos, form);
-		}
-	}
-
-	private void avaliarArtigos(List<Artigo> artigos, AvaliarForm avaliarForm) {
-		artigos.parallelStream().forEach((artigo) -> {
-			if (!avaliarForm.periodoInclui(artigo.getAno())) {
-				// Não realiza avaliação do artigo caso não seja do período informado
-				return;
-			}
-
-			String issn = artigo.getIssn();
-			List<Conceito> conceitos = new ArrayList<>();
-			Optional<QualisPeriodico> singleResult = this.qualisPeriodicoRepository.findOneByIssnAndAreaAvaliacao(issn,
-					avaliarForm.getArea().toUpperCase());
-
-			if (singleResult.isPresent()) {
-				QualisPeriodico periodico = singleResult.get();
-				conceitos.add(new Conceito(periodico.getTitulo(), periodico.getEstrato(), "1.0", periodico.getAno()));
-			} else if (SilqStringUtils.isBlank(issn)) {
-				String tituloVeiculo;
-				try {
-					tituloVeiculo = artigo.getTituloVeiculo();
-					tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
-
-					Connection connection = this.dataSource.getConnection();
-
-					Statement st = connection.createStatement();
-					st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade() + "::real)");
-					ResultSet rs = st.executeQuery(
-							this.createSqlStatement("TB_QUALIS_PERIODICO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
-
-					while (rs.next()) {
-						conceitos.add(this.createConceito(rs));
-					}
-
-					rs.close();
-					st.close();
-					connection.close();
-				} catch (Exception e) {
-					throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
+			parseResult.getTrabalhos().parallelStream().forEach((trabalho) -> {
+				if (!form.periodoInclui(trabalho.getAno())) {
+					// Não avalia trabalho que não pertence ao período de avaliação informado.
+					return;
 				}
-			}
-			artigo.setConceitos(conceitos);
-		});
+
+				result.getTrabalhos().add(this.avaliarTrabalho(trabalho, form));
+			});
+		}
+
+		// TODO: remove gambiarra
+		// result.getForm().setNivelSimilaridade(ComboValueHelper.getNivelSimilaridadeTexto(form.getNivelSimilaridade()));
+		result.setNome(parseResult.getNome());
+		result.setAreaGrandeAreaConhecimento(result.getAreaGrandeAreaConhecimento());
+		result.setNomeEspecialidade(parseResult.getNomeEspecialidade());
+		result.setNomeSubAreaConhecimento(parseResult.getNomeSubAreaConhecimento());
+
+		result.order();
+		return result;
 	}
 
-	private void avaliarTrabalhos(List<Trabalho> trabalhos, AvaliarForm avaliarForm) {
-		trabalhos.parallelStream().forEach(trabalho -> {
-			if (!avaliarForm.periodoInclui(trabalho.getAno())) {
-				// Não realiza avaliação do trabalho caso não seja do período informado
-				return;
-			}
+	protected Artigo avaliarArtigo(Artigo artigo, AvaliarForm avaliarForm) {
+		String issn = artigo.getIssn();
+		List<Conceito> conceitos = new ArrayList<>();
+		Optional<QualisPeriodico> singleResult = this.qualisPeriodicoRepository.findOneByIssnAndAreaAvaliacao(issn,
+				avaliarForm.getArea().toUpperCase());
 
-			String tituloVeiculo = trabalho.getTituloVeiculo();
-			tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
-
-			List<Conceito> conceitos = new ArrayList<>();
-
+		if (singleResult.isPresent()) {
+			QualisPeriodico periodico = singleResult.get();
+			conceitos.add(new Conceito(periodico.getTitulo(), periodico.getEstrato(), "1.0", periodico.getAno()));
+		} else if (SilqStringUtils.isBlank(issn)) {
+			String tituloVeiculo;
 			try {
+				tituloVeiculo = artigo.getTituloVeiculo();
+				tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
+
 				Connection connection = this.dataSource.getConnection();
+
 				Statement st = connection.createStatement();
 				st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade() + "::real)");
 				ResultSet rs = st.executeQuery(
-						this.createSqlStatement("TB_QUALIS_EVENTO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
+						this.createSqlStatement("TB_QUALIS_PERIODICO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
 				while (rs.next()) {
 					conceitos.add(this.createConceito(rs));
 				}
-				trabalho.setConceitos(conceitos);
 
 				rs.close();
 				st.close();
 				connection.close();
 			} catch (Exception e) {
-				throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
+				throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
 			}
-		});
+		}
+		artigo.setConceitos(conceitos);
+		return artigo;
+	}
+
+	protected Trabalho avaliarTrabalho(Trabalho trabalho, AvaliarForm avaliarForm) {
+		String tituloVeiculo = trabalho.getTituloVeiculo();
+		tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
+
+		List<Conceito> conceitos = new ArrayList<>();
+
+		try {
+			Connection connection = this.dataSource.getConnection();
+			Statement st = connection.createStatement();
+			st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade() + "::real)");
+			ResultSet rs = st.executeQuery(
+					this.createSqlStatement("TB_QUALIS_EVENTO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
+
+			while (rs.next()) {
+				conceitos.add(this.createConceito(rs));
+			}
+			trabalho.setConceitos(conceitos);
+
+			rs.close();
+			st.close();
+			connection.close();
+		} catch (Exception e) {
+			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
+		}
+
+		return trabalho;
 	}
 
 	/**
@@ -145,7 +197,7 @@ public class AvaliacaoService {
 	 * @param limit Número máximo de registros similares a serem retornados.
 	 * @return Uma instrução SQL que utiliza a função de similaridade do PostgreSQL.
 	 */
-	private String createSqlStatement(String table, String tituloVeiculo, String area, int limit) {
+	protected String createSqlStatement(String table, String tituloVeiculo, String area, int limit) {
 		String sql = "";
 		sql += "SELECT *, SIMILARITY(NO_TITULO, \'" + tituloVeiculo + "\') AS SML";
 		sql += " FROM " + table + " WHERE NO_TITULO % \'" + tituloVeiculo + "\'";

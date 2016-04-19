@@ -19,15 +19,15 @@ import org.springframework.web.multipart.MultipartFile;
 import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
+import br.ufsc.silq.core.business.service.AvaliacaoService;
 import br.ufsc.silq.core.business.service.DadoGeralService;
 import br.ufsc.silq.core.business.service.GrupoService;
 import br.ufsc.silq.core.business.service.PesquisadorService;
+import br.ufsc.silq.core.commondto.AvaliacaoResult;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.GrupoForm;
-import br.ufsc.silq.core.parser.LattesParser;
-import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.web.rest.exception.HttpBadRequest;
 import br.ufsc.silq.web.rest.exception.HttpNotFound;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +47,7 @@ public class GrupoResource {
 	private DadoGeralService dadoGeralService;
 
 	@Inject
-	private LattesParser lattesParser;
+	private AvaliacaoService avaliacaoService;
 
 	/**
 	 * Pesquisa por um Grupo com o ID especificado e que o usuário atual tenha
@@ -162,7 +162,7 @@ public class GrupoResource {
 	 * @throws SilqLattesException
 	 */
 	@RequestMapping(value = "/grupos/{grupoId}/avaliar/{pesquisadorId}", method = RequestMethod.GET)
-	public ResponseEntity<?> avaliarPesquisador(@PathVariable Long grupoId, @PathVariable Long pesquisadorId)
+	public ResponseEntity<AvaliacaoResult> avaliarPesquisador(@PathVariable Long grupoId, @PathVariable Long pesquisadorId)
 			throws SilqLattesException {
 		log.debug("Avaliar Pesquisador: {}, {}", grupoId, pesquisadorId);
 
@@ -176,7 +176,7 @@ public class GrupoResource {
 		Pesquisador pesquisador = this.pesquisadorService.findOneById(pesquisadorId)
 				.orElseThrow(() -> new HttpNotFound("Pesquisador não encontrado"));
 
-		ParseResult result = this.lattesParser.parseCurriculum(pesquisador.getCurriculoXml(), avaliarForm);
+		AvaliacaoResult result = this.avaliacaoService.avaliar(pesquisador.getCurriculoXml(), avaliarForm);
 
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}

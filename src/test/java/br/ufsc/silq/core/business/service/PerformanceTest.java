@@ -11,12 +11,11 @@ import br.ufsc.silq.Fixtures;
 import br.ufsc.silq.WebContextTest;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
-import br.ufsc.silq.core.parser.LattesParser;
 
 public class PerformanceTest extends WebContextTest {
 
 	@Inject
-	private LattesParser lattesParser;
+	private AvaliacaoService avaliacaoService;
 
 	@Inject
 	private DocumentManager documentManager;
@@ -78,7 +77,7 @@ public class PerformanceTest extends WebContextTest {
 		form.setArea("Ciência da Computação");
 
 		long tStart = System.currentTimeMillis();
-		this.lattesParser.parseCurriculum(document, form);
+		this.avaliacaoService.avaliar(document, form);
 		long tEnd = System.currentTimeMillis();
 		double elapsedSeconds = (tEnd - tStart) / 1000.0;
 

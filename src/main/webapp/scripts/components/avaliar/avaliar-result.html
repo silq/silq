@@ -15,10 +15,12 @@
             <dt>Especialidade</dt>
             <dd>{{results.nomeEspecialidade}}</dd>
             <dt>Área utilizada na avaliação</dt>
-            <dd>{{results.areaAvaliada}}</dd>
+            <dd>{{results.form.area}}</dd>
+            <dt>Período de avaliação</dt>
+            <dd>{{results.form.anoPublicacaoDe}} - {{results.form.anoPublicacaoAte}}</dd>
         </dl>
 
-        <h4 class="title-border">Totalizador <small>Nível de confiança: {{results.nivelSimilaridade}}</small></h4>
+        <h4 class="title-border">Totalizador <small>Nível de confiança: {{results.form.nivelSimilaridade}}</small></h4>
 
         <table class="table table-condensed table-striped">
             <thead>

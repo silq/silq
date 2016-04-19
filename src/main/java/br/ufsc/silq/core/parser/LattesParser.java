@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
 
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import br.ufsc.silq.core.business.service.AvaliacaoService;
 import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
-import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.attribute.ArtigoAttributeGetter;
 import br.ufsc.silq.core.parser.attribute.AttributeGetter;
 import br.ufsc.silq.core.parser.dto.AreaConhecimento;
@@ -33,16 +30,12 @@ import br.ufsc.silq.core.utils.parser.ConverterHelper;
 public class LattesParser {
 
 	@Inject
-	private AvaliacaoService avaliacaoService;
-
-	@Inject
 	private DocumentManager documentManager;
 
 	/**
 	 * Extrai os dados gerais do currículo Lattes (em XML) de um pesquisador
 	 *
-	 * @param file
-	 *            Currículo Lattes em XML do pesquisador.
+	 * @param file Currículo Lattes em XML do pesquisador.
 	 * @return Os dados gerais do pesquisador extraídos do currículo.
 	 * @throws SilqException
 	 */
@@ -79,11 +72,9 @@ public class LattesParser {
 	}
 
 	/**
-	 * Extrai alguns dados gerais do currículo Lattes (em XML) de um
-	 * pesquisador.
+	 * Extrai alguns dados gerais do currículo Lattes (em XML) de um pesquisador.
 	 *
-	 * @param curriculumXml
-	 *            Currículo Lattes em XML do pesquisador.
+	 * @param curriculumXml Currículo Lattes em XML do pesquisador.
 	 * @return
 	 * @throws SilqException
 	 */
@@ -106,34 +97,25 @@ public class LattesParser {
 	}
 
 	/**
-	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
-	 * currículo Lattes (em XML) e avalia-os utilizando {@link AvaliacaoService}.
+	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu currículo Lattes (em XML).
 	 *
-	 * @param curriculum
-	 *            Byte array do Currículo Lattes (em XML) a ser avaliado.
-	 * @param form
-	 *            Opções de avaliação.
+	 * @param curriculum Byte array do Currículo Lattes (em XML) a ser avaliado.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
 	 * @throws SilqLattesException
 	 */
-	public ParseResult parseCurriculum(byte[] curriculum, @Valid AvaliarForm form) throws SilqLattesException {
-		return this.parseCurriculum(this.documentManager.stringToDocument(new String(curriculum)), form);
+	public ParseResult parseCurriculum(byte[] curriculum) throws SilqLattesException {
+		return this.parseCurriculum(this.documentManager.stringToDocument(new String(curriculum)));
 	}
 
 	/**
-	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu
-	 * currículo Lattes (em XML) e avalia-os utilizando {@link AvaliacaoService}.
+	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu currículo Lattes (em XML).
 	 *
 	 * @param document Currículo Lattes (em XML) a ser avaliado.
-	 * @param form Opções de avaliação.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
 	 * @throws SilqLattesException Caso o documento XML enviado não seja um currículo Lattes válido.
 	 */
-	public ParseResult parseCurriculum(Document document, @Valid AvaliarForm form) throws SilqLattesException {
+	public ParseResult parseCurriculum(Document document) throws SilqLattesException {
 		ParseResult parseResult = new ParseResult();
-		parseResult.setAreaAvaliada(form.getArea());
-		parseResult.setAnoPublicacaoDe(form.getAnoPublicacaoDe());
-		parseResult.setAnoPublicacaoAte(form.getAnoPublicacaoAte());
 
 		Node raiz = this.getNodoRaiz(document);
 
@@ -170,10 +152,7 @@ public class LattesParser {
 		List<Artigo> artigos = ArtigoAttributeGetter.iterateUntilArtigos(raiz);
 		parseResult.setArtigos(artigos);
 
-		this.avaliacaoService.avaliar(parseResult, form);
-
 		parseResult.order();
-
 		return parseResult;
 	}
 

@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.ufsc.silq.core.business.entities.DadoGeral;
+import br.ufsc.silq.core.business.service.AvaliacaoService;
 import br.ufsc.silq.core.business.service.DadoGeralService;
+import br.ufsc.silq.core.commondto.AvaliacaoResult;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
-import br.ufsc.silq.core.parser.LattesParser;
-import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.web.cache.AvaliacaoCache;
 import br.ufsc.silq.web.cache.CurriculumCache;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
@@ -39,7 +39,7 @@ public class AvaliarResource {
 	private DadoGeralService dadoGeralService;
 
 	@Inject
-	private LattesParser lattesParser;
+	private AvaliacaoService avaliacaoService;
 
 	@Inject
 	private CurriculumCache curriculumCache;
@@ -53,9 +53,9 @@ public class AvaliarResource {
 	 * @throws SilqLattesException
 	 */
 	@RequestMapping(value = "/avaliar/atual", method = RequestMethod.POST)
-	public ResponseEntity<?> avaliarAtual(@Valid @RequestBody AvaliarForm avaliarForm) throws SilqLattesException {
+	public ResponseEntity<AvaliacaoResult> avaliarAtual(@Valid @RequestBody AvaliarForm avaliarForm) throws SilqLattesException {
 		DadoGeral dadoGeral = this.dadoGeralService.getDadoGeral();
-		ParseResult result = this.lattesParser.parseCurriculum(dadoGeral.getCurriculoXml(), avaliarForm);
+		AvaliacaoResult result = this.avaliacaoService.avaliar(dadoGeral.getCurriculoXml(), avaliarForm);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
@@ -87,12 +87,12 @@ public class AvaliarResource {
 	 * posteriores.
 	 */
 	@RequestMapping(value = "/avaliar/", method = RequestMethod.POST)
-	public ResponseEntity<List<ParseResult>> avaliar(@Valid @RequestBody AvaliacaoLivreForm avaliacaoForm)
+	public ResponseEntity<List<AvaliacaoResult>> avaliar(@Valid @RequestBody AvaliacaoLivreForm avaliacaoForm)
 			throws SilqLattesException {
-		List<ParseResult> results = new ArrayList<>();
+		List<AvaliacaoResult> results = new ArrayList<>();
 
 		for (Curriculum curriculum : this.curriculumCache.get(avaliacaoForm.getCacheId())) {
-			ParseResult result = this.lattesParser.parseCurriculum(curriculum.getDocument(), avaliacaoForm);
+			AvaliacaoResult result = this.avaliacaoService.avaliar(curriculum.getDocument(), avaliacaoForm);
 			results.add(result);
 			this.avaliacaoCache.insert(avaliacaoForm.getCacheId(), result);
 		}
@@ -106,7 +106,7 @@ public class AvaliarResource {
 	 * de {@link CurriculumCache} associado ao cacheId especificado.
 	 */
 	@RequestMapping(value = "/avaliar/result/{cacheId}", method = RequestMethod.GET)
-	public ResponseEntity<List<ParseResult>> getResult(@PathVariable String cacheId) {
+	public ResponseEntity<List<AvaliacaoResult>> getResult(@PathVariable String cacheId) {
 		// TODO (bonetti): limpar cache de avaliações
 		this.curriculumCache.clear(cacheId);
 		return new ResponseEntity<>(this.avaliacaoCache.get(cacheId), HttpStatus.OK);
