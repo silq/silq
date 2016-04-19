@@ -106,9 +106,10 @@ public class AvaliacaoService {
 		return result;
 	}
 
-	protected Artigo avaliarArtigo(Artigo artigo, AvaliarForm avaliarForm) {
+	public Artigo avaliarArtigo(Artigo artigo, AvaliarForm avaliarForm) {
 		String issn = artigo.getIssn();
 		List<Conceito> conceitos = new ArrayList<>();
+
 		Optional<QualisPeriodico> singleResult = this.qualisPeriodicoRepository.findOneByIssnAndAreaAvaliacao(issn,
 				avaliarForm.getArea().toUpperCase());
 
@@ -116,26 +117,9 @@ public class AvaliacaoService {
 			QualisPeriodico periodico = singleResult.get();
 			conceitos.add(new Conceito(periodico.getTitulo(), periodico.getEstrato(), NivelSimilaridade.TOTAL, periodico.getAno()));
 		} else if (SilqStringUtils.isBlank(issn)) {
-			String tituloVeiculo;
 			try {
-				tituloVeiculo = artigo.getTituloVeiculo();
-				tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
-
-				Connection connection = this.dataSource.getConnection();
-
-				Statement st = connection.createStatement();
-				st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade().getValue() + "::real)");
-				ResultSet rs = st.executeQuery(
-						this.createSqlStatement("TB_QUALIS_PERIODICO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
-
-				while (rs.next()) {
-					conceitos.add(this.createConceito(rs));
-				}
-
-				rs.close();
-				st.close();
-				connection.close();
-			} catch (Exception e) {
+				conceitos = this.getConceitos(artigo.getTituloVeiculo(), avaliarForm, "TB_QUALIS_PERIODICO");
+			} catch (SQLException e) {
 				throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
 			}
 		}
@@ -143,32 +127,47 @@ public class AvaliacaoService {
 		return artigo;
 	}
 
-	protected Trabalho avaliarTrabalho(Trabalho trabalho, AvaliarForm avaliarForm) {
-		String tituloVeiculo = trabalho.getTituloVeiculo();
+	public Trabalho avaliarTrabalho(Trabalho trabalho, AvaliarForm avaliarForm) {
+		List<Conceito> conceitos;
+		try {
+			conceitos = this.getConceitos(trabalho.getTituloVeiculo(), avaliarForm, "TB_QUALIS_EVENTO");
+		} catch (SQLException e) {
+			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
+		}
+
+		trabalho.setConceitos(conceitos);
+		return trabalho;
+	}
+
+	/**
+	 * Obtém os conceitos de um evento ou periódico realizando uma busca por similaridade na base Qualis.
+	 *
+	 * @param tituloVeiculo Título do evento ou periódico que deseja-se avaliar.
+	 * @param avaliarForm Opções de avaliação.
+	 * @param table Tabela base de registros Qualis a ser utilizada na avaliação.
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Conceito> getConceitos(String tituloVeiculo, AvaliarForm avaliarForm, String table) throws SQLException {
 		tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
 
 		List<Conceito> conceitos = new ArrayList<>();
 
-		try {
-			Connection connection = this.dataSource.getConnection();
-			Statement st = connection.createStatement();
-			st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade().getValue() + "::real)");
-			ResultSet rs = st.executeQuery(
-					this.createSqlStatement("TB_QUALIS_EVENTO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
+		Connection connection = this.dataSource.getConnection();
+		Statement st = connection.createStatement();
+		st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade().getValue() + "::real)");
+		ResultSet rs = st.executeQuery(
+				this.createSqlStatement(table, tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
-			while (rs.next()) {
-				conceitos.add(this.createConceito(rs));
-			}
-			trabalho.setConceitos(conceitos);
-
-			rs.close();
-			st.close();
-			connection.close();
-		} catch (Exception e) {
-			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
+		while (rs.next()) {
+			conceitos.add(this.createConceito(rs));
 		}
 
-		return trabalho;
+		rs.close();
+		st.close();
+		connection.close();
+
+		return conceitos;
 	}
 
 	/**
