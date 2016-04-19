@@ -78,7 +78,7 @@ public class AvaliacaoService {
 	 * @throws SilqLattesException
 	 */
 	public AvaliacaoResult avaliar(ParseResult parseResult, AvaliarForm form) {
-		AvaliacaoResult result = new AvaliacaoResult(form);
+		AvaliacaoResult result = new AvaliacaoResult(form, parseResult.getDadosGerais());
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
 			parseResult.getArtigos().parallelStream().forEach((artigo) -> {
@@ -101,13 +101,6 @@ public class AvaliacaoService {
 				result.getTrabalhos().add(this.avaliarTrabalho(trabalho, form));
 			});
 		}
-
-		// TODO: remove gambiarra
-		// result.getForm().setNivelSimilaridade(ComboValueHelper.getNivelSimilaridadeTexto(form.getNivelSimilaridade()));
-		result.setNome(parseResult.getNome());
-		result.setAreaGrandeAreaConhecimento(result.getAreaGrandeAreaConhecimento());
-		result.setNomeEspecialidade(parseResult.getNomeEspecialidade());
-		result.setNomeSubAreaConhecimento(parseResult.getNomeSubAreaConhecimento());
 
 		result.order();
 		return result;

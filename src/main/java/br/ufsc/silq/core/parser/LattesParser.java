@@ -33,16 +33,15 @@ public class LattesParser {
 	private DocumentManager documentManager;
 
 	/**
-	 * Extrai os dados gerais do currículo Lattes (em XML) de um pesquisador
+	 * Extrai dados gerais do currículo Lattes (em XML) de um pesquisador
 	 *
-	 * @param file Currículo Lattes em XML do pesquisador.
-	 * @return Os dados gerais do pesquisador extraídos do currículo.
-	 * @throws SilqException
+	 * @param lattes Currículo Lattes em XML do pesquisador.
+	 * @return O {@link DadosGeraisResult} do pesquisador extraídos do currículo.
 	 */
-	public DadosGeraisResult parseDadosGerais(Document curriculumXml) throws SilqException {
+	public DadosGeraisResult extractDadosGerais(Document lattes) {
 		DadosGeraisResult dadosGeraisResult = new DadosGeraisResult();
 
-		Node nodoRaiz = this.getNodoRaiz(curriculumXml);
+		Node nodoRaiz = this.getNodoRaiz(lattes);
 
 		List<String> dadoGeralList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
 		// TODO Currículo sem ID! Desatualizado!
@@ -110,30 +109,17 @@ public class LattesParser {
 	/**
 	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu currículo Lattes (em XML).
 	 *
-	 * @param document Currículo Lattes (em XML) a ser avaliado.
+	 * @param lattes Currículo Lattes (em XML) a ser avaliado.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
-	 * @throws SilqLattesException Caso o documento XML enviado não seja um currículo Lattes válido.
+	 * @throws SilqException
 	 */
-	public ParseResult parseCurriculum(Document document) throws SilqLattesException {
+	public ParseResult parseCurriculum(Document lattes) {
 		ParseResult parseResult = new ParseResult();
 
-		Node raiz = this.getNodoRaiz(document);
+		Node raiz = this.getNodoRaiz(lattes);
 
-		List<String> nomeList = AttributeGetter.iterateNodes(ParserSets.NOME_SET, raiz);
-		if (nomeList.size() == 1) {
-			parseResult.setNome(nomeList.get(0));
-		}
-
-		List<String> areas = AttributeGetter.iterateNodes(ParserSets.AREAS_SET, raiz);
-		if (areas.size() > 3) {
-			AreaConhecimento areaConhecimento = new AreaConhecimento();
-			areaConhecimento.setNomeArea(areas.get(0));
-			areaConhecimento.setNomeGrandeArea(areas.get(3));
-
-			parseResult.setNomeEspecialidade(areas.get(1));
-			parseResult.setNomeSubAreaConhecimento(areas.get(2));
-			parseResult.setAreaGrandeAreaConhecimento(areaConhecimento);
-		}
+		DadosGeraisResult dadosGerais = this.extractDadosGerais(lattes);
+		parseResult.setDadosGerais(dadosGerais);
 
 		List<String> trabalhos = AttributeGetter.iterateNodes(ParserSets.PRODUCOES_SET, raiz);
 		if (trabalhos.size() > 0) {

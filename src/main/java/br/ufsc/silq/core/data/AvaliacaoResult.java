@@ -8,10 +8,10 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import br.ufsc.silq.core.forms.AvaliarForm;
-import br.ufsc.silq.core.parser.dto.AreaConhecimento;
 import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.Conceito.TotalizadorConceito;
+import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import lombok.Data;
 
@@ -27,6 +27,11 @@ public class AvaliacaoResult {
 	private final AvaliarForm form;
 
 	/**
+	 * Dados gerais extraídos do currículo avaliado
+	 */
+	private final DadosGeraisResult dadosGerais;
+
+	/**
 	 * Lista de artigos avaliados, contendo os respectivos {@link Conceito}s
 	 */
 	private final List<Artigo> artigos = new ArrayList<>();
@@ -35,12 +40,6 @@ public class AvaliacaoResult {
 	 * Lista de trabalhos avaliados, contendo os respectivos {@link Conceito}s
 	 */
 	private final List<Trabalho> trabalhos = new ArrayList<>();
-
-	// TODO: dar um jeito nisso
-	private String nome;
-	private AreaConhecimento areaGrandeAreaConhecimento = new AreaConhecimento();
-	private String nomeEspecialidade;
-	private String nomeSubAreaConhecimento;
 
 	/**
 	 * Ordena os artigos e trabalhos por ano (decrescente).

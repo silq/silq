@@ -43,7 +43,7 @@ public class DadoGeralService {
 	 * @throws SilqException
 	 */
 	protected DadoGeral saveFromDocument(Document curriculumXml) throws SilqException {
-		DadosGeraisResult result = this.lattesParser.parseDadosGerais(curriculumXml);
+		DadosGeraisResult result = this.lattesParser.extractDadosGerais(curriculumXml);
 		DadoGeral dadoGeral = new DadoGeral();
 
 		Usuario usuarioLogado = this.usuarioService.getUsuarioLogado();

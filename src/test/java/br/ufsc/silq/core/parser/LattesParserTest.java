@@ -40,7 +40,7 @@ public class LattesParserTest extends WebContextTest {
 
 	@Test
 	public void testParseCurriculaDadosGerais() throws ParseException, SilqException {
-		DadosGeraisResult dados = this.lattesParser.parseDadosGerais(this.documentXmlChristiane);
+		DadosGeraisResult dados = this.lattesParser.extractDadosGerais(this.documentXmlChristiane);
 		// System.out.println(dados);
 
 		Assertions.assertThat(dados.getNome()).isEqualTo("Christiane Anneliese Gresse von Wangenheim");
@@ -49,8 +49,8 @@ public class LattesParserTest extends WebContextTest {
 		Assertions.assertThat(dados.getNomeSubAreaConhecimento()).isEqualTo("Metodologia e Técnicas da Computação");
 		Assertions.assertThat(dados.getIdCurriculo()).isEqualTo("3879944876244096");
 
-		Assertions.assertThat(this.lattesParser.parseDadosGerais(this.documentXmlRaul)).isNotNull();
-		Assertions.assertThat(this.lattesParser.parseDadosGerais(this.documentXmlRonaldo)).isNotNull();
+		Assertions.assertThat(this.lattesParser.extractDadosGerais(this.documentXmlRaul)).isNotNull();
+		Assertions.assertThat(this.lattesParser.extractDadosGerais(this.documentXmlRonaldo)).isNotNull();
 	}
 
 	@Test

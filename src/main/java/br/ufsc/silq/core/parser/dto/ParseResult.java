@@ -8,14 +8,10 @@ import lombok.Data;
 import lombok.ToString;
 
 @Data
-@ToString(of = { "nome", "areaGrandeAreaConhecimento", "nomeEspecialidade", "nomeSubAreaConhecimento" })
+@ToString(of = { "dadosGerais" })
 public class ParseResult {
 
-	private String nome;
-	private AreaConhecimento areaGrandeAreaConhecimento = new AreaConhecimento();
-	private String nomeEspecialidade;
-	private String nomeSubAreaConhecimento;
-
+	private DadosGeraisResult dadosGerais;
 	private List<Trabalho> trabalhos = new ArrayList<>();
 	private List<Artigo> artigos = new ArrayList<>();
 
