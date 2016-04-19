@@ -1,5 +1,5 @@
 <div class="avaliacao-result-item">
-    <div class="result-conceito-box">
+    <!-- <div class="result-conceito-box">
         <p class="result-conceito" title="Conceito calculado" ng-show="item.conceitos[0].conceito">
             {{ item.conceitos[0].conceito }}
         </p>
@@ -10,7 +10,7 @@
             {{ item.conceitos[0].similaridade * 100 | number: 0 }}%
         </p>
         <span ng-show="item.conceitos.length === 0" title="Nenhum conceito encontrado">-</span>
-    </div>
+    </div> -->
     <div class="result-content-box">
         <p class="result-titulo" title="Título do trabalho" highlight-text="filter">
             <span class="result-ano">{{ item.ano }} |</span>
@@ -24,7 +24,7 @@
 
         <p class="result-conceito-item" ng-repeat="conceito in item.conceitos">
             <span class="label-conceito">
-                <span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span><span class="ano" title="Ano base da avaliação Qualis">{{ conceito.ano }}</span><span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span>
+                <span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span><span class="ano" title="Ano base da avaliação Qualis">{{ conceito.ano }}</span><span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span>
             </span>
         </p>
 

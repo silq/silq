@@ -15,7 +15,7 @@
         max-width: 40px;
         text-align: center;
         font-weight: 600;
-        margin: 0 10px;
+        margin-left: 10px;
         font-size: 20px;
 
         .result-conceito {
@@ -38,6 +38,7 @@
 
     .result-content-box {
         flex: 1 1 auto;
+        padding: 0 15px;
 
         .result-titulo {
             font-size: 1.05em;
