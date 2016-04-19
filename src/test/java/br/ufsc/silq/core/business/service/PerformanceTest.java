@@ -73,7 +73,6 @@ public class PerformanceTest extends WebContextTest {
 	 */
 	private double compareAndGetExecutionTime(Document document) throws SilqLattesException {
 		AvaliarForm form = new AvaliarForm();
-		form.setNivelSimilaridade("0.6");
 		form.setArea("Ciência da Computação");
 
 		long tStart = System.currentTimeMillis();

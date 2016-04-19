@@ -3,64 +3,31 @@
 }
 
 .avaliacao-result-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 0;
+    padding: 12px 15px;
     border-bottom: 1px solid #eee;
 
-    p { margin: 0; }
+    p { margin: 0; }    
 
-    .result-conceito-box {
-        flex: 1 0 40px;
-        max-width: 40px;
-        text-align: center;
+    .result-titulo {
+        font-size: 1.05em;
         font-weight: 600;
-        margin-left: 10px;
-        font-size: 20px;
-
-        .result-conceito {
-            letter-spacing: 1px;
-            background-color: #222;
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
-            font-weight: normal;
-            color: #fff;
-        }
-
-        .result-porcentagem {
-            font-size: 0.5em;
-            padding: 2px 0;
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
-            color: #fff;
-        }
+        color: $brand-primary;
     }
 
-    .result-content-box {
-        flex: 1 1 auto;
-        padding: 0 15px;
+    .result-ano {
+    }
 
-        .result-titulo {
-            font-size: 1.05em;
-            font-weight: 600;
-            color: $brand-primary;
-        }
+    .result-veiculo {
+        font-weight: 600;
+    }
 
-        .result-ano {
-        }
+    .result-issn {
+        font-weight: 600;
+    }
 
-        .result-veiculo {
-            font-weight: 600;
-        }
-
-        .result-issn {
-            font-weight: 600;
-        }
-
-        .result-conceito-item {
-            line-height: 1.9;
-            margin-top: 2px;
-        }
+    .result-conceito-item {
+        line-height: 1.9;
+        margin-top: 2px;
     }
 }
 

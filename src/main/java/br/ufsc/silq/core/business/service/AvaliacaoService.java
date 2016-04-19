@@ -19,6 +19,7 @@ import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.business.entities.QualisPeriodico;
 import br.ufsc.silq.core.business.repository.QualisPeriodicoRepository;
 import br.ufsc.silq.core.data.AvaliacaoResult;
+import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.exception.SilqError;
 import br.ufsc.silq.core.exception.SilqLattesException;
@@ -120,7 +121,7 @@ public class AvaliacaoService {
 
 		if (singleResult.isPresent()) {
 			QualisPeriodico periodico = singleResult.get();
-			conceitos.add(new Conceito(periodico.getTitulo(), periodico.getEstrato(), "1.0", periodico.getAno()));
+			conceitos.add(new Conceito(periodico.getTitulo(), periodico.getEstrato(), NivelSimilaridade.TOTAL, periodico.getAno()));
 		} else if (SilqStringUtils.isBlank(issn)) {
 			String tituloVeiculo;
 			try {
@@ -130,7 +131,7 @@ public class AvaliacaoService {
 				Connection connection = this.dataSource.getConnection();
 
 				Statement st = connection.createStatement();
-				st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade() + "::real)");
+				st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade().getValue() + "::real)");
 				ResultSet rs = st.executeQuery(
 						this.createSqlStatement("TB_QUALIS_PERIODICO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
@@ -158,7 +159,7 @@ public class AvaliacaoService {
 		try {
 			Connection connection = this.dataSource.getConnection();
 			Statement st = connection.createStatement();
-			st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade() + "::real)");
+			st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade().getValue() + "::real)");
 			ResultSet rs = st.executeQuery(
 					this.createSqlStatement("TB_QUALIS_EVENTO", tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
 
@@ -185,7 +186,8 @@ public class AvaliacaoService {
 	 * @throws SQLException
 	 */
 	protected Conceito createConceito(ResultSet rs) throws SQLException {
-		return new Conceito(rs.getString("NO_TITULO"), rs.getString("NO_ESTRATO"), rs.getFloat("SML") + "", rs.getInt("NU_ANO"));
+		return new Conceito(rs.getString("NO_TITULO"), rs.getString("NO_ESTRATO"),
+				new NivelSimilaridade(rs.getFloat("SML")), rs.getInt("NU_ANO"));
 	}
 
 	/**

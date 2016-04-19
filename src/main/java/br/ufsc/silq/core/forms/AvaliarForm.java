@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import lombok.Data;
 
@@ -13,8 +14,8 @@ public class AvaliarForm {
 	@NotBlank
 	private String area;
 
-	@NotBlank
-	private String nivelSimilaridade = "0.4";
+	@NotNull
+	private NivelSimilaridade nivelSimilaridade = NivelSimilaridade.NORMAL;
 
 	@NotNull
 	private Integer anoPublicacaoDe = 1980;

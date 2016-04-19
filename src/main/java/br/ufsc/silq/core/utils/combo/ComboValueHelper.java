@@ -111,22 +111,6 @@ public class ComboValueHelper {
 		return similaridadeMap;
 	}
 
-	public static String getNivelSimilaridadeTexto(String nivel) {
-		if (nivel.equals("0.9")) {
-			return "Muito Alto";
-		} else if (nivel.equals("0.8")) {
-			return "Alto";
-		} else if (nivel.equals("0.6")) {
-			return "Normal";
-		} else if (nivel.equals("0.4")) {
-			return "Baixo";
-		} else if (nivel.equals("0.2")) {
-			return "Muito Baixo";
-		}
-
-		return "Desconhecido";
-	}
-
 	public static LinkedHashMap<String, String> getPeriodoValues() {
 		LinkedHashMap<String, String> periodosMap = new LinkedHashMap<String, String>();
 
