@@ -17,8 +17,8 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label" for="anoPublicacaoDe">Publicações de</label>
-                <select class="form-control" id="anoPublicacaoDe" name="anoPublicacaoDe" ng-model="model.anoPublicacaoDe" ng-change="changeAnoDe()">
+                <label class="control-label" for="periodoAvaliacao.inicio">Publicações de</label>
+                <select class="form-control" id="periodoAvaliacao.inicio" name="periodoAvaliacao.inicio" ng-model="model.periodoAvaliacao.inicio" ng-change="changePeriodoInicio()">
                     <option value="">(Todas)</option>
                     <option ng-repeat="year in years" value="{{ year }}">{{ year }}</option>
                 </select>
@@ -27,8 +27,8 @@
 
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label" for="anoPublicacaoAte">Até</label>
-                <select class="form-control" id="anoPublicacaoAte" name="anoPublicacaoAte" ng-model="model.anoPublicacaoAte" ng-disabled="!model.anoPublicacaoDe">
+                <label class="control-label" for="periodoAvaliacao.fim">Até</label>
+                <select class="form-control" id="periodoAvaliacao.fim" name="periodoAvaliacao.fim" ng-model="model.periodoAvaliacao.fim" ng-disabled="!model.periodoAvaliacao.inicio">
                     <option value=""></option>
                     <option ng-repeat="year in years | filter: yearFilter" value="{{ year }}">{{ year }}</option>
                 </select>

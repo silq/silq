@@ -23,14 +23,15 @@ angular.module('silq2App')
             },
             templateUrl: 'scripts/components/avaliar/avaliar-form.html',
             link: function($scope) {
-                $scope.years = years();
+                $scope.years = years();    
+                $scope.model.periodoAvaliacao = {};
 
-                $scope.changeAnoDe = function() {
-                    $scope.model.anoPublicacaoAte = currentYear.toString();
+                $scope.changePeriodoInicio = function() {
+                    $scope.model.periodoAvaliacao.fim = currentYear.toString();
                 };
 
                 $scope.yearFilter = function(value) {
-                    return value >= $scope.model.anoPublicacaoDe;
+                    return value >= $scope.model.periodoAvaliacao.inicio;
                 };
             }
         };

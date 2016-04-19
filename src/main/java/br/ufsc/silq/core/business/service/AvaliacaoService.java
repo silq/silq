@@ -82,7 +82,7 @@ public class AvaliacaoService {
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
 			parseResult.getArtigos().parallelStream().forEach((artigo) -> {
-				if (!form.periodoInclui(artigo.getAno())) {
+				if (!form.getPeriodoAvaliacao().inclui(artigo.getAno())) {
 					// Não avalia artigo que não pertence ao período de avaliação informado.
 					return;
 				}
@@ -93,7 +93,7 @@ public class AvaliacaoService {
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
 			parseResult.getTrabalhos().parallelStream().forEach((trabalho) -> {
-				if (!form.periodoInclui(trabalho.getAno())) {
+				if (!form.getPeriodoAvaliacao().inclui(trabalho.getAno())) {
 					// Não avalia trabalho que não pertence ao período de avaliação informado.
 					return;
 				}
