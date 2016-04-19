@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.commondto;
+package br.ufsc.silq.core.data;
 
 import java.util.ArrayList;
 import java.util.Collections;

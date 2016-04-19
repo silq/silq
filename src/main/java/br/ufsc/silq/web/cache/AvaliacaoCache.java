@@ -2,7 +2,7 @@ package br.ufsc.silq.web.cache;
 
 import org.springframework.stereotype.Service;
 
-import br.ufsc.silq.core.commondto.AvaliacaoResult;
+import br.ufsc.silq.core.data.AvaliacaoResult;
 
 /**
  * Cache utilizado para guardar resultados de avaliação ({@link AvaliacaoResult}) de

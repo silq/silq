@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.service.AvaliacaoService;
 import br.ufsc.silq.core.business.service.DadoGeralService;
-import br.ufsc.silq.core.commondto.AvaliacaoResult;
+import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;

@@ -18,7 +18,7 @@ import org.w3c.dom.Document;
 import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.business.entities.QualisPeriodico;
 import br.ufsc.silq.core.business.repository.QualisPeriodicoRepository;
-import br.ufsc.silq.core.commondto.AvaliacaoResult;
+import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.enums.AvaliacaoType;
 import br.ufsc.silq.core.exception.SilqError;
 import br.ufsc.silq.core.exception.SilqLattesException;
