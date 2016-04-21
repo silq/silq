@@ -104,7 +104,7 @@ public abstract class AbstractExpirableCache<T> {
 	 */
 	abstract Period expirePeriod();
 
-	private static class CacheList<T> extends ArrayList<T> {
+	public static class CacheList<T> extends ArrayList<T> {
 		private LocalDateTime modifiedAt;
 
 		protected LocalDateTime updateModifiedAt() {

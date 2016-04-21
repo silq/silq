@@ -52,9 +52,9 @@ public class AbstractExpirableCacheTest {
 	@Test
 	public void testGetModifiedAt() throws InterruptedException {
 		LocalDateTime init = LocalDateTime.now();
-		Thread.sleep(100);
+		Thread.sleep(200);
 		this.populate(this.testCache);
-		Thread.sleep(100);
+		Thread.sleep(200);
 		LocalDateTime end = LocalDateTime.now();
 
 		Assertions.assertThat(this.testCache.getModifiedAt("id_1").isAfter(init)).isTrue();
