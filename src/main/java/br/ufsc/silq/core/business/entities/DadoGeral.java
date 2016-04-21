@@ -1,7 +1,6 @@
 package br.ufsc.silq.core.business.entities;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,7 +27,7 @@ import lombok.ToString;
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_dado_geral", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_dado_geral")
 @Data
-@ToString(exclude = { "curriculoXml", "grupos" })
+@ToString(exclude = { "curriculoXml" })
 @NoArgsConstructor
 public class DadoGeral {
 
@@ -71,9 +69,5 @@ public class DadoGeral {
 	@JoinColumn(name = "co_usuario", unique = true, nullable = false)
 	@JsonIgnore
 	private Usuario usuario;
-
-	@OneToMany(mappedBy = "coordenador", orphanRemoval = true)
-	@JsonIgnore
-	private List<Grupo> grupos;
 
 }

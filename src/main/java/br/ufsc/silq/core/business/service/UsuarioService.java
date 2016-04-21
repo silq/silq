@@ -30,9 +30,6 @@ public class UsuarioService {
 	@Inject
 	private UsuarioRepository usuarioRepository;
 
-	@Inject
-	private DadoGeralService dadoGeralService;
-
 	/**
 	 * Registra um novo usuário, salvando-o na base de dados e cifrando a senha
 	 * do formulário parâmetro

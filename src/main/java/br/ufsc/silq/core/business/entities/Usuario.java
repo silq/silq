@@ -1,6 +1,7 @@
 package br.ufsc.silq.core.business.entities;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -65,4 +66,8 @@ public class Usuario {
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuarioId", orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<Autoridade> autoridades = new HashSet<>();
+
+	@OneToMany(mappedBy = "coordenador", orphanRemoval = true, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Grupo> grupos;
 }

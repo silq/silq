@@ -9,8 +9,8 @@ import javax.validation.Valid;
 import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.stereotype.Service;
 
-import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Grupo;
+import br.ufsc.silq.core.business.entities.Usuario;
 import br.ufsc.silq.core.business.repository.GrupoRepository;
 import br.ufsc.silq.core.forms.GrupoForm;
 
@@ -21,10 +21,7 @@ public class GrupoService {
 	private GrupoRepository grupoRepository;
 
 	@Inject
-	private DadoGeralService dadoGeralService;
-
-	@Inject
-	private PesquisadorService pesquisadorService;
+	private UsuarioService usuarioService;
 
 	/**
 	 * Cria um novo Grupo e associa-o ao usuário atualmente logado
@@ -91,8 +88,8 @@ public class GrupoService {
 	 *
 	 * @return
 	 */
-	protected DadoGeral getCoordenadorLogado() {
-		return this.dadoGeralService.getDadoGeral();
+	protected Usuario getCoordenadorLogado() {
+		return this.usuarioService.getUsuarioLogado();
 	}
 
 	/**

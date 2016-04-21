@@ -47,7 +47,7 @@ public class Grupo {
 	@ManyToOne
 	@JoinColumn(name = "co_usuario")
 	@JsonIgnore
-	private DadoGeral coordenador;
+	private Usuario coordenador;
 
 	@OneToMany(mappedBy = "grupo", orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Pesquisador> pesquisadores;

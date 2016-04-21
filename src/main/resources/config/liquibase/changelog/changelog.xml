@@ -17,4 +17,8 @@
     <changeSet id="005" author="silq2">
 			<sqlFile path="sql/005_silq2_add_ano_column.sql" relativeToChangelogFile="true"/>
     </changeSet>
+    
+    <changeSet id="006" author="silq2">
+			<sqlFile path="sql/006_associa_grupo_com_usuario.sql" relativeToChangelogFile="true"/>
+    </changeSet>
 </databaseChangeLog>
