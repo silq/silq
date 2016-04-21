@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.ufsc.silq.core.business.entities.DadoGeral;
 import br.ufsc.silq.core.business.entities.Grupo;
 import br.ufsc.silq.core.business.entities.Pesquisador;
 import br.ufsc.silq.core.business.service.AvaliacaoService;
-import br.ufsc.silq.core.business.service.DadoGeralService;
 import br.ufsc.silq.core.business.service.GrupoService;
 import br.ufsc.silq.core.business.service.PesquisadorService;
 import br.ufsc.silq.core.data.AvaliacaoResult;
@@ -28,7 +26,6 @@ import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.GrupoForm;
-import br.ufsc.silq.web.rest.exception.HttpBadRequest;
 import br.ufsc.silq.web.rest.exception.HttpNotFound;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,9 +39,6 @@ public class GrupoResource {
 
 	@Inject
 	private PesquisadorService pesquisadorService;
-
-	@Inject
-	private DadoGeralService dadoGeralService;
 
 	@Inject
 	private AvaliacaoService avaliacaoService;
@@ -62,19 +56,13 @@ public class GrupoResource {
 	}
 
 	/**
-	 * POST /grupos -> Cria um novo grupo associado ao usuário atual
+	 * POST /grupos -> Cria um novo grupo associado ao usuário atual.
 	 *
 	 * @throws SilqException
 	 */
 	@RequestMapping(value = "/grupos", method = RequestMethod.POST)
 	public ResponseEntity<?> createGrupo(@RequestBody @Valid GrupoForm grupo) {
 		log.debug("REST request to save Grupo : {}", grupo);
-
-		DadoGeral dadoGeral = this.dadoGeralService.getDadoGeral();
-		if (dadoGeral == null) {
-			throw new HttpBadRequest("Você deve ter um currículo cadastrado para criar grupos");
-		}
-
 		Grupo result = this.grupoService.create(grupo);
 		return new ResponseEntity<>(result, HttpStatus.CREATED);
 	}
