@@ -12,6 +12,6 @@ import br.ufsc.silq.core.data.AvaliacaoResult;
  * o mesmo ID do cache dos currículos, contendo os resultados das avaliações.
  */
 @Service
-public class AvaliacaoCache extends AbstractCache<AvaliacaoResult> {
+public class AvaliacaoCache extends AbstractExpirableCache<AvaliacaoResult> {
 
 }

@@ -18,7 +18,7 @@ import lombok.Data;
  * assíncrona ao servidor.
  */
 @Service
-public class CurriculumCache extends AbstractCache<Curriculum> {
+public class CurriculumCache extends AbstractExpirableCache<Curriculum> {
 
 	@Inject
 	protected DocumentManager documentManager;
