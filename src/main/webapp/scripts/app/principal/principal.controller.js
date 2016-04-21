@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('PrincipalController', function ($scope, Principal, Upload, DadoGeral, Cache, Flash) {
+    .controller('PrincipalController', function ($scope, $state, Principal, Upload, DadoGeral, Cache, Flash) {
         Principal.identity().then(function(account) {
             $scope.account = account;
         });
@@ -17,6 +17,13 @@ angular.module('silq2App')
 
         $scope.atualizar = function() {
             $scope.dados = null;
+        };
+
+        $scope.remover = function() {
+            DadoGeral.delete().then(function() {
+                $scope.dados = null;
+                Flash.create('success', '<strong>Sucesso!</strong> Currículo removido');
+            });
         };
 
         // Dropbox configuration
