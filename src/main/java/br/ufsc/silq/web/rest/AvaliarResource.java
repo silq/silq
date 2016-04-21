@@ -107,7 +107,6 @@ public class AvaliarResource {
 	 */
 	@RequestMapping(value = "/avaliar/result/{cacheId}", method = RequestMethod.GET)
 	public ResponseEntity<List<AvaliacaoResult>> getResult(@PathVariable String cacheId) {
-		// TODO (bonetti): limpar cache de avaliações
 		this.curriculumCache.clear(cacheId);
 		return new ResponseEntity<>(this.avaliacaoCache.get(cacheId), HttpStatus.OK);
 	}

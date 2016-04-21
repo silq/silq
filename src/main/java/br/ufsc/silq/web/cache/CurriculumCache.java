@@ -2,6 +2,8 @@ package br.ufsc.silq.web.cache;
 
 import javax.inject.Inject;
 
+import org.joda.time.Period;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
@@ -12,12 +14,14 @@ import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Cache utilizado para guardar os currículos Lattes enviados de forma
  * assíncrona ao servidor.
  */
 @Service
+@Slf4j
 public class CurriculumCache extends AbstractExpirableCache<Curriculum> {
 
 	@Inject
@@ -41,6 +45,17 @@ public class CurriculumCache extends AbstractExpirableCache<Curriculum> {
 		return curriculum;
 	}
 
+	@Override
+	Period expirePeriod() {
+		return Period.hours(1);
+	}
+
+	@Scheduled(fixedDelay = 1000 * 60 * 15) // 15 minutos
+	public void expireJob() {
+		int count = this.clearExpired();
+		log.info("Cache de currículos limpo. Itens expirados: " + count + ". Total: " + this.count());
+	}
+
 	@Data
 	public static class Curriculum {
 		@JsonIgnore
@@ -49,5 +64,4 @@ public class CurriculumCache extends AbstractExpirableCache<Curriculum> {
 		private final long size;
 		private final String cacheId;
 	}
-
 }

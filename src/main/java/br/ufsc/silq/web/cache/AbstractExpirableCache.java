@@ -52,6 +52,13 @@ public abstract class AbstractExpirableCache<T> {
 	}
 
 	/**
+	 * @return O número de listas de cache (um para cada ID de cache informado).
+	 */
+	public int count() {
+		return this.map.size();
+	}
+
+	/**
 	 * Informa a data de última modificação da lista de cache com ID especificado.
 	 *
 	 * @param cacheId
@@ -72,26 +79,30 @@ public abstract class AbstractExpirableCache<T> {
 	}
 
 	/**
-	 * Limpa todas as caches já expiradas
+	 * Limpa todas as caches já expiradas.
+	 *
+	 * @return O número de {@link CacheList}s expirados.
 	 */
-	public void clearExpired() {
-		this.map.forEach((cacheId, cacheList) -> {
-			if (cacheList.modifiedAt.plus(this.expirePeriod()).isBefore(LocalDateTime.now())) {
+	public int clearExpired() {
+		int count = 0;
+		for (String cacheId : this.map.keySet()) {
+			if (this.get(cacheId).modifiedAt.plus(this.expirePeriod()).isBefore(LocalDateTime.now())) {
 				this.clear(cacheId);
+				count++;
 			}
-		});
+		}
+		return count;
 	}
 
 	/**
-	 * Período de expiração de caches. Por padrão, as caches são expiradas após 1h.
+	 * Período de expiração de caches. Deve retornar o tempo em que os itens da cache ficam ativos após serem modificados.
+	 * Operações de modificação renovam a data de modificação de uma cache.
 	 * Não há garantia que os itens de cache sejam de fato limpos. Para isso, o método clearExpired() deve ser invocado
 	 * de tempos em tempos.
 	 *
 	 * @return
 	 */
-	public Period expirePeriod() {
-		return Period.hours(1);
-	}
+	abstract Period expirePeriod();
 
 	private static class CacheList<T> extends ArrayList<T> {
 		private LocalDateTime modifiedAt;
