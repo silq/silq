@@ -1,10 +1,9 @@
 package br.ufsc.silq.config;
 
-import br.ufsc.silq.security.*;
-import br.ufsc.silq.security.xauth.*;
+import javax.inject.Inject;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,55 +12,58 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 
-
-import javax.inject.Inject;
+import br.ufsc.silq.security.AuthoritiesConstants;
+import br.ufsc.silq.security.Http401UnauthorizedEntryPoint;
+import br.ufsc.silq.security.xauth.TokenProvider;
+import br.ufsc.silq.security.xauth.XAuthTokenConfigurer;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Inject
-    private Http401UnauthorizedEntryPoint authenticationEntryPoint;
+	@Inject
+	private Http401UnauthorizedEntryPoint authenticationEntryPoint;
 
-    @Inject
-    private UserDetailsService userDetailsService;
+	@Inject
+	private UserDetailsService userDetailsService;
 
-    @Inject
-    private TokenProvider tokenProvider;
+	@Inject
+	private TokenProvider tokenProvider;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Inject
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+	@Inject
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+				.userDetailsService(this.userDetailsService)
+				.passwordEncoder(this.passwordEncoder());
+	}
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-            .antMatchers("/scripts/**/*.{js,html}")
-            .antMatchers("/bower_components/**")
-            .antMatchers("/i18n/**")
-            .antMatchers("/assets/**")
-            .antMatchers("/swagger-ui/index.html")
-            .antMatchers("/test/**");
-    }
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring()
+				.antMatchers("/scripts/**/*.{js,html}")
+				.antMatchers("/bower_components/**")
+				.antMatchers("/i18n/**")
+				.antMatchers("/assets/**")
+				.antMatchers("/swagger-ui/index.html")
+				.antMatchers("/test/**");
+	}
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		// @formatter:off
         http
             .exceptionHandling()
-            .authenticationEntryPoint(authenticationEntryPoint)
+            .authenticationEntryPoint(this.authenticationEntryPoint)
         .and()
             .csrf()
             .disable()
@@ -78,6 +80,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/account/reset_password/init").permitAll()
             .antMatchers("/api/account/reset_password/finish").permitAll()
+            .antMatchers("/api/qualis/**").permitAll()
             .antMatchers("/api/logs/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/audits/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/**").authenticated()
@@ -98,18 +101,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/configuration/security").permitAll()
             .antMatchers("/configuration/ui").permitAll()
             .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/protected/**").authenticated() 
+            .antMatchers("/protected/**").authenticated()
         .and()
-            .apply(securityConfigurerAdapter());
+            .apply(this.securityConfigurerAdapter());
+        // @formatter:on
+	}
 
-    }
+	private XAuthTokenConfigurer securityConfigurerAdapter() {
+		return new XAuthTokenConfigurer(this.userDetailsService, this.tokenProvider);
+	}
 
-    private XAuthTokenConfigurer securityConfigurerAdapter() {
-      return new XAuthTokenConfigurer(userDetailsService, tokenProvider);
-    }
-
-    @Bean
-    public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
-        return new SecurityEvaluationContextExtension();
-    }
+	@Bean
+	public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
+		return new SecurityEvaluationContextExtension();
+	}
 }

@@ -24,6 +24,10 @@ spring:
             enabled: false
     thymeleaf:
         mode: XHTML
+    data:
+        rest:
+            defaultPageSize=10
+            maxPageSize=10
 
 security:
     basic:
