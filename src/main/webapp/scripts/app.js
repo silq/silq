@@ -3,7 +3,7 @@
 angular.module('silq2App', ['LocalStorageModule',
     'ngAnimate', 'ngResource', 'ngCookies', 'ngAria', 'ngFileUpload', 'flash',
     'ngMessages', 'ui.bootstrap', 'ui.router',  'infinite-scroll',
-    'angular-loading-bar', 'angular-cache'])
+    'angular-loading-bar', 'angular-cache', 'ngSanitize', 'ngCsv'])
 
     .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, Flash, ENV, VERSION) {
 

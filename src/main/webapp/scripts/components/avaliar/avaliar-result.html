@@ -1,6 +1,8 @@
-<div class="input-group" style="">
-    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
-    <input ng-model="filter" type="search" class="form-control" placeholder="Filtrar resultados..." />
+<div>
+    <div class="input-group">
+        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+        <input ng-model="filter" type="search" class="form-control" placeholder="Filtrar resultados..." />
+    </div>
 </div>
 
 <div class="row">
@@ -37,7 +39,17 @@
     </div>
 
     <div class="col-md-9">
-        <h3 class="title-border">Artigos <small>{{ results.artigos.length }} registros</small></h3>
+        <h3 class="title-border flex">
+            <div class="flex-grow">Artigos <small>{{ results.artigos.length }} registros</small></div>
+
+            <button class="btn btn-sm btn-default"
+                title="Download arquivo .csv dos resultados"
+                ng-csv="getArtigosCSV"
+                csv-header="['Ano de publicação', 'Título do Artigo', 'Veículo de Publicação', 'ISSN', 'Conceito', 'Similaridade', 'Título do Periódico Similar']"
+                csv-column-order="['ano', 'titulo', 'tituloVeiculo', 'issn', 'conceitoEstrato', 'conceitoSimilaridade', 'conceitoTitulo']"
+                filename="Artigos.csv"
+            ><i class="glyphicon glyphicon-download"></i> Download .csv</button>
+        </h3>
         <div class="avaliacao-results">
             <div ng-include="'scripts/components/avaliar/avaliar-result-item.html'"
                  ng-repeat="item in results.artigos | filter: filter"></div>
@@ -47,7 +59,17 @@
             </p>
         </div>
 
-        <h3 class="title-border">Trabalhos <small>{{ results.trabalhos.length }} registros</small></h3>
+        <h3 class="title-border flex">
+            <div class="flex-grow">Trabalhos <small>{{ results.trabalhos.length }} registros</small></div>
+
+            <button class="btn btn-sm btn-default"
+                title="Download arquivo .csv dos resultados"
+                ng-csv="getTrabalhosCSV"
+                csv-header="['Ano', 'Título do Trabalho', 'Evento', 'Conceito', 'Similaridade', 'Título do Evento Similar']"
+                csv-column-order="['ano', 'titulo', 'tituloVeiculo', 'conceitoEstrato', 'conceitoSimilaridade', 'conceitoTitulo']"
+                filename="Trabalhos.csv"
+            ><i class="glyphicon glyphicon-download"></i> Download .csv</button>
+        </h3>
         <div class="avaliacao-results">
             <div ng-include="'scripts/components/avaliar/avaliar-result-item.html'"
                  ng-repeat="item in results.trabalhos | filter: filter"></div>

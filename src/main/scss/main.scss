@@ -36,10 +36,8 @@ a { cursor: pointer; }
 .flex {  display: flex; }
 .flex > *:not(:first-child) { margin-left: 5px; }
 .flex > *:not(:last-child) { margin-right: 5px; }
-
-.justify-center { justify-content: center; }
-
 .flex-grow { flex-grow: 1; }
+.justify-center { justify-content: center; }
 
 .bg-dark-success { background-color: $brand-success; border-color: $brand-success; }
 .bg-dark-warning { background-color: $brand-warning; border-color: $brand-warning; }
