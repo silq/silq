@@ -105,6 +105,8 @@ public abstract class AbstractExpirableCache<T> {
 	abstract Period expirePeriod();
 
 	public static class CacheList<T> extends ArrayList<T> {
+		private static final long serialVersionUID = 6771137058340431934L;
+
 		private LocalDateTime modifiedAt;
 
 		protected LocalDateTime updateModifiedAt() {
