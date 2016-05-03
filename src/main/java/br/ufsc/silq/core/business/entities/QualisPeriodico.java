@@ -18,21 +18,18 @@ import lombok.Setter;
 @Setter
 public class QualisPeriodico {
 
+	@Id
+	@Column(name = "co_seq_periodico")
+	private Long id;
+
 	@Column(name = "no_area_avaliacao")
 	private String areaAvaliacao;
 
 	@Column(name = "no_estrato")
 	private String estrato;
 
-	@Id
-	@Column(name = "co_seq_qualis_geral")
-	private Long id;
-
 	@Column(name = "co_issn")
 	private String issn;
-
-	@Column(name = "st_qualis")
-	private String stQualis;
 
 	@Column(name = "no_titulo")
 	private String titulo;

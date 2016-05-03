@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -110,12 +109,14 @@ public class AvaliacaoService {
 		String issn = artigo.getIssn();
 		List<Conceito> conceitos = new ArrayList<>();
 
-		Optional<QualisPeriodico> singleResult = this.qualisPeriodicoRepository.findOneByIssnAndAreaAvaliacao(issn,
+		List<QualisPeriodico> results = this.qualisPeriodicoRepository.findAllByIssnAndAreaAvaliacao(issn,
 				avaliarForm.getArea().toUpperCase());
 
-		if (singleResult.isPresent()) {
-			QualisPeriodico periodico = singleResult.get();
-			conceitos.add(new Conceito(periodico.getTitulo(), periodico.getEstrato(), NivelSimilaridade.TOTAL, periodico.getAno()));
+		if (!results.isEmpty()) {
+			// TODO (bonetti): filtrar por ano?
+			for (QualisPeriodico result : results) {
+				conceitos.add(new Conceito(result.getTitulo(), result.getEstrato(), NivelSimilaridade.TOTAL, result.getAno()));
+			}
 		} else if (SilqStringUtils.isBlank(issn)) {
 			try {
 				conceitos = this.getConceitos(artigo.getTituloVeiculo(), avaliarForm, "TB_QUALIS_PERIODICO");
