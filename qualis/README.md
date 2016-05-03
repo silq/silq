@@ -18,7 +18,6 @@ Os arquivos deste diretório foram manipulados a partir dos originais para corre
 		Expressão regular de substituição: `$1-$2`
 		Tiveram o separador incluído -> '1000-2334'
 
-	- VER COMO FAZER !!!
 	- ISSNs com números faltando, ex.: 0034-167 (Revista Brasileira de Enfermagem)
 		Foram procurados por título no Google e tiveram seus ISSNs arrumados de forma manual.
 		Em algumas ocasiões o número de ISSN resultante tornava a tupla exatamente igual a outra (mesmo conceito). Nestes casos, uma das tuplas foi removida.

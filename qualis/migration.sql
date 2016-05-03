@@ -13,9 +13,10 @@ CREATE TABLE tb_qualis_periodico_novo (
    nu_ano int
 );
 
+-- CREATE UNIQUE INDEX ON tb_qualis_periodico_novo (co_issn, no_area_avaliacao, nu_ano);
 CREATE INDEX ON tb_qualis_periodico_novo (co_issn);
 CREATE INDEX ON tb_qualis_periodico_novo (no_area_avaliacao);
-CREATE INDEX on tb_qualis_periodico_novo (co_issn, no_area_avaliacao);
+CREATE INDEX ON tb_qualis_periodico_novo (co_issn, no_area_avaliacao);
 
 -- Inserindo valores das tabelas
 \COPY tb_qualis_periodico_novo(co_issn, no_titulo, no_area_avaliacao, no_estrato) FROM 2010_75786_registros.xls DELIMITER E'\t' CSV HEADER ENCODING 'latin1';
@@ -27,10 +28,10 @@ UPDATE tb_qualis_periodico_novo SET nu_ano = 2011 WHERE nu_ano IS NULL;
 \COPY tb_qualis_periodico_novo(co_issn, no_titulo, no_area_avaliacao, no_estrato) FROM 2012_108272_registros.xls DELIMITER E'\t' CSV HEADER ENCODING 'latin1';
 UPDATE tb_qualis_periodico_novo SET nu_ano = 2012 WHERE nu_ano IS NULL;
 
-\COPY tb_qualis_periodico_novo(co_issn, no_titulo, no_area_avaliacao, no_estrato) FROM 2013_44479_registros.xls DELIMITER E'\t' CSV HEADER ENCODING 'latin1';
+\COPY tb_qualis_periodico_novo(co_issn, no_titulo, no_area_avaliacao, no_estrato) FROM 2013_44437_registros.xls DELIMITER E'\t' CSV HEADER ENCODING 'latin1';
 UPDATE tb_qualis_periodico_novo SET nu_ano = 2013 WHERE nu_ano IS NULL;
 
-\COPY tb_qualis_periodico_novo(co_issn, no_titulo, no_area_avaliacao, no_estrato) FROM 2014_44582_registros.xls DELIMITER E'\t' CSV HEADER ENCODING 'latin1';
+\COPY tb_qualis_periodico_novo(co_issn, no_titulo, no_area_avaliacao, no_estrato) FROM 2014_44538_registros.xls DELIMITER E'\t' CSV HEADER ENCODING 'latin1';
 UPDATE tb_qualis_periodico_novo SET nu_ano = 2014 WHERE nu_ano IS NULL;
 
 -- Removendo espaços em branco das colunas:
