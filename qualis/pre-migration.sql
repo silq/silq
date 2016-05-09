@@ -1,4 +1,0 @@
-ALTER TABLE tb_qualis_periodico RENAME TO tb_qualis_periodico_antigo;
-ALTER TABLE tb_qualis_periodico_antigo RENAME COLUMN co_seq_qualis_geral to co_seq_periodico;
-ALTER TABLE tb_qualis_periodico_antigo DROP COLUMN st_qualis;
-ALTER SEQUENCE sq_qualis_periodico RENAME TO sq_qualis_periodico_antigo;

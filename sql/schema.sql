@@ -1,0 +1,439 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- Name: pg_trgm; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS pg_trgm WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pg_trgm; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION pg_trgm IS 'text similarity measurement and index searching based on trigrams';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: databasechangelog; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE databasechangelog (
+    id character varying(255) NOT NULL,
+    author character varying(255) NOT NULL,
+    filename character varying(255) NOT NULL,
+    dateexecuted timestamp without time zone NOT NULL,
+    orderexecuted integer NOT NULL,
+    exectype character varying(10) NOT NULL,
+    md5sum character varying(35),
+    description character varying(255),
+    comments character varying(255),
+    tag character varying(255),
+    liquibase character varying(20),
+    contexts character varying(255),
+    labels character varying(255)
+);
+
+
+ALTER TABLE databasechangelog OWNER TO postgres;
+
+--
+-- Name: databasechangeloglock; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE databasechangeloglock (
+    id integer NOT NULL,
+    locked boolean NOT NULL,
+    lockgranted timestamp without time zone,
+    lockedby character varying(255)
+);
+
+
+ALTER TABLE databasechangeloglock OWNER TO postgres;
+
+--
+-- Name: rl_autoridade_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE rl_autoridade_usuario (
+    no_autoridade character varying(50) NOT NULL,
+    co_usuario numeric(19,0) NOT NULL
+);
+
+
+ALTER TABLE rl_autoridade_usuario OWNER TO postgres;
+
+--
+-- Name: sq_dado_geral; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sq_dado_geral
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sq_dado_geral OWNER TO postgres;
+
+--
+-- Name: sq_grupo; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sq_grupo
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sq_grupo OWNER TO postgres;
+
+--
+-- Name: sq_pesquisador; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sq_pesquisador
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sq_pesquisador OWNER TO postgres;
+
+--
+-- Name: sq_qualis_evento; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sq_qualis_evento
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sq_qualis_evento OWNER TO postgres;
+
+--
+-- Name: sq_qualis_periodico; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sq_qualis_periodico
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sq_qualis_periodico OWNER TO postgres;
+
+--
+-- Name: sq_qualis_periodico_antigo; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sq_qualis_periodico_antigo
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sq_qualis_periodico_antigo OWNER TO postgres;
+
+--
+-- Name: sq_usuario; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sq_usuario
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sq_usuario OWNER TO postgres;
+
+--
+-- Name: tb_dado_geral; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_dado_geral (
+    co_seq_dado_geral numeric(19,0) DEFAULT nextval('sq_dado_geral'::regclass) NOT NULL,
+    no_completo character varying(255),
+    no_especialidade character varying(255),
+    no_sub_area_conhecimento character varying(255),
+    no_area_conhecimento character varying(255),
+    no_grande_area_conhecimento character varying(255),
+    co_usuario numeric(19,0),
+    xml bytea,
+    data_atualizacao_curriculo timestamp without time zone,
+    data_atualizacao_usuario timestamp without time zone,
+    id_curriculo character varying(255)
+);
+
+
+ALTER TABLE tb_dado_geral OWNER TO postgres;
+
+--
+-- Name: tb_grupo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_grupo (
+    co_seq_grupo bigint DEFAULT nextval('sq_grupo'::regclass) NOT NULL,
+    no_area character varying(255),
+    no_grupo character varying(255),
+    no_instituicao character varying(255),
+    co_usuario bigint NOT NULL
+);
+
+
+ALTER TABLE tb_grupo OWNER TO postgres;
+
+--
+-- Name: tb_pesquisador; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_pesquisador (
+    co_seq_pesquisador bigint DEFAULT nextval('sq_pesquisador'::regclass) NOT NULL,
+    ds_area_atuacao character varying(255),
+    xml bytea,
+    dt_atualizacao_curriculo timestamp without time zone,
+    dt_atualizacao_usuario timestamp without time zone,
+    id_curriculo bigint,
+    nome_pesquisador character varying(255),
+    co_grupo bigint
+);
+
+
+ALTER TABLE tb_pesquisador OWNER TO postgres;
+
+--
+-- Name: tb_qualis_evento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_qualis_evento (
+    co_seq_qualis_cco numeric(19,0) DEFAULT nextval('sq_qualis_evento'::regclass) NOT NULL,
+    ds_sigla character varying(20),
+    no_titulo character varying(255),
+    nu_indice_h numeric(3,0),
+    no_estrato character varying(2),
+    no_area_avaliacao character varying(50),
+    nu_ano integer
+);
+
+
+ALTER TABLE tb_qualis_evento OWNER TO postgres;
+
+--
+-- Name: tb_qualis_periodico; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_qualis_periodico (
+    co_seq_periodico numeric(19,0) DEFAULT nextval('sq_qualis_periodico'::regclass) NOT NULL,
+    co_issn character varying(9),
+    no_titulo character varying(255),
+    no_estrato character varying(2),
+    no_area_avaliacao character varying(50),
+    nu_ano integer
+);
+
+
+ALTER TABLE tb_qualis_periodico OWNER TO postgres;
+
+--
+-- Name: tb_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_usuario (
+    no_usuario character varying(255),
+    ds_senha character varying(255),
+    co_seq_usuario numeric(19,0) DEFAULT nextval('sq_usuario'::regclass) NOT NULL,
+    ds_email character varying(255),
+    no_sexo character varying(10),
+    reset_key character varying(20)
+);
+
+
+ALTER TABLE tb_usuario OWNER TO postgres;
+
+--
+-- Name: pk_dado_geral; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_dado_geral
+    ADD CONSTRAINT pk_dado_geral PRIMARY KEY (co_seq_dado_geral);
+
+
+--
+-- Name: pk_databasechangeloglock; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY databasechangeloglock
+    ADD CONSTRAINT pk_databasechangeloglock PRIMARY KEY (id);
+
+
+--
+-- Name: pk_qualis_cco; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_qualis_evento
+    ADD CONSTRAINT pk_qualis_cco PRIMARY KEY (co_seq_qualis_cco);
+
+
+--
+-- Name: pk_usuario; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_usuario
+    ADD CONSTRAINT pk_usuario PRIMARY KEY (co_seq_usuario);
+
+
+--
+-- Name: rl_autoridade_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY rl_autoridade_usuario
+    ADD CONSTRAINT rl_autoridade_usuario_pkey PRIMARY KEY (no_autoridade, co_usuario);
+
+
+--
+-- Name: tb_grupo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_grupo
+    ADD CONSTRAINT tb_grupo_pkey PRIMARY KEY (co_seq_grupo);
+
+
+--
+-- Name: tb_pesquisador_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_pesquisador
+    ADD CONSTRAINT tb_pesquisador_pkey PRIMARY KEY (co_seq_pesquisador);
+
+
+--
+-- Name: tb_qualis_periodico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_qualis_periodico
+    ADD CONSTRAINT tb_qualis_periodico_pkey PRIMARY KEY (co_seq_periodico);
+
+
+--
+-- Name: in_email_usuario; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX in_email_usuario ON tb_usuario USING btree (ds_email);
+
+
+--
+-- Name: in_trgm_qualis_avaliacao_avaliacao; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX in_trgm_qualis_avaliacao_avaliacao ON tb_qualis_evento USING gin (no_area_avaliacao gin_trgm_ops);
+
+
+--
+-- Name: in_trn_qualis_cco_titulo; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX in_trn_qualis_cco_titulo ON tb_qualis_evento USING gin (no_titulo gin_trgm_ops);
+
+
+--
+-- Name: tb_qualis_periodico_co_issn_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX tb_qualis_periodico_co_issn_idx ON tb_qualis_periodico USING btree (co_issn);
+
+
+--
+-- Name: tb_qualis_periodico_co_issn_no_area_avaliacao_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX tb_qualis_periodico_co_issn_no_area_avaliacao_idx ON tb_qualis_periodico USING btree (co_issn, no_area_avaliacao);
+
+
+--
+-- Name: tb_qualis_periodico_no_area_avaliacao_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX tb_qualis_periodico_no_area_avaliacao_idx ON tb_qualis_periodico USING btree (no_area_avaliacao);
+
+
+--
+-- Name: fk_usuario_dado_geral; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tb_dado_geral
+    ADD CONSTRAINT fk_usuario_dado_geral FOREIGN KEY (co_usuario) REFERENCES tb_usuario(co_seq_usuario);
+
+
+--
+-- Name: tb_grupo_co_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tb_grupo
+    ADD CONSTRAINT tb_grupo_co_usuario_fkey FOREIGN KEY (co_usuario) REFERENCES tb_usuario(co_seq_usuario);
+
+
+--
+-- Name: tb_pesquisador_co_grupo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tb_pesquisador
+    ADD CONSTRAINT tb_pesquisador_co_grupo_fkey FOREIGN KEY (co_grupo) REFERENCES tb_grupo(co_seq_grupo);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
