@@ -44,43 +44,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: databasechangelog; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE databasechangelog (
-    id character varying(255) NOT NULL,
-    author character varying(255) NOT NULL,
-    filename character varying(255) NOT NULL,
-    dateexecuted timestamp without time zone NOT NULL,
-    orderexecuted integer NOT NULL,
-    exectype character varying(10) NOT NULL,
-    md5sum character varying(35),
-    description character varying(255),
-    comments character varying(255),
-    tag character varying(255),
-    liquibase character varying(20),
-    contexts character varying(255),
-    labels character varying(255)
-);
-
-
-ALTER TABLE databasechangelog OWNER TO postgres;
-
---
--- Name: databasechangeloglock; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE databasechangeloglock (
-    id integer NOT NULL,
-    locked boolean NOT NULL,
-    lockgranted timestamp without time zone,
-    lockedby character varying(255)
-);
-
-
-ALTER TABLE databasechangeloglock OWNER TO postgres;
-
---
 -- Name: rl_autoridade_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -299,14 +262,6 @@ ALTER TABLE tb_usuario OWNER TO postgres;
 
 ALTER TABLE ONLY tb_dado_geral
     ADD CONSTRAINT pk_dado_geral PRIMARY KEY (co_seq_dado_geral);
-
-
---
--- Name: pk_databasechangeloglock; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY databasechangeloglock
-    ADD CONSTRAINT pk_databasechangeloglock PRIMARY KEY (id);
 
 
 --
