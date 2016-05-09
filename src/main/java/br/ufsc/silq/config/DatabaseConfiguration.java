@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,9 +22,6 @@ import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
-import br.ufsc.silq.config.liquibase.AsyncSpringLiquibase;
-import liquibase.integration.spring.SpringLiquibase;
 
 @Configuration
 @EnableJpaRepositories("br.ufsc.silq.repository")
@@ -74,35 +70,6 @@ public class DatabaseConfiguration {
 			config.setMetricRegistry(this.metricRegistry);
 		}
 		return new HikariDataSource(config);
-	}
-
-	@Bean
-	public SpringLiquibase liquibase(DataSource dataSource, DataSourceProperties dataSourceProperties,
-			LiquibaseProperties liquibaseProperties) {
-
-		// Use liquibase.integration.spring.SpringLiquibase if you don't want
-		// Liquibase to start asynchronously
-		SpringLiquibase liquibase = new AsyncSpringLiquibase();
-		liquibase.setDataSource(dataSource);
-		liquibase.setChangeLog("classpath:config/liquibase/master.xml");
-		liquibase.setContexts(liquibaseProperties.getContexts());
-		liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
-		liquibase.setDropFirst(liquibaseProperties.isDropFirst());
-		liquibase.setShouldRun(liquibaseProperties.isEnabled());
-		if (this.env.acceptsProfiles(Constants.SPRING_PROFILE_FAST)) {
-			if ("org.h2.jdbcx.JdbcDataSource".equals(dataSourceProperties.getDriverClassName())) {
-				liquibase.setShouldRun(true);
-				this.log.warn(
-						"Using '{}' profile with H2 database in memory is not optimal, you should consider switching to"
-								+ " MySQL or Postgresql to avoid rebuilding your database upon each start.",
-						Constants.SPRING_PROFILE_FAST);
-			} else {
-				liquibase.setShouldRun(false);
-			}
-		} else {
-			this.log.debug("Configuring Liquibase");
-		}
-		return liquibase;
 	}
 
 	@Bean

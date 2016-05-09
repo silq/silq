@@ -58,9 +58,6 @@ spring:
     thymeleaf:
         cache: false
 
-liquibase:
-    contexts: dev
-
 server:
     port: 8080
 

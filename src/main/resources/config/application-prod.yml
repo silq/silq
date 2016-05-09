@@ -48,9 +48,6 @@ spring:
     thymeleaf:
         cache: true
 
-liquibase:
-    contexts: prod
-
 server:
     port: 8080
     compression:
