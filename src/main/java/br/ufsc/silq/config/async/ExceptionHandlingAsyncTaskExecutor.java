@@ -1,4 +1,4 @@
-package br.ufsc.silq.async;
+package br.ufsc.silq.config.async;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
