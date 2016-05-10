@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.business.entities;
+package br.ufsc.silq.core.persistence.entities;
 
 import java.util.HashSet;
 import java.util.List;

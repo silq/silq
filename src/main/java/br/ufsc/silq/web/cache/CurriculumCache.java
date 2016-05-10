@@ -10,8 +10,8 @@ import org.w3c.dom.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.exception.SilqLattesException;
+import br.ufsc.silq.core.service.DocumentManager;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

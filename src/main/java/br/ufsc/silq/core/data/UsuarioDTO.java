@@ -3,7 +3,7 @@ package br.ufsc.silq.core.data;
 import java.util.HashSet;
 import java.util.Set;
 
-import br.ufsc.silq.core.business.entities.Usuario;
+import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.security.AuthoritiesConstants;
 import lombok.Data;
 

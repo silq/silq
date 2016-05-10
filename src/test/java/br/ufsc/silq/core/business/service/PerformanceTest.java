@@ -11,6 +11,8 @@ import br.ufsc.silq.Fixtures;
 import br.ufsc.silq.WebContextTest;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
+import br.ufsc.silq.core.service.AvaliacaoService;
+import br.ufsc.silq.core.service.DocumentManager;
 
 public class PerformanceTest extends WebContextTest {
 

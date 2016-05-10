@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.ufsc.silq.core.business.entities.Usuario;
-import br.ufsc.silq.core.business.repository.UsuarioRepository;
+import br.ufsc.silq.core.persistence.entities.Usuario;
+import br.ufsc.silq.core.persistence.repository.UsuarioRepository;
 import lombok.extern.slf4j.Slf4j;
 
 /**

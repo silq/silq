@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.enums;
+package br.ufsc.silq.core.data.enums;
 
 import java.util.ArrayList;
 import java.util.Arrays;

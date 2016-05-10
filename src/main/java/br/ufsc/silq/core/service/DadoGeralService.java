@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.business.service;
+package br.ufsc.silq.core.service;
 
 import java.util.Date;
 
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 
-import br.ufsc.silq.core.business.entities.DadoGeral;
-import br.ufsc.silq.core.business.entities.Usuario;
-import br.ufsc.silq.core.business.repository.DadoGeralRepository;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
+import br.ufsc.silq.core.persistence.entities.DadoGeral;
+import br.ufsc.silq.core.persistence.entities.Usuario;
+import br.ufsc.silq.core.persistence.repository.DadoGeralRepository;
 
 @Service
 @Transactional

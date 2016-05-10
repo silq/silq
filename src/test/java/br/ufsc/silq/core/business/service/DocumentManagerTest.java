@@ -9,6 +9,7 @@ import org.w3c.dom.Document;
 import br.ufsc.silq.Fixtures;
 import br.ufsc.silq.WebContextTest;
 import br.ufsc.silq.core.exception.SilqLattesException;
+import br.ufsc.silq.core.service.DocumentManager;
 
 public class DocumentManagerTest extends WebContextTest {
 

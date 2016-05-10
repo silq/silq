@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.business.service;
+package br.ufsc.silq.core.service;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,11 +15,9 @@ import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 
 import br.ufsc.silq.core.SilqConfig;
-import br.ufsc.silq.core.business.entities.QualisPeriodico;
-import br.ufsc.silq.core.business.repository.QualisPeriodicoRepository;
 import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.data.NivelSimilaridade;
-import br.ufsc.silq.core.enums.AvaliacaoType;
+import br.ufsc.silq.core.data.enums.AvaliacaoType;
 import br.ufsc.silq.core.exception.SilqError;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
@@ -28,6 +26,8 @@ import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
+import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
+import br.ufsc.silq.core.persistence.repository.QualisPeriodicoRepository;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 
 @Service

@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.ufsc.silq.core.business.entities.DadoGeral;
-import br.ufsc.silq.core.business.service.DadoGeralService;
 import br.ufsc.silq.core.exception.SilqException;
+import br.ufsc.silq.core.persistence.entities.DadoGeral;
+import br.ufsc.silq.core.service.DadoGeralService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController

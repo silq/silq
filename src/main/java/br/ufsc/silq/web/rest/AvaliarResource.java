@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.ufsc.silq.core.business.entities.DadoGeral;
-import br.ufsc.silq.core.business.service.AvaliacaoService;
-import br.ufsc.silq.core.business.service.DadoGeralService;
 import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
+import br.ufsc.silq.core.persistence.entities.DadoGeral;
+import br.ufsc.silq.core.service.AvaliacaoService;
+import br.ufsc.silq.core.service.DadoGeralService;
 import br.ufsc.silq.web.cache.AvaliacaoCache;
 import br.ufsc.silq.web.cache.CurriculumCache;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;

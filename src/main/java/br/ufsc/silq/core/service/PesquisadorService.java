@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.business.service;
+package br.ufsc.silq.core.service;
 
 import java.io.IOException;
 import java.util.Date;
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 
-import br.ufsc.silq.core.business.entities.Grupo;
-import br.ufsc.silq.core.business.entities.Pesquisador;
-import br.ufsc.silq.core.business.repository.PesquisadorRepository;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
+import br.ufsc.silq.core.persistence.entities.Grupo;
+import br.ufsc.silq.core.persistence.entities.Pesquisador;
+import br.ufsc.silq.core.persistence.repository.PesquisadorRepository;
 
 @Service
 public class PesquisadorService {

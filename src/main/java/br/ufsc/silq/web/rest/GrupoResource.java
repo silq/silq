@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.ufsc.silq.core.business.entities.Grupo;
-import br.ufsc.silq.core.business.entities.Pesquisador;
-import br.ufsc.silq.core.business.service.AvaliacaoService;
-import br.ufsc.silq.core.business.service.GrupoService;
-import br.ufsc.silq.core.business.service.PesquisadorService;
 import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.GrupoForm;
+import br.ufsc.silq.core.persistence.entities.Grupo;
+import br.ufsc.silq.core.persistence.entities.Pesquisador;
+import br.ufsc.silq.core.service.AvaliacaoService;
+import br.ufsc.silq.core.service.GrupoService;
+import br.ufsc.silq.core.service.PesquisadorService;
 import br.ufsc.silq.web.rest.exception.HttpNotFound;
 import lombok.extern.slf4j.Slf4j;
 

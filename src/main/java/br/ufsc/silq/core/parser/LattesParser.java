@@ -10,7 +10,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import br.ufsc.silq.core.business.service.DocumentManager;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.attribute.ArtigoAttributeGetter;
@@ -21,6 +20,7 @@ import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.TipoOrigemCurriculo;
 import br.ufsc.silq.core.parser.dto.Trabalho;
+import br.ufsc.silq.core.service.DocumentManager;
 import br.ufsc.silq.core.utils.SilqDataUtils;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.parser.ConverterHelper;

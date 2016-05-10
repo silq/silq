@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 
-import br.ufsc.silq.core.business.service.MailService;
-import br.ufsc.silq.core.business.service.UsuarioService;
 import br.ufsc.silq.core.data.UsuarioDTO;
 import br.ufsc.silq.core.forms.usuario.RecuperarSenhaForm;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
 import br.ufsc.silq.core.forms.usuario.UsuarioUpdateForm;
+import br.ufsc.silq.core.service.MailService;
+import br.ufsc.silq.core.service.UsuarioService;
 import lombok.extern.slf4j.Slf4j;
 
 /**

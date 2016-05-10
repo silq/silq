@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.business.service;
+package br.ufsc.silq.core.service;
 
 import java.util.Optional;
 
@@ -9,11 +9,11 @@ import javax.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.ufsc.silq.core.business.entities.Usuario;
-import br.ufsc.silq.core.business.repository.UsuarioRepository;
-import br.ufsc.silq.core.business.service.util.RandomUtil;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
 import br.ufsc.silq.core.forms.usuario.UsuarioUpdateForm;
+import br.ufsc.silq.core.persistence.entities.Usuario;
+import br.ufsc.silq.core.persistence.repository.UsuarioRepository;
+import br.ufsc.silq.core.service.util.RandomUtil;
 import br.ufsc.silq.security.SecurityUtils;
 import lombok.experimental.Delegate;
 import lombok.extern.slf4j.Slf4j;

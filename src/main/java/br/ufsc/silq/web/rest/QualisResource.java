@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.ufsc.silq.core.business.entities.QualisEvento;
-import br.ufsc.silq.core.business.entities.QualisPeriodico;
-import br.ufsc.silq.core.business.repository.QualisEventoRepository;
-import br.ufsc.silq.core.business.repository.QualisPeriodicoRepository;
+import br.ufsc.silq.core.persistence.entities.QualisEvento;
+import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
+import br.ufsc.silq.core.persistence.repository.QualisEventoRepository;
+import br.ufsc.silq.core.persistence.repository.QualisPeriodicoRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController

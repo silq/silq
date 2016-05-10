@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.business.service;
+package br.ufsc.silq.core.service;
 
 import java.util.Locale;
 
@@ -15,7 +15,7 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 
 import br.ufsc.silq.config.JHipsterProperties;
-import br.ufsc.silq.core.business.entities.Usuario;
+import br.ufsc.silq.core.persistence.entities.Usuario;
 import lombok.extern.slf4j.Slf4j;
 
 /**

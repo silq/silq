@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.business.service;
+package br.ufsc.silq.core.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +9,10 @@ import javax.validation.Valid;
 import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.stereotype.Service;
 
-import br.ufsc.silq.core.business.entities.Grupo;
-import br.ufsc.silq.core.business.entities.Usuario;
-import br.ufsc.silq.core.business.repository.GrupoRepository;
 import br.ufsc.silq.core.forms.GrupoForm;
+import br.ufsc.silq.core.persistence.entities.Grupo;
+import br.ufsc.silq.core.persistence.entities.Usuario;
+import br.ufsc.silq.core.persistence.repository.GrupoRepository;
 
 @Service
 public class GrupoService {
