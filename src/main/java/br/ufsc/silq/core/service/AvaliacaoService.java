@@ -12,7 +12,10 @@ import javax.sql.DataSource;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
+
+import com.mysema.query.types.expr.BooleanExpression;
 
 import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.data.AvaliacaoResult;
@@ -26,11 +29,13 @@ import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
+import br.ufsc.silq.core.persistence.entities.QQualisPeriodico;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.core.persistence.repository.QualisPeriodicoRepository;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 
 @Service
+@Transactional(readOnly = true)
 public class AvaliacaoService {
 
 	@Inject
@@ -106,24 +111,38 @@ public class AvaliacaoService {
 	}
 
 	public Artigo avaliarArtigo(Artigo artigo, AvaliarForm avaliarForm) {
-		String issn = artigo.getIssn();
-		List<Conceito> conceitos = new ArrayList<>();
-
-		List<QualisPeriodico> results = this.qualisPeriodicoRepository.findAllByIssnAndAreaAvaliacao(issn,
-				avaliarForm.getArea().toUpperCase());
-
-		if (!results.isEmpty()) {
-			// TODO (bonetti): filtrar por ano?
-			for (QualisPeriodico result : results) {
-				conceitos.add(new Conceito(result.getTitulo(), result.getEstrato(), NivelSimilaridade.TOTAL, result.getAno()));
-			}
-		} else if (SilqStringUtils.isBlank(issn)) {
-			try {
-				conceitos = this.getConceitos(artigo.getTituloVeiculo(), avaliarForm, "TB_QUALIS_PERIODICO");
-			} catch (SQLException e) {
-				throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
-			}
+		if (artigo.getIssn().isEmpty()) {
+			// TODO (bonetti): Ordenar por ano aqui também
+			return this.avaliarArtigoPorSimilaridade(artigo, avaliarForm);
+		} else {
+			return this.avaliarArtigoPorIssn(artigo, avaliarForm);
 		}
+	}
+
+	private Artigo avaliarArtigoPorSimilaridade(Artigo artigo, AvaliarForm avaliarForm) {
+		List<Conceito> conceitos = new ArrayList<>();
+		try {
+			conceitos = this.getConceitos(artigo.getTituloVeiculo(), avaliarForm, "TB_QUALIS_PERIODICO");
+		} catch (SQLException e) {
+			throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
+		}
+		artigo.setConceitos(conceitos);
+		return artigo;
+	}
+
+	public Artigo avaliarArtigoPorIssn(Artigo artigo, AvaliarForm avaliarForm) {
+		QQualisPeriodico path = QQualisPeriodico.qualisPeriodico;
+		BooleanExpression query = path.issn.eq(artigo.getIssn())
+				.and(path.areaAvaliacao.eq(avaliarForm.getArea().toUpperCase()));
+
+		Iterable<QualisPeriodico> results = this.qualisPeriodicoRepository.findAll(query,
+				path.ano.subtract(artigo.getAno()).abs().asc());
+
+		List<Conceito> conceitos = new ArrayList<>();
+		for (QualisPeriodico result : results) {
+			conceitos.add(new Conceito(result.getTitulo(), result.getEstrato(), NivelSimilaridade.TOTAL, result.getAno()));
+		}
+
 		artigo.setConceitos(conceitos);
 		return artigo;
 	}
@@ -157,8 +176,8 @@ public class AvaliacaoService {
 		Connection connection = this.dataSource.getConnection();
 		Statement st = connection.createStatement();
 		st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade().getValue() + "::real)");
-		ResultSet rs = st.executeQuery(
-				this.createSqlStatement(table, tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS));
+		String sqlStatement = this.createSqlStatement(table, tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS);
+		ResultSet rs = st.executeQuery(sqlStatement);
 
 		while (rs.next()) {
 			conceitos.add(this.createConceito(rs));
