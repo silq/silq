@@ -6,7 +6,7 @@
     padding: 12px 15px;
     border-bottom: 1px solid #eee;
 
-    p { margin: 0; }    
+    p { margin: 0; }
 
     .result-titulo {
         font-size: 1.05em;
@@ -28,6 +28,11 @@
     .result-conceito-item {
         line-height: 1.9;
         margin-top: 2px;
+    }
+
+    .ver-mais {
+        font-size: 0.9em;
+        margin-left: 10px;
     }
 }
 

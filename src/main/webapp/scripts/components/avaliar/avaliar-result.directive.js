@@ -17,6 +17,7 @@ angular.module('silq2App')
                             item.conceitoEstrato = conceito.conceito;
                             item.conceitoSimilaridade = conceito.similaridade;
                             item.conceitoTitulo = conceito.tituloVeiculo;
+                            item.conceitoAno = conceito.ano;
                         }
                     });
                     return arr;
@@ -28,6 +29,10 @@ angular.module('silq2App')
 
                 $scope.getTrabalhosCSV = function() {
                     return createShallowResults($scope.results.trabalhos);
+                };
+
+                $scope.lala = function() {
+                    console.log("lala");
                 };
             }
         };

@@ -7,12 +7,15 @@
     <p>
         <span class="result-veiculo" title="Título do periódico ou evento" highlight-text="filter">{{ item.tituloVeiculo }}</span>
         <span class="result-issn" title="ISSN" ng-show="item.issn" highlight-text="filter"> | ISSN: {{ item.issn }}</span>
-    </p>
+    </p> {{opened}}
 
-    <p class="result-conceito-item" ng-repeat="conceito in item.conceitos">
-        <span class="label-conceito">
+    <p class="result-conceito-item" ng-repeat="(i, conceito) in item.conceitos">
+        <span ng-show="$first || mais" class="label-conceito">
             <span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span><span class="ano" title="Ano base da avaliação Qualis">{{ conceito.ano }}</span><span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span>
         </span>
+
+        <a ng-show="!mais && $first && !$last" ng-click="verMais(true)" class="ver-mais">Ver mais resultados <i class="glyphicon glyphicon-chevron-down"></i></a>
+        <a ng-show="mais && $first && !$last" ng-click="verMais(false)" class="ver-mais">Ver menos resultados <i class="glyphicon glyphicon-chevron-up"></i></a>
     </p>
 
     <p class="help-block" ng-show="item.conceitos.length === 0">
