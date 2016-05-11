@@ -14,7 +14,7 @@
     "postinstall": "bower install",
     "test": "grunt test",
     "start": "grunt",
-    "heroku": "mvn package -Pprod -DskipTests && heroku deploy:jar --jar target/*.war"
+    "package": "mvn package -Pprod -DskipTests"
   },
   "devDependencies": {
     "browser-sync": "2.10.0",
