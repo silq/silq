@@ -8,8 +8,11 @@ import javax.validation.Valid;
 
 import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.GrupoForm;
+import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.Grupo;
 import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.persistence.repository.GrupoRepository;
@@ -22,6 +25,9 @@ public class GrupoService {
 
 	@Inject
 	private UsuarioService usuarioService;
+
+	@Inject
+	private CurriculumLattesService curriculumService;
 
 	/**
 	 * Cria um novo Grupo e associa-o ao usuário atualmente logado
@@ -109,6 +115,31 @@ public class GrupoService {
 	 */
 	public void delete(Grupo grupo) {
 		this.grupoRepository.delete(grupo);
+	}
+
+	/**
+	 * Adiciona um novo pesquisador a um grupo a partir do upload de seu currículo
+	 * Lattes em XML.
+	 *
+	 * @param grupo
+	 *            Grupo ao qual o Pesquisador criado será adicionado.
+	 * @param upload
+	 *            Upload do currículo Lattes.
+	 * @return A entidade {@link CurriculumLattes} associada.
+	 * @throws SilqException
+	 */
+	public CurriculumLattes addPesquisadorFromUpload(Grupo grupo, MultipartFile upload) throws SilqException {
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(upload);
+		grupo.getPesquisadores().add(lattes);
+		this.grupoRepository.save(grupo);
+		return lattes;
+	}
+
+	public void removePesquisador(Grupo grupo, Long pesquisadorId) {
+		CurriculumLattes lattes = this.curriculumService.findOne(pesquisadorId);
+		grupo.getPesquisadores().remove(lattes);
+		this.grupoRepository.save(grupo);
+		this.curriculumService.releaseCurriculum(lattes);
 	}
 
 }

@@ -1,6 +1,6 @@
 package br.ufsc.silq.core.persistence.entities;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -49,7 +50,7 @@ public class Grupo {
 	@JsonIgnore
 	private Usuario coordenador;
 
-	@OneToMany(mappedBy = "grupo", orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<Pesquisador> pesquisadores;
-
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "rl_grupo_pesquisador", joinColumns = @JoinColumn(name = "co_grupo") , inverseJoinColumns = @JoinColumn(name = "co_curriculum") )
+	private Set<CurriculumLattes> pesquisadores;
 }

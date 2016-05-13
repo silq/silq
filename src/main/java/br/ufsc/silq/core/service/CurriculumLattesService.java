@@ -1,7 +1,6 @@
 package br.ufsc.silq.core.service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
@@ -16,9 +15,10 @@ import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
-import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.persistence.repository.CurriculumLattesRepository;
+import br.ufsc.silq.core.persistence.repository.GrupoRepository;
 import br.ufsc.silq.core.persistence.repository.UsuarioRepository;
+import lombok.experimental.Delegate;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CurriculumLattesService {
 
 	@Inject
+	@Delegate
 	private CurriculumLattesRepository lattesRepository;
 
 	@Inject
@@ -37,6 +38,9 @@ public class CurriculumLattesService {
 
 	@Inject
 	private UsuarioRepository usuarioRepository;
+
+	@Inject
+	private GrupoRepository grupoRepository;
 
 	/**
 	 * Cria uma nova entidade {@link CurriculumLattes} a partir de um documento Lattes em XML
@@ -126,8 +130,7 @@ public class CurriculumLattesService {
 	 * @return
 	 */
 	public boolean isCurriculumEmUso(CurriculumLattes curriculum) {
-		List<Usuario> usuarios = this.usuarioRepository.findAllByCurriculum(curriculum);
-		return !usuarios.isEmpty();
+		return !this.usuarioRepository.findAllByCurriculum(curriculum).isEmpty()
+				|| !this.grupoRepository.findAllByPesquisadores(curriculum).isEmpty();
 	}
-
 }

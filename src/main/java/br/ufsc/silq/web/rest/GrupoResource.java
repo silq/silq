@@ -21,11 +21,11 @@ import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.GrupoForm;
+import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.Grupo;
-import br.ufsc.silq.core.persistence.entities.Pesquisador;
 import br.ufsc.silq.core.service.AvaliacaoService;
+import br.ufsc.silq.core.service.CurriculumLattesService;
 import br.ufsc.silq.core.service.GrupoService;
-import br.ufsc.silq.core.service.PesquisadorService;
 import br.ufsc.silq.web.rest.exception.HttpNotFound;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,10 +38,10 @@ public class GrupoResource {
 	private GrupoService grupoService;
 
 	@Inject
-	private PesquisadorService pesquisadorService;
+	private AvaliacaoService avaliacaoService;
 
 	@Inject
-	private AvaliacaoService avaliacaoService;
+	private CurriculumLattesService curriculumService;
 
 	/**
 	 * Pesquisa por um Grupo com o ID especificado e que o usuário atual tenha
@@ -109,7 +109,7 @@ public class GrupoResource {
 	}
 
 	/**
-	 * POST /grupos/:id/addPesquisador -> Adiciona um @{link Pesquisador} ao
+	 * POST /grupos/:id/addPesquisador -> Adiciona o currículo de um pesquisador ao
 	 * grupo, através do envio de seu currículo Lattes em XML.
 	 *
 	 * @throws IOException
@@ -117,42 +117,34 @@ public class GrupoResource {
 	 * @throws IllegalStateException
 	 */
 	@RequestMapping(value = "/grupos/{id}/addPesquisador", method = RequestMethod.POST)
-	public ResponseEntity<Pesquisador> addPesquisador(@PathVariable Long id, @RequestParam("file") MultipartFile upload)
+	public ResponseEntity<CurriculumLattes> addPesquisador(@PathVariable Long id, @RequestParam("file") MultipartFile upload)
 			throws IllegalStateException, SilqException, IOException {
 		log.debug("REST request to add Pesquisador to Grupo : {}, {}", id, upload);
-
 		Grupo grupo = this.findGrupoBydIdWithPermissionOr404(id);
-		Pesquisador pesquisador = this.pesquisadorService.addToGroupFromUpload(grupo, upload);
-
-		return new ResponseEntity<>(pesquisador, HttpStatus.OK);
+		CurriculumLattes lattes = this.grupoService.addPesquisadorFromUpload(grupo, upload);
+		return new ResponseEntity<>(lattes, HttpStatus.OK);
 	}
 
 	/**
-	 * DELETE /grupos/:grupoId/removePesquisador/:pesquisadorId -> Remove um
-	 * pesquisador do grupo especificado.
+	 * DELETE /grupos/:grupoId/removePesquisador/:curriculumId -> Remove o currículo de pesquisador de um grupo.
 	 */
-	@RequestMapping(value = "/grupos/{grupoId}/removePesquisador/{pesquisadorId}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> removePesquisador(@PathVariable Long grupoId, @PathVariable Long pesquisadorId) {
-		log.debug("REST request to remove Pesquisador: {}, {}", grupoId, pesquisadorId);
-
-		// Vê se o grupo existe e se o usuário atual tem permissão sobre ele:
-		this.findGrupoBydIdWithPermissionOr404(grupoId);
-
-		this.pesquisadorService.remove(pesquisadorId);
-
+	@RequestMapping(value = "/grupos/{grupoId}/removePesquisador/{curriculumId}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> removePesquisador(@PathVariable Long grupoId, @PathVariable Long curriculumId) {
+		log.debug("REST request to remove Pesquisador: {}, {}", grupoId, curriculumId);
+		Grupo grupo = this.findGrupoBydIdWithPermissionOr404(grupoId);
+		this.grupoService.removePesquisador(grupo, curriculumId);
 		return ResponseEntity.noContent().build();
 	}
 
 	/**
-	 * GET /grupos/{grupoId}/avaliar/{pesquisadorId} -> Avalia o currículo de um
-	 * {@link Pesquisador} de um grupo.
+	 * GET /grupos/{grupoId}/avaliar/{curriculumId} -> Avalia o currículo do pesquisador de um grupo.
 	 *
 	 * @throws SilqLattesException
 	 */
-	@RequestMapping(value = "/grupos/{grupoId}/avaliar/{pesquisadorId}", method = RequestMethod.GET)
-	public ResponseEntity<AvaliacaoResult> avaliarPesquisador(@PathVariable Long grupoId, @PathVariable Long pesquisadorId)
+	@RequestMapping(value = "/grupos/{grupoId}/avaliar/{curriculumId}", method = RequestMethod.GET)
+	public ResponseEntity<AvaliacaoResult> avaliarPesquisador(@PathVariable Long grupoId, @PathVariable Long curriculumId)
 			throws SilqLattesException {
-		log.debug("Avaliar Pesquisador: {}, {}", grupoId, pesquisadorId);
+		log.debug("Avaliar Pesquisador: {}, {}", grupoId, curriculumId);
 
 		// Vê se o grupo existe e se o usuário atual tem permissão sobre ele:
 		Grupo grupo = this.findGrupoBydIdWithPermissionOr404(grupoId);
@@ -161,11 +153,8 @@ public class GrupoResource {
 		AvaliarForm avaliarForm = new AvaliarForm();
 		avaliarForm.setArea(grupo.getNomeArea());
 
-		Pesquisador pesquisador = this.pesquisadorService.findOneById(pesquisadorId)
-				.orElseThrow(() -> new HttpNotFound("Pesquisador não encontrado"));
-
-		AvaliacaoResult result = this.avaliacaoService.avaliar(pesquisador.getCurriculoXml(), avaliarForm);
-
+		CurriculumLattes lattes = this.curriculumService.findOne(curriculumId);
+		AvaliacaoResult result = this.avaliacaoService.avaliar(lattes.getXml(), avaliarForm);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 }

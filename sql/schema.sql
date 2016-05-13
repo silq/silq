@@ -56,6 +56,18 @@ CREATE TABLE rl_autoridade_usuario (
 ALTER TABLE rl_autoridade_usuario OWNER TO postgres;
 
 --
+-- Name: rl_grupo_pesquisador; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE rl_grupo_pesquisador (
+    co_grupo bigint NOT NULL,
+    co_curriculum numeric(19,0) NOT NULL
+);
+
+
+ALTER TABLE rl_grupo_pesquisador OWNER TO postgres;
+
+--
 -- Name: sq_curriculum_lattes; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -265,6 +277,14 @@ ALTER TABLE ONLY tb_curriculum_lattes
 
 
 --
+-- Name: pk_grupo_pesquisador; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY rl_grupo_pesquisador
+    ADD CONSTRAINT pk_grupo_pesquisador PRIMARY KEY (co_grupo, co_curriculum);
+
+
+--
 -- Name: pk_qualis_cco; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -310,6 +330,13 @@ ALTER TABLE ONLY tb_pesquisador
 
 ALTER TABLE ONLY tb_qualis_periodico
     ADD CONSTRAINT tb_qualis_periodico_pkey PRIMARY KEY (co_seq_periodico);
+
+
+--
+-- Name: in_curriculum_lattes; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX in_curriculum_lattes ON tb_curriculum_lattes USING btree (id_lattes, data_atualizacao_curriculo);
 
 
 --
@@ -360,6 +387,22 @@ CREATE INDEX tb_qualis_periodico_no_area_avaliacao_idx ON tb_qualis_periodico US
 
 ALTER TABLE ONLY tb_usuario
     ADD CONSTRAINT fk_curriculum_co_curriculum_fkey FOREIGN KEY (co_curriculum) REFERENCES tb_curriculum_lattes(co_seq_curriculum);
+
+
+--
+-- Name: fk_rl_grupo_pesquisador_curriculum_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY rl_grupo_pesquisador
+    ADD CONSTRAINT fk_rl_grupo_pesquisador_curriculum_fkey FOREIGN KEY (co_curriculum) REFERENCES tb_curriculum_lattes(co_seq_curriculum);
+
+
+--
+-- Name: fk_rl_grupo_pesquisador_grupo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY rl_grupo_pesquisador
+    ADD CONSTRAINT fk_rl_grupo_pesquisador_grupo_fkey FOREIGN KEY (co_grupo) REFERENCES tb_grupo(co_seq_grupo);
 
 
 --

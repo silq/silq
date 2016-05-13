@@ -62,7 +62,7 @@
                 <tbody>
                     <tr ng-repeat="pesquisador in grupo.pesquisadores | filter: filter | orderBy: 'nome'">
                         <td>{{ pesquisador.nome }}</td>
-                        <td>{{ pesquisador.idCurriculo }}</td>
+                        <td>{{ pesquisador.idLattes }}</td>
                         <td>{{ pesquisador.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy' }}</td>
                         <td class="table-actions">
                             <a ng-click="avaliarPesquisador(pesquisador)">

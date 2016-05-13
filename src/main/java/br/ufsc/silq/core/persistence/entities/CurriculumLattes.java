@@ -25,7 +25,7 @@ import lombok.ToString;
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_curriculum_lattes", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_curriculum_lattes")
 @Data
-@ToString(exclude = { "xml" })
+@ToString(of = { "id", "idLattes", "nome", "dataAtualizacaoUsuario" })
 @NoArgsConstructor
 public class CurriculumLattes {
 
@@ -58,9 +58,8 @@ public class CurriculumLattes {
 	@Column(name = "data_atualizacao_usuario")
 	private Date dataAtualizacaoUsuario;
 
+	@JsonIgnore
 	@Type(type = "org.hibernate.type.BinaryType")
 	@Column(name = "xml")
-	@JsonIgnore
 	private byte[] xml;
-
 }
