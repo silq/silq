@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('MinhaAvaliacaoController', function ($scope, DadoGeral, Similarity, Flash) {
+    .controller('MinhaAvaliacaoController', function ($scope, CurriculumLattes, Similarity, Flash) {
         $scope.results = null;
         $scope.avaliarForm = {
             nivelSimilaridade: '0.6'
         };
 
-        DadoGeral.get().then(function(resp) {
+        CurriculumLattes.get().then(function(resp) {
             $scope.avaliarForm.area = resp.data.areaConhecimento;
         });
 

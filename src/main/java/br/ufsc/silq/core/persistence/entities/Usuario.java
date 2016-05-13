@@ -10,15 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -40,17 +39,13 @@ public class Usuario {
 	@Column(name = "co_seq_usuario")
 	private Long id;
 
-	@NotBlank
 	@Column(name = "no_usuario")
 	private String nome;
 
-	@NotBlank
 	@Column(name = "ds_senha")
 	@JsonIgnore
 	private String senha;
 
-	@NotBlank
-	@Email
 	@Column(name = "ds_email")
 	private String email;
 
@@ -58,10 +53,14 @@ public class Usuario {
 	@Column(name = "no_sexo")
 	private String sexo;
 
-	@Size(max = 20)
 	@Column(name = "reset_key", length = 20)
 	@JsonIgnore
 	private String resetKey;
+
+	@ManyToOne
+	@JoinColumn(name = "co_curriculum")
+	@JsonIgnore
+	private CurriculumLattes curriculum;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuarioId", orphanRemoval = true, fetch = FetchType.EAGER)

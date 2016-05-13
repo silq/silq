@@ -8,9 +8,12 @@ import javax.validation.Valid;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
 import br.ufsc.silq.core.forms.usuario.UsuarioUpdateForm;
+import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.persistence.repository.UsuarioRepository;
 import br.ufsc.silq.core.service.util.RandomUtil;
@@ -29,6 +32,9 @@ public class UsuarioService {
 	@Delegate
 	@Inject
 	private UsuarioRepository usuarioRepository;
+
+	@Inject
+	private CurriculumLattesService curriculumService;
 
 	/**
 	 * Registra um novo usuário, salvando-o na base de dados e cifrando a senha
@@ -104,5 +110,49 @@ public class UsuarioService {
 			this.usuarioRepository.save(usuario);
 			return usuario;
 		});
+	}
+
+	/**
+	 * Retorna o currículo do usuário logado.
+	 *
+	 * @return O {@link CurriculumLattes} do usuário logado.
+	 */
+	public CurriculumLattes getCurriculumUsuarioLogado() {
+		return this.getUsuarioLogado().getCurriculum();
+	}
+
+	/**
+	 * Remove o currículo do usuário logado, deletando seu {@link CurriculumLattes} da base de dados caso
+	 * ele não seja mais referenciado.
+	 */
+	public void removeCurriculumUsuarioLogado() {
+		Usuario usuario = this.getUsuarioLogado();
+		CurriculumLattes curriculumAntigo = usuario.getCurriculum();
+		usuario.setCurriculum(null);
+		this.usuarioRepository.save(usuario);
+		this.curriculumService.releaseCurriculum(curriculumAntigo);
+	}
+
+	/**
+	 * Salva o currículo do usuário logado a partir do arquivo XML de seu
+	 * currículo Lattes. Remove currículo anterior associados a este usuário.
+	 *
+	 * @param uploadedFile Upload do arquivo contendo o currículo Lattes.
+	 * @return {@link CurriculumLattes} criado a partir do parsing do Lattes.
+	 * @throws SilqException
+	 */
+	public CurriculumLattes saveCurriculumUsuarioLogado(MultipartFile uploadedFile) throws SilqException {
+		Usuario usuario = this.getUsuarioLogado();
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(uploadedFile);
+
+		CurriculumLattes curriculumAntigo = usuario.getCurriculum();
+		usuario.setCurriculum(lattes);
+		this.usuarioRepository.save(usuario);
+
+		if (curriculumAntigo != null) {
+			this.curriculumService.releaseCurriculum(curriculumAntigo);
+		}
+
+		return lattes;
 	}
 }

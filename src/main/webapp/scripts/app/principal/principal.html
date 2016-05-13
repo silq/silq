@@ -1,4 +1,4 @@
-<div class="text-center" ng-show="!dados">
+<div class="text-center" ng-show="!curriculum">
     <br /><br />
 
     <p>Seja bem-vindo(a), {{ account.nome }}! Personalize sua tela de usuário adicionando seu currículo:</p>
@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<div ng-show="dados">
+<div ng-show="curriculum">
     <h3 class="text-center">Meu currículo</h3>
     <br />
 
@@ -31,35 +31,35 @@
         <tbody>
             <tr>
                 <td>Nome</td>
-                <td>{{ dados.nome }}</td>
+                <td>{{ curriculum.nome }}</td>
             </tr>
             <tr>
                 <td>Especialidade</td>
-                <td>{{ dados.especialidade }}</td>
+                <td>{{ curriculum.especialidade }}</td>
             </tr>
             <tr>
                 <td>Área do conhecimento</td>
-                <td>{{ dados.areaConhecimento }}</td>
+                <td>{{ curriculum.areaConhecimento }}</td>
             </tr>
             <tr>
                 <td>Sub área do conhecimento</td>
-                <td>{{ dados.subAreaConhecimento }}</td>
+                <td>{{ curriculum.subAreaConhecimento }}</td>
             </tr>
             <tr>
                 <td>Grande área do conhecimento</td>
-                <td>{{ dados.grandeAreaConhecimento }}</td>
+                <td>{{ curriculum.grandeAreaConhecimento }}</td>
             </tr>
             <tr>
                 <td>ID do currículo</td>
-                <td>{{ dados.idCurriculo }}</td>
+                <td>{{ curriculum.idLattes }}</td>
             </tr>
             <tr>
                 <td>Data da versão atual do currículo</td>
-                <td>{{ dados.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy, hh:mm' }}</td>
+                <td>{{ curriculum.dataAtualizacaoCurriculo | date: 'dd/MM/yyyy, HH:mm' }}</td>
             </tr>
             <tr>
                 <td>Data da última atualização</td>
-                <td>{{ dados.dataAtualizacaoUsuario | date: 'dd/MM/yyyy, hh:mm' }}</td>
+                <td>{{ curriculum.dataAtualizacaoUsuario | date: 'dd/MM/yyyy, HH:mm' }}</td>
             </tr>
         </tbody>
     </table>

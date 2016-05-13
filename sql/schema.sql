@@ -56,10 +56,10 @@ CREATE TABLE rl_autoridade_usuario (
 ALTER TABLE rl_autoridade_usuario OWNER TO postgres;
 
 --
--- Name: sq_dado_geral; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: sq_curriculum_lattes; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE sq_dado_geral
+CREATE SEQUENCE sq_curriculum_lattes
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -67,7 +67,7 @@ CREATE SEQUENCE sq_dado_geral
     CACHE 1;
 
 
-ALTER TABLE sq_dado_geral OWNER TO postgres;
+ALTER TABLE sq_curriculum_lattes OWNER TO postgres;
 
 --
 -- Name: sq_grupo; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -154,25 +154,24 @@ CREATE SEQUENCE sq_usuario
 ALTER TABLE sq_usuario OWNER TO postgres;
 
 --
--- Name: tb_dado_geral; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_curriculum_lattes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE tb_dado_geral (
-    co_seq_dado_geral numeric(19,0) DEFAULT nextval('sq_dado_geral'::regclass) NOT NULL,
+CREATE TABLE tb_curriculum_lattes (
+    co_seq_curriculum numeric(19,0) DEFAULT nextval('sq_curriculum_lattes'::regclass) NOT NULL,
     no_completo character varying(255),
     no_especialidade character varying(255),
     no_sub_area_conhecimento character varying(255),
     no_area_conhecimento character varying(255),
     no_grande_area_conhecimento character varying(255),
-    co_usuario numeric(19,0),
-    xml bytea,
-    data_atualizacao_curriculo timestamp without time zone,
+    xml bytea NOT NULL,
+    data_atualizacao_curriculo timestamp without time zone NOT NULL,
     data_atualizacao_usuario timestamp without time zone,
-    id_curriculo character varying(255)
+    id_lattes character varying(255) NOT NULL
 );
 
 
-ALTER TABLE tb_dado_geral OWNER TO postgres;
+ALTER TABLE tb_curriculum_lattes OWNER TO postgres;
 
 --
 -- Name: tb_grupo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -250,7 +249,8 @@ CREATE TABLE tb_usuario (
     co_seq_usuario numeric(19,0) DEFAULT nextval('sq_usuario'::regclass) NOT NULL,
     ds_email character varying(255),
     no_sexo character varying(10),
-    reset_key character varying(20)
+    reset_key character varying(20),
+    co_curriculum numeric(19,0)
 );
 
 
@@ -260,8 +260,8 @@ ALTER TABLE tb_usuario OWNER TO postgres;
 -- Name: pk_dado_geral; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY tb_dado_geral
-    ADD CONSTRAINT pk_dado_geral PRIMARY KEY (co_seq_dado_geral);
+ALTER TABLE ONLY tb_curriculum_lattes
+    ADD CONSTRAINT pk_dado_geral PRIMARY KEY (co_seq_curriculum);
 
 
 --
@@ -355,11 +355,11 @@ CREATE INDEX tb_qualis_periodico_no_area_avaliacao_idx ON tb_qualis_periodico US
 
 
 --
--- Name: fk_usuario_dado_geral; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: fk_curriculum_co_curriculum_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY tb_dado_geral
-    ADD CONSTRAINT fk_usuario_dado_geral FOREIGN KEY (co_usuario) REFERENCES tb_usuario(co_seq_usuario);
+ALTER TABLE ONLY tb_usuario
+    ADD CONSTRAINT fk_curriculum_co_curriculum_fkey FOREIGN KEY (co_curriculum) REFERENCES tb_curriculum_lattes(co_seq_curriculum);
 
 
 --

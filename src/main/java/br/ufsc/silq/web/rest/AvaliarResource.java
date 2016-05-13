@@ -21,9 +21,9 @@ import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
-import br.ufsc.silq.core.persistence.entities.DadoGeral;
+import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.service.AvaliacaoService;
-import br.ufsc.silq.core.service.DadoGeralService;
+import br.ufsc.silq.core.service.UsuarioService;
 import br.ufsc.silq.web.cache.AvaliacaoCache;
 import br.ufsc.silq.web.cache.CurriculumCache;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AvaliarResource {
 
 	@Inject
-	private DadoGeralService dadoGeralService;
+	private UsuarioService usuarioService;
 
 	@Inject
 	private AvaliacaoService avaliacaoService;
@@ -54,8 +54,8 @@ public class AvaliarResource {
 	 */
 	@RequestMapping(value = "/avaliar/atual", method = RequestMethod.POST)
 	public ResponseEntity<AvaliacaoResult> avaliarAtual(@Valid @RequestBody AvaliarForm avaliarForm) throws SilqLattesException {
-		DadoGeral dadoGeral = this.dadoGeralService.getDadoGeral();
-		AvaliacaoResult result = this.avaliacaoService.avaliar(dadoGeral.getCurriculoXml(), avaliarForm);
+		CurriculumLattes lattes = this.usuarioService.getCurriculumUsuarioLogado();
+		AvaliacaoResult result = this.avaliacaoService.avaliar(lattes.getXml(), avaliarForm);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 

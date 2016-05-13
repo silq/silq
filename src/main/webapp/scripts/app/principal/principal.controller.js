@@ -1,27 +1,27 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('PrincipalController', function ($scope, $state, Principal, Upload, DadoGeral, Cache, Flash) {
+    .controller('PrincipalController', function ($scope, $state, Principal, Upload, CurriculumLattes, Cache, Flash) {
         Principal.identity().then(function(account) {
             $scope.account = account;
         });
 
-        DadoGeral.get().then(function(resp) {
+        CurriculumLattes.get().then(function(resp) {
             var dados = resp.data;
             if (dados.nome) {
-                $scope.dados = dados;
+                $scope.curriculum = dados;
             } else {
-                $scope.dados = null;
+                $scope.curriculum = null;
             }
         });
 
         $scope.atualizar = function() {
-            $scope.dados = null;
+            $scope.curriculum = null;
         };
 
         $scope.remover = function() {
-            DadoGeral.delete().then(function() {
-                $scope.dados = null;
+            CurriculumLattes.delete().then(function() {
+                $scope.curriculum = null;
                 Flash.create('success', '<strong>Sucesso!</strong> Currículo removido');
             });
         };
@@ -29,11 +29,11 @@ angular.module('silq2App')
         // Dropbox configuration
         $scope.files = [];
         $scope.uploadConfig = {
-            url: 'api/dado-geral'
+            url: CurriculumLattes.url
         };
         $scope.uploaded = function(resp) {
             $scope.files = [];
-            $scope.dados = resp.data;
+            $scope.curriculum = resp.data;
             Cache.invalidate();
             Flash.create('success', '<strong>Sucesso!</strong> Currículo enviado');
         };

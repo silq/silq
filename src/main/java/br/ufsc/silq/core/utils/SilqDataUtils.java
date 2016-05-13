@@ -18,6 +18,7 @@ public class SilqDataUtils {
 		calendar.setTimeZone(TimeZone.getDefault());
 		calendar.set(dataDto.getAno(), dataDto.getMes(), dataDto.getDia(), dataDto.getHora(), dataDto.getMinuto(),
 				dataDto.getSegundo());
+		calendar.set(Calendar.MILLISECOND, 0);
 
 		return calendar.getTime();
 	}

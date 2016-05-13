@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,17 +22,20 @@ import lombok.ToString;
 
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SequenceGenerator(name = "Token_generator", sequenceName = "sq_dado_geral", allocationSize = 1, initialValue = 1)
-@Table(name = "tb_dado_geral")
+@SequenceGenerator(name = "Token_generator", sequenceName = "sq_curriculum_lattes", allocationSize = 1, initialValue = 1)
+@Table(name = "tb_curriculum_lattes")
 @Data
-@ToString(exclude = { "curriculoXml" })
+@ToString(exclude = { "xml" })
 @NoArgsConstructor
-public class DadoGeral {
+public class CurriculumLattes {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Token_generator")
-	@Column(name = "co_seq_dado_geral")
+	@Column(name = "co_seq_curriculum")
 	private Long id;
+
+	@Column(name = "id_lattes")
+	private String idLattes;
 
 	@Column(name = "no_completo")
 	private String nome;
@@ -51,9 +52,6 @@ public class DadoGeral {
 	@Column(name = "no_grande_area_conhecimento")
 	private String grandeAreaConhecimento;
 
-	@Column(name = "id_curriculo")
-	private String idCurriculo;
-
 	@Column(name = "data_atualizacao_curriculo")
 	private Date dataAtualizacaoCurriculo;
 
@@ -63,11 +61,6 @@ public class DadoGeral {
 	@Type(type = "org.hibernate.type.BinaryType")
 	@Column(name = "xml")
 	@JsonIgnore
-	private byte[] curriculoXml;
-
-	@OneToOne
-	@JoinColumn(name = "co_usuario", unique = true, nullable = false)
-	@JsonIgnore
-	private Usuario usuario;
+	private byte[] xml;
 
 }
