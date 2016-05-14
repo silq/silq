@@ -23,10 +23,12 @@ import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.service.AvaliacaoService;
+import br.ufsc.silq.core.service.CurriculumLattesService;
 import br.ufsc.silq.core.service.UsuarioService;
 import br.ufsc.silq.web.cache.AvaliacaoCache;
 import br.ufsc.silq.web.cache.CurriculumCache;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
+import br.ufsc.silq.web.rest.exception.HttpNotFound;
 import br.ufsc.silq.web.rest.form.AvaliacaoLivreForm;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,6 +48,24 @@ public class AvaliarResource {
 
 	@Inject
 	private AvaliacaoCache avaliacaoCache;
+
+	@Inject
+	private CurriculumLattesService curriculumService;
+
+	/**
+	 * POST /api/avaliar/curriculum/{curriculumId} -> Avalia o currículo salvo com ID especificado,
+	 * caso o usuário logado tenha permissão.
+	 *
+	 * @throws SilqLattesException
+	 */
+	@RequestMapping(value = "/avaliar/curriculum/{curriculumId}", method = RequestMethod.POST)
+	public ResponseEntity<AvaliacaoResult> avaliarCurriculum(@PathVariable Long curriculumId, @Valid @RequestBody AvaliarForm avaliarForm) throws SilqLattesException {
+		CurriculumLattes lattes = this.curriculumService.findOneWithPermission(curriculumId)
+				.orElseThrow(() -> new HttpNotFound("Currículo não encontrado"));
+
+		AvaliacaoResult result = this.avaliacaoService.avaliar(lattes.getXml(), avaliarForm);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 
 	/**
 	 * POST /api/avaliar/atual -> Avalia o currículo do usuário atual

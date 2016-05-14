@@ -146,14 +146,14 @@ public class GrupoResource {
 			throws SilqLattesException {
 		log.debug("Avaliar Pesquisador: {}, {}", grupoId, curriculumId);
 
-		// Vê se o grupo existe e se o usuário atual tem permissão sobre ele:
 		Grupo grupo = this.findGrupoBydIdWithPermissionOr404(grupoId);
+		CurriculumLattes lattes = this.curriculumService.findOneWithPermission(curriculumId)
+				.orElseThrow(() -> new HttpNotFound("Pesquisador não encontrado"));
 
 		// TODO (bonetti) passar do cliente!
 		AvaliarForm avaliarForm = new AvaliarForm();
 		avaliarForm.setArea(grupo.getNomeArea());
 
-		CurriculumLattes lattes = this.curriculumService.findOne(curriculumId);
 		AvaliacaoResult result = this.avaliacaoService.avaliar(lattes.getXml(), avaliarForm);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}

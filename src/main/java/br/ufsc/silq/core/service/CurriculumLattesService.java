@@ -15,10 +15,10 @@ import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
+import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.persistence.repository.CurriculumLattesRepository;
 import br.ufsc.silq.core.persistence.repository.GrupoRepository;
 import br.ufsc.silq.core.persistence.repository.UsuarioRepository;
-import lombok.experimental.Delegate;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -27,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 public class CurriculumLattesService {
 
 	@Inject
-	@Delegate
 	private CurriculumLattesRepository lattesRepository;
 
 	@Inject
@@ -38,6 +37,9 @@ public class CurriculumLattesService {
 
 	@Inject
 	private UsuarioRepository usuarioRepository;
+
+	@Inject
+	private UsuarioService usuarioService;
 
 	@Inject
 	private GrupoRepository grupoRepository;
@@ -132,5 +134,29 @@ public class CurriculumLattesService {
 	public boolean isCurriculumEmUso(CurriculumLattes curriculum) {
 		return !this.usuarioRepository.findAllByCurriculum(curriculum).isEmpty()
 				|| !this.grupoRepository.findAllByPesquisadores(curriculum).isEmpty();
+	}
+
+	/**
+	 * Retorna o currículo com ID especificado, somente caso o usuário logado tenha permissão para acessá-lo.
+	 *
+	 * @param curriculumId ID do curríulo lattes salvo na base de dados.
+	 * @return
+	 */
+	public Optional<CurriculumLattes> findOneWithPermission(Long curriculumId) {
+		CurriculumLattes lattes = this.lattesRepository.findOne(curriculumId);
+
+		if (lattes == null) {
+			// Currículo não encontrado
+			return Optional.empty();
+		}
+
+		Usuario usuario = this.usuarioService.getUsuarioLogado();
+		if (!lattes.equals(usuario.getCurriculum())
+				&& !usuario.getGrupos().stream().anyMatch((grupo) -> grupo.getPesquisadores().contains(lattes))) {
+			// Não é currículo do usuário e nem pertence a um grupo dele: sem permissão
+			return Optional.empty();
+		}
+
+		return Optional.of(lattes);
 	}
 }

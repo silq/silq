@@ -136,7 +136,7 @@ public class GrupoService {
 	}
 
 	public void removePesquisador(Grupo grupo, Long pesquisadorId) {
-		CurriculumLattes lattes = this.curriculumService.findOne(pesquisadorId);
+		CurriculumLattes lattes = this.curriculumService.findOneWithPermission(pesquisadorId).get();
 		grupo.getPesquisadores().remove(lattes);
 		this.grupoRepository.save(grupo);
 		this.curriculumService.releaseCurriculum(lattes);
