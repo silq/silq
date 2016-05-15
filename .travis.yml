@@ -12,6 +12,8 @@ cache:
 before_script:
     - psql -c 'create database silq2;' -U postgres
     - psql -U postgres -w -f sql/schema.sql
+script:
+    - mvn test -B -D spring.profiles.active=travis
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
