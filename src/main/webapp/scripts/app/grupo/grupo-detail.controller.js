@@ -18,9 +18,11 @@ angular.module('silq2App')
         };
 
         $scope.avaliarPesquisador = function(pesquisador) {
-            $state.go('pesquisador-result', {
-                grupoId: $stateParams.id,
-                pesquisadorId: pesquisador.id
+            $state.go('avaliar-result', {
+                curriculumId: pesquisador.id,
+                avaliarForm: {
+                    area: $scope.grupo.nomeArea
+                }
             });
         };
 

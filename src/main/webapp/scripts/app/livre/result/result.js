@@ -3,16 +3,16 @@
 angular.module('silq2App')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('minha-avaliacao', {
-                parent: 'principal',
-                url: '/minha-avaliacao',
+            .state('result-livre', {
+                parent: 'avaliar-livre',
+                url: '/result/{cacheId}/{resultId}',
                 data: {
                     authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/principal/minha-avaliacao/minha-avaliacao.html',
-                        controller: 'MinhaAvaliacaoController'
+                        templateUrl: 'scripts/app/livre/result/result.html',
+                        controller: 'ResultLivreController'
                     },
                     'content-header@': {
                         templateUrl: 'scripts/components/content-header/content-header.html',

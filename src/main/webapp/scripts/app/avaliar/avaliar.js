@@ -5,7 +5,7 @@ angular.module('silq2App')
         $stateProvider
             .state('avaliar', {
                 parent: 'site',
-                url: '/avaliar',
+                url: '/avaliar/{curriculumId:int}?{avaliarForm:json}',
                 data: {
                     authorities: ['ROLE_USER']
                 },
@@ -18,9 +18,6 @@ angular.module('silq2App')
                         templateUrl: 'scripts/components/content-header/content-header.html',
                         controller: 'ContentHeaderController'
                     }
-                },
-                resolve: {
-
                 }
             });
     });

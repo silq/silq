@@ -15,6 +15,15 @@ angular.module('silq2App')
             }
         });
 
+        $scope.minhaAvaliacao = function() {
+            $state.go('avaliar', {
+                curriculumId: $scope.curriculum.id,
+                avaliarForm: {
+                    area: $scope.curriculum.areaConhecimento
+                }
+            });
+        };
+
         $scope.atualizar = function() {
             $scope.curriculum = null;
         };

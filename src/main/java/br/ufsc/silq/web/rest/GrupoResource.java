@@ -16,15 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.exception.SilqException;
-import br.ufsc.silq.core.exception.SilqLattesException;
-import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.GrupoForm;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.Grupo;
-import br.ufsc.silq.core.service.AvaliacaoService;
-import br.ufsc.silq.core.service.CurriculumLattesService;
 import br.ufsc.silq.core.service.GrupoService;
 import br.ufsc.silq.web.rest.exception.HttpNotFound;
 import lombok.extern.slf4j.Slf4j;
@@ -36,12 +31,6 @@ public class GrupoResource {
 
 	@Inject
 	private GrupoService grupoService;
-
-	@Inject
-	private AvaliacaoService avaliacaoService;
-
-	@Inject
-	private CurriculumLattesService curriculumService;
 
 	/**
 	 * Pesquisa por um Grupo com o ID especificado e que o usuário atual tenha
@@ -134,27 +123,5 @@ public class GrupoResource {
 		Grupo grupo = this.findGrupoBydIdWithPermissionOr404(grupoId);
 		this.grupoService.removePesquisador(grupo, curriculumId);
 		return ResponseEntity.noContent().build();
-	}
-
-	/**
-	 * GET /grupos/{grupoId}/avaliar/{curriculumId} -> Avalia o currículo do pesquisador de um grupo.
-	 *
-	 * @throws SilqLattesException
-	 */
-	@RequestMapping(value = "/grupos/{grupoId}/avaliar/{curriculumId}", method = RequestMethod.GET)
-	public ResponseEntity<AvaliacaoResult> avaliarPesquisador(@PathVariable Long grupoId, @PathVariable Long curriculumId)
-			throws SilqLattesException {
-		log.debug("Avaliar Pesquisador: {}, {}", grupoId, curriculumId);
-
-		Grupo grupo = this.findGrupoBydIdWithPermissionOr404(grupoId);
-		CurriculumLattes lattes = this.curriculumService.findOneWithPermission(curriculumId)
-				.orElseThrow(() -> new HttpNotFound("Pesquisador não encontrado"));
-
-		// TODO (bonetti) passar do cliente!
-		AvaliarForm avaliarForm = new AvaliarForm();
-		avaliarForm.setArea(grupo.getNomeArea());
-
-		AvaliacaoResult result = this.avaliacaoService.avaliar(lattes.getXml(), avaliarForm);
-		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 }
