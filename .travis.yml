@@ -3,15 +3,15 @@ language: java
 jdk:
   - oraclejdk8
 services:
-  - docker
+  - postgresql
 cache:
   directories:
     - node_modules
     - src/main/webapp/bower_components
     - $HOME/.m2
-before_install:
-  - docker-compose up -d
-  - docker ps -a
+before_script:
+    - psql -c 'create database silq2;' -U postgres
+    - psql -U postgres -w -f sql/schema.sql
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always

@@ -19,7 +19,7 @@ public class CurriculumLattesServiceTest extends WebContextTest {
 	public void testSaveComReuso() throws SilqException {
 		CurriculumLattes lattes1 = this.curriculumService.saveFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
 		CurriculumLattes lattes2 = this.curriculumService.saveFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
-		Assertions.assertThat(lattes2).isEqualTo(lattes1);
+		Assertions.assertThat(lattes2.getId()).isEqualTo(lattes1.getId());
 	}
 
 }
