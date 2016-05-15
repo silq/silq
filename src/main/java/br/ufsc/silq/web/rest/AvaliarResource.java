@@ -68,19 +68,7 @@ public class AvaliarResource {
 	}
 
 	/**
-	 * POST /api/avaliar/atual -> Avalia o currículo do usuário atual
-	 *
-	 * @throws SilqLattesException
-	 */
-	@RequestMapping(value = "/avaliar/atual", method = RequestMethod.POST)
-	public ResponseEntity<AvaliacaoResult> avaliarAtual(@Valid @RequestBody AvaliarForm avaliarForm) throws SilqLattesException {
-		CurriculumLattes lattes = this.usuarioService.getCurriculumUsuarioLogado();
-		AvaliacaoResult result = this.avaliacaoService.avaliar(lattes.getXml(), avaliarForm);
-		return new ResponseEntity<>(result, HttpStatus.OK);
-	}
-
-	/**
-	 * POST /api/avaliar/upload -> envia um currículo e salva-o em cache para
+	 * POST /api/avaliar/livre/upload -> envia um currículo e salva-o em cache para
 	 * ser posteriormente avaliado.
 	 *
 	 * @param file
@@ -90,7 +78,7 @@ public class AvaliarResource {
 	 *            de avaliação (/api/avaliar) deverão informar o cacheId para
 	 *            utilizar os currículos salvos no cache especificado.
 	 */
-	@RequestMapping(value = "/avaliar/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/avaliar/livre/upload", method = RequestMethod.POST)
 	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("cacheId") String cacheId)
 			throws IOException, SilqException {
 		log.debug("Received file upload {}", file.getOriginalFilename());
@@ -99,14 +87,14 @@ public class AvaliarResource {
 	}
 
 	/**
-	 * POST /api/avaliar/ -> avalia os currículos anteriormente enviados via
+	 * POST /api/avaliar/livre -> avalia os currículos anteriormente enviados via
 	 * 'api/avaliar/upload' (e salvos na cache) de acordo com as opções de
 	 * avaliação informadas. O formulário de configuração deve conter o cacheId
 	 * dos currículos a serem utilizados na avaliação. O resultado desta
 	 * avaliação também é salvo na cache {@link AvaliacaoCache} para consultas
 	 * posteriores.
 	 */
-	@RequestMapping(value = "/avaliar/", method = RequestMethod.POST)
+	@RequestMapping(value = "/avaliar/livre", method = RequestMethod.POST)
 	public ResponseEntity<List<AvaliacaoResult>> avaliar(@Valid @RequestBody AvaliacaoLivreForm avaliacaoForm)
 			throws SilqLattesException {
 		List<AvaliacaoResult> results = new ArrayList<>();
@@ -125,7 +113,7 @@ public class AvaliarResource {
 	 * previamente realizada e salvas na cache com ID especificado. Limpa o item
 	 * de {@link CurriculumCache} associado ao cacheId especificado.
 	 */
-	@RequestMapping(value = "/avaliar/result/{cacheId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/avaliar/livre/result/{cacheId}", method = RequestMethod.GET)
 	public ResponseEntity<List<AvaliacaoResult>> getResult(@PathVariable String cacheId) {
 		this.curriculumCache.clear(cacheId);
 		return new ResponseEntity<>(this.avaliacaoCache.get(cacheId), HttpStatus.OK);

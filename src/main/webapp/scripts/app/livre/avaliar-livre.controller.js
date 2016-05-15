@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('AvaliarLivreController', function ($scope, $state, Similarity, Upload, Flash) {
+    .controller('AvaliarLivreController', function ($scope, $state, Avaliacao, Upload, Flash) {
         var cacheId = Math.random().toString(36).substring(7);
 
         $scope.files = [];
@@ -11,7 +11,7 @@ angular.module('silq2App')
         };
 
         $scope.uploadConfig = {
-            url: 'api/avaliar/upload',
+            url: 'api/avaliar/livre/upload',
             data: {
                 cacheId: cacheId
             }
@@ -43,7 +43,7 @@ angular.module('silq2App')
                 return;
             }
 
-            Similarity.avaliar($scope.avaliarForm).then(function(response) {
+            Avaliacao.avaliarLivre($scope.avaliarForm).then(function(response) {
                 Flash.create('success', 'Avaliação concluída');
                 $state.go('result-livre', {
                     cacheId: cacheId
