@@ -24,7 +24,6 @@ import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.service.AvaliacaoService;
 import br.ufsc.silq.core.service.CurriculumLattesService;
-import br.ufsc.silq.core.service.UsuarioService;
 import br.ufsc.silq.web.cache.AvaliacaoCache;
 import br.ufsc.silq.web.cache.CurriculumCache;
 import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
@@ -36,9 +35,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api")
 @Slf4j
 public class AvaliarResource {
-
-	@Inject
-	private UsuarioService usuarioService;
 
 	@Inject
 	private AvaliacaoService avaliacaoService;

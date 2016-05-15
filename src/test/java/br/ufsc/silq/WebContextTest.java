@@ -8,13 +8,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.ufsc.silq.config.Constants;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { Application.class })
 @WebAppConfiguration
 @IntegrationTest
-@ActiveProfiles({ Constants.SPRING_PROFILE_FAST, Constants.SPRING_PROFILE_TEST })
+@ActiveProfiles(resolver = TestProfilesResolver.class)
 @Transactional
 public abstract class WebContextTest {
 

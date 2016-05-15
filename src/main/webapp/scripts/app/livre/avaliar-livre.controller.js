@@ -48,8 +48,6 @@ angular.module('silq2App')
                 $state.go('result-livre', {
                     cacheId: cacheId
                 });
-            }).catch(function(err) {
-                console.error(err);
             });
         };
     });

@@ -11,8 +11,6 @@ import br.ufsc.silq.Fixtures;
 import br.ufsc.silq.WebContextTest;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
-import br.ufsc.silq.core.service.AvaliacaoService;
-import br.ufsc.silq.core.service.DocumentManager;
 
 public class PerformanceTest extends WebContextTest {
 
@@ -52,7 +50,7 @@ public class PerformanceTest extends WebContextTest {
 	// @Test
 	public void testCompareExecutionMeanTime() throws SilqLattesException {
 
-		int iterations = 5;
+		int iterations = 10;
 		double executionTotalTime = 0;
 
 		for (int i = 0; i < iterations; i++) {
@@ -63,6 +61,7 @@ public class PerformanceTest extends WebContextTest {
 			executionTotalTime += iterationTotal / 3;
 		}
 
+		// Última média calculada: [1.5, 2] segundos com 10 iterações (varia conforme execução)
 		System.out.println("Parsing + Comparing execution mean time: " + executionTotalTime / iterations + " seconds");
 	}
 

@@ -19,5 +19,8 @@ public final class Constants {
 	// Spring profile used when deploying to Heroku
 	public static final String SPRING_PROFILE_HEROKU = "heroku";
 
+	// Spring profile used when testing on Travis CI
+	public static final String SPRING_PROFILE_TRAVIS = "travis";
+
 	public static final String SYSTEM_ACCOUNT = "system";
 }
