@@ -1,6 +1,6 @@
 silq2-postgresql:
   container_name: silq2-postgresql
-  image: postgres:9.4.5
+  image: postgres:9.3.8
   environment:
     - POSTGRES_DB=silq2
     - POSTGRES_USER=postgres
@@ -10,7 +10,7 @@ silq2-postgresql:
 
 silq2-postgresql-tests:
   container_name: silq2-postgresql-tests
-  image: postgres:9.4.5
+  image: postgres:9.3.8
   environment:
     - POSTGRES_DB=silq2
     - POSTGRES_USER=postgres
