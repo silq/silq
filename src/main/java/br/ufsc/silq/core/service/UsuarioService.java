@@ -122,11 +122,10 @@ public class UsuarioService {
 	}
 
 	/**
-	 * Remove o currículo do usuário logado, deletando seu {@link CurriculumLattes} da base de dados caso
+	 * Remove o currículo do usuário, deletando seu {@link CurriculumLattes} da base de dados caso
 	 * ele não seja mais referenciado.
 	 */
-	public void removeCurriculumUsuarioLogado() {
-		Usuario usuario = this.getUsuarioLogado();
+	public void removeCurriculumUsuario(Usuario usuario) {
 		CurriculumLattes curriculumAntigo = usuario.getCurriculum();
 		usuario.setCurriculum(null);
 		this.usuarioRepository.save(usuario);
@@ -134,15 +133,22 @@ public class UsuarioService {
 	}
 
 	/**
-	 * Salva o currículo do usuário logado a partir do arquivo XML de seu
+	 * Remove o currículo do usuário logado, deletando seu {@link CurriculumLattes} da base de dados caso
+	 * ele não seja mais referenciado.
+	 */
+	public void removeCurriculumUsuarioLogado() {
+		this.removeCurriculumUsuario(this.getUsuarioLogado());
+	}
+
+	/**
+	 * Salva o currículo de um usuário a partir do arquivo XML de seu
 	 * currículo Lattes. Remove currículo anterior associados a este usuário.
 	 *
 	 * @param uploadedFile Upload do arquivo contendo o currículo Lattes.
 	 * @return {@link CurriculumLattes} criado a partir do parsing do Lattes.
 	 * @throws SilqException
 	 */
-	public CurriculumLattes saveCurriculumUsuarioLogado(MultipartFile uploadedFile) throws SilqException {
-		Usuario usuario = this.getUsuarioLogado();
+	public CurriculumLattes saveCurriculumUsuario(Usuario usuario, MultipartFile uploadedFile) throws SilqException {
 		CurriculumLattes lattes = this.curriculumService.saveFromUpload(uploadedFile);
 
 		CurriculumLattes curriculumAntigo = usuario.getCurriculum();
@@ -154,5 +160,17 @@ public class UsuarioService {
 		}
 
 		return lattes;
+	}
+
+	/**
+	 * Salva o currículo do usuário logado a partir do arquivo XML de seu
+	 * currículo Lattes. Remove currículo anterior associados a este usuário.
+	 *
+	 * @param uploadedFile Upload do arquivo contendo o currículo Lattes.
+	 * @return {@link CurriculumLattes} criado a partir do parsing do Lattes.
+	 * @throws SilqException
+	 */
+	public CurriculumLattes saveCurriculumUsuarioLogado(MultipartFile uploadedFile) throws SilqException {
+		return this.saveCurriculumUsuario(this.getUsuarioLogado(), uploadedFile);
 	}
 }

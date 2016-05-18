@@ -38,10 +38,7 @@ public abstract class WebContextTest {
 	 * @return
 	 */
 	protected Usuario loginUser() {
-		RegisterForm registerForm = new RegisterForm();
-		registerForm.setNome("Bruce Wayne");
-		registerForm.setEmail("batman@batman.com");
-		registerForm.setSenha("j0k3r");
+		RegisterForm registerForm = new RegisterForm("Bruce Wayne", "j0k3r", "batman@batman.com", "M");
 		Usuario user = this.usuarioService.registerUsuario(registerForm);
 
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(registerForm.getEmail(), registerForm.getSenha());
