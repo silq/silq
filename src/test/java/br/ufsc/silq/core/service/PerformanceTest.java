@@ -5,13 +5,16 @@ import javax.inject.Inject;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.util.StopWatch;
 import org.w3c.dom.Document;
 
 import br.ufsc.silq.Fixtures;
 import br.ufsc.silq.WebContextTest;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class PerformanceTest extends WebContextTest {
 
 	@Inject
@@ -28,7 +31,7 @@ public class PerformanceTest extends WebContextTest {
 
 	@Before
 	public void setup() throws SilqLattesException {
-		this.documentXmlChristiane = this.documentManager.extractXmlDocumentFromUpload(Fixtures.CHRISTIANE_XML_UPLOAD);
+		this.documentXmlChristiane = this.documentManager.extractXmlDocumentFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
 		this.documentXmlRaul = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RAUL_XML_UPLOAD);
 		this.documentXmlRonaldo = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RONALDO_XML_UPLOAD);
 	}
@@ -54,19 +57,21 @@ public class PerformanceTest extends WebContextTest {
 		double executionTotalTime = 0;
 
 		for (int i = 0; i < iterations; i++) {
+			log.debug("Running iteration #" + i + " of performance test");
 			double iterationTotal = 0;
 			iterationTotal += this.compareAndGetExecutionTime(this.documentXmlChristiane);
 			iterationTotal += this.compareAndGetExecutionTime(this.documentXmlRaul);
 			iterationTotal += this.compareAndGetExecutionTime(this.documentXmlRonaldo);
-			executionTotalTime += iterationTotal / 3;
+			executionTotalTime += iterationTotal;
 		}
 
 		// Última média calculada: [1.5, 2] segundos com 10 iterações (varia conforme execução)
-		System.out.println("Parsing + Comparing execution mean time: " + executionTotalTime / iterations + " seconds");
+		double mean = executionTotalTime / (iterations * 3);
+		log.info("Parsing + Comparing execution mean time: " + mean + " ms");
 	}
 
 	/**
-	 * Calcula a similaridade e retorna o tempo de execução.
+	 * Calcula a similaridade e retorna o tempo de execução em milissegundos.
 	 *
 	 * @param document
 	 * @return
@@ -76,14 +81,13 @@ public class PerformanceTest extends WebContextTest {
 		AvaliarForm form = new AvaliarForm();
 		form.setArea("Ciência da Computação");
 
-		long tStart = System.currentTimeMillis();
+		StopWatch watch = new StopWatch();
+		watch.start();
 		this.avaliacaoService.avaliar(document, form);
-		long tEnd = System.currentTimeMillis();
-		double elapsedSeconds = (tEnd - tStart) / 1000.0;
+		watch.stop();
 
-		// System.out.println(result);
-		// System.out.println("Result in " + elapsedSeconds + "s");
-		return elapsedSeconds;
+		// log.debug("Result in " + watch.getTotalTimeMillis() + "ms");
+		return watch.getTotalTimeMillis();
 	}
 
 }

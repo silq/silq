@@ -2,6 +2,7 @@ package br.ufsc.silq.core.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -30,34 +31,32 @@ public class GrupoService {
 	private CurriculumLattesService curriculumService;
 
 	/**
-	 * Cria um novo Grupo e associa-o ao usuário atualmente logado
+	 * Cria um novo Grupo e associa-o ao usuário atualmente logado.
 	 *
-	 * @param form
-	 * @return
+	 * @param form {@link GrupoForm} Formulário com os dados do novo grupo.
+	 * @return A entidade {@link Grupo} recém criada.
 	 */
 	public Grupo create(@Valid GrupoForm form) {
 		Grupo entity = new Grupo();
 		this.mapFormToEntity(form, entity);
-		this.grupoRepository.save(entity);
-		return entity;
+		return this.grupoRepository.save(entity);
 	}
 
 	/**
-	 * Edita um Grupo existente, caso o usuário atual tenha permissão
+	 * Edita um Grupo existente, caso o usuário atual tenha permissão de acesso.
 	 *
-	 * @param form
-	 * @return
+	 * @param form {@link GrupoForm} Formulário com os novos dados do grupo.
+	 * @return A entidade {@link Grupo} atualizada.
 	 */
 	public Grupo update(@Valid GrupoForm form) {
 		Grupo entity = this.findOneWithPermission(form.getId())
 				.orElseThrow(() -> new AuthorizationServiceException("Sem permissão para editar este grupo"));
 		this.mapFormToEntity(form, entity);
-		this.grupoRepository.save(entity);
-		return entity;
+		return this.grupoRepository.save(entity);
 	}
 
 	/**
-	 * Extrai os dados do formulário para a entidade
+	 * Extrai os dados do formulário para a entidade.
 	 *
 	 * @param form
 	 * @param entity
@@ -70,9 +69,9 @@ public class GrupoService {
 	}
 
 	/**
-	 * Retorna todos os Grupos do usuário atualmente logado
+	 * Retorna todos os Grupos cujo usuário atualmente logado é coordenador.
 	 *
-	 * @return
+	 * @return Uma lista da entidade {@link Grupo}.
 	 */
 	public List<Grupo> findAllWithPermission() {
 		return this.grupoRepository.findAllByCoordenador(this.getCoordenadorLogado());
@@ -80,7 +79,7 @@ public class GrupoService {
 
 	/**
 	 * Pesquisa por um grupo com ID especificado pertencente ao usuário
-	 * atualmente logado
+	 * atualmente logado.
 	 *
 	 * @param id
 	 * @return
@@ -90,7 +89,7 @@ public class GrupoService {
 	}
 
 	/**
-	 * Retorna a entidade que representa o usuário atualmente logado
+	 * Retorna a entidade que representa o usuário atualmente logado.
 	 *
 	 * @return
 	 */
@@ -99,22 +98,14 @@ public class GrupoService {
 	}
 
 	/**
-	 * Retorna o grupo correspondente ao ID informado
-	 *
-	 * @param idGrupo
-	 * @return
-	 */
-	public Grupo findOne(Long idGrupo) {
-		return this.grupoRepository.findOne(idGrupo);
-	}
-
-	/**
-	 * Deleta o grupo da base de dados
+	 * Deleta o grupo da base de dados e libera todos os currículos de pesquisadores associados a este grupo.
 	 *
 	 * @param grupo
 	 */
 	public void delete(Grupo grupo) {
+		Set<CurriculumLattes> curriculos = grupo.getPesquisadores();
 		this.grupoRepository.delete(grupo);
+		curriculos.forEach((curriculo) -> this.curriculumService.releaseCurriculum(curriculo));
 	}
 
 	/**
@@ -135,8 +126,14 @@ public class GrupoService {
 		return lattes;
 	}
 
-	public void removePesquisador(Grupo grupo, Long pesquisadorId) {
-		CurriculumLattes lattes = this.curriculumService.findOneWithPermission(pesquisadorId).get();
+	/**
+	 * Remove um pesquisador do grupo.
+	 *
+	 * @param grupo Grupo do pesquisador.
+	 * @param curriculoId ID do currículo {@link CurriculumLattes} a ser removido do grupo.
+	 */
+	public void removePesquisador(Grupo grupo, Long curriculoId) {
+		CurriculumLattes lattes = this.curriculumService.findOneWithPermission(curriculoId).get();
 		grupo.getPesquisadores().remove(lattes);
 		this.grupoRepository.save(grupo);
 		this.curriculumService.releaseCurriculum(lattes);

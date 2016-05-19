@@ -1,5 +1,6 @@
 package br.ufsc.silq.core.persistence.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -68,5 +69,5 @@ public class Usuario {
 
 	@OneToMany(mappedBy = "coordenador", orphanRemoval = true, fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<Grupo> grupos;
+	private List<Grupo> grupos = new ArrayList<>();
 }

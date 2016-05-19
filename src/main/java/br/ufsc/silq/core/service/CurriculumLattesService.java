@@ -1,6 +1,7 @@
 package br.ufsc.silq.core.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
+import br.ufsc.silq.core.persistence.entities.Grupo;
 import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.persistence.repository.CurriculumLattesRepository;
 import br.ufsc.silq.core.persistence.repository.GrupoRepository;
@@ -40,6 +42,9 @@ public class CurriculumLattesService {
 
 	@Inject
 	private UsuarioService usuarioService;
+
+	@Inject
+	private GrupoService grupoService;
 
 	@Inject
 	private GrupoRepository grupoRepository;
@@ -120,7 +125,7 @@ public class CurriculumLattesService {
 	 */
 	public void releaseCurriculum(CurriculumLattes curriculum) {
 		if (!this.isCurriculumEmUso(curriculum)) {
-			log.debug("Curriculum em desuso: {}", curriculum);
+			log.debug("Removendo currículo em desuso: {}", curriculum);
 			this.lattesRepository.delete(curriculum);
 		}
 	}
@@ -151,8 +156,9 @@ public class CurriculumLattesService {
 		}
 
 		Usuario usuario = this.usuarioService.getUsuarioLogado();
+		List<Grupo> grupos = this.grupoService.findAllWithPermission();
 		if (!lattes.equals(usuario.getCurriculum())
-				&& !usuario.getGrupos().stream().anyMatch((grupo) -> grupo.getPesquisadores().contains(lattes))) {
+				&& !grupos.stream().anyMatch((grupo) -> grupo.getPesquisadores().contains(lattes))) {
 			// Não é currículo do usuário e nem pertence a um grupo dele: sem permissão
 			return Optional.empty();
 		}

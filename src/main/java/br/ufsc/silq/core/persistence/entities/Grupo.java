@@ -1,5 +1,6 @@
 package br.ufsc.silq.core.persistence.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -52,5 +53,5 @@ public class Grupo {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "rl_grupo_pesquisador", joinColumns = @JoinColumn(name = "co_grupo") , inverseJoinColumns = @JoinColumn(name = "co_curriculum") )
-	private Set<CurriculumLattes> pesquisadores;
+	private Set<CurriculumLattes> pesquisadores = new HashSet<>();
 }
