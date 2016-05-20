@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 
 import br.ufsc.silq.core.exception.SilqException;
-import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
@@ -50,28 +49,6 @@ public class CurriculumLattesService {
 	private GrupoRepository grupoRepository;
 
 	/**
-	 * Cria uma nova entidade {@link CurriculumLattes} a partir de um documento Lattes em XML
-	 *
-	 * @param curriculumXml XML do currículo Lattes.
-	 * @return A entidade {@link CurriculumLattes}.
-	 * @throws SilqLattesException
-	 */
-	protected CurriculumLattes parseDocument(Document curriculumXml) throws SilqLattesException {
-		DadosGeraisResult result = this.lattesParser.extractDadosGerais(curriculumXml);
-		CurriculumLattes lattes = new CurriculumLattes();
-		lattes.setXml(this.documentManager.documentToString(curriculumXml).getBytes());
-		lattes.setAreaConhecimento(result.getAreaGrandeAreaConhecimento().getNomeArea());
-		lattes.setSubAreaConhecimento(result.getNomeSubAreaConhecimento());
-		lattes.setDataAtualizacaoCurriculo(result.getUltimaAtualizacao());
-		lattes.setDataAtualizacaoUsuario(new Date());
-		lattes.setEspecialidade(result.getNomeEspecialidade());
-		lattes.setGrandeAreaConhecimento(result.getAreaGrandeAreaConhecimento().getNomeGrandeArea());
-		lattes.setIdLattes(result.getIdCurriculo());
-		lattes.setNome(result.getNome());
-		return lattes;
-	}
-
-	/**
 	 * Salva um currículo de partir de um documento XML Lattes.
 	 * Se um currículo igual já existir na base de dados, retorna este registro para reutilizá-lo, caso
 	 * contrário, cria um novo currículo na base de dados.
@@ -90,7 +67,7 @@ public class CurriculumLattesService {
 			return lattes.get();
 		} else {
 			CurriculumLattes novoLattes = new CurriculumLattes();
-			novoLattes.setXml(this.documentManager.documentToString(curriculumXml).getBytes());
+			novoLattes.setLattesXml(this.documentManager.documentToString(curriculumXml));
 			novoLattes.setAreaConhecimento(result.getAreaGrandeAreaConhecimento().getNomeArea());
 			novoLattes.setSubAreaConhecimento(result.getNomeSubAreaConhecimento());
 			novoLattes.setDataAtualizacaoCurriculo(result.getUltimaAtualizacao());

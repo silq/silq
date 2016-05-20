@@ -59,7 +59,7 @@ public class CurriculumLattes {
 	private Date dataAtualizacaoUsuario;
 
 	@JsonIgnore
-	@Type(type = "org.hibernate.type.BinaryType")
-	@Column(name = "xml")
-	private byte[] xml;
+	@Type(type = "br.ufsc.silq.core.persistence.types.XMLType")
+	@Column(name = "lattes_xml")
+	private String lattesXml;
 }

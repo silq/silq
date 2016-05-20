@@ -59,7 +59,7 @@ public class AvaliarResource {
 		CurriculumLattes lattes = this.curriculumService.findOneWithPermission(curriculumId)
 				.orElseThrow(() -> new HttpNotFound("Currículo não encontrado"));
 
-		AvaliacaoResult result = this.avaliacaoService.avaliar(lattes.getXml(), avaliarForm);
+		AvaliacaoResult result = this.avaliacaoService.avaliar(lattes.getLattesXml(), avaliarForm);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 

@@ -68,7 +68,7 @@ public class AvaliacaoService {
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
 	 * @throws SilqLattesException
 	 */
-	public AvaliacaoResult avaliar(byte[] lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
+	public AvaliacaoResult avaliar(String lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
 		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
 		return this.avaliar(parseResult, avaliarForm);
 	}

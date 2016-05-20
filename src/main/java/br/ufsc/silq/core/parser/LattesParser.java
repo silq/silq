@@ -72,12 +72,12 @@ public class LattesParser {
 	/**
 	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu currículo Lattes (em XML).
 	 *
-	 * @param curriculum Byte array do Currículo Lattes (em XML) a ser avaliado.
+	 * @param curriculum String do Currículo Lattes (em XML) a ser avaliado.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
 	 * @throws SilqLattesException
 	 */
-	public ParseResult parseCurriculum(byte[] curriculum) throws SilqLattesException {
-		return this.parseCurriculum(this.documentManager.stringToDocument(new String(curriculum)));
+	public ParseResult parseCurriculum(String curriculum) throws SilqLattesException {
+		return this.parseCurriculum(this.documentManager.stringToDocument(curriculum));
 	}
 
 	/**

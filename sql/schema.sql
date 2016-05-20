@@ -176,10 +176,10 @@ CREATE TABLE tb_curriculum_lattes (
     no_sub_area_conhecimento character varying(255),
     no_area_conhecimento character varying(255),
     no_grande_area_conhecimento character varying(255),
-    xml bytea NOT NULL,
     data_atualizacao_curriculo timestamp without time zone NOT NULL,
     data_atualizacao_usuario timestamp without time zone,
-    id_lattes character varying(255) NOT NULL
+    id_lattes character varying(255) NOT NULL,
+    lattes_xml xml NOT NULL
 );
 
 

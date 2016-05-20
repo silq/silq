@@ -18,7 +18,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
@@ -26,7 +26,7 @@ import org.xml.sax.SAXException;
 
 import br.ufsc.silq.core.exception.SilqLattesException;
 
-@Component
+@Service
 public class DocumentManager {
 	public static final String LATTES_DTD_PATH = "src/main/resources/xml/lattes.dtd";
 	public static final File LATTES_DTD = new File(LATTES_DTD_PATH);
