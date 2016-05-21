@@ -40,8 +40,7 @@ public class UsuarioService {
 	 * Registra um novo usuário, salvando-o na base de dados e cifrando a senha
 	 * do formulário parâmetro
 	 *
-	 * @param usuario
-	 *            Formulário de registro
+	 * @param form Formulário de registro
 	 * @return A nova entidade Usuario criada
 	 */
 	public Usuario registerUsuario(@Valid RegisterForm form) {
@@ -59,9 +58,9 @@ public class UsuarioService {
 	}
 
 	/**
-	 * Retorna o usuário atualmente logado. Joga uma exceção caso não exista
+	 * Retorna o usuário atualmente logado. Joga uma exceção caso não exista.
 	 *
-	 * @return
+	 * @return A entidade {@link Usuario} do usuário logado.
 	 */
 	public Usuario getUsuarioLogado() {
 		Usuario usuario = this.usuarioRepository.findOneByEmail(SecurityUtils.getCurrentUser().getUsername())
