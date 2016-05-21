@@ -14,10 +14,6 @@ angular.module('silq2App')
                     'content@': {
                         templateUrl: 'scripts/app/grupo/grupos.html',
                         controller: 'GrupoController'
-                    },
-                    'content-header@': {
-                        templateUrl: 'scripts/components/content-header/content-header.html',
-                        controller: 'ContentHeaderController'
                     }
                 }
             })
@@ -32,10 +28,6 @@ angular.module('silq2App')
                     'content@': {
                         templateUrl: 'scripts/app/grupo/grupo-detail.html',
                         controller: 'GrupoDetailController'
-                    },
-                    'content-header@': {
-                        templateUrl: 'scripts/components/content-header/content-header.html',
-                        controller: 'ContentHeaderController'
                     }
                 }
             })

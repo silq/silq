@@ -19,17 +19,29 @@
                 </li>
                 <li ui-sref-active="active" ng-switch-when="true">
                     <a ui-sref="principal" data-toggle="collapse" data-target=".navbar-collapse.in">
-                        <span class="glyphicon glyphicon-home"></span>
-                        <span class="hidden-sm">Home</span>
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        <span class="hidden-sm">Meu currículo</span>
                     </a>
                 </li>
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-switch-when="true">
+                    <a ui-sref="grupo" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-stats"></span>
+                        <span class="hidden-sm">Grupos</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" ng-switch-when="true">
+                    <a ui-sref="avaliar-livre" data-toggle="collapse" data-target=".navbar-collapse.in">
+                        <span class="glyphicon glyphicon-certificate"></span>
+                        <span class="hidden-sm">Avaliação Livre</span>
+                    </a>
+                </li>
+                <li ui-sref-active="active" ng-switch-when="false">
                     <a ui-sref="about" data-toggle="collapse" data-target=".navbar-collapse.in">
                         <span class="glyphicon glyphicon-info-sign"></span>
                         <span class="hidden-sm">Sobre</span>
                     </a>
                 </li>
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-switch-when="false">
                     <a ui-sref="contact" data-toggle="collapse" data-target=".navbar-collapse.in">
                         <span class="glyphicon glyphicon-envelope"></span>
                         <span class="hidden-sm">Contato</span>

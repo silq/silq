@@ -16,10 +16,6 @@ angular.module('silq2App')
                     'content@': {
                         templateUrl: 'scripts/app/avaliar/result/result.html',
                         controller: 'AvaliarResultController'
-                    },
-                    'content-header@': {
-                        templateUrl: 'scripts/components/content-header/content-header.html',
-                        controller: 'ContentHeaderController'
                     }
                 }
             });

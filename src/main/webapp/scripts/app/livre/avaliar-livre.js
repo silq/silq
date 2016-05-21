@@ -13,14 +13,7 @@ angular.module('silq2App')
                     'content@': {
                         templateUrl: 'scripts/app/livre/avaliar-livre.html',
                         controller: 'AvaliarLivreController'
-                    },
-                    'content-header@': {
-                        templateUrl: 'scripts/components/content-header/content-header.html',
-                        controller: 'ContentHeaderController'
                     }
-                },
-                resolve: {
-
                 }
             });
     });
