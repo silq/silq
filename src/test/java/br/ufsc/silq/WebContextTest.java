@@ -38,7 +38,7 @@ public abstract class WebContextTest {
 	 * @return A entidade {@link Usuario} criada.
 	 */
 	protected Usuario loginUser() {
-		return this.loginUser(new RegisterForm("Bruce Wayne", "j0k3r", "batman@batman.com", "M"));
+		return this.loginUser(new RegisterForm("Bruce Wayne", "j0k3r", "batman@batman.com"));
 	}
 
 	/**

@@ -31,7 +31,7 @@ public class UsuarioServiceTest extends WebContextTest {
 
 	@Before
 	public void setup() {
-		this.registerForm = new RegisterForm("Test User", "12345", "user@test.com", "F");
+		this.registerForm = new RegisterForm("Test User", "12345", "user@test.com");
 	}
 
 	@Test

@@ -49,7 +49,6 @@ public class UsuarioService {
 		Usuario usuario = new Usuario();
 		usuario.setNome(form.getNome());
 		usuario.setEmail(form.getEmail());
-		usuario.setSexo(form.getSexo());
 		usuario.setSenha(senhaCifrada);
 
 		Usuario usuarioSalvo = this.usuarioRepository.save(usuario);
@@ -78,7 +77,6 @@ public class UsuarioService {
 	public Usuario updateUsuario(@Valid UsuarioUpdateForm info) {
 		Usuario usuario = this.getUsuarioLogado();
 		usuario.setNome(info.getNome());
-		usuario.setSexo(info.getSexo());
 		return this.usuarioRepository.save(usuario);
 	}
 

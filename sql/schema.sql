@@ -260,7 +260,6 @@ CREATE TABLE tb_usuario (
     ds_senha character varying(255),
     co_seq_usuario numeric(19,0) DEFAULT nextval('sq_usuario'::regclass) NOT NULL,
     ds_email character varying(255),
-    no_sexo character varying(10),
     reset_key character varying(20),
     co_curriculum numeric(19,0)
 );

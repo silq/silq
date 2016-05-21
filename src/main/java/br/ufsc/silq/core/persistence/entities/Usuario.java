@@ -50,10 +50,6 @@ public class Usuario {
 	@Column(name = "ds_email")
 	private String email;
 
-	// TODO (bonetti): remover sexo?
-	@Column(name = "no_sexo")
-	private String sexo;
-
 	@Column(name = "reset_key", length = 20)
 	@JsonIgnore
 	private String resetKey;

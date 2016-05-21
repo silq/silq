@@ -17,15 +17,11 @@ public class UsuarioDTO {
 
 	private String nome;
 
-	private String sexo;
-
 	private Set<String> authorities;
 
 	public UsuarioDTO(Usuario usuario) {
 		this.email = usuario.getEmail();
 		this.nome = usuario.getNome();
-		this.sexo = usuario.getSexo();
-
 		this.authorities = new HashSet<>();
 		usuario.getAutoridades().stream().forEach(autoridade -> {
 			this.authorities.add(autoridade.getNome());

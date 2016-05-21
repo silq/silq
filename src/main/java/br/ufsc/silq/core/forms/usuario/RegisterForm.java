@@ -21,7 +21,4 @@ public class RegisterForm {
 	@NotBlank
 	@Email
 	private String email;
-
-	// TODO (bonetti): remover sexo?
-	private String sexo;
 }

@@ -49,7 +49,7 @@ public class CurriculumLattesServiceTest extends WebContextTest {
 		this.loginUser();
 		CurriculumLattes lattes2 = this.usuarioService.saveCurriculumUsuarioLogado(Fixtures.RAUL_ZIP_UPLOAD);
 
-		Usuario user2 = this.usuarioService.registerUsuario(new RegisterForm("User two", "12345", "user@two.com", "F"));
+		Usuario user2 = this.usuarioService.registerUsuario(new RegisterForm("User two", "12345", "user@two.com"));
 		CurriculumLattes lattes2b = this.usuarioService.saveCurriculumUsuario(user2, Fixtures.RAUL_ZIP_UPLOAD);
 
 		// Deve reusar o mesmo currículo
