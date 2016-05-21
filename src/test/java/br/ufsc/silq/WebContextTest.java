@@ -35,10 +35,19 @@ public abstract class WebContextTest {
 	/**
 	 * Cria um novo usuário na base de dados e o loga no sistema, para testes.
 	 *
-	 * @return
+	 * @return A entidade {@link Usuario} criada.
 	 */
 	protected Usuario loginUser() {
-		RegisterForm registerForm = new RegisterForm("Bruce Wayne", "j0k3r", "batman@batman.com", "M");
+		return this.loginUser(new RegisterForm("Bruce Wayne", "j0k3r", "batman@batman.com", "M"));
+	}
+
+	/**
+	 * Cria um novo usuário na base de dados e o loga no sistema, para testes.
+	 *
+	 * @param registerForm Formulário de registro utilizado para criar o usuário que será logado.
+	 * @return A entidade {@link Usuario} criada.
+	 */
+	protected Usuario loginUser(RegisterForm registerForm) {
 		Usuario user = this.usuarioService.registerUsuario(registerForm);
 
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(registerForm.getEmail(), registerForm.getSenha());

@@ -64,36 +64,47 @@ public class UsuarioService {
 	 * @return
 	 */
 	public Usuario getUsuarioLogado() {
-		Usuario usuario = this.usuarioRepository.findOneByEmail(SecurityUtils.getCurrentUser().getUsername()).get();
+		Usuario usuario = this.usuarioRepository.findOneByEmail(SecurityUtils.getCurrentUser().getUsername())
+				.orElseThrow(() -> new IllegalStateException("User not found!"));
 		usuario.getAutoridades().size(); // força o carregamento das autoridades
 		return usuario;
 	}
 
 	/**
-	 * Checa se existe um usuário logado
+	 * Atualiza as informações do usuário logado.
 	 *
-	 * @return
+	 * @param info Novas informações do usuário.
+	 * @return A entidade {@link Usuario} atualizada.
 	 */
-	public boolean hasUsuarioLogado() {
-		return SecurityUtils.isAuthenticated();
-	}
-
-	public void updateUsuario(@Valid UsuarioUpdateForm info) {
+	public Usuario updateUsuario(@Valid UsuarioUpdateForm info) {
 		Usuario usuario = this.getUsuarioLogado();
 		usuario.setNome(info.getNome());
 		usuario.setSexo(info.getSexo());
-		this.usuarioRepository.save(usuario);
+		return this.usuarioRepository.save(usuario);
 	}
 
-	public void alterarSenha(String novaSenha) {
+	/**
+	 * Altera a senha do usuário logado.
+	 *
+	 * @param novaSenha Nova senha definida. Será codificada e salva no banco.
+	 * @return A entidade {@link Usuario} com a senha alterada.
+	 */
+	public Usuario alterarSenha(String novaSenha) {
 		Usuario usuario = this.getUsuarioLogado();
 		String senhaCifrada = this.passwordEncoder.encode(novaSenha);
 		usuario.setSenha(senhaCifrada);
-		this.usuarioRepository.save(usuario);
+		return this.usuarioRepository.save(usuario);
 	}
 
-	public Optional<Usuario> requestPasswordReset(String mail) {
-		return this.usuarioRepository.findOneByEmail(mail).map(usuario -> {
+	/**
+	 * Requisita uma alteração de senha para um usuário, criando uma chave de alteração de senha e a salvando no banco
+	 * para uso posterior pelo {@link #completePasswordReset(String, String)}
+	 *
+	 * @param email E-mail do usuário para o qual será enviado um link para alteração de senha.
+	 * @return A entidade {@link Usuario} dona do e-mail.
+	 */
+	public Optional<Usuario> requestPasswordReset(String email) {
+		return this.usuarioRepository.findOneByEmail(email).map(usuario -> {
 			usuario.setResetKey(RandomUtil.generateResetKey());
 			// usuario.setResetDate(ZonedDateTime.now());
 			this.usuarioRepository.save(usuario);
@@ -101,10 +112,18 @@ public class UsuarioService {
 		});
 	}
 
-	public Optional<Usuario> completePasswordReset(String novaSenha, String key) {
-		log.debug("Reset user password for reset key {}", key);
+	/**
+	 * Finaliza o processo de alteração de senha de um usuário dado um {@code resetKey} válido criado pelo
+	 * método {@link #requestPasswordReset(String)}
+	 *
+	 * @param novaSenha Nova senha do usuário.
+	 * @param resetKey A chave de alteração de senha.
+	 * @return A entidade {@link Usuario}} que teve a senha modificada.
+	 */
+	public Optional<Usuario> completePasswordReset(String novaSenha, String resetKey) {
+		log.debug("Reset user password for reset key {}", resetKey);
 
-		return this.usuarioRepository.findOneByResetKey(key).map(usuario -> {
+		return this.usuarioRepository.findOneByResetKey(resetKey).map(usuario -> {
 			usuario.setSenha(this.passwordEncoder.encode(novaSenha));
 			usuario.setResetKey(null);
 			this.usuarioRepository.save(usuario);
