@@ -1,9 +1,11 @@
-package br.ufsc.silq.config;
+package br.ufsc.silq.config.datasource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.config.java.AbstractCloudConfig;
 import org.springframework.context.annotation.*;
+
+import br.ufsc.silq.config.Constants;
 
 import javax.sql.DataSource;
 

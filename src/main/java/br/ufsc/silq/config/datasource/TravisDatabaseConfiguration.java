@@ -1,4 +1,4 @@
-package br.ufsc.silq.config;
+package br.ufsc.silq.config.datasource;
 
 import javax.sql.DataSource;
 
@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Profile;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+
+import br.ufsc.silq.config.Constants;
+import br.ufsc.silq.config.JHipsterProperties;
 
 @Configuration
 @Profile(Constants.SPRING_PROFILE_TRAVIS)

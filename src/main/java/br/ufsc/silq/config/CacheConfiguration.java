@@ -2,6 +2,9 @@ package br.ufsc.silq.config;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.ehcache.InstrumentedEhcache;
+
+import br.ufsc.silq.config.datasource.DatabaseConfiguration;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;

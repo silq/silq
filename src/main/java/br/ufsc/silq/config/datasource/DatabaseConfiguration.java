@@ -1,4 +1,4 @@
-package br.ufsc.silq.config;
+package br.ufsc.silq.config.datasource;
 
 import java.util.Arrays;
 
@@ -22,6 +22,8 @@ import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+
+import br.ufsc.silq.config.JHipsterProperties;
 
 @Configuration
 @EnableJpaRepositories("br.ufsc.silq.repository")
