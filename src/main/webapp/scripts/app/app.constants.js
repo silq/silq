@@ -6,6 +6,6 @@ angular.module('silq2App')
 
 .constant('VERSION', '0.0.1-SNAPSHOT')
 
-.constant('LANDING_PAGE', 'principal')
+.constant('LANDING_PAGE', 'home')
 
 ;

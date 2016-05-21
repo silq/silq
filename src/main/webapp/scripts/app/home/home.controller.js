@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('PrincipalController', function ($scope, $state, Principal, Upload, CurriculumLattes, Cache, Flash) {
+    .controller('HomeController', function ($scope, $state, Principal, Upload, CurriculumLattes, Cache, Flash) {
         Principal.identity().then(function(account) {
             $scope.account = account;
         });

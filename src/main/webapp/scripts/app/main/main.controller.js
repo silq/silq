@@ -6,7 +6,7 @@ angular.module('silq2App')
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
 
-            // Se estiver logado, redireciona para dashboard
+            // Se estiver logado, redireciona para página home
             if (Principal.isAuthenticated()) {
                 $state.go(LANDING_PAGE);
             }

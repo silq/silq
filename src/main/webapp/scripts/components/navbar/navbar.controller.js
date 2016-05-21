@@ -8,6 +8,6 @@ angular.module('silq2App')
 
         $scope.logout = function () {
             Auth.logout();
-            $state.go('home');
+            $state.go('main');
         };
     });

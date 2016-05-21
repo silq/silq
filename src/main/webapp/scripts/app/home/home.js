@@ -3,16 +3,16 @@
 angular.module('silq2App')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('principal', {
+            .state('home', {
                 parent: 'site',
-                url: '/principal',
+                url: '/home',
                 data: {
                     authorities: ['ROLE_USER']
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/principal/principal.html',
-                        controller: 'PrincipalController'
+                        templateUrl: 'scripts/app/home/home.html',
+                        controller: 'HomeController'
                     }
                 }
             });

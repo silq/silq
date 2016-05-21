@@ -3,7 +3,7 @@
 angular.module('silq2App')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('home', {
+            .state('main', {
                 parent: 'site',
                 url: '/',
                 data: {

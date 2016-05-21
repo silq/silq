@@ -12,11 +12,11 @@
             </div>
 
             <div class="alert alert-danger" ng-show="error">
-                <p>Sua senha não pôde ser alterada. Lembre-se que o link de recuperação de senha só é válido por 24 horas. Tente refazer o processo através da página <a href="#/reset/request">esqueceu sua senha</a>.</p>
+                <p>Sua senha não pôde ser alterada. Lembre-se que o link de recuperação de senha só é válido por 24 horas. Tente refazer o processo através da página <a ui-sref="requestReset">esqueceu sua senha</a>.</p>
             </div>
 
             <div class="alert alert-success" ng-show="success">
-                <p><strong>Sua senha foi alterada.</strong> Por favor, <a class="alert-link" href="#/login">faça login</a>.</p>
+                <p><strong>Sua senha foi alterada.</strong> Por favor, <a class="alert-link" ui-sref="login">faça login</a>.</p>
             </div>
 
             <div class="alert alert-danger" ng-show="doNotMatch">

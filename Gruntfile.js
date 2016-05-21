@@ -302,7 +302,7 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: 'dev',
                     VERSION: parseVersionFromPomXml(),
-                    LANDING_PAGE: 'principal'
+                    LANDING_PAGE: 'home'
                 }
             },
             prod: {
