@@ -61,8 +61,8 @@ angular.module('silq2App')
                 }]
             })
             .state('grupo.edit', {
-                parent: 'grupo',
-                url: '/{id}/edit',
+                parent: 'grupo.detail',
+                url: '/edit',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Editar grupo'
@@ -73,15 +73,15 @@ angular.module('silq2App')
                         controller: 'GrupoDialogController',
                         size: 'lg'
                     }).result.then(function() {
-                        $state.go('grupo', null, { reload: true });
+                        $state.go('grupo.detail', {id: $stateParams.id}, { reload: true });
                     }, function() {
                         $state.go('^');
                     });
                 }]
             })
             .state('grupo.delete', {
-                parent: 'grupo',
-                url: '/{id}/delete',
+                parent: 'grupo.detail',
+                url: '/{delete',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Deletar grupo'
