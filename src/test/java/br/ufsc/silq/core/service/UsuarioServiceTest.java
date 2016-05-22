@@ -102,7 +102,7 @@ public class UsuarioServiceTest extends WebContextTest {
 	@Test
 	public void testUpdateUsuario() {
 		this.loginUser(this.registerForm);
-		Usuario usuarioAtualizado = this.usuarioService.updateUsuario(new UsuarioUpdateForm("New name", "M"));
+		Usuario usuarioAtualizado = this.usuarioService.updateUsuario(new UsuarioUpdateForm("New name"));
 		Assertions.assertThat(usuarioAtualizado.getNome()).isEqualTo("New name");
 	}
 

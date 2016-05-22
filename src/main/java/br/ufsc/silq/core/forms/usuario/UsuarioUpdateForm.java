@@ -18,6 +18,4 @@ public class UsuarioUpdateForm {
 	@Size(min = 5, max = 100)
 	private String nome;
 
-	// TODO (bonetti): remover sexo?
-	private String sexo;
 }
