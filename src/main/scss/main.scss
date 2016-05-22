@@ -31,6 +31,8 @@ $font-size-base: 13px;
 @import 'dropbox';
 @import 'avaliacao';
 
+@import 'footer';
+
 a { cursor: pointer; }
 
 .flex {  display: flex; }
@@ -46,23 +48,6 @@ a { cursor: pointer; }
 
 .main-content {
     min-height: 50vh;
-}
-
-.footer {
-    border-top: 1px solid #eee;
-    padding-top: 12px;
-    margin-top: 40px;
-}
-
-.footer ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer li {
-    display: inline;
-    padding: 0;
-    margin: 0 3px;
 }
 
 .table-resumo td:first-child {

@@ -29,13 +29,7 @@
             <loader ng-show="loading"></loader>
             <div ng-hide="loading" class="main-content" ui-view="content"></div>
 
-            <div class="footer text-center">
-                <ul>
-                    <li><a ui-sref="about">Sobre</a></li>
-                    <li><a ui-sref="contact">Contato</a></li>
-                    <li><a ui-sref="termo">Termos de Uso e Políticas de Privacidade e Segurança</a></li>
-                </ul>
-            </div>
+            <div ng-include="'/scripts/app/main/footer.html'"></div>
         </div>
 
         <script>

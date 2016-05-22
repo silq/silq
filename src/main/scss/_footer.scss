@@ -1,0 +1,25 @@
+.footer {
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+    margin-top: 40px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer li {
+    display: inline;
+    padding: 0;
+    margin: 0 3px;
+
+    &:not(:last-child)::after {
+        content: "•";
+        margin-left: 6px;
+    }
+}
+
+.footer img {
+    height: 70px;
+}
