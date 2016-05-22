@@ -54,6 +54,14 @@ public class Usuario {
 	@JsonIgnore
 	private String resetKey;
 
+	@Column(name = "register_key", length = 20)
+	@JsonIgnore
+	private String registerKey;
+
+	@Column(name = "st_ativo")
+	@JsonIgnore
+	private Boolean ativo;
+
 	@ManyToOne
 	@JoinColumn(name = "co_curriculum")
 	@JsonIgnore

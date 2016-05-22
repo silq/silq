@@ -19,11 +19,11 @@ public final class RandomUtil {
 	}
 
 	/**
-	 * Generates an activation key.
+	 * Generates a register key.
 	 *
-	 * @return the generated activation key
+	 * @return the generated register key
 	 */
-	public static String generateActivationKey() {
+	public static String generateRegisterKey() {
 		return RandomStringUtils.randomNumeric(DEF_COUNT);
 	}
 

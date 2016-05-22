@@ -37,7 +37,7 @@ public class UsuarioServiceTest extends WebContextTest {
 	@Test
 	public void testRegister() {
 		Assertions.assertThat(this.usuarioRepository.count()).isEqualTo(0);
-		Usuario usuario = this.usuarioService.registerUsuario(this.registerForm);
+		Usuario usuario = this.usuarioService.register(this.registerForm);
 
 		Assertions.assertThat(this.usuarioRepository.count()).isEqualTo(1)
 				.as("Deve ter criado um usuário na base de dados");
@@ -48,6 +48,40 @@ public class UsuarioServiceTest extends WebContextTest {
 		Assertions.assertThat(usuario.getSenha()).isNotEqualTo(this.registerForm.getSenha())
 				.as("Senha deve ter sido criptada");
 		Assertions.assertThat(usuario.getGrupos()).isEmpty();
+		Assertions.assertThat(usuario.getAtivo()).isTrue();
+		Assertions.assertThat(usuario.getRegisterKey()).isNull();
+	}
+
+	@Test
+	public void testRegisterRequest() {
+		Usuario usuario = this.usuarioService.registerRequest(this.registerForm);
+
+		Assertions.assertThat(usuario.getNome()).isEqualTo(this.registerForm.getNome());
+		Assertions.assertThat(usuario.getEmail()).isEqualTo(this.registerForm.getEmail());
+		Assertions.assertThat(usuario.getCurriculum()).isNull();
+		Assertions.assertThat(usuario.getSenha()).isNotEqualTo(this.registerForm.getSenha())
+				.as("Senha deve ter sido criptada");
+		Assertions.assertThat(usuario.getGrupos()).isEmpty();
+		Assertions.assertThat(usuario.getAtivo()).isFalse();
+		Assertions.assertThat(usuario.getRegisterKey()).isNotEmpty();
+
+		Assertions.assertThat(this.usuarioRepository.count()).isEqualTo(1)
+				.as("Deve ter criado um usuário na base de dados");
+
+		Assertions.assertThat(this.usuarioRepository.findOneByEmailAndAtivoTrue(usuario.getEmail())).isEmpty();
+		Assertions.assertThat(this.usuarioRepository.findOneByRegisterKey(usuario.getRegisterKey()).get()).isEqualTo(usuario);
+	}
+
+	@Test
+	public void testRegisterFinish() {
+		Assertions.assertThat(this.usuarioRepository.count()).isEqualTo(0);
+		Usuario usuario = this.usuarioService.registerRequest(this.registerForm);
+		this.usuarioService.registerFinish(usuario.getRegisterKey());
+
+		Assertions.assertThat(this.usuarioRepository.count()).isEqualTo(1);
+		Assertions.assertThat(usuario.getResetKey()).isNull();
+		Assertions.assertThat(usuario.getAtivo()).isTrue();
+		Assertions.assertThat(this.usuarioRepository.findOneByEmailAndAtivoTrue(usuario.getEmail()).get()).isEqualTo(usuario);
 	}
 
 	@Test
@@ -56,6 +90,13 @@ public class UsuarioServiceTest extends WebContextTest {
 		this.loginUser(this.registerForm);
 		Usuario usuarioLogado = this.usuarioService.getUsuarioLogado();
 		Assertions.assertThat(usuarioLogado.getEmail()).isEqualTo(this.registerForm.getEmail());
+	}
+
+	@Test
+	public void testGetUsuarioLogadoNaoAtivo() {
+		Usuario usuario = this.usuarioService.registerRequest(this.registerForm);
+		Assertions.assertThatThrownBy(() -> this.doLogin(usuario, this.registerForm.getSenha()));
+		// TODO (bonetti): jogar um UsernameNotActiveException ?
 	}
 
 	@Test
@@ -76,7 +117,7 @@ public class UsuarioServiceTest extends WebContextTest {
 
 	@Test
 	public void testRequestPasswordReset() {
-		Usuario usuario = this.usuarioService.registerUsuario(this.registerForm);
+		Usuario usuario = this.usuarioService.register(this.registerForm);
 		Assertions.assertThat(usuario.getResetKey()).isNull();
 		this.usuarioService.requestPasswordReset(usuario.getEmail());
 		Assertions.assertThat(usuario.getResetKey()).isNotNull();
@@ -84,7 +125,7 @@ public class UsuarioServiceTest extends WebContextTest {
 
 	@Test
 	public void testCompletePasswordReset() {
-		Usuario usuario = this.usuarioService.registerUsuario(this.registerForm);
+		Usuario usuario = this.usuarioService.register(this.registerForm);
 		this.usuarioService.requestPasswordReset(usuario.getEmail());
 		String senhaAntiga = usuario.getSenha();
 
@@ -96,7 +137,7 @@ public class UsuarioServiceTest extends WebContextTest {
 
 	@Test
 	public void testSaveCurriculumUsuario() throws SilqException {
-		Usuario usuario = this.usuarioService.registerUsuario(this.registerForm);
+		Usuario usuario = this.usuarioService.register(this.registerForm);
 		Assertions.assertThat(usuario.getCurriculum()).isNull();
 		Assertions.assertThat(this.curriculumRepository.count()).isEqualTo(0);
 
@@ -107,7 +148,7 @@ public class UsuarioServiceTest extends WebContextTest {
 
 	@Test
 	public void testRemoveCurriculumUsuario() throws SilqException {
-		Usuario usuario = this.usuarioService.registerUsuario(this.registerForm);
+		Usuario usuario = this.usuarioService.register(this.registerForm);
 		this.usuarioService.saveCurriculumUsuario(usuario, Fixtures.RONALDO_XML_UPLOAD);
 		Assertions.assertThat(usuario.getCurriculum()).isNotNull();
 		Assertions.assertThat(this.curriculumRepository.count()).isEqualTo(1);

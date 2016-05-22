@@ -48,13 +48,21 @@ public abstract class WebContextTest {
 	 * @return A entidade {@link Usuario} criada.
 	 */
 	protected Usuario loginUser(RegisterForm registerForm) {
-		Usuario user = this.usuarioService.registerUsuario(registerForm);
-
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(registerForm.getEmail(), registerForm.getSenha());
-		Authentication authentication = this.authenticationManager.authenticate(token);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-
-		return user;
+		Usuario user = this.usuarioService.register(registerForm);
+		return this.doLogin(user, registerForm.getSenha());
 	}
 
+	/**
+	 * Efetua o login da entidade {@link Usuario}.
+	 *
+	 * @param user Usuário efetuando o login.
+	 * @param senha Senha descodificada do usuário.
+	 * @return
+	 */
+	protected Usuario doLogin(Usuario user, String senha) {
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getEmail(), senha);
+		Authentication authentication = this.authenticationManager.authenticate(token);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		return user;
+	}
 }

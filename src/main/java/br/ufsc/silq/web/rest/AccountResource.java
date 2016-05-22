@@ -49,7 +49,7 @@ public class AccountResource {
 		return this.usuarioService.findOneByEmail(usuario.getEmail())
 				.map(user -> new ResponseEntity<>("E-mail já encontra-se cadastrado", HttpStatus.BAD_REQUEST))
 				.orElseGet(() -> {
-					this.usuarioService.registerUsuario(usuario);
+					this.usuarioService.register(usuario);
 					return new ResponseEntity<>(HttpStatus.CREATED);
 				});
 	}

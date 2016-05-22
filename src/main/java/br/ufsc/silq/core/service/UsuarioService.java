@@ -37,23 +37,63 @@ public class UsuarioService {
 	private CurriculumLattesService curriculumService;
 
 	/**
-	 * Registra um novo usuário, salvando-o na base de dados e cifrando a senha
-	 * do formulário parâmetro
+	 * Cria uma nova entidade {@link Usuario} a partir de um formulário de registro, mas não a salva no banco.
 	 *
-	 * @param form Formulário de registro
-	 * @return A nova entidade Usuario criada
+	 * @param form Formulário de registro contendo as informações do novo usuário.
+	 * @return Uma nova entidade {@link Usuario} não salva.
 	 */
-	public Usuario registerUsuario(@Valid RegisterForm form) {
+	protected Usuario newUser(@Valid RegisterForm form) {
 		String senhaCifrada = this.passwordEncoder.encode(form.getSenha());
-
 		Usuario usuario = new Usuario();
 		usuario.setNome(form.getNome());
 		usuario.setEmail(form.getEmail());
 		usuario.setSenha(senhaCifrada);
+		return usuario;
+	}
+
+	/**
+	 * Registra um novo usuário, salvando-o na base de dados e tornando-o ativo.
+	 *
+	 * @param form Formulário de registro.
+	 * @return A nova entidade Usuario criada.
+	 */
+	public Usuario register(@Valid RegisterForm form) {
+		Usuario usuario = this.newUser(form);
+		usuario.setAtivo(true);
 
 		Usuario usuarioSalvo = this.usuarioRepository.save(usuario);
 		log.debug("Usuário registrado {}", usuarioSalvo);
 		return usuarioSalvo;
+	}
+
+	/**
+	 * Requisita um pedido de registro a um novo usuário.
+	 *
+	 * @param form Formulário de registro do novo usuário.
+	 * @return A entidade {@link Usuario} criada, mas ainda não ativa.
+	 */
+	public Usuario registerRequest(@Valid RegisterForm form) {
+		Usuario usuario = this.newUser(form);
+		usuario.setAtivo(false);
+		usuario.setRegisterKey(RandomUtil.generateRegisterKey());
+
+		Usuario usuarioSalvo = this.usuarioRepository.save(usuario);
+		log.debug("Requisição de registro {}", usuarioSalvo);
+		return usuarioSalvo;
+	}
+
+	/**
+	 * Finaliza o processo de registro de um usuário que iniciou com {@link #registerRequest(RegisterForm)}, tornando-o ativo.
+	 *
+	 * @param registerKey A chave de registro criada por {@link #registerRequest(RegisterForm)}.
+	 * @return
+	 */
+	public Optional<Usuario> registerFinish(String registerKey) {
+		return this.usuarioRepository.findOneByRegisterKey(registerKey).map((usuario) -> {
+			usuario.setAtivo(true);
+			usuario.setRegisterKey(null);
+			return usuario;
+		});
 	}
 
 	/**
@@ -62,7 +102,7 @@ public class UsuarioService {
 	 * @return A entidade {@link Usuario} do usuário logado.
 	 */
 	public Usuario getUsuarioLogado() {
-		Usuario usuario = this.usuarioRepository.findOneByEmail(SecurityUtils.getCurrentUser().getUsername())
+		Usuario usuario = this.usuarioRepository.findOneByEmailAndAtivoTrue(SecurityUtils.getCurrentUser().getUsername())
 				.orElseThrow(() -> new IllegalStateException("User not found!"));
 		usuario.getAutoridades().size(); // força o carregamento das autoridades
 		return usuario;
@@ -101,7 +141,7 @@ public class UsuarioService {
 	 * @return A entidade {@link Usuario} dona do e-mail.
 	 */
 	public Optional<Usuario> requestPasswordReset(String email) {
-		return this.usuarioRepository.findOneByEmail(email).map(usuario -> {
+		return this.usuarioRepository.findOneByEmailAndAtivoTrue(email).map(usuario -> {
 			usuario.setResetKey(RandomUtil.generateResetKey());
 			// usuario.setResetDate(ZonedDateTime.now());
 			this.usuarioRepository.save(usuario);
