@@ -1,4 +1,4 @@
-package br.ufsc.silq;
+package br.ufsc.silq.test;
 
 import java.io.File;
 import java.io.FileInputStream;

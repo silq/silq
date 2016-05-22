@@ -1,7 +1,8 @@
-package br.ufsc.silq;
+package br.ufsc.silq.test;
 
 import javax.inject.Inject;
 
+import br.ufsc.silq.Application;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;

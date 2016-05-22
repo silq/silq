@@ -5,8 +5,8 @@ import javax.inject.Inject;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
-import br.ufsc.silq.Fixtures;
-import br.ufsc.silq.WebContextTest;
+import br.ufsc.silq.test.Fixtures;
+import br.ufsc.silq.test.WebContextTest;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;

@@ -11,8 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
 
-import br.ufsc.silq.Fixtures;
-import br.ufsc.silq.WebContextTest;
+import br.ufsc.silq.test.Fixtures;
+import br.ufsc.silq.test.WebContextTest;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
