@@ -18,7 +18,6 @@ import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.persistence.repository.UsuarioRepository;
 import br.ufsc.silq.core.service.util.RandomUtil;
 import br.ufsc.silq.security.SecurityUtils;
-import lombok.experimental.Delegate;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -29,7 +28,6 @@ public class UsuarioService {
 	@Inject
 	private PasswordEncoder passwordEncoder;
 
-	@Delegate
 	@Inject
 	private UsuarioRepository usuarioRepository;
 
@@ -94,6 +92,16 @@ public class UsuarioService {
 			usuario.setRegisterKey(null);
 			return usuario;
 		});
+	}
+
+	/**
+	 * Retorna o usuário que possua o e-mail especificado.
+	 * 
+	 * @param email E-mail do usuário.
+	 * @return A entidade {@link Usuario} que possue o e-mail especificado.
+	 */
+	public Optional<Usuario> findOneByEmail(String email) {
+		return this.usuarioRepository.findOneByEmail(email);
 	}
 
 	/**
