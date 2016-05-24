@@ -77,7 +77,7 @@ public class AvaliacaoService {
 	 * Avalia dados de um currículo Lattes já parseados pelo {@link LattesParser}.
 	 *
 	 * @param parseResult Resultado do parsing do currículo Lattes de um pesquisador.
-	 * @param avaliarForm Formulário contendo as opções de avaliação.
+	 * @param form Formulário contendo as opções de avaliação.
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
 	 * @throws SilqLattesException
 	 */
