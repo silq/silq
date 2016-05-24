@@ -25,7 +25,8 @@
     "angular-messages": "1.4.9",
     "angular-cache": "4.5.0",
     "bootstrap-sass": "^3.3.6",
-    "ng-csv": "0.3.6"
+    "ng-csv": "0.3.6",
+    "angular-chart.js": "0.10.2"
   },
   "devDependencies": {
     "angular-mocks": "1.4.9",

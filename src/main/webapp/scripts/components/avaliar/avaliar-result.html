@@ -48,7 +48,7 @@
                 <a ng-click="active = 1">Trabalhos <span class="badge badge-sm">{{results.trabalhos.length}} registros</span></a>
             </li>
             <li ng-class="{ active: active == 2}">
-                <a ng-click="active = 2">Gráficos</a>
+                <a ng-click="active = 2; loadGraficos()">Gráficos</a>
             </li>
         </ul>
 
@@ -99,7 +99,13 @@
         </div>
 
         <div ng-show="active == 2">
-             <p>TODO</p>
+            <br />
+
+            <h4 class="title-border">Total de publicações por ano</h4>
+
+            <canvas id="line" class="chart chart-line"
+                chart-data="data" chart-labels="labels">
+            </canvas>
         </div>
     </div>
 </div>

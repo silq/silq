@@ -31,8 +31,14 @@ angular.module('silq2App')
                     return createShallowResults($scope.results.trabalhos);
                 };
 
-                $scope.lala = function() {
-                    console.log("lala");
+                $scope.loadGraficos = function() {
+                    $scope.labels = [];
+                    $scope.data = [[]];
+
+                    for (var i in $scope.results.publicacoesPorAno) {
+                        $scope.labels.push(i);
+                        $scope.data[0].push($scope.results.publicacoesPorAno[i]);
+                    }
                 };
             }
         };
