@@ -96,7 +96,7 @@ public class UsuarioService {
 
 	/**
 	 * Retorna o usuário que possua o e-mail especificado.
-	 * 
+	 *
 	 * @param email E-mail do usuário.
 	 * @return A entidade {@link Usuario} que possue o e-mail especificado.
 	 */
@@ -188,12 +188,12 @@ public class UsuarioService {
 	/**
 	 * Remove o currículo do usuário, deletando seu {@link CurriculumLattes} da base de dados caso
 	 * ele não seja mais referenciado.
+	 *
+	 * @param usuario Entidade da qual deve ser removido o currículo.
 	 */
 	public void removeCurriculumUsuario(Usuario usuario) {
-		CurriculumLattes curriculumAntigo = usuario.getCurriculum();
 		usuario.setCurriculum(null);
 		this.usuarioRepository.save(usuario);
-		this.curriculumService.releaseCurriculum(curriculumAntigo);
 	}
 
 	/**
@@ -205,8 +205,7 @@ public class UsuarioService {
 	}
 
 	/**
-	 * Salva o currículo de um usuário a partir do arquivo XML de seu
-	 * currículo Lattes. Remove currículo anterior associados a este usuário.
+	 * Salva (ou altera) o currículo de um usuário a partir do arquivo XML de seu currículo Lattes.
 	 *
 	 * @param uploadedFile Upload do arquivo contendo o currículo Lattes.
 	 * @return {@link CurriculumLattes} criado a partir do parsing do Lattes.
@@ -214,15 +213,8 @@ public class UsuarioService {
 	 */
 	public CurriculumLattes saveCurriculumUsuario(Usuario usuario, MultipartFile uploadedFile) throws SilqException {
 		CurriculumLattes lattes = this.curriculumService.saveFromUpload(uploadedFile);
-
-		CurriculumLattes curriculumAntigo = usuario.getCurriculum();
 		usuario.setCurriculum(lattes);
 		this.usuarioRepository.save(usuario);
-
-		if (curriculumAntigo != null) {
-			this.curriculumService.releaseCurriculum(curriculumAntigo);
-		}
-
 		return lattes;
 	}
 

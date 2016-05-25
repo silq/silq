@@ -6,8 +6,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ufsc.silq.test.Fixtures;
-import br.ufsc.silq.test.WebContextTest;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.GrupoForm;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
@@ -15,6 +13,8 @@ import br.ufsc.silq.core.persistence.entities.Grupo;
 import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.persistence.repository.CurriculumLattesRepository;
 import br.ufsc.silq.core.persistence.repository.GrupoRepository;
+import br.ufsc.silq.test.Fixtures;
+import br.ufsc.silq.test.WebContextTest;
 
 public class GrupoServiceTest extends WebContextTest {
 
@@ -81,12 +81,15 @@ public class GrupoServiceTest extends WebContextTest {
 		CurriculumLattes curriculo1 = this.grupoService.addPesquisadorFromUpload(grupo, Fixtures.RONALDO_ZIP_UPLOAD);
 		CurriculumLattes curriculo2 = this.grupoService.addPesquisadorFromUpload(grupo, Fixtures.CHRISTIANE_XML_UPLOAD);
 		Assertions.assertThat(grupo.getPesquisadores()).hasSize(2);
+		Assertions.assertThat(this.curriculumRepository.count()).isEqualTo(2);
 
 		this.grupoService.removePesquisador(grupo, curriculo1.getId());
 		Assertions.assertThat(grupo.getPesquisadores()).hasSize(1)
 				.as("Deve ter excluído um dos pesquisadores");
 		Assertions.assertThat(grupo.getPesquisadores()).contains(curriculo2)
 				.as("Currículo não excluído deve permanecer no grupo de pesquisadores");
+		Assertions.assertThat(this.curriculumRepository.count()).isEqualTo(2)
+				.as("Currículo do pesquisador removido deve ser mantido (temporariamente) na base de dados");
 	}
 
 	@Test
@@ -101,8 +104,8 @@ public class GrupoServiceTest extends WebContextTest {
 		Assertions.assertThat(this.grupoRepository.count()).isEqualTo(0)
 				.as("Deve ter deletado o grupo da base de dados");
 
-		Assertions.assertThat(this.curriculumRepository.count()).isEqualTo(0)
-				.as("Deve ter deletado o currículo dos pesquisadores do grupo deletado da base de dados");
+		Assertions.assertThat(this.curriculumRepository.count()).isEqualTo(1)
+				.as("Currículo dos pesquisadores do grupo deletado deve ser mantido (temporariamente) na base de dados");
 	}
 
 }

@@ -6,8 +6,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ufsc.silq.test.Fixtures;
-import br.ufsc.silq.test.WebContextTest;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
 import br.ufsc.silq.core.forms.usuario.UsuarioUpdateForm;
@@ -15,6 +13,8 @@ import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.persistence.repository.CurriculumLattesRepository;
 import br.ufsc.silq.core.persistence.repository.UsuarioRepository;
+import br.ufsc.silq.test.Fixtures;
+import br.ufsc.silq.test.WebContextTest;
 
 public class UsuarioServiceTest extends WebContextTest {
 
@@ -155,7 +155,8 @@ public class UsuarioServiceTest extends WebContextTest {
 
 		this.usuarioService.removeCurriculumUsuario(usuario);
 		Assertions.assertThat(usuario.getCurriculum()).isNull();
-		Assertions.assertThat(this.curriculumRepository.count()).isEqualTo(0);
+		Assertions.assertThat(this.curriculumRepository.count()).isEqualTo(1)
+				.as("Currículo do usuário deve ser mantido (temporariamente) na base de dados");
 	}
 
 	@Test

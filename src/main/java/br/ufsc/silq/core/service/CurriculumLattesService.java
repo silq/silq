@@ -1,13 +1,16 @@
 package br.ufsc.silq.core.service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StopWatch;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 
@@ -94,20 +97,6 @@ public class CurriculumLattesService {
 	}
 
 	/**
-	 * "Libera" o uso de um currículo. Chamado quando um usuário remove seu currículo ou um pesquisador é removido de um grupo,
-	 * o que significa a exclusão do currículo. Como o currículo é compartilhado, ou seja, pode estar sendo usado por múltiplos
-	 * usuários e grupos, verifica-se neste método se podemos realmente excluí-lo da base de dados.
-	 *
-	 * @param curriculum Currículo a ser liberado.
-	 */
-	public void releaseCurriculum(CurriculumLattes curriculum) {
-		if (!this.isCurriculumEmUso(curriculum)) {
-			log.debug("Removendo currículo em desuso: {}", curriculum);
-			this.lattesRepository.delete(curriculum);
-		}
-	}
-
-	/**
 	 * Checa se o currículo está relacionado a outra entidade no sistema.
 	 *
 	 * @param curriculum
@@ -116,6 +105,39 @@ public class CurriculumLattesService {
 	public boolean isCurriculumEmUso(CurriculumLattes curriculum) {
 		return !this.usuarioRepository.findAllByCurriculum(curriculum).isEmpty()
 				|| !this.grupoRepository.findAllByPesquisadores(curriculum).isEmpty();
+	}
+
+	/**
+	 * Limpa currículos não utilizados.
+	 * Remove todos os currículos da base de dados que não estejam relacionados com outra entidade, ou seja,
+	 * que não sejam currículos pessoais de nenhum usuário e de nenhum pesquisador de grupo.
+	 *
+	 * @return O número de currículos excluídos.
+	 */
+	public long cleanCuriculosEmDesuso() {
+		// TODO (bonetti): remover apenas currículos não utilizados no último dia!
+		StopWatch watch = new StopWatch();
+		watch.start();
+
+		List<BigDecimal> ids = this.lattesRepository.findAllEmDesuso();
+		long count = ids.size();
+
+		ids.stream().forEach((id) -> this.lattesRepository.delete(id.longValue()));
+
+		watch.stop();
+		log.info("Removendo currículos em desuso da base de dados: {} currículos deletados em {}ms",
+				count, watch.getTotalTimeMillis());
+		return count;
+	}
+
+	/**
+	 * Job de limpeza de currículos não utilizados.
+	 * Executa o método {@link #cleanCuriculosEmDesuso()} todo dia às 02:01h.
+	 * Métodos com @Scheduled devem ser void, por isso foi criado um outro método para o job.
+	 */
+	@Scheduled(cron = "0 1 2 * * ?")
+	public void jobCleanCurriculosEmDesuso() {
+		this.cleanCuriculosEmDesuso();
 	}
 
 	/**

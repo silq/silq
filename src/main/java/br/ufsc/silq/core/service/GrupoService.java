@@ -2,7 +2,6 @@ package br.ufsc.silq.core.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -98,14 +97,12 @@ public class GrupoService {
 	}
 
 	/**
-	 * Deleta o grupo da base de dados e libera todos os currículos de pesquisadores associados a este grupo.
+	 * Deleta o grupo da base de dados.
 	 *
 	 * @param grupo
 	 */
 	public void delete(Grupo grupo) {
-		Set<CurriculumLattes> curriculos = grupo.getPesquisadores();
 		this.grupoRepository.delete(grupo);
-		curriculos.forEach((curriculo) -> this.curriculumService.releaseCurriculum(curriculo));
 	}
 
 	/**
@@ -136,7 +133,6 @@ public class GrupoService {
 		CurriculumLattes lattes = this.curriculumService.findOneWithPermission(curriculoId).get();
 		grupo.getPesquisadores().remove(lattes);
 		this.grupoRepository.save(grupo);
-		this.curriculumService.releaseCurriculum(lattes);
 	}
 
 }

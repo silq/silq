@@ -25,7 +25,7 @@ import lombok.ToString;
 @SequenceGenerator(name = "Token_generator", sequenceName = "sq_curriculum_lattes", allocationSize = 1, initialValue = 1)
 @Table(name = "tb_curriculum_lattes")
 @Data
-@ToString(of = { "id", "idLattes", "nome", "dataAtualizacaoUsuario" })
+@ToString(of = { "id", "idLattes", "nome", "dataAtualizacaoCurriculo" })
 @NoArgsConstructor
 public class CurriculumLattes {
 
