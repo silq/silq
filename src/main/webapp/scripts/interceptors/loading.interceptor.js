@@ -15,7 +15,7 @@ angular.module('silq2App')
             },
 
             response: function(response) {
-                if (response.config.loadingIndicator !== false) {
+                if (response.config && response.config.loadingIndicator !== false) {
                     if(--$rootScope.loadingCount === 0) {
                         $rootScope.loading = false;
                     }
@@ -24,7 +24,7 @@ angular.module('silq2App')
             },
 
             responseError: function(response) {
-                if (response.config.loadingIndicator !== false) {
+                if (response.config && response.config.loadingIndicator !== false) {
                     if(--$rootScope.loadingCount === 0) {
                         $rootScope.loading = false;
                     }

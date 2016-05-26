@@ -2,21 +2,18 @@ package br.ufsc.silq.test;
 
 import javax.inject.Inject;
 
-import br.ufsc.silq.Application;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.ufsc.silq.Application;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
 import br.ufsc.silq.core.persistence.entities.Usuario;
+import br.ufsc.silq.core.service.AuthService;
 import br.ufsc.silq.core.service.UsuarioService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,7 +28,7 @@ public abstract class WebContextTest {
 	private UsuarioService usuarioService;
 
 	@Inject
-	private AuthenticationManager authenticationManager;
+	private AuthService authService;
 
 	/**
 	 * Cria um novo usuário na base de dados e o loga no sistema, para testes.
@@ -61,9 +58,7 @@ public abstract class WebContextTest {
 	 * @return
 	 */
 	protected Usuario doLogin(Usuario user, String senha) {
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getEmail(), senha);
-		Authentication authentication = this.authenticationManager.authenticate(token);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+		this.authService.authenticateAndLogin(user.getEmail(), senha);
 		return user;
 	}
 }

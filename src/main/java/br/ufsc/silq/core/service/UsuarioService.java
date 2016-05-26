@@ -6,11 +6,13 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.ufsc.silq.core.exception.SilqException;
+import br.ufsc.silq.core.forms.usuario.AlterarSenhaForm;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
 import br.ufsc.silq.core.forms.usuario.UsuarioUpdateForm;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
@@ -33,6 +35,9 @@ public class UsuarioService {
 
 	@Inject
 	private CurriculumLattesService curriculumService;
+
+	@Inject
+	private AuthService authService;
 
 	/**
 	 * Cria uma nova entidade {@link Usuario} a partir de um formulário de registro, mas não a salva no banco.
@@ -131,13 +136,19 @@ public class UsuarioService {
 	/**
 	 * Altera a senha do usuário logado.
 	 *
-	 * @param novaSenha Nova senha definida. Será codificada e salva no banco.
+	 * @param form Formulário de alteração de senha. Contém a senha atual e a nova senha.
 	 * @return A entidade {@link Usuario} com a senha alterada.
+	 * @throws SilqException Caso a senha atual seja incorreta.
 	 */
-	public Usuario alterarSenha(String novaSenha) {
+	public Usuario alterarSenha(@Valid AlterarSenhaForm form) {
 		Usuario usuario = this.getUsuarioLogado();
-		String senhaCifrada = this.passwordEncoder.encode(novaSenha);
-		usuario.setSenha(senhaCifrada);
+		Authentication auth = this.authService.authenticate(usuario.getEmail(), form.getSenhaAtual());
+
+		if (auth.isAuthenticated()) {
+			String senhaCifrada = this.passwordEncoder.encode(form.getNovaSenha());
+			usuario.setSenha(senhaCifrada);
+		}
+
 		return this.usuarioRepository.save(usuario);
 	}
 

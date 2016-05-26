@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codahale.metrics.annotation.Timed;
 
 import br.ufsc.silq.core.data.UsuarioDTO;
+import br.ufsc.silq.core.exception.SilqException;
+import br.ufsc.silq.core.forms.usuario.AlterarSenhaForm;
 import br.ufsc.silq.core.forms.usuario.RecuperarSenhaForm;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
 import br.ufsc.silq.core.forms.usuario.UsuarioUpdateForm;
@@ -104,11 +106,12 @@ public class AccountResource {
 	 */
 	@RequestMapping(value = "/account/change_password", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@Timed
-	public ResponseEntity<?> changePassword(@RequestBody String password) {
-		if (!this.checkPasswordLength(password)) {
-			return new ResponseEntity<>("Senha inválida", HttpStatus.BAD_REQUEST);
+	public ResponseEntity<?> changePassword(@RequestBody @Valid AlterarSenhaForm form) {
+		try {
+			this.usuarioService.alterarSenha(form);
+		} catch (Exception e) {
+			return new ResponseEntity<>(new SilqException("Senha atual incorreta."), HttpStatus.FORBIDDEN);
 		}
-		this.usuarioService.alterarSenha(password);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 

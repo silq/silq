@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.ufsc.silq.core.exception.SilqException;
+import br.ufsc.silq.core.forms.usuario.AlterarSenhaForm;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
 import br.ufsc.silq.core.forms.usuario.UsuarioUpdateForm;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
@@ -107,12 +108,25 @@ public class UsuarioServiceTest extends WebContextTest {
 	}
 
 	@Test
-	public void testAlterarSenha() {
+	public void testAlterarSenha() throws SilqException {
 		Usuario usuario = this.loginUser(this.registerForm);
 		String senhaAntiga = usuario.getSenha();
-		Usuario usuarioComSenhaAlterada = this.usuarioService.alterarSenha("nova senha 123");
+		Usuario usuarioComSenhaAlterada = this.usuarioService.alterarSenha(
+				new AlterarSenhaForm(this.registerForm.getSenha(), "senha nova 1234"));
 		Assertions.assertThat(usuarioComSenhaAlterada.getSenha()).isNotNull();
 		Assertions.assertThat(usuarioComSenhaAlterada.getSenha()).isNotEqualTo(senhaAntiga);
+	}
+
+	@Test
+	public void testAlterarSenhaComSenhaAtualErrada() {
+		Usuario usuario = this.loginUser(this.registerForm);
+		String senhaAntiga = usuario.getSenha();
+
+		Assertions.assertThatThrownBy(() -> {
+			this.usuarioService.alterarSenha(new AlterarSenhaForm("senha atual errada", "nova senha 123"));
+		}).hasMessageContaining("Bad credentials");
+
+		Assertions.assertThat(usuario.getSenha()).isEqualTo(senhaAntiga);
 	}
 
 	@Test
