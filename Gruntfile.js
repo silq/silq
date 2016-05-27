@@ -1,4 +1,6 @@
-// Generated on 2016-01-13 using generator-jhipster 2.26.2
+// This Gruntfile.js is a modified version based on the file generated
+// on 2016-01-13 using generator-jhipster 2.26.2
+
 'use strict';
 var fs = require('fs');
 
@@ -326,6 +328,19 @@ module.exports = function (grunt) {
                 }
             },
         },
+        protractor_webdriver: {
+            options: {},
+            all: {},
+          },
+        protractor: {
+            options: {
+              configFile: 'src/test/javascript/protractor.conf.js',
+              keepAlive: false,
+              noColor: false,
+              args: {}
+            },
+            all: {}
+        },
     });
 
     grunt.registerTask('serve', [
@@ -343,7 +358,10 @@ module.exports = function (grunt) {
         grunt.task.run([target ? ('serve:' + target) : 'serve']);
     });
 
-    grunt.registerTask('test', []);
+    grunt.registerTask('test', [
+        'protractor_webdriver',
+        'protractor'
+    ]);
 
     grunt.registerTask('build', [
         'clean:dist',
