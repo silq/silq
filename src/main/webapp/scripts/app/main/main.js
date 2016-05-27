@@ -7,8 +7,7 @@ angular.module('silq2App')
                 parent: 'site',
                 url: '/',
                 data: {
-                    authorities: [],
-                    pageTitle: 'SILQ - Sistema de Integração Lattes - Qualis'
+                    authorities: []
                 },
                 views: {
                     'content@': {
