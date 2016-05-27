@@ -1,26 +1,9 @@
+var User = require('./model/user');
+var registerForm = require('./model/register');
+var loginForm = require('./model/login');
+var navbar = require('./model/navbar');
+
 describe('Account tests', function() {
-
-    var accountMenuLink = element(by.id('account-menu'));
-    var cadastrarMenuLink = element(by.cssContainingText('a', 'Cadastrar-se'));
-    var logoutMenuLink = element(by.id('logout'));
-    var editarDadosMenuLink = element(by.cssContainingText('a', 'Editar dados'));
-    var alterarSenhaMenuLink = element(by.cssContainingText('a', 'Alterar senha'));
-
-    // Formulário de registro:
-    var registerForm = {
-        nomeInput: element(by.model('registerAccount.nome')),
-        emailInput: element(by.model('registerAccount.email')),
-        senhaInput: element(by.model('registerAccount.senha')),
-        senhaConfirmInput: element(by.model('confirmPassword')),
-        cadastrarButton: element(by.buttonText('Cadastrar')),
-    };
-
-    // Página inicial + formulário de login:
-    var loginForm = {
-        email: element(by.model('email')),
-        senha: element(by.model('password')),
-        submit: element(by.buttonText('Entrar')),
-    };
 
     // Formulário de 'Editar dados':
     var editarDadosForm = {
@@ -36,33 +19,26 @@ describe('Account tests', function() {
         submit: element(by.buttonText('Alterar senha')),
     };
 
-    // Nome aleatório do novo usuário
-    var userId = Math.random().toString(36).substring(7);
-    var user = {
-        id: userId,
-        nome: 'Usuário de teste #' + userId,
-        email: userId + '@localhost',
-        senha: '12345',
-    };
+    var user = User.getUser();
 
     beforeAll(function() {
         browser.get('/');
     });
 
+    afterAll(function () {
+        navbar.accountMenu.click();
+        navbar.logout.click();
+    });
+
     it('deve registrar um novo usuário e logá-lo', function() {
-        cadastrarMenuLink.click();
-        registerForm.nomeInput.sendKeys(user.nome);
-        registerForm.emailInput.sendKeys(user.email);
-        registerForm.senhaInput.sendKeys(user.senha);
-        registerForm.senhaConfirmInput.sendKeys(user.senha);
-        registerForm.cadastrarButton.click();
+        User.register(user);
         expect(browser.getCurrentUrl()).toContain('home');
         expect(element(by.css('.main-content')).getText()).toContain('Seja bem-vindo');
     });
 
     it('deve sair ao deslogar', function() {
-        accountMenuLink.click();
-        logoutMenuLink.click();
+        navbar.accountMenu.click();
+        navbar.logout.click();
         expect(element(by.css('.main-content')).getText()).toContain('acrônimo para');
     });
 
@@ -74,18 +50,14 @@ describe('Account tests', function() {
     });
 
     it('deve entrar na área restrita ao logar com credenciais válidas', function() {
-        loginForm.email.clear();
-        loginForm.email.sendKeys(user.email);
-        loginForm.senha.clear();
-        loginForm.senha.sendKeys(user.senha);
-        loginForm.submit.click();
+        User.login(user);
         expect(browser.getCurrentUrl()).toContain('home');
         expect(element(by.css('.main-content')).getText()).toContain('Seja bem-vindo');
     });
 
     it('deve alterar as informações de usuário ao editar dados', function() {
-        accountMenuLink.click();
-        editarDadosMenuLink.click();
+        navbar.accountMenu.click();
+        navbar.editarDados.click();
         expect(element(by.css('.main-content')).getText()).toContain('Informações do usuário ' + user.nome);
 
         editarDadosForm.nome.clear();
@@ -101,8 +73,8 @@ describe('Account tests', function() {
     });
 
     it('deve falhar ao alterar senha com senha atual errada', function() {
-        accountMenuLink.click();
-        alterarSenhaMenuLink.click();
+        navbar.accountMenu.click();
+        navbar.alterarSenha.click();
 
         alterarSenhaForm.senhaAtual.sendKeys('54321');
         alterarSenhaForm.novaSenha.sendKeys('11111');
@@ -113,8 +85,8 @@ describe('Account tests', function() {
     });
 
     it('deve obter sucesso ao alterar senha com senha atual correta e requisitar novo login', function() {
-        accountMenuLink.click();
-        alterarSenhaMenuLink.click();
+        navbar.accountMenu.click();
+        navbar.alterarSenha.click();
 
         alterarSenhaForm.senhaAtual.clear();
         alterarSenhaForm.senhaAtual.sendKeys(user.senha);
