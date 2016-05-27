@@ -9,6 +9,11 @@ cache:
     - node_modules
     - src/main/webapp/bower_components
     - $HOME/.m2
+before_install:
+    - $HOME/.nvm/nvm.sh
+    - nvm install 5.5
+    - nvm use 5.5
+    - npm install -g grunt-cli
 before_script:
     - psql -c 'create database silq2;' -U postgres
     - psql -U postgres -d silq2 -w -f sql/schema.sql
