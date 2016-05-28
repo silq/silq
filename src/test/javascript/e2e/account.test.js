@@ -2,6 +2,7 @@ var User = require('./model/user');
 var registerForm = require('./model/register');
 var loginForm = require('./model/login');
 var navbar = require('./model/navbar');
+var flashMessage = require('./model/flash-message');
 
 describe('Account tests', function() {
 
@@ -26,8 +27,7 @@ describe('Account tests', function() {
     });
 
     afterAll(function () {
-        navbar.accountMenu.click();
-        navbar.logout.click();
+        User.logout();
     });
 
     it('deve registrar um novo usuário e logá-lo', function() {
@@ -81,7 +81,7 @@ describe('Account tests', function() {
         alterarSenhaForm.confirmSenha.sendKeys('11111');
         alterarSenhaForm.submit.click();
 
-        expect(element(by.css('.alert.alert-dismissible')).getText()).toContain('Senha atual incorreta');
+        expect(flashMessage.getText()).toContain('Senha atual incorreta');
     });
 
     it('deve obter sucesso ao alterar senha com senha atual correta e requisitar novo login', function() {
@@ -98,7 +98,7 @@ describe('Account tests', function() {
         alterarSenhaForm.confirmSenha.sendKeys(user.senha);
         alterarSenhaForm.submit.click();
 
-        expect(element(by.css('.alert.alert-dismissible')).getText()).toContain('Senha alterada');
+        expect(flashMessage.getText()).toContain('Senha alterada');
     });
 
     it('deve logar novamente com nova senha', function() {

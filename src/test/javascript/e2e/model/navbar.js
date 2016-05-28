@@ -5,6 +5,7 @@ var Navbar = {
         editarDados: element(by.cssContainingText('a', 'Editar dados')),
         alterarSenha: element(by.cssContainingText('a', 'Alterar senha')),
     grupos: element(by.cssContainingText('a', 'Grupos')),
+    avaliacaoLivre: element(by.cssContainingText('a', 'Avaliação Livre')),
 };
 
 module.exports = Navbar;

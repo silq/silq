@@ -21,6 +21,7 @@ angular.module('silq2App', ['LocalStorageModule',
 
         $rootScope.$on('silq:httpError', function(event, response) {
             if (response.status === 401) return;
+            if (!response.data) return;
             if (response.data.message || response.data.description) {
                 Flash.create('danger', '<strong>Ops! </strong>' + response.data.message || response.data.description);
             }

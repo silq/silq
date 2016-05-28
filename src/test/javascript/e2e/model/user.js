@@ -46,12 +46,21 @@ User.login = function(user) {
         user = User.getUser();
     }
 
+    if (!user.registered) {
+        User.register(user);
+    }
+
     browser.get('/');
     loginForm.email.clear();
     loginForm.email.sendKeys(user.email);
     loginForm.senha.clear();
     loginForm.senha.sendKeys(user.senha);
     loginForm.submit.click();
+};
+
+User.logout = function() {
+    navbar.accountMenu.click();
+    navbar.logout.click();
 };
 
 module.exports = User;

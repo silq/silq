@@ -25,7 +25,7 @@
         <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
         <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
-            <div flash-message="4000"></div>
+            <div id="flash-message" flash-message="4000"></div>
             <div ui-view="content-header"></div>
             <loader ng-show="loading"></loader>
             <div ng-hide="loading" class="main-content" ui-view="content"></div>

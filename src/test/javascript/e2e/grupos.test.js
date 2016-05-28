@@ -17,8 +17,11 @@ describe('Grupo tests', function() {
     };
 
     beforeAll(function() {
-        user.register();
         user.login();
+    });
+
+    afterAll(function () {
+        user.logout();
     });
 
     it('deve entrar na página de grupos e apresentá-la vazia', function() {
