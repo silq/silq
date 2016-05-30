@@ -6,12 +6,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.util.StopWatch;
-import org.w3c.dom.Document;
 
-import br.ufsc.silq.test.Fixtures;
-import br.ufsc.silq.test.WebContextTest;
+import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
+import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
+import br.ufsc.silq.test.Fixtures;
+import br.ufsc.silq.test.WebContextTest;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -21,19 +22,19 @@ public class PerformanceTest extends WebContextTest {
 	private AvaliacaoService avaliacaoService;
 
 	@Inject
-	private DocumentManager documentManager;
+	private CurriculumLattesService curriculumService;
 
-	private Document documentXmlChristiane;
+	private CurriculumLattes lattesChristiane;
 
-	private Document documentXmlRaul;
+	private CurriculumLattes lattesRaul;
 
-	private Document documentXmlRonaldo;
+	private CurriculumLattes lattesRonaldo;
 
 	@Before
-	public void setup() throws SilqLattesException {
-		this.documentXmlChristiane = this.documentManager.extractXmlDocumentFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
-		this.documentXmlRaul = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RAUL_XML_UPLOAD);
-		this.documentXmlRonaldo = this.documentManager.extractXmlDocumentFromUpload(Fixtures.RONALDO_XML_UPLOAD);
+	public void setup() throws SilqException {
+		this.lattesChristiane = this.curriculumService.saveFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
+		this.lattesRaul = this.curriculumService.saveFromUpload(Fixtures.RAUL_XML_UPLOAD);
+		this.lattesRonaldo = this.curriculumService.saveFromUpload(Fixtures.RONALDO_ZIP_UPLOAD);
 	}
 
 	@Test
@@ -59,9 +60,9 @@ public class PerformanceTest extends WebContextTest {
 		for (int i = 0; i < iterations; i++) {
 			log.debug("Running iteration #" + i + " of performance test");
 			double iterationTotal = 0;
-			iterationTotal += this.compareAndGetExecutionTime(this.documentXmlChristiane);
-			iterationTotal += this.compareAndGetExecutionTime(this.documentXmlRaul);
-			iterationTotal += this.compareAndGetExecutionTime(this.documentXmlRonaldo);
+			iterationTotal += this.compareAndGetExecutionTime(this.lattesChristiane);
+			iterationTotal += this.compareAndGetExecutionTime(this.lattesRaul);
+			iterationTotal += this.compareAndGetExecutionTime(this.lattesRonaldo);
 			executionTotalTime += iterationTotal;
 		}
 
@@ -73,17 +74,17 @@ public class PerformanceTest extends WebContextTest {
 	/**
 	 * Calcula a similaridade e retorna o tempo de execução em milissegundos.
 	 *
-	 * @param document
+	 * @param lattes
 	 * @return
 	 * @throws SilqLattesException
 	 */
-	private double compareAndGetExecutionTime(Document document) throws SilqLattesException {
+	private double compareAndGetExecutionTime(CurriculumLattes lattes) throws SilqLattesException {
 		AvaliarForm form = new AvaliarForm();
 		form.setArea("Ciência da Computação");
 
 		StopWatch watch = new StopWatch();
 		watch.start();
-		this.avaliacaoService.avaliar(document, form);
+		this.avaliacaoService.avaliar(lattes, form);
 		watch.stop();
 
 		// log.debug("Result in " + watch.getTotalTimeMillis() + "ms");

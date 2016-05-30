@@ -13,7 +13,6 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.w3c.dom.Document;
 
 import com.mysema.query.types.expr.BooleanExpression;
 
@@ -58,19 +57,6 @@ public class AvaliacaoService {
 	 */
 	public AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
 		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes.getLattesXml());
-		return this.avaliar(parseResult, avaliarForm);
-	}
-
-	/**
-	 * Extrai dados do currículo Lattes utilizando {@link LattesParser} e avalia-o.
-	 *
-	 * @param lattes XML do currículo Lattes do pesquisador a ser avaliado.
-	 * @param avaliarForm Formulário contendo as opções de avaliação.
-	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
-	 * @throws SilqLattesException
-	 */
-	public AvaliacaoResult avaliar(Document lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
-		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
 		return this.avaliar(parseResult, avaliarForm);
 	}
 
