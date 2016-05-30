@@ -1,0 +1,19 @@
+<h3 class="text-center">Resultados da avaliação</h3>
+
+<div class="text-center">
+    <button ui-sref="avaliar-livre" class="btn btn-primary btn-spaced">
+        &larr; Voltar às opções de Avaliação Livre
+    </button>
+</div>
+<br />
+
+<div ng-show="results.length == 0" class="alert alert-warning text-center">
+    Nenhum resultado de avaliação foi encontrado.
+</div>
+
+<table class="table table-striped table-resumo">
+    <tr ng-repeat="result in results | orderBy: 'nome'">
+        <td>{{ result.dadosGerais.nome }}</td>
+        <td><a ui-sref="resultLivre.detail({ resultId: $index })">Visualizar resultados</a></td>
+    </tr>
+</table>

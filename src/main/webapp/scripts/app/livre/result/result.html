@@ -1,37 +1,24 @@
-<div ng-show="ready">
-    <h3 class="text-center">Resultados da avaliação</h3>
+<h3 class="text-center">Resultados da avaliação</h3>
 
-    <div ng-show="multiple && !active">
-        <br />
-        <table class="table table-striped table-resumo">
-            <tr ng-repeat="result in results | orderBy: 'nome'">
-                <td>{{ result.dadosGerais.nome }}</td>
-                <td><a ui-sref=".({ resultId: $index })">Visualizar resultados</a></td>
-            </tr>
-        </table>
+<p ng-show="multiple" class="text-center">
+    <a class="btn btn-primary btn-spaced" ui-sref="^">
+        &larr; Voltar para todos os resultados
+    </a>
+</p>
+
+<p ng-show="!multiple" class="text-center">
+    <a class="btn btn-primary btn-spaced" ui-sref="avaliar-livre">
+        &larr; Voltar às opções de Avaliação Livre
+    </a>
+</p>
+
+<div ng-show="!result" class="text-center">
+    <br />
+    <div class="alert alert-warning">
+        Nenhum resultado de avaliação foi encontrado.
     </div>
+</div>
 
-    <p ng-show="multiple && active" class="text-center">
-        <a class="btn btn-primary btn-spaced" ui-sref=".({ resultId: null })">
-            &larr; Voltar para todos os resultados
-        </a>
-    </p>
-
-    <div ng-show="!results.length" class="text-center">
-        <div class="alert alert-warning">
-            Nenhum resultado de avaliação foi encontrado.
-        </div>
-
-        <button ui-sref="avaliar" class="btn btn-primary btn-spaced">
-            &larr; Voltar às opções de Avaliação Livre
-        </button>
-    </div>
-
-    <div ng-show="results.length">
-        <avaliar-result ng-repeat="result in results | orderBy: 'nome'"
-            results="result"
-            class="fade"
-            ng-show="$index == active"
-        ></avaliar-result>
-    </div>
+<div ng-show="!!result">
+    <avaliar-result results="result"></avaliar-result>
 </div>

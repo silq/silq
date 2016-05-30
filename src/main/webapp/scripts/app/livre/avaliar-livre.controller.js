@@ -44,8 +44,8 @@ angular.module('silq2App')
             }
 
             Avaliacao.avaliarLivre($scope.avaliarForm).then(function(response) {
-                Flash.create('success', 'Avaliação concluída');
-                $state.go('result-livre', {
+                Flash.create('success', '<strong>Sucesso!</strong> Avaliação concluída');
+                $state.go('resultLivre', {
                     cacheId: cacheId
                 });
             });
