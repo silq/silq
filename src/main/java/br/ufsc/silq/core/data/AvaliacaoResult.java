@@ -36,12 +36,12 @@ public class AvaliacaoResult {
 	/**
 	 * Lista de artigos avaliados, contendo os respectivos {@link Conceito}s
 	 */
-	private final List<Artigo> artigos = new ArrayList<>();
+	private List<Artigo> artigos = new ArrayList<>();
 
 	/**
 	 * Lista de trabalhos avaliados, contendo os respectivos {@link Conceito}s
 	 */
-	private final List<Trabalho> trabalhos = new ArrayList<>();
+	private List<Trabalho> trabalhos = new ArrayList<>();
 
 	/**
 	 * Ordena os artigos e trabalhos por ano (decrescente).

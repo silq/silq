@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -72,25 +73,21 @@ public class AvaliacaoService {
 		AvaliacaoResult result = new AvaliacaoResult(form, parseResult.getDadosGerais());
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
-			parseResult.getArtigos().parallelStream().forEach((artigo) -> {
-				if (!form.getPeriodoAvaliacao().inclui(artigo.getAno())) {
-					// Não avalia artigo que não pertence ao período de avaliação informado.
-					return;
-				}
+			List<Artigo> artigosAvaliados = parseResult.getArtigos().parallelStream()
+					.filter((artigo) -> form.getPeriodoAvaliacao().inclui(artigo.getAno()))
+					.map((artigo) -> this.avaliarArtigo(artigo, form))
+					.collect(Collectors.toList());
 
-				result.getArtigos().add(this.avaliarArtigo(artigo, form));
-			});
+			result.setArtigos(artigosAvaliados);
 		}
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
-			parseResult.getTrabalhos().parallelStream().forEach((trabalho) -> {
-				if (!form.getPeriodoAvaliacao().inclui(trabalho.getAno())) {
-					// Não avalia trabalho que não pertence ao período de avaliação informado.
-					return;
-				}
+			List<Trabalho> trabalhosAvaliados = parseResult.getTrabalhos().parallelStream()
+					.filter((trabalho) -> form.getPeriodoAvaliacao().inclui(trabalho.getAno()))
+					.map((trabalho) -> this.avaliarTrabalho(trabalho, form))
+					.collect(Collectors.toList());
 
-				result.getTrabalhos().add(this.avaliarTrabalho(trabalho, form));
-			});
+			result.setTrabalhos(trabalhosAvaliados);
 		}
 
 		result.order();
