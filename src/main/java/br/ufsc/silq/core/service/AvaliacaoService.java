@@ -29,6 +29,7 @@ import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
+import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.QQualisPeriodico;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.core.persistence.repository.QualisPeriodicoRepository;
@@ -48,6 +49,19 @@ public class AvaliacaoService {
 	private LattesParser lattesParser;
 
 	/**
+	 * Avalia um currículo lattes.
+	 *
+	 * @param lattes Currículo a ser avaliado.
+	 * @param avaliarForm Formulário contendo as opções de avaliação.
+	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
+	 * @throws SilqLattesException Caso haja um erro no parsing ou avaliação do currículo.
+	 */
+	public AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
+		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes.getLattesXml());
+		return this.avaliar(parseResult, avaliarForm);
+	}
+
+	/**
 	 * Extrai dados do currículo Lattes utilizando {@link LattesParser} e avalia-o.
 	 *
 	 * @param lattes XML do currículo Lattes do pesquisador a ser avaliado.
@@ -56,19 +70,6 @@ public class AvaliacaoService {
 	 * @throws SilqLattesException
 	 */
 	public AvaliacaoResult avaliar(Document lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
-		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
-		return this.avaliar(parseResult, avaliarForm);
-	}
-
-	/**
-	 * Extrai dados do currículo Lattes utilizando {@link LattesParser} e avalia-o.
-	 *
-	 * @param lattes Byte array do XML do currículo Lattes do pesquisador a ser avaliado.
-	 * @param avaliarForm Formulário contendo as opções de avaliação.
-	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
-	 * @throws SilqLattesException
-	 */
-	public AvaliacaoResult avaliar(String lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
 		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
 		return this.avaliar(parseResult, avaliarForm);
 	}
