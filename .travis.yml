@@ -17,6 +17,8 @@ before_install:
 before_script:
     - psql -c 'create database silq2;' -U postgres
     - psql -U postgres -d silq2 -w -f sql/schema.sql
+    - psql -U postgres -d silq2 -w -f sql/qualis_evento.sql
+    - psql -U postgres -d silq2 -w -f sql/qualis_periodico.sql
 script:
     - mvn test -B -D spring.profiles.active=travis
 notifications:
