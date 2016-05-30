@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -20,6 +21,7 @@ import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.TipoOrigemCurriculo;
 import br.ufsc.silq.core.parser.dto.Trabalho;
+import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.service.DocumentManager;
 import br.ufsc.silq.core.utils.SilqDataUtils;
 import br.ufsc.silq.core.utils.SilqStringUtils;
@@ -30,6 +32,18 @@ public class LattesParser {
 
 	@Inject
 	private DocumentManager documentManager;
+
+	/**
+	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu currículo Lattes (em XML).
+	 *
+	 * @param lattes A entidade que representa o currículo Lattes (em XML) a ser avaliado.
+	 * @return Os resultados ({@link ParseResult}) da avaliação.
+	 * @throws SilqLattesException
+	 */
+	@Cacheable(cacheNames = "parseResults", key = "#lattes.id")
+	public ParseResult parseCurriculum(CurriculumLattes lattes) throws SilqLattesException {
+		return this.parseCurriculum(this.documentManager.stringToDocument(lattes.getLattesXml()));
+	}
 
 	/**
 	 * Extrai dados gerais do currículo Lattes (em XML) de um pesquisador
@@ -72,22 +86,11 @@ public class LattesParser {
 	/**
 	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu currículo Lattes (em XML).
 	 *
-	 * @param curriculum String do Currículo Lattes (em XML) a ser avaliado.
-	 * @return Os resultados ({@link ParseResult}) da avaliação.
-	 * @throws SilqLattesException
-	 */
-	public ParseResult parseCurriculum(String curriculum) throws SilqLattesException {
-		return this.parseCurriculum(this.documentManager.stringToDocument(curriculum));
-	}
-
-	/**
-	 * Extrai dados dos trabalhos e artigos de um pesquisador a partir de seu currículo Lattes (em XML).
-	 *
 	 * @param lattes Currículo Lattes (em XML) a ser avaliado.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
 	 * @throws SilqException
 	 */
-	public ParseResult parseCurriculum(Document lattes) {
+	protected ParseResult parseCurriculum(Document lattes) {
 		ParseResult parseResult = new ParseResult();
 
 		Node raiz = this.getNodoRaiz(lattes);

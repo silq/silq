@@ -12,5 +12,7 @@
             overflowToDisk="false"
             timeToLiveSeconds="3600"
             />
+            
+    <cache name="parseResults"></cache>
 </ehcache>
 

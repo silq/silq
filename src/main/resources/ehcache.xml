@@ -16,4 +16,6 @@
             eternal="false"
             overflowToDisk="false"      
             />
+            
+    <cache name="parseResults"></cache>
 </ehcache>

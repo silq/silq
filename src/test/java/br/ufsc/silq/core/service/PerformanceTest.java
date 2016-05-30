@@ -51,7 +51,7 @@ public class PerformanceTest extends WebContextTest {
 	 *
 	 * @throws SilqLattesException
 	 */
-	// @Test
+	@Test
 	public void testCompareExecutionMeanTime() throws SilqLattesException {
 
 		int iterations = 10;

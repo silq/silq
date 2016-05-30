@@ -56,7 +56,7 @@ public class AvaliacaoService {
 	 * @throws SilqLattesException Caso haja um erro no parsing ou avaliação do currículo.
 	 */
 	public AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
-		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes.getLattesXml());
+		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
 		return this.avaliar(parseResult, avaliarForm);
 	}
 
