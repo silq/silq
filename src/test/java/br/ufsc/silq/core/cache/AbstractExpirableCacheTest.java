@@ -1,4 +1,4 @@
-package br.ufsc.silq.web.cache;
+package br.ufsc.silq.core.cache;
 
 import java.util.Arrays;
 
@@ -7,6 +7,8 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.Period;
 import org.junit.Before;
 import org.junit.Test;
+
+import br.ufsc.silq.core.cache.AbstractExpirableCache;
 
 public class AbstractExpirableCacheTest {
 

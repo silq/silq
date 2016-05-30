@@ -1,4 +1,4 @@
-package br.ufsc.silq.web.cache;
+package br.ufsc.silq.core.cache;
 
 import org.joda.time.Period;
 import org.springframework.scheduling.annotation.Scheduled;

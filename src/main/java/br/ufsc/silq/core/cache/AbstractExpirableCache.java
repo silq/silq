@@ -1,4 +1,4 @@
-package br.ufsc.silq.web.cache;
+package br.ufsc.silq.core.cache;
 
 import java.util.ArrayList;
 import java.util.Collection;
