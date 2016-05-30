@@ -26,7 +26,6 @@ import br.ufsc.silq.core.service.AvaliacaoService;
 import br.ufsc.silq.core.service.CurriculumLattesService;
 import br.ufsc.silq.web.cache.AvaliacaoCache;
 import br.ufsc.silq.web.cache.CurriculumCache;
-import br.ufsc.silq.web.cache.CurriculumCache.Curriculum;
 import br.ufsc.silq.web.rest.exception.HttpNotFound;
 import br.ufsc.silq.web.rest.form.AvaliacaoLivreForm;
 import lombok.extern.slf4j.Slf4j;
@@ -67,18 +66,19 @@ public class AvaliarResource {
 	 * POST /api/avaliar/livre/upload -> envia um currículo e salva-o em cache para
 	 * ser posteriormente avaliado.
 	 *
-	 * @param file
-	 *            Currículo Lattes em XML
-	 * @param cacheId
-	 *            ID do cache a ser utilizado para salvar o currículo. Pedidos
-	 *            de avaliação (/api/avaliar) deverão informar o cacheId para
+	 * @param file Upload do currículo Lattes.
+	 * @param cacheId ID do cache a ser utilizado para salvar o currículo. Pedidos
+	 *            de avaliação (/api/avaliar/livre) deverão informar o cacheId para
 	 *            utilizar os currículos salvos no cache especificado.
 	 */
 	@RequestMapping(value = "/avaliar/livre/upload", method = RequestMethod.POST)
 	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("cacheId") String cacheId)
 			throws IOException, SilqException {
-		log.debug("Received file upload {}", file.getOriginalFilename());
-		this.curriculumCache.insert(cacheId, file);
+		log.debug("Recebido currículo para avaliação livre. cacheId: {}, Filename: {}", cacheId, file.getOriginalFilename());
+
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(file);
+		this.curriculumCache.insert(cacheId, lattes);
+
 		return new ResponseEntity<>(this.curriculumCache.get(cacheId), HttpStatus.OK);
 	}
 
@@ -93,10 +93,12 @@ public class AvaliarResource {
 	@RequestMapping(value = "/avaliar/livre", method = RequestMethod.POST)
 	public ResponseEntity<List<AvaliacaoResult>> avaliar(@Valid @RequestBody AvaliacaoLivreForm avaliacaoForm)
 			throws SilqLattesException {
+		log.debug("Avaliação livre, cacheId: {}", avaliacaoForm.getCacheId());
+
 		List<AvaliacaoResult> results = new ArrayList<>();
 
-		for (Curriculum curriculum : this.curriculumCache.get(avaliacaoForm.getCacheId())) {
-			AvaliacaoResult result = this.avaliacaoService.avaliar(curriculum.getDocument(), avaliacaoForm);
+		for (CurriculumLattes curriculum : this.curriculumCache.get(avaliacaoForm.getCacheId())) {
+			AvaliacaoResult result = this.avaliacaoService.avaliar(curriculum, avaliacaoForm);
 			results.add(result);
 			this.avaliacaoCache.insert(avaliacaoForm.getCacheId(), result);
 		}

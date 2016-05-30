@@ -66,7 +66,7 @@ public class CurriculumLattesService {
 				result.getUltimaAtualizacao());
 
 		if (lattes.isPresent()) {
-			log.debug("Utilizando currículo já existente da base de dados: {}", lattes.get());
+			log.debug("Currículo já existente na base de dados: {}", lattes.get());
 			return lattes.get();
 		} else {
 			CurriculumLattes novoLattes = new CurriculumLattes();
@@ -86,9 +86,11 @@ public class CurriculumLattesService {
 
 	/**
 	 * Salva um currículo a partir do upload de um XML Lattes.
+	 * Só salva o currículo de fato caso ele ainda não exista na base dados. Caso contrário,
+	 * o currículo já existente é utilizado e retornado.
 	 *
 	 * @param uploadedFile Upload do arquivo contendo o currículo Lattes.
-	 * @return {@link CurriculumLattes} criado a partir do parsing do Lattes.
+	 * @return {@link CurriculumLattes} criado a partir do parsing do Lattes ou o currículo que já existia antes do upload.
 	 * @throws SilqException
 	 */
 	public CurriculumLattes saveFromUpload(MultipartFile uploadedFile) throws SilqException {
