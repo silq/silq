@@ -39,6 +39,10 @@ angular.module('silq2App')
                 return $http.get('api/grupos/'+grupoId+'/avaliar/' + pesquisadorId, {
                     cache: true
                 });
+            },
+
+            avaliarGrupo: function(grupoId) {
+                return $http.post('api/avaliar/grupo/' + grupoId);
             }
         };
     });

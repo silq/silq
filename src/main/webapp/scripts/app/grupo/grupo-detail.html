@@ -31,8 +31,13 @@
         </div>
 
         <div>
-            <a class="btn btn-sm btn-danger" ui-sref="grupo.delete({id: grupo.id})"><span class="glyphicon glyphicon-remove-circle"></span> Excluir grupo</a>
-            <a class="btn btn-sm btn-primary" ui-sref="grupo.edit({id: grupo.id})"><span class="glyphicon glyphicon-pencil"></span> Editar informações</a>
+            <a class="btn-block btn btn-sm btn-primary" ui-sref="grupo.avaliacao"><span class="glyphicon glyphicon-stats"></span> Avaliar grupo</a>
+            <hr />
+
+            <div class="side-to-side-block">
+                <a class="btn btn-sm btn-danger" ui-sref="grupo.delete({id: grupo.id})"><span class="glyphicon glyphicon-remove-circle"></span> Excluir grupo</a>
+                <a class="btn btn-sm btn-info" ui-sref="grupo.edit({id: grupo.id})"><span class="glyphicon glyphicon-pencil"></span> Editar informações</a>
+            </div>
         </div>
     </div>
 

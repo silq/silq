@@ -1,0 +1,32 @@
+<h4 class="title-border">
+    <span class="glyphicon glyphicon-stats"></span>
+    Número de publicações por ano*
+</h4>
+
+<form class="row">
+    <div class="form-group col-sm-4">
+        <label>Agrupador</label>
+        <select class="form-control" ng-model="agrupador" ng-change="changeAgrupador()">
+            <option value="todos">Artigos e Trabalhos</option>
+            <option value="artigos">Somente artigos</option>
+            <option value="trabalhos">Somente trabalhos</option>
+        </select>
+    </div>
+
+    <div class="form-group col-sm-4">
+        <label>Grupo conceitual</label>
+        <select class="form-control" ng-model="grupoConceitual" ng-change="changeGrupoConceitual()">
+            <option value="total">Todos</option>
+            <option value="A1,A2,B1">Estrito: A1, A2, B1</option>
+            <option value="B2,B3">Outro: B2, B3</option>
+            <option value="B4,B5,C">Outro: B4, B5, C</option>
+        </select>
+    </div>
+</form>
+
+<canvas id="line" class="chart chart-line"
+    chart-series="series" chart-legend="true"
+    chart-data="data" chart-labels="labels">
+</canvas>
+
+<p class="help-block"><sup>*</sup> Total de publicações (artigos e/ou trabalhos) que foram conceituadas com base no nível de confiança estipulado. Publicações que não obtiveram conceito não são incluídas no gráfico.</p>

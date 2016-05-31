@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mysema.query.types.expr.BooleanExpression;
 
 import br.ufsc.silq.core.SilqConfig;
+import br.ufsc.silq.core.data.AvaliacaoCollectionResult;
 import br.ufsc.silq.core.data.AvaliacaoResult;
+import br.ufsc.silq.core.data.AvaliacaoStats;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.enums.AvaliacaoType;
 import br.ufsc.silq.core.exception.SilqError;
@@ -54,11 +57,35 @@ public class AvaliacaoService {
 	 * @param lattes Currículo a ser avaliado.
 	 * @param avaliarForm Formulário contendo as opções de avaliação.
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
-	 * @throws SilqLattesException Caso haja um erro no parsing ou avaliação do currículo.
+	 * @throws SilqError Caso haja um erro no parsing ou avaliação do currículo.
 	 */
-	public AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm) throws SilqLattesException {
-		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
+	public AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm) {
+		ParseResult parseResult = null;
+		try {
+			parseResult = this.lattesParser.parseCurriculum(lattes);
+		} catch (SilqLattesException e) {
+			throw new SilqError(e);
+		}
 		return this.avaliar(parseResult, avaliarForm);
+	}
+
+	/**
+	 * Avalia uma coleção de currículos, retornando estatísticas desta coleção.
+	 *
+	 * @param curriculos Coleção de currículos a serem avaliados.
+	 * @param avaliarForm Formulário contendo as opções de avaliação.
+	 * @return Resultado de avaliação contendo as estatísticas contabilizadas com base na avaliação dos currículos da coleção.
+	 * @throws SilqLattesException Caso haja um erro no parsing ou avaliação de algum currículo da coleção.
+	 */
+	public AvaliacaoCollectionResult avaliarCollection(Collection<CurriculumLattes> curriculos, @Valid AvaliarForm avaliarForm)
+			throws SilqLattesException {
+		AvaliacaoStats stats = curriculos.parallelStream()
+				.map((curriculo) -> this.avaliar(curriculo, avaliarForm))
+				.map((result) -> result.getStats())
+				.reduce((r1, r2) -> r1.concat(r2))
+				.orElse(new AvaliacaoStats());
+
+		return new AvaliacaoCollectionResult(avaliarForm, stats);
 	}
 
 	/**

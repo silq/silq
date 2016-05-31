@@ -19,13 +19,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.ufsc.silq.core.cache.AvaliacaoCache;
 import br.ufsc.silq.core.cache.CurriculumCache;
+import br.ufsc.silq.core.data.AvaliacaoCollectionResult;
 import br.ufsc.silq.core.data.AvaliacaoResult;
+import br.ufsc.silq.core.data.Periodo;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
+import br.ufsc.silq.core.persistence.entities.Grupo;
 import br.ufsc.silq.core.service.AvaliacaoService;
 import br.ufsc.silq.core.service.CurriculumLattesService;
+import br.ufsc.silq.core.service.GrupoService;
 import br.ufsc.silq.web.rest.exception.HttpNotFound;
 import br.ufsc.silq.web.rest.form.AvaliacaoLivreForm;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +50,9 @@ public class AvaliarResource {
 
 	@Inject
 	private CurriculumLattesService curriculumService;
+
+	@Inject
+	private GrupoService grupoService;
 
 	/**
 	 * POST /api/avaliar/curriculum/{curriculumId} -> Avalia o currículo salvo com ID especificado,
@@ -115,5 +122,24 @@ public class AvaliarResource {
 	public ResponseEntity<List<AvaliacaoResult>> getResult(@PathVariable String cacheId) {
 		this.curriculumCache.clear(cacheId);
 		return new ResponseEntity<>(this.avaliacaoCache.get(cacheId), HttpStatus.OK);
+	}
+
+	/**
+	 * POST /api/avaliar/grupo/{grupoId} -> Avalia um grupo, avaliando todos os pesquisadores deste grupo.
+	 *
+	 * @param grupoId ID do grupo a ser avaliado.
+	 * @return
+	 * @throws SilqLattesException
+	 */
+	@RequestMapping(value = "/avaliar/grupo/{grupoId}", method = RequestMethod.POST)
+	public ResponseEntity<AvaliacaoCollectionResult> avaliarGrupo(@PathVariable Long grupoId) throws SilqLattesException {
+		Grupo grupo = this.grupoService.findOneWithPermission(grupoId).orElseThrow(() -> new HttpNotFound("Grupo não encontrado"));
+
+		AvaliarForm avaliarForm = new AvaliarForm();
+		avaliarForm.setArea("Ciência da Computação");
+		avaliarForm.setPeriodoAvaliacao(new Periodo(2010, 2014));
+
+		AvaliacaoCollectionResult result = this.avaliacaoService.avaliarCollection(grupo.getPesquisadores(), avaliarForm);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 }

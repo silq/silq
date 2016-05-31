@@ -31,6 +31,20 @@ angular.module('silq2App')
                     }
                 }
             })
+            .state('grupo.avaliacao', {
+                parent: 'grupo.detail',
+                url: '/avaliacao',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Avaliação de grupo'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/grupo/grupo-avaliacao.html',
+                        controller: 'GrupoAvaliacaoController'
+                    }
+                }
+            })
             .state('grupo.new', {
                 parent: 'grupo',
                 url: '/-/new',
@@ -81,7 +95,7 @@ angular.module('silq2App')
             })
             .state('grupo.delete', {
                 parent: 'grupo.detail',
-                url: '/{delete',
+                url: '/delete',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Deletar grupo'

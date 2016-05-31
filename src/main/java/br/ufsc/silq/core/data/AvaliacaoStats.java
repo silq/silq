@@ -16,19 +16,42 @@ import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.Conceito.TotalizadorConceito;
 import br.ufsc.silq.core.parser.dto.Trabalho;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Estatísticas de avaliação.
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AvaliacaoStats {
 
+	/**
+	 * Lista de artigos utilizados para gerar estas estatísticas.
+	 */
 	@JsonIgnore
-	private final List<Artigo> artigos;
+	private List<Artigo> artigos = new ArrayList<>();
 
+	/**
+	 * Lista de trabalhos utilizados para gerar estas estatísticas.
+	 */
 	@JsonIgnore
-	private final List<Trabalho> trabalhos;
+	private List<Trabalho> trabalhos = new ArrayList<>();
+
+	/**
+	 * Concatena um {@link AvaliacaoStats} ao objeto atual, unindo as respectivas listas de artigos e trabalhos
+	 * com o objetivo de gerar estatísticas dos dois objetos combinados.
+	 *
+	 * @param o O outro objeto de estatísticas a ser agregado ao atual.
+	 * @return O objeto atual contendo as estatísticas antigas combinadas com as novas.
+	 */
+	public AvaliacaoStats concat(AvaliacaoStats o) {
+		this.artigos.addAll(o.getArtigos());
+		this.trabalhos.addAll(o.getTrabalhos());
+		return this;
+	}
 
 	/**
 	 * @return O primeiro ano em que houve publicação.
