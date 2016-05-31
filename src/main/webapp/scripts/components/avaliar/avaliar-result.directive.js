@@ -32,12 +32,22 @@ angular.module('silq2App')
                 };
 
                 $scope.loadGraficos = function() {
-                    $scope.labels = [];
-                    $scope.data = [[]];
+                    var stats = $scope.results.stats;
+                    var artigos = stats.publicacoesPorAno.artigos;
+                    var trabalhos = stats.publicacoesPorAno.trabalhos;
 
-                    for (var i in $scope.results.publicacoesPorAno) {
-                        $scope.labels.push(i);
-                        $scope.data[0].push($scope.results.publicacoesPorAno[i]);
+                    $scope.series = ['Artigos', 'Trabalhos'];
+                    $scope.labels = [];
+                    $scope.data = [[], []];
+
+                    for (var ano = stats.anoPrimeiraPublicacao; ano <= stats.anoUltimaPublicacao; ano++) {
+                        $scope.labels.push(ano);
+
+                        var countArtigos = parseInt(artigos[ano] ? artigos[ano].total : 0);
+                        var countTrabalhos = parseInt(trabalhos[ano] ? trabalhos[ano].total : 0);
+
+                        $scope.data[0].push(countArtigos);
+                        $scope.data[1].push(countTrabalhos);
                     }
                 };
             }

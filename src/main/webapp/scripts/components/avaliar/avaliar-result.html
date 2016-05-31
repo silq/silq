@@ -30,7 +30,7 @@
                 <th>Qtde.</th>
             </thead>
             <tbody>
-                <tr ng-repeat="total in results.totalizador">
+                <tr ng-repeat="total in results.stats.totalizador">
                     <td><strong>{{total.conceito}}</strong></td>
                     <td>{{total.qtde}}</td>
                 </tr>
@@ -104,6 +104,7 @@
             <h4 class="title-border">Total de publicações por ano</h4>
 
             <canvas id="line" class="chart chart-line"
+                chart-series="series" chart-legend="true"
                 chart-data="data" chart-labels="labels">
             </canvas>
         </div>
