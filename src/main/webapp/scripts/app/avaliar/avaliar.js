@@ -5,7 +5,7 @@ angular.module('silq2App')
         $stateProvider
             .state('avaliar', {
                 parent: 'site',
-                url: '/avaliar/{curriculumId:int}?{avaliarForm:json}',
+                url: '/avaliar/{id:int}?{avaliarForm:json}&{resultState:string}',
                 data: {
                     authorities: ['ROLE_USER']
                 },

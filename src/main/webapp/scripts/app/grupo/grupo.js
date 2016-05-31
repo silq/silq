@@ -33,7 +33,7 @@ angular.module('silq2App')
             })
             .state('grupo.avaliacao', {
                 parent: 'grupo.detail',
-                url: '/avaliacao',
+                url: '/avaliacao?{avaliarForm:json}',
                 data: {
                     authorities: ['ROLE_USER'],
                     pageTitle: 'Avaliação de grupo'

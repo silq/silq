@@ -14,8 +14,10 @@ angular.module('silq2App')
             }
         }
 
+        var resultState = $stateParams.resultState || 'avaliar-result';
         $scope.submit = function() {
-            $state.go('avaliar-result', {
+            $state.go(resultState, {
+                id: $stateParams.id,
                 avaliarForm: $scope.avaliarForm
             });
         };

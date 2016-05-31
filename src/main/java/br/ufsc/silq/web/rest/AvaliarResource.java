@@ -21,7 +21,6 @@ import br.ufsc.silq.core.cache.AvaliacaoCache;
 import br.ufsc.silq.core.cache.CurriculumCache;
 import br.ufsc.silq.core.data.AvaliacaoCollectionResult;
 import br.ufsc.silq.core.data.AvaliacaoResult;
-import br.ufsc.silq.core.data.Periodo;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
@@ -132,13 +131,9 @@ public class AvaliarResource {
 	 * @throws SilqLattesException
 	 */
 	@RequestMapping(value = "/avaliar/grupo/{grupoId}", method = RequestMethod.POST)
-	public ResponseEntity<AvaliacaoCollectionResult> avaliarGrupo(@PathVariable Long grupoId) throws SilqLattesException {
+	public ResponseEntity<AvaliacaoCollectionResult> avaliarGrupo(@PathVariable Long grupoId,
+			@Valid @RequestBody AvaliarForm avaliarForm) throws SilqLattesException {
 		Grupo grupo = this.grupoService.findOneWithPermission(grupoId).orElseThrow(() -> new HttpNotFound("Grupo não encontrado"));
-
-		AvaliarForm avaliarForm = new AvaliarForm();
-		avaliarForm.setArea("Ciência da Computação");
-		avaliarForm.setPeriodoAvaliacao(new Periodo(2010, 2014));
-
 		AvaliacaoCollectionResult result = this.avaliacaoService.avaliarCollection(grupo.getPesquisadores(), avaliarForm);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}

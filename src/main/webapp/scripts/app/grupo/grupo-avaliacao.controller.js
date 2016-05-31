@@ -6,7 +6,7 @@ angular.module('silq2App')
             $scope.grupo = resp.data;
         });
 
-        Grupo.avaliarGrupo($stateParams.id).then(function(resp) {
+        Grupo.avaliarGrupo($stateParams.id, $stateParams.avaliarForm).then(function(resp) {
             $scope.results = resp.data;
         });
     });

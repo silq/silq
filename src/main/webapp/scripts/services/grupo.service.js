@@ -41,8 +41,8 @@ angular.module('silq2App')
                 });
             },
 
-            avaliarGrupo: function(grupoId) {
-                return $http.post('api/avaliar/grupo/' + grupoId);
+            avaliarGrupo: function(grupoId, avaliarForm) {
+                return $http.post('api/avaliar/grupo/' + grupoId, avaliarForm);
             }
         };
     });
