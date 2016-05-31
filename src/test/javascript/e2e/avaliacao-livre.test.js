@@ -35,7 +35,7 @@ describe('Avaliação Livre tests', function() {
     it('deve apresentar um erro ao tentar avaliar sem currículos enviados', function() {
         form.areaOptions.get(8).click();
         form.submit.click();
-        expect(flashMessage.getText()).toContain('Selecione ao menos um currículo válido para avaliar');
+        flashMessage.expectMessageContains('Selecione ao menos um currículo válido para avaliar');
     });
 
     it('deve adicionar um arquivo ao dropbox ao fazer upload de um arquivo', function() {

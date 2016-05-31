@@ -4,9 +4,10 @@ exports.config = {
     allScriptsTimeout: 20000,
     baseUrl: 'http://127.0.0.1:8080',
 
-    capabilities: {
-        browserName: 'chrome'
-    },
+    multiCapabilities: [
+        // { 'browserName': 'firefox' },
+        { 'browserName': 'chrome'  },
+    ],
 
     suites: {
         account: 'e2e/account.test.js',
@@ -46,7 +47,7 @@ exports.config = {
                 });
         };
 
-        // browser.addMockModule('disableNgAnimate', disableNgAnimate);
-        // browser.addMockModule('disableCssAnimate', disableCssAnimate);
+        browser.addMockModule('disableNgAnimate', disableNgAnimate);
+        browser.addMockModule('disableCssAnimate', disableCssAnimate);
     }
 }

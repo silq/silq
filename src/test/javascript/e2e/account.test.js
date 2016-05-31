@@ -81,7 +81,7 @@ describe('Account tests', function() {
         alterarSenhaForm.confirmSenha.sendKeys('11111');
         alterarSenhaForm.submit.click();
 
-        expect(flashMessage.getText()).toContain('Senha atual incorreta');
+        flashMessage.expectMessageContains('Senha atual incorreta');
     });
 
     it('deve obter sucesso ao alterar senha com senha atual correta e requisitar novo login', function() {
@@ -98,7 +98,7 @@ describe('Account tests', function() {
         alterarSenhaForm.confirmSenha.sendKeys(user.senha);
         alterarSenhaForm.submit.click();
 
-        expect(flashMessage.getText()).toContain('Senha alterada');
+        flashMessage.expectMessageContains('Senha alterada');
     });
 
     it('deve logar novamente com nova senha', function() {
