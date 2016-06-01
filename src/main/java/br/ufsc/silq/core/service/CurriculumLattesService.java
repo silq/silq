@@ -62,8 +62,16 @@ public class CurriculumLattesService {
 	 */
 	protected CurriculumLattes saveFromDocument(Document curriculumXml) throws SilqException {
 		DadosGeraisResult result = this.lattesParser.extractDadosGerais(curriculumXml);
-		Optional<CurriculumLattes> lattes = this.lattesRepository.findOneByIdLattesAndDataAtualizacaoCurriculo(result.getIdCurriculo(),
-				result.getUltimaAtualizacao());
+		Optional<CurriculumLattes> lattes = Optional.empty();
+
+		if (result.getIdCurriculo() == null || result.getIdCurriculo().isEmpty()) {
+			// Caso o currículo não tenha ID (por ser um Lattes muito antigo), sempre adiciona um novo
+			// pois não há como identificar um currículo para reuso
+			log.debug("Currículo sem ID: {}", result);
+		} else {
+			lattes = this.lattesRepository.findOneByIdLattesAndDataAtualizacaoCurriculo(result.getIdCurriculo(),
+					result.getUltimaAtualizacao());
+		}
 
 		if (lattes.isPresent()) {
 			log.debug("Currículo já existente na base de dados: {}", lattes.get());

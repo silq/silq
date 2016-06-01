@@ -95,4 +95,11 @@ public class CurriculumLattesServiceTest extends WebContextTest {
 		Assertions.assertThat(this.curriculumService.cleanCuriculosEmDesuso()).isEqualTo(2);
 		Assertions.assertThat(this.curriculumRepository.count()).isEqualTo(1);
 	}
+
+	@Test
+	public void testSaveCurriculumSemId() throws SilqException {
+		CurriculumLattes lattes1 = this.curriculumService.saveFromUpload(Fixtures.SEM_ID_ZIP_UPLOAD);
+		CurriculumLattes lattes2 = this.curriculumService.saveFromUpload(Fixtures.SEM_ID_ZIP_UPLOAD);
+		Assertions.assertThat(lattes1).isNotEqualTo(lattes2);
+	}
 }

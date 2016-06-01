@@ -18,6 +18,7 @@ public class Fixtures {
 
 	private static final String EMPTY_ZIP = BASE_PATH + "empty.zip";
 	private static final String NO_XML_ZIP = BASE_PATH + "no-xml.zip";
+	private static final String SEM_ID_ZIP = BASE_PATH + "sem-id.zip";
 	private static final String CHRISTIANE_ZIP = CHRISTIANE_XML + ".zip";
 	private static final String RAUL_ZIP = RAUL_XML + ".zip";
 	private static final String RONALDO_ZIP = RONALDO_XML + ".zip";
@@ -32,6 +33,7 @@ public class Fixtures {
 
 	public static final MockMultipartFile EMPTY_ZIP_UPLOAD = createMockZipUpload(EMPTY_ZIP);
 	public static final MockMultipartFile NO_XML_ZIP_UPLOAD = createMockZipUpload(NO_XML_ZIP);
+	public static final MockMultipartFile SEM_ID_ZIP_UPLOAD = createMockZipUpload(SEM_ID_ZIP);
 	public static final MockMultipartFile CHRISTIANE_ZIP_UPLOAD = createMockZipUpload(CHRISTIANE_ZIP);
 	public static final MockMultipartFile RAUL_ZIP_UPLOAD = createMockZipUpload(RAUL_ZIP);
 	public static final MockMultipartFile RONALDO_ZIP_UPLOAD = createMockZipUpload(RONALDO_ZIP);
