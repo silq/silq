@@ -39,11 +39,16 @@ describe('Avaliação Livre tests', function() {
     });
 
     it('deve adicionar um arquivo ao dropbox ao fazer upload de um arquivo', function() {
-        var fileToUpload = '../../resources/fixtures/curricula/carina.xml';
+        var fileToUpload = '../../resources/fixtures/curricula/raul.xml';
         var absolutePath = path.resolve(__dirname, fileToUpload);
 
-        // uploadInput.sendKeys(absolutePath);
-        // expect(files.count()).toBe(1);
-        // browser.sleep(500000000);
+        uploadInput.sendKeys(absolutePath);
+        expect(files.count()).toBe(1);
     });
+
+    // it('deve avaliar e mostrar resultados de um tas único currículo enviado para avaliar', function() {
+    //     form.submit.click();
+    //     expect(browser.getCurrentUrl()).toContain('avaliar-livre/result');
+    //     expect(browser.getCurrentUrl()).toContain('/0');
+    // });
 });
