@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('ResultLivreController', function ($scope, $stateParams, Avaliacao) {
+    .controller('AvaliacaoLivreResultDetailController', function ($scope, $stateParams, Avaliacao) {
         $scope.multiple = false;
 
         Avaliacao.livreResult($stateParams.cacheId).then(function(response) {

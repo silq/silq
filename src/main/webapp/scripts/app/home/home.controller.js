@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('HomeController', function ($scope, $state, Principal, Upload, CurriculumLattes, Cache, Flash) {
+    .controller('HomeController', function ($scope, $state, Principal, Upload, CurriculumLattes, Cache, Flash, AvaliarConfigModal) {
         Principal.identity().then(function(account) {
             $scope.account = account;
         });
@@ -16,11 +16,13 @@ angular.module('silq2App')
         });
 
         $scope.minhaAvaliacao = function() {
-            $state.go('avaliar', {
-                id: $scope.curriculum.id,
-                avaliarForm: {
-                    area: $scope.curriculum.areaConhecimento
-                }
+            AvaliarConfigModal.open({
+                area: $scope.curriculum.areaConhecimento
+            }).then(function(form) {
+                $state.go('avaliacao.individual', {
+                    id: $scope.curriculum.id,
+                    avaliarForm: form
+                });
             });
         };
 

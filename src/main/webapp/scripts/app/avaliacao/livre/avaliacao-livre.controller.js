@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('AvaliarLivreController', function ($scope, $state, Avaliacao, Upload, Flash) {
+    .controller('AvaliacaoLivreController', function ($scope, $state, Avaliacao, Upload, Flash) {
         var cacheId = Math.random().toString(36).substring(7);
 
         $scope.files = [];
@@ -45,7 +45,7 @@ angular.module('silq2App')
 
             Avaliacao.avaliarLivre($scope.avaliarForm).then(function(response) {
                 Flash.create('success', '<strong>Sucesso!</strong> Avaliação concluída');
-                $state.go('resultLivre', {
+                $state.go('.result', {
                     cacheId: cacheId
                 });
             });

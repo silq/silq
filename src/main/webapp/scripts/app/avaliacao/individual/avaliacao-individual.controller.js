@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('AvaliarResultController', function ($scope, $stateParams, Avaliacao, Flash) {
+    .controller('AvaliacaoIndividualController', function ($scope, $stateParams, Avaliacao, Flash) {
         $scope.results = null;
 
         Avaliacao.avaliar($stateParams.id, $stateParams.avaliarForm)

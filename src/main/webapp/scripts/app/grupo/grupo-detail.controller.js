@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('GrupoDetailController', function ($scope, $state, $stateParams, Grupo, Cache, Flash) {
+    .controller('GrupoDetailController', function ($scope, $state, $stateParams, Grupo, Cache, Flash, AvaliarConfigModal) {
         Grupo.get($stateParams.id).then(function(resp) {
             $scope.grupo = resp.data;
         });
@@ -18,21 +18,24 @@ angular.module('silq2App')
         };
 
         $scope.avaliarPesquisador = function(pesquisador) {
-            $state.go('avaliar', {
-                id: pesquisador.id,
-                avaliarForm: {
-                    area: $scope.grupo.nomeArea
-                }
+            AvaliarConfigModal.open({
+                area: $scope.grupo.nomeArea
+            }).then(function(form) {
+                $state.go('avaliacao.individual', {
+                    id: pesquisador.id,
+                    avaliarForm: form
+                });
             });
         };
 
         $scope.avaliarGrupo = function() {
-            $state.go('avaliar', {
-                id: $scope.grupo.id,
-                resultState: 'grupo.avaliacao',
-                avaliarForm: {
-                    area: $scope.grupo.nomeArea
-                }
+            AvaliarConfigModal.open({
+                area: $scope.grupo.nomeArea
+            }).then(function(form) {
+                $state.go('grupo.avaliacao', {
+                    id: $scope.grupo.id,
+                    avaliarForm: form
+                });
             });
         };
 
