@@ -19,7 +19,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import br.ufsc.silq.config.Constants;
 import br.ufsc.silq.config.JHipsterProperties;
@@ -27,7 +26,6 @@ import br.ufsc.silq.config.JHipsterProperties;
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
 @EnableConfigurationProperties({ JHipsterProperties.class })
-@EnableJpaRepositories
 public class Application {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);

@@ -1,15 +1,12 @@
 package br.ufsc.silq.test;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import br.ufsc.silq.Application;
 import br.ufsc.silq.core.forms.usuario.RegisterForm;
@@ -17,13 +14,10 @@ import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.service.AuthService;
 import br.ufsc.silq.core.service.UsuarioService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = { Application.class })
-@WebAppConfiguration
-@IntegrationTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = { Application.class })
 @ActiveProfiles(resolver = TestProfilesResolver.class)
 @Transactional
-@EnableCaching
 public abstract class WebContextTest {
 
 	@Inject

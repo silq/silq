@@ -1,39 +1,43 @@
-.avaliacao-results > div:nth-child(even) {
+.qualis-results > div:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.avaliacao-result-item {
+.qualis-result-item {
     padding: 12px 15px;
     border-bottom: 1px solid #eee;
 
     p { margin: 0; }
 
-    .result-titulo {
-        font-size: 1.05em;
-        font-weight: 600;
-        color: $brand-primary;
-    }
-
-    .result-ano {
-    }
-
-    .result-veiculo {
-        font-weight: 600;
-    }
-
-    .result-issn {
-        font-weight: 600;
-    }
-
-    .result-conceito-item {
-        line-height: 1.9;
-        margin-top: 2px;
-    }
-
     .ver-mais {
         font-size: 0.9em;
         margin-left: 10px;
     }
+}
+
+.qualis-titulo {
+    font-size: 1.05em;
+    font-weight: 600;
+    color: $brand-primary;
+}
+
+.qualis-ano {
+}
+
+.qualis-veiculo {
+    font-weight: 600;
+}
+
+.qualis-area {
+    font-weight: 600;
+}
+
+.qualis-issn {
+    font-weight: 600;
+}
+
+.qualis-conceito-item {
+    line-height: 1.9;
+    margin-top: 2px;
 }
 
 .label-conceito {
@@ -82,12 +86,4 @@
         border-right-width: 0;
         font-weight: 600;
     }
-}
-
-dt {
-    font-weight: 600;
-}
-
-dd {
-    margin-bottom: 10px;
 }

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>1.3.5.RELEASE</version>
+        <version>1.4.0.M3</version>
         <relativePath />
     </parent>
 
@@ -39,7 +39,7 @@
         <postgresql.version>9.4-1203-jdbc42</postgresql.version>
         <!-- Sonar properties -->
         <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
-        <querydsl.version>3.7.2</querydsl.version>
+        <querydsl.version>4.1.2</querydsl.version>
         <run.addResources>false</run.addResources>
         <sonar-maven-plugin.version>2.6</sonar-maven-plugin.version>
         <sonar.exclusions>src/main/webapp/assets/**/*.*, src/main/webapp/bower_components/**/*.*, src/main/webapp/dist/**/*.*</sonar.exclusions>
@@ -90,12 +90,12 @@
             <!-- parent POM declares this dependency in default (compile) scope -->
         </dependency>
         <dependency>
-            <groupId>com.mysema.querydsl</groupId>
+            <groupId>com.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
             <version>${querydsl.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.mysema.querydsl</groupId>
+            <groupId>com.querydsl</groupId>
             <artifactId>querydsl-jpa</artifactId>
             <version>${querydsl.version}</version>
         </dependency>
@@ -273,6 +273,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
@@ -328,8 +332,12 @@
 
     <repositories>
         <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
             <id>spring-milestones</id>
-            <url>http://repo.spring.io/milestone</url>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -467,8 +475,6 @@
                 <version>3.1.0</version>
                 <executions>
                     <execution>
-                        <id>process</id>
-                        <phase>generate-sources</phase>
                         <goals>
                             <goal>process</goal>
                         </goals>
@@ -477,7 +483,7 @@
                 <configuration>
                     <defaultOutputDirectory>${project.build.directory}/generated-sources/annotations</defaultOutputDirectory>
                     <processors>
-                        <processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+                        <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
                     </processors>
                 </configuration>
             </plugin>

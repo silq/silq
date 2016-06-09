@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mysema.query.types.expr.BooleanExpression;
+import com.querydsl.core.types.dsl.BooleanExpression;
 
 import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.data.AvaliacaoCollectionResult;

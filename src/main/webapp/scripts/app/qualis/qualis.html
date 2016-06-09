@@ -1,0 +1,45 @@
+<div class="text-center">
+    <h2>Qualis</h2>
+    <p class="help-block">Pesquisa direta nos dados Qualis cadastrados no SILQ</p>
+</div>
+
+<form class="flex" ng-submit="submit()">
+    <select class="form-control flex-1" ng-model="tipo" ng-change="submit()">
+        <option value="periodicos">Periódicos</option>
+        <option value="eventos">Eventos</option>
+    </select>
+    <div class="flex-5">
+        <input type="search" class="form-control" placeholder="Pesquisar por título do periódico ou evento, ISSN, área de avaliação..." ng-model="query">
+    </div>
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
+
+<br>
+
+<p>Mostrando <strong>{{results.numberOfElements}}</strong> de <strong>{{results.totalElements}}</strong> resultados encontrados.</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th ng-show="tipo == 'periodicos'">ISSN</th>
+            <th>Título</th>
+            <th>Conceito</th>
+            <th>Ano</th>
+            <th>Área de avaliação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-show="results.content.length == 0">
+            <td colspan="6" class="text-center">Nenhum resultado encontrado</td>
+        </tr>
+        <tr ng-repeat="result in results.content">
+            <td>{{result.id}}</td>
+            <td ng-show="tipo == 'periodicos'">{{result.issn}}</td>
+            <td>{{result.titulo}}</td>
+            <td>{{result.estrato}}</td>
+            <td>{{result.ano}}</td>
+            <td>{{result.areaAvaliacao}}</td>
+        </tr>
+    </tbody>
+</table>

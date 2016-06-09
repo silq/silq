@@ -1,15 +1,15 @@
-<div class="avaliacao-result-item">
-    <p class="result-titulo" title="Título do trabalho" highlight-text="filter">
-        <span class="result-ano">{{ item.ano }} |</span>
+<div class="qualis-result-item">
+    <p class="qualis-titulo" title="Título do trabalho" highlight-text="filter">
+        <span class="qualis-ano">{{ item.ano }} |</span>
         {{ item.titulo }}
     </p>
 
     <p>
-        <span class="result-veiculo" title="Título do periódico ou evento" highlight-text="filter">{{ item.tituloVeiculo }}</span>
-        <span class="result-issn" title="ISSN" ng-show="item.issn" highlight-text="filter"> | ISSN: {{ item.issn }}</span>
+        <span class="qualis-veiculo" title="Título do periódico ou evento" highlight-text="filter">{{ item.tituloVeiculo }}</span>
+        <span class="qualis-issn" title="ISSN" ng-show="item.issn" highlight-text="filter"> | ISSN: {{ item.issn }}</span>
     </p> {{opened}}
 
-    <p class="result-conceito-item" ng-repeat="(i, conceito) in item.conceitos">
+    <p class="qualis-conceito-item" ng-repeat="(i, conceito) in item.conceitos">
         <span ng-show="$first || mais" class="label-conceito">
             <span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span><span class="ano" title="Ano base da avaliação Qualis">{{ conceito.ano }}</span><span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span>
         </span>

@@ -27,23 +27,16 @@ $font-size-base: 13px;
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+@import 'grid';
 @import 'loader';
 @import 'dropbox';
-@import 'avaliacao';
-
+@import 'qualis';
 @import 'footer';
 
 a { cursor: pointer; }
 
-.flex {  display: flex; }
-.flex > *:not(:first-child) { margin-left: 5px; }
-.flex > *:not(:last-child) { margin-right: 5px; }
-.flex-grow { flex-grow: 1; }
-.justify-center { justify-content: center; }
-.side-to-side-block {
-    @extend .flex;
-    & > * { flex: 1 1 100%; }
-}
+dt { font-weight: 600; }
+dd { margin-bottom: 10px; }
 
 .bg-dark-success { background-color: $brand-success; border-color: $brand-success; }
 .bg-dark-warning { background-color: $brand-warning; border-color: $brand-warning; }

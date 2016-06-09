@@ -1,0 +1,15 @@
+.flex {  display: flex; }
+.flex > *:not(:first-child) { margin-left: 5px; }
+.flex > *:not(:last-child) { margin-right: 5px; }
+.flex-grow { flex-grow: 1; }
+.justify-center { justify-content: center; }
+.side-to-side-block {
+    @extend .flex;
+    & > * { flex: 1 1 100%; }
+}
+
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+.flex-3 { flex: 3; }
+.flex-4 { flex: 4; }
+.flex-5 { flex: 5; }
