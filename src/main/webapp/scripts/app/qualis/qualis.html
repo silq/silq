@@ -18,11 +18,12 @@
 
 <p>Mostrando <strong>{{results.numberOfElements}}</strong> de <strong>{{results.totalElements}}</strong> resultados encontrados.</p>
 
-<table class="table table-striped">
+<table class="table table-striped table-condensed">
     <thead>
         <tr>
             <th>#</th>
             <th ng-show="tipo == 'periodicos'">ISSN</th>
+            <th ng-show="tipo == 'eventos'">Sigla</th>
             <th>Título</th>
             <th>Conceito</th>
             <th>Ano</th>
@@ -36,6 +37,7 @@
         <tr ng-repeat="result in results.content">
             <td>{{result.id}}</td>
             <td ng-show="tipo == 'periodicos'">{{result.issn}}</td>
+            <td ng-show="tipo == 'eventos'">{{result.sigla}}</td>
             <td>{{result.titulo}}</td>
             <td>{{result.estrato}}</td>
             <td>{{result.ano}}</td>
