@@ -1,10 +1,17 @@
 {
 	"index": {
 		"analysis": {
+			"filter": {
+				"grams_filter": {
+					"type": "edgeNGram",
+					"min_gram": 1,
+					"max_gram": 10
+				}				
+			},
 			"analyzer": {
 				"default": {
 					"tokenizer": "standard",
-					"filter": ["standard", "lowercase", "asciifolding"]
+					"filter": ["standard", "lowercase", "asciifolding", "grams_filter"]
 				}
 			}
 		}

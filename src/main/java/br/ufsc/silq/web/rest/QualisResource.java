@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.SimpleQueryStringBuilder;
+import org.elasticsearch.index.query.SimpleQueryStringBuilder.Operator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -78,14 +79,15 @@ public class QualisResource {
 
 	private SimpleQueryStringBuilder createQuery(String query) {
 		SimpleQueryStringBuilder queryBuilder = QueryBuilders.simpleQueryStringQuery(query);
+		queryBuilder.defaultOperator(Operator.AND);
 		return queryBuilder;
 	}
 
 	/**
-	 * GET /api/qualis/eventos/reindex
+	 * GET /api/qualis/eventos/recreate
 	 */
-	@RequestMapping(value = "/reindex", method = RequestMethod.GET)
-	public ResponseEntity<String> reindex() {
+	@RequestMapping(value = "/recreate", method = RequestMethod.GET)
+	public ResponseEntity<String> recreate() {
 		log.debug("REST request to recreate Qualis index");
 
 		this.eventoSearchRepository.deleteAll();
@@ -101,13 +103,8 @@ public class QualisResource {
 		this.elasticsearchTemplate.putMapping(QualisPeriodico.class);
 		this.elasticsearchTemplate.refresh(QualisPeriodico.class);
 
-		this.eventoRepository.findAll().parallelStream()
-				.filter(evento -> !this.eventoSearchRepository.exists(evento.getId()))
-				.forEach(evento -> this.eventoSearchRepository.save(evento));
-
-		this.periodicoRepository.findAll().parallelStream()
-				.filter(periodico -> !this.periodicoSearchRepository.exists(periodico.getId()))
-				.forEach(periodico -> this.periodicoSearchRepository.save(periodico));
+		this.eventoSearchRepository.save(this.eventoRepository.findAll());
+		this.periodicoSearchRepository.save(this.periodicoRepository.findAll());
 
 		return new ResponseEntity<>("OK!", HttpStatus.OK);
 	}
