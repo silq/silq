@@ -15,7 +15,7 @@ SET search_path = public, pg_catalog;
 -- Data for Name: tb_qualis_evento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tb_qualis_evento (co_seq_qualis_cco, ds_sigla, no_titulo, nu_indice_h, no_estrato, no_area_avaliacao, nu_ano) FROM stdin;
+COPY tb_qualis_evento (co_seq_qualis_evento, ds_sigla, no_titulo, nu_indice_h, no_estrato, no_area_avaliacao, nu_ano) FROM stdin;
 1	3DIM	International Conference on 3-D Digital Imaging and Modeling	29	B1	CIÊNCIA DA COMPUTAÇÃO	2012
 2	3DUI	IEEE Symposium on 3D User Interfaces	18	B2	CIÊNCIA DA COMPUTAÇÃO	2012
 120	ARVLSI	Conference on Advanced Research in VLSI	9	B4	CIÊNCIA DA COMPUTAÇÃO	2012
@@ -352,6 +352,7 @@ COPY tb_qualis_evento (co_seq_qualis_cco, ds_sigla, no_titulo, nu_indice_h, no_e
 327	CSD	Workshop on Critical Systems Development	5	B4	CIÊNCIA DA COMPUTAÇÃO	2012
 328	CSE	Conference on Computational Science & Engineering	8	B4	CIÊNCIA DA COMPUTAÇÃO	2012
 329	CSEDU	Internation Conference on Computer Supported Education	6	B4	CIÊNCIA DA COMPUTAÇÃO	2012
+384	DIWeb	International Workshop on Data Integration over the Web	8	B4	CIÊNCIA DA COMPUTAÇÃO	2012
 330	CSEE	International Conference on Computer Science, Environment, Ecoinformatics, and Education	2	B5	CIÊNCIA DA COMPUTAÇÃO	2012
 331	CSEE&T	Conference on Software Engineering Education and Training	19	B2	CIÊNCIA DA COMPUTAÇÃO	2012
 332	CSFW	IEEE Computer Security Foundations Workshop	57	A1	CIÊNCIA DA COMPUTAÇÃO	2012
@@ -407,7 +408,6 @@ COPY tb_qualis_evento (co_seq_qualis_cco, ds_sigla, no_titulo, nu_indice_h, no_e
 381	DIPES	IFIP Working Conference on Distributed and Parallel Embedded Systems	12	B3	CIÊNCIA DA COMPUTAÇÃO	2012
 382	DIS	Designing Interative Systems Conference	49	A2	CIÊNCIA DA COMPUTAÇÃO	2012
 383	DISC	International Symposium on Distributed Computing	40	A2	CIÊNCIA DA COMPUTAÇÃO	2012
-384	DIWeb	International Workshop on Data Integration over the Web	8	B4	CIÊNCIA DA COMPUTAÇÃO	2012
 385	DL	International Workshop on Description Logics	36	B1	CIÊNCIA DA COMPUTAÇÃO	2012
 386	DLT	International Conference on Developments in Language Theory	19	B2	CIÊNCIA DA COMPUTAÇÃO	2012
 387	DMDW	Design and Management of Data Warehouses	16	B2	CIÊNCIA DA COMPUTAÇÃO	2012
@@ -580,6 +580,7 @@ COPY tb_qualis_evento (co_seq_qualis_cco, ds_sigla, no_titulo, nu_indice_h, no_e
 557	FINTDI	Promotion and Innovation with New Technologies in Engineering Education	1	B5	CIÊNCIA DA COMPUTAÇÃO	2012
 558	FIT	Frontiers of Information Technology	5	B4	CIÊNCIA DA COMPUTAÇÃO	2012
 559	FLAIRS	Florida Artificial Intelligence Research Society	25	B1	CIÊNCIA DA COMPUTAÇÃO	2012
+618	GPC	Advances in Grid and Pervasive Computing	12	B3	CIÊNCIA DA COMPUTAÇÃO	2012
 560	FLINS	International FLINS Conference on Uncertainty Modeling in Knowledge Engineering and Decision Making	7	B4	CIÊNCIA DA COMPUTAÇÃO	2012
 561	FLOPS	International Symposium on Functional and Logic Programming	22	B1	CIÊNCIA DA COMPUTAÇÃO	2012
 562	FM	International Symposium on Formal Methods	35	B1	CIÊNCIA DA COMPUTAÇÃO	2012
@@ -637,7 +638,6 @@ COPY tb_qualis_evento (co_seq_qualis_cco, ds_sigla, no_titulo, nu_indice_h, no_e
 615	GLSVLSI	ACM Great Lakes Symposium on VLSI	28	B1	CIÊNCIA DA COMPUTAÇÃO	2012
 616	GMP	Geometry Modeling and Processing Conference	18	B2	CIÊNCIA DA COMPUTAÇÃO	2012
 617	GOW	Global Optimization Workshop	2	B5	CIÊNCIA DA COMPUTAÇÃO	2012
-618	GPC	Advances in Grid and Pervasive Computing	12	B3	CIÊNCIA DA COMPUTAÇÃO	2012
 619	GPCE	International Conference on Generative Programming and Component Engineering	37	A2	CIÊNCIA DA COMPUTAÇÃO	2012
 620	GRAPP	International Conference on Computer Graphics Theory and Applications	9	B4	CIÊNCIA DA COMPUTAÇÃO	2012
 621	GREC	IAPR International Workshop on Graphics Recognition	1	B3	CIÊNCIA DA COMPUTAÇÃO	2012
@@ -1367,6 +1367,7 @@ COPY tb_qualis_evento (co_seq_qualis_cco, ds_sigla, no_titulo, nu_indice_h, no_e
 1343	SAC_A	Selected Areas in Cryptography	21	B2	CIÊNCIA DA COMPUTAÇÃO	2012
 1344	SAFECOMP	International Conference on Computer Safety: Reliability and Security	22	B1	CIÊNCIA DA COMPUTAÇÃO	2012
 1345	SAFEProcess	IFAC Symposioum on Fault Detection Supervision and Safety of Technical Processes	14	B3	CIÊNCIA DA COMPUTAÇÃO	2012
+1697	WUWNET	International Conference on Underwater Networks	16	B2	CIÊNCIA DA COMPUTAÇÃO	2012
 1346	SAICSIT	Conference of the South African Institute of Computer Scientists and Information Technologists	12	B3	CIÊNCIA DA COMPUTAÇÃO	2012
 1347	SAINT	International Symposium on Applications and the Internet	32	B1	CIÊNCIA DA COMPUTAÇÃO	2012
 1348	SAM	International Conference on Security and Management	12	B3	CIÊNCIA DA COMPUTAÇÃO	2012
@@ -1712,7 +1713,6 @@ COPY tb_qualis_evento (co_seq_qualis_cco, ds_sigla, no_titulo, nu_indice_h, no_e
 1694	WTF	Workshop de Testes e Tolerância a Falhas	4	B4	CIÊNCIA DA COMPUTAÇÃO	2012
 1695	WTI	International Workshop on Web and Text Intelligence	3	B5	CIÊNCIA DA COMPUTAÇÃO	2012
 1696	WTS	Wireless Telecommunications Symposium 	14	B3	CIÊNCIA DA COMPUTAÇÃO	2012
-1697	WUWNET	International Conference on Underwater Networks	16	B2	CIÊNCIA DA COMPUTAÇÃO	2012
 1698	WVC	Workshop de Visão computacional	3	B5	CIÊNCIA DA COMPUTAÇÃO	2012
 1699	WWIC	Wired/Wireless Internet Communications	15	B3	CIÊNCIA DA COMPUTAÇÃO	2012
 1700	WWW	International World Wide Web Conference	145	A1	CIÊNCIA DA COMPUTAÇÃO	2012
