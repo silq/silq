@@ -201,29 +201,11 @@ CREATE TABLE tb_grupo (
 ALTER TABLE tb_grupo OWNER TO postgres;
 
 --
--- Name: tb_pesquisador; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE tb_pesquisador (
-    co_seq_pesquisador bigint DEFAULT nextval('sq_pesquisador'::regclass) NOT NULL,
-    ds_area_atuacao character varying(255),
-    xml bytea,
-    dt_atualizacao_curriculo timestamp without time zone,
-    dt_atualizacao_usuario timestamp without time zone,
-    id_curriculo bigint,
-    nome_pesquisador character varying(255),
-    co_grupo bigint
-);
-
-
-ALTER TABLE tb_pesquisador OWNER TO postgres;
-
---
 -- Name: tb_qualis_evento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tb_qualis_evento (
-    co_seq_qualis_cco numeric(19,0) DEFAULT nextval('sq_qualis_evento'::regclass) NOT NULL,
+    co_seq_qualis_evento numeric(19,0) DEFAULT nextval('sq_qualis_evento'::regclass) NOT NULL,
     ds_sigla character varying(20),
     no_titulo character varying(255),
     nu_indice_h numeric(3,0),
@@ -286,11 +268,11 @@ ALTER TABLE ONLY rl_grupo_pesquisador
 
 
 --
--- Name: pk_qualis_cco; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: pk_qualis_evento; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tb_qualis_evento
-    ADD CONSTRAINT pk_qualis_cco PRIMARY KEY (co_seq_qualis_cco);
+    ADD CONSTRAINT pk_qualis_evento PRIMARY KEY (co_seq_qualis_evento);
 
 
 --
@@ -315,14 +297,6 @@ ALTER TABLE ONLY rl_autoridade_usuario
 
 ALTER TABLE ONLY tb_grupo
     ADD CONSTRAINT tb_grupo_pkey PRIMARY KEY (co_seq_grupo);
-
-
---
--- Name: tb_pesquisador_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY tb_pesquisador
-    ADD CONSTRAINT tb_pesquisador_pkey PRIMARY KEY (co_seq_pesquisador);
 
 
 --
@@ -412,14 +386,6 @@ ALTER TABLE ONLY rl_grupo_pesquisador
 
 ALTER TABLE ONLY tb_grupo
     ADD CONSTRAINT tb_grupo_co_usuario_fkey FOREIGN KEY (co_usuario) REFERENCES tb_usuario(co_seq_usuario);
-
-
---
--- Name: tb_pesquisador_co_grupo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY tb_pesquisador
-    ADD CONSTRAINT tb_pesquisador_co_grupo_fkey FOREIGN KEY (co_grupo) REFERENCES tb_grupo(co_seq_grupo);
 
 
 --
