@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.data.enums;
+package br.ufsc.silq.core.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

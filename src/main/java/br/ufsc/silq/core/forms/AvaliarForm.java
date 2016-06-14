@@ -4,9 +4,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import br.ufsc.silq.core.data.AvaliacaoType;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.Periodo;
-import br.ufsc.silq.core.data.enums.AvaliacaoType;
 import lombok.Data;
 
 @Data
