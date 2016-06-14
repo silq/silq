@@ -6,9 +6,11 @@ import java.util.List;
 
 import lombok.Data;
 import lombok.ToString;
+import net.sf.ehcache.pool.sizeof.annotations.IgnoreSizeOf;
 
 @Data
 @ToString(of = { "dadosGerais" })
+@IgnoreSizeOf
 public class ParseResult {
 
 	private DadosGeraisResult dadosGerais;

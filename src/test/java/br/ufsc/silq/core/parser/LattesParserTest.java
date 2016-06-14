@@ -9,15 +9,20 @@ import javax.inject.Inject;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.util.StopWatch;
 import org.w3c.dom.Document;
 
-import br.ufsc.silq.test.Fixtures;
-import br.ufsc.silq.test.WebContextTest;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
+import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
+import br.ufsc.silq.core.service.CurriculumLattesService;
 import br.ufsc.silq.core.service.DocumentManager;
+import br.ufsc.silq.test.Fixtures;
+import br.ufsc.silq.test.WebContextTest;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class LattesParserTest extends WebContextTest {
 
 	public Document documentXmlChristiane;
@@ -29,6 +34,9 @@ public class LattesParserTest extends WebContextTest {
 
 	@Inject
 	private DocumentManager documentManager;
+
+	@Inject
+	private CurriculumLattesService curriculumService;
 
 	@Before
 	public void setup() throws FileNotFoundException, IOException, SilqLattesException {
@@ -52,4 +60,26 @@ public class LattesParserTest extends WebContextTest {
 		Assertions.assertThat(this.lattesParser.extractDadosGerais(this.documentXmlRonaldo)).isNotNull();
 	}
 
+	@Test
+	public void testParseWithCache() throws SilqException {
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
+
+		StopWatch watch1 = new StopWatch();
+		watch1.start();
+		this.lattesParser.parseCurriculum(lattes);
+		watch1.stop();
+		log.info("First curriculum parse (WITHOUT CACHE) finished in {}ms", watch1.getTotalTimeMillis());
+
+		// Salva um outro currículo entre uma operação e outra só para garantir que o cache anterior não é limpo
+		this.curriculumService.saveFromUpload(Fixtures.GUNTZEL_ZIP_UPLOAD);
+
+		StopWatch watch2 = new StopWatch();
+		watch2.start();
+		this.lattesParser.parseCurriculum(lattes);
+		watch2.stop();
+		log.info("Second curriculum parse (WITH CACHE) finished in {}ms", watch2.getTotalTimeMillis());
+
+		Assertions.assertThat(watch2.getLastTaskTimeMillis() * 10).isLessThan(watch1.getLastTaskTimeMillis())
+				.as("Segundo parse deve ser cacheado e ao menos 10x mais rápido do que o comum");
+	}
 }
