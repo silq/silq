@@ -36,7 +36,7 @@
         </tr>
         <tr ng-repeat="result in results.content">
             <td>{{result.id}}</td>
-            <td ng-show="tipo == 'periodicos'">{{result.issn}}</td>
+            <td ng-show="tipo == 'periodicos'" class="nowrap">{{result.issn}}</td>
             <td ng-show="tipo == 'eventos'">{{result.sigla}}</td>
             <td>{{result.titulo}}</td>
             <td>{{result.estrato}}</td>
