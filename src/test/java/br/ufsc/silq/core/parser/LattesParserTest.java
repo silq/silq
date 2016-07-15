@@ -82,4 +82,14 @@ public class LattesParserTest extends WebContextTest {
 		Assertions.assertThat(watch2.getLastTaskTimeMillis() * 10).isLessThan(watch1.getLastTaskTimeMillis())
 				.as("Segundo parse deve ser cacheado e ao menos 10x mais rápido do que o comum");
 	}
+
+	@Test
+	public void testParseBenchmark() {
+		StopWatch watch = new StopWatch();
+		watch.start();
+		this.lattesParser.parseCurriculum(this.documentXmlChristiane);
+		watch.stop();
+
+		log.info("Parsing do Lattes realizado em " + watch.getTotalTimeMillis() + "ms");
+	}
 }

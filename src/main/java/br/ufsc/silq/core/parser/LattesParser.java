@@ -11,7 +11,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.parser.attribute.ArtigoAttributeGetter;
 import br.ufsc.silq.core.parser.attribute.AttributeGetter;
@@ -26,8 +25,10 @@ import br.ufsc.silq.core.service.DocumentManager;
 import br.ufsc.silq.core.utils.SilqDataUtils;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import br.ufsc.silq.core.utils.parser.ConverterHelper;
+import lombok.extern.slf4j.Slf4j;
 
 @Component
+@Slf4j
 public class LattesParser {
 
 	@Inject
@@ -38,7 +39,7 @@ public class LattesParser {
 	 *
 	 * @param lattes A entidade que representa o currículo Lattes (em XML) a ser avaliado.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
-	 * @throws SilqLattesException
+	 * @throws SilqLattesException Caso ocorra um erro ao converter o Lattes.
 	 */
 	@Cacheable(cacheNames = "parseResults", key = "#lattes.id")
 	public ParseResult parseCurriculum(CurriculumLattes lattes) throws SilqLattesException {
@@ -57,10 +58,9 @@ public class LattesParser {
 		Node nodoRaiz = this.getNodoRaiz(lattes);
 
 		List<String> dadoGeralList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
-		// TODO Currículo sem ID! Desatualizado!
 		dadosGeraisResult.setIdCurriculo(dadoGeralList.get(2));
 		dadosGeraisResult.setUltimaAtualizacao(SilqDataUtils.formatDates(dadoGeralList.get(0), dadoGeralList.get(1)));
-		if (dadoGeralList.get(3).equals("LATTES_OFFLINE")) {
+		if ("LATTES_OFFLINE".equals(dadoGeralList.get(3))) {
 			dadosGeraisResult.setTipoOrigemCurriculo(TipoOrigemCurriculo.OFFLINE);
 		}
 
@@ -88,7 +88,6 @@ public class LattesParser {
 	 *
 	 * @param lattes Currículo Lattes (em XML) a ser avaliado.
 	 * @return Os resultados ({@link ParseResult}) da avaliação.
-	 * @throws SilqException
 	 */
 	protected ParseResult parseCurriculum(Document lattes) {
 		ParseResult parseResult = new ParseResult();
@@ -99,7 +98,7 @@ public class LattesParser {
 		parseResult.setDadosGerais(dadosGerais);
 
 		List<String> trabalhos = AttributeGetter.iterateNodes(ParserSets.PRODUCOES_SET, raiz);
-		if (trabalhos.size() > 0) {
+		if (!trabalhos.isEmpty()) {
 			List<Trabalho> trabalhosParse = new ArrayList<>();
 			for (int i = 0; i < trabalhos.size(); i += 3) {
 				String titulo = trabalhos.get(i + 1);
