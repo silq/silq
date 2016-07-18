@@ -47,7 +47,7 @@ public class AvaliacaoStats {
 	 * @param o O outro objeto de estatísticas a ser agregado ao atual.
 	 * @return O objeto atual contendo as estatísticas antigas combinadas com as novas.
 	 */
-	public AvaliacaoStats concat(AvaliacaoStats o) {
+	public AvaliacaoStats reduce(AvaliacaoStats o) {
 		this.artigos.addAll(o.getArtigos());
 		this.trabalhos.addAll(o.getTrabalhos());
 		return this;
@@ -141,7 +141,7 @@ public class AvaliacaoStats {
 
 		for (Artigo artigo : this.getArtigos()) {
 			List<Conceito> conceitos = artigo.getConceitos();
-			if (conceitos.size() > 0) {
+			if (!conceitos.isEmpty()) {
 				Conceito conceito = conceitos.get(0);
 				totalizadorMap.putIfAbsent(conceito.getConceito(), new AtomicInteger(0));
 				totalizadorMap.get(conceito.getConceito()).incrementAndGet();
@@ -150,7 +150,7 @@ public class AvaliacaoStats {
 
 		for (Trabalho trabalho : this.getTrabalhos()) {
 			List<Conceito> conceitos = trabalho.getConceitos();
-			if (conceitos.size() > 0) {
+			if (!conceitos.isEmpty()) {
 				Conceito conceito = conceitos.get(0);
 				totalizadorMap.putIfAbsent(conceito.getConceito(), new AtomicInteger(0));
 				totalizadorMap.get(conceito.getConceito()).incrementAndGet();

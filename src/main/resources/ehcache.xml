@@ -18,4 +18,5 @@
             />
             
     <cache name="parseResults"></cache>
+    <cache name="avaliacoes"></cache>
 </ehcache>

@@ -10,11 +10,13 @@ import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import lombok.Data;
+import net.sf.ehcache.pool.sizeof.annotations.IgnoreSizeOf;
 
 /**
  * Resultado da avaliação de um currículo Lattes, realizado pelo serviço {@link AvaliacaoResult}.
  */
 @Data
+@IgnoreSizeOf
 public class AvaliacaoResult {
 
 	/**
@@ -47,5 +49,13 @@ public class AvaliacaoResult {
 
 	public AvaliacaoStats getStats() {
 		return new AvaliacaoStats(this.artigos, this.trabalhos);
+	}
+
+	@Override
+	public String toString() {
+		return "AvaliacaoResult(dadosGerais=" + this.dadosGerais.toString() + ","
+				+ "form=" + this.form.toString() + ","
+				+ "#artigos=" + this.artigos.size() + ","
+				+ "#trabalhos=" + this.trabalhos.size() + ")";
 	}
 }

@@ -20,6 +20,7 @@ import br.ufsc.silq.core.service.CurriculumLattesService;
 import br.ufsc.silq.core.service.DocumentManager;
 import br.ufsc.silq.test.Fixtures;
 import br.ufsc.silq.test.WebContextTest;
+import br.ufsc.silq.test.asserts.CacheAssert;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -63,24 +64,14 @@ public class LattesParserTest extends WebContextTest {
 	@Test
 	public void testParseWithCache() throws SilqException {
 		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
-
-		StopWatch watch1 = new StopWatch();
-		watch1.start();
-		this.lattesParser.parseCurriculum(lattes);
-		watch1.stop();
-		log.info("First curriculum parse (WITHOUT CACHE) finished in {}ms", watch1.getTotalTimeMillis());
-
-		// Salva um outro currículo entre uma operação e outra só para garantir que o cache anterior não é limpo
-		this.curriculumService.saveFromUpload(Fixtures.GUNTZEL_ZIP_UPLOAD);
-
-		StopWatch watch2 = new StopWatch();
-		watch2.start();
-		this.lattesParser.parseCurriculum(lattes);
-		watch2.stop();
-		log.info("Second curriculum parse (WITH CACHE) finished in {}ms", watch2.getTotalTimeMillis());
-
-		Assertions.assertThat(watch2.getLastTaskTimeMillis() * 10).isLessThan(watch1.getLastTaskTimeMillis())
-				.as("Segundo parse deve ser cacheado e ao menos 10x mais rápido do que o comum");
+		CacheAssert.assertThat(() -> {
+			try {
+				return this.lattesParser.parseCurriculum(lattes);
+			} catch (SilqLattesException e) {
+				log.error("", e);
+			}
+			return null;
+		}).isCached();
 	}
 
 	@Test

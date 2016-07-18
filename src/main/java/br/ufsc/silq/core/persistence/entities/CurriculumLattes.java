@@ -17,6 +17,7 @@ import org.hibernate.annotations.Type;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -26,6 +27,7 @@ import lombok.ToString;
 @Table(name = "tb_curriculum_lattes")
 @Data
 @ToString(of = { "id", "idLattes", "nome", "dataAtualizacaoCurriculo" })
+@EqualsAndHashCode(of = { "id" })
 @NoArgsConstructor
 public class CurriculumLattes {
 

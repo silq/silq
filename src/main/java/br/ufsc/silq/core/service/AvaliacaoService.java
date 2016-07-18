@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.sql.DataSource;
 import javax.validation.Valid;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +60,7 @@ public class AvaliacaoService {
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
 	 * @throws SilqError Caso haja um erro no parsing ou avaliação do currículo.
 	 */
+	@Cacheable(cacheNames = "avaliacoes")
 	public AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm) {
 		ParseResult parseResult = null;
 		try {
@@ -80,9 +82,9 @@ public class AvaliacaoService {
 	public AvaliacaoCollectionResult avaliarCollection(Collection<CurriculumLattes> curriculos, @Valid AvaliarForm avaliarForm)
 			throws SilqLattesException {
 		AvaliacaoStats stats = curriculos.parallelStream()
-				.map((curriculo) -> this.avaliar(curriculo, avaliarForm))
-				.map((result) -> result.getStats())
-				.reduce((r1, r2) -> r1.concat(r2))
+				.map(curriculo -> this.avaliar(curriculo, avaliarForm))
+				.map(result -> result.getStats())
+				.reduce((r1, r2) -> r1.reduce(r2))
 				.orElse(new AvaliacaoStats());
 
 		return new AvaliacaoCollectionResult(avaliarForm, stats);
@@ -94,15 +96,14 @@ public class AvaliacaoService {
 	 * @param parseResult Resultado do parsing do currículo Lattes de um pesquisador.
 	 * @param form Formulário contendo as opções de avaliação.
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
-	 * @throws SilqLattesException
 	 */
 	public AvaliacaoResult avaliar(ParseResult parseResult, AvaliarForm form) {
 		AvaliacaoResult result = new AvaliacaoResult(form, parseResult.getDadosGerais());
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
 			List<Artigo> artigosAvaliados = parseResult.getArtigos().parallelStream()
-					.filter((artigo) -> form.getPeriodoAvaliacao().inclui(artigo.getAno()))
-					.map((artigo) -> this.avaliarArtigo(artigo, form))
+					.filter(artigo -> form.getPeriodoAvaliacao().inclui(artigo.getAno()))
+					.map(artigo -> this.avaliarArtigo(artigo, form))
 					.collect(Collectors.toList());
 
 			result.setArtigos(artigosAvaliados);
@@ -110,8 +111,8 @@ public class AvaliacaoService {
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
 			List<Trabalho> trabalhosAvaliados = parseResult.getTrabalhos().parallelStream()
-					.filter((trabalho) -> form.getPeriodoAvaliacao().inclui(trabalho.getAno()))
-					.map((trabalho) -> this.avaliarTrabalho(trabalho, form))
+					.filter(trabalho -> form.getPeriodoAvaliacao().inclui(trabalho.getAno()))
+					.map(trabalho -> this.avaliarTrabalho(trabalho, form))
 					.collect(Collectors.toList());
 
 			result.setTrabalhos(trabalhosAvaliados);
@@ -176,8 +177,8 @@ public class AvaliacaoService {
 	 * @param tituloVeiculo Título do evento ou periódico que deseja-se avaliar.
 	 * @param avaliarForm Opções de avaliação.
 	 * @param table Tabela base de registros Qualis a ser utilizada na avaliação.
-	 * @return
-	 * @throws SQLException
+	 * @return A lista de conceitos do veículo.
+	 * @throws SQLException Caso haja um erro ao executar o SQL.
 	 */
 	public List<Conceito> getConceitos(String tituloVeiculo, AvaliarForm avaliarForm, String table) throws SQLException {
 		tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
