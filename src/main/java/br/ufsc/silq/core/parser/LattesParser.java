@@ -24,7 +24,6 @@ import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.service.DocumentManager;
 import br.ufsc.silq.core.utils.SilqDataUtils;
 import br.ufsc.silq.core.utils.SilqStringUtils;
-import br.ufsc.silq.core.utils.parser.ConverterHelper;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -102,7 +101,7 @@ public class LattesParser {
 			List<Trabalho> trabalhosParse = new ArrayList<>();
 			for (int i = 0; i < trabalhos.size(); i += 3) {
 				String titulo = trabalhos.get(i + 1);
-				Integer ano = ConverterHelper.parseIntegerSafely(trabalhos.get(i));
+				Integer ano = ArtigoAttributeGetter.parseIntegerSafely(trabalhos.get(i));
 				String tituloVeiculo = trabalhos.get(i + 2);
 
 				trabalhosParse.add(new Trabalho(titulo, ano, tituloVeiculo));

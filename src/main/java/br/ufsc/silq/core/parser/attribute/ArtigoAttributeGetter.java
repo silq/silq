@@ -10,7 +10,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import br.ufsc.silq.core.parser.dto.Artigo;
-import br.ufsc.silq.core.utils.parser.ConverterHelper;
 
 public class ArtigoAttributeGetter {
 
@@ -45,7 +44,7 @@ public class ArtigoAttributeGetter {
 			if (nodeName.equals("dados-basicos-do-artigo")) {
 				List<String> result = getAttribute(filho, Arrays.asList("titulo-do-artigo", "ano-do-artigo"));
 				titulo = result.get(1);
-				ano = ConverterHelper.parseIntegerSafely(result.get(0));
+				ano = parseIntegerSafely(result.get(0));
 			} else if (nodeName.equals("detalhamento-do-artigo")) {
 				List<String> result = getAttribute(filho, Arrays.asList("titulo-do-periodico-ou-revista", "issn"));
 				tituloVeiculo = result.get(1);
@@ -68,5 +67,26 @@ public class ArtigoAttributeGetter {
 		}
 
 		return resultado;
+	}
+
+	public static Integer parseIntegerSafely(String text) {
+		if (text == null || text.equals("")) {
+			return null;
+		}
+		String filteredNumber = "";
+		for (int i = 0; i < text.length(); i++) {
+			char charAt = text.charAt(i);
+			if (Character.isDigit(charAt)) {
+				filteredNumber += charAt;
+			}
+		}
+
+		if (filteredNumber.equals("")) {
+			return null;
+		}
+
+		Integer ano = Integer.parseInt(filteredNumber);
+
+		return ano;
 	}
 }
