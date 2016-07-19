@@ -1,4 +1,15 @@
 <div class="qualis-result-item">
+    <div class="pull-right" uib-dropdown>
+        <button type="button" class="btn btn-default btn-sm" title="Opções" uib-dropdown-toggle>
+            <i class="glyphicon glyphicon-cog"></i>
+            <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+            <li><a ng-click="sugerir(item)">Sugerir matching</a></li>
+        </ul>
+    </div>
+
     <p class="qualis-titulo" title="Título do trabalho" highlight-text="filter">
         <span class="qualis-ano">{{ item.ano }} |</span>
         {{ item.titulo }}

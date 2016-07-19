@@ -14,6 +14,10 @@ angular.module('silq2App')
                 $scope.verMais = function(flag) {
                     $scope.mais = flag;
                 };
+
+                $scope.sugerir = function(item) {
+                    console.log(item);
+                };
             }
         };
     });
