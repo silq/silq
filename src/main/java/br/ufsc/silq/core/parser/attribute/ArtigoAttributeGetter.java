@@ -17,7 +17,7 @@ public class ArtigoAttributeGetter {
 		NodeList qualisList = raizLocal.getChildNodes();
 		List<Artigo> artigos = new ArrayList<>();
 
-		if (raizLocal.getNodeName().toLowerCase().equals("artigo-publicado")) {
+		if ("artigo-publicado".equalsIgnoreCase(raizLocal.getNodeName())) {
 			artigos.add(ArtigoAttributeGetter.getArtigoInfo(raizLocal));
 		} else if (qualisList.getLength() > 0) {
 			for (int i = 0; i < qualisList.getLength(); i++) {
@@ -41,11 +41,11 @@ public class ArtigoAttributeGetter {
 			Node filho = filhos.item(i);
 			String nodeName = filho.getNodeName().toLowerCase();
 
-			if (nodeName.equals("dados-basicos-do-artigo")) {
+			if ("dados-basicos-do-artigo".equals(nodeName)) {
 				List<String> result = getAttribute(filho, Arrays.asList("titulo-do-artigo", "ano-do-artigo"));
 				titulo = result.get(1);
 				ano = parseIntegerSafely(result.get(0));
-			} else if (nodeName.equals("detalhamento-do-artigo")) {
+			} else if ("detalhamento-do-artigo".equals(nodeName)) {
 				List<String> result = getAttribute(filho, Arrays.asList("titulo-do-periodico-ou-revista", "issn"));
 				tituloVeiculo = result.get(1);
 				issn = result.get(0);
@@ -70,23 +70,21 @@ public class ArtigoAttributeGetter {
 	}
 
 	public static Integer parseIntegerSafely(String text) {
-		if (text == null || text.equals("")) {
+		if (text == null || text.isEmpty()) {
 			return null;
 		}
 		String filteredNumber = "";
 		for (int i = 0; i < text.length(); i++) {
 			char charAt = text.charAt(i);
 			if (Character.isDigit(charAt)) {
-				filteredNumber += charAt;
+				filteredNumber += Character.toString(charAt);
 			}
 		}
 
-		if (filteredNumber.equals("")) {
+		if (filteredNumber.isEmpty()) {
 			return null;
 		}
 
-		Integer ano = Integer.parseInt(filteredNumber);
-
-		return ano;
+		return Integer.parseInt(filteredNumber);
 	}
 }

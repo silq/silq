@@ -13,7 +13,7 @@ import br.ufsc.silq.core.parser.dto.ParserSet;
 public class AttributeGetter {
 
 	public static List<String> iterateNodes(ParserSet set, Node raizLocal) {
-		List<String> infos = new ArrayList<String>();
+		List<String> infos = new ArrayList<>();
 		NodeList qualisList = raizLocal.getChildNodes();
 
 		if (set.getSetName().contains(raizLocal.getNodeName().toLowerCase())) {
@@ -29,8 +29,6 @@ public class AttributeGetter {
 	}
 
 	public static List<String> getAttribute(Node nodo, List<String> attrList) {
-		// TODO nodo.getAttributes: usar um map pois a ordem dos atributos não é
-		// mantida;
 		NamedNodeMap attributes = nodo.getAttributes();
 		List<String> resultado = new ArrayList<>();
 
