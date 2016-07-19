@@ -138,7 +138,7 @@ public class AvaliacaoService {
 		} catch (SQLException e) {
 			throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
 		}
-		artigo.setConceitos(conceitos);
+		artigo.addConceitos(conceitos);
 		return artigo;
 	}
 
@@ -155,7 +155,7 @@ public class AvaliacaoService {
 			conceitos.add(new Conceito(result.getTitulo(), result.getEstrato(), NivelSimilaridade.TOTAL, result.getAno()));
 		}
 
-		artigo.setConceitos(conceitos);
+		artigo.addConceitos(conceitos);
 		return artigo;
 	}
 
@@ -167,7 +167,7 @@ public class AvaliacaoService {
 			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
 		}
 
-		trabalho.setConceitos(conceitos);
+		trabalho.addConceitos(conceitos);
 		return trabalho;
 	}
 
