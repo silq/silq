@@ -46,10 +46,10 @@ public class CacheAssert extends AbstractAssert<CacheAssert, Supplier<?>> {
 					timesFaster, watch1.getLastTaskTimeMillis(), watch2.getLastTaskTimeMillis());
 		}
 
-		// if (Objects.equals(result1, result2)) {
-		// this.failWithMessage("Cached method should return the same result for both executions. "
-		// + "First result: <%s>, Second result: <%s>", result1, result2);
-		// }
+		if (!result2.equals(result1)) {
+			this.failWithMessage("Cached method should return the same result for both executions. "
+					+ "First result: <%s>, Second result: <%s>", result1, result2);
+		}
 
 		return this;
 	}
