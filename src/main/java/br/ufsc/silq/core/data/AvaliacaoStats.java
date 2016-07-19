@@ -61,9 +61,7 @@ public class AvaliacaoStats {
 	 * @return O primeiro ano em que houve publicação.
 	 */
 	public Integer getAnoPrimeiraPublicacao() {
-		Stream<Integer> artigoAnos = this.artigos.stream().map(artigo -> artigo.getAno());
-		Stream<Integer> trabalhoAnos = this.trabalhos.stream().map(trabalho -> trabalho.getAno());
-		Stream<Integer> anos = Stream.concat(artigoAnos, trabalhoAnos);
+		Stream<Integer> anos = this.streamAnos();
 		return anos.min((a1, a2) -> a1.compareTo(a2)).orElse(0);
 	}
 
@@ -71,10 +69,19 @@ public class AvaliacaoStats {
 	 * @return O último ano em que houve publicação.
 	 */
 	public Integer getAnoUltimaPublicacao() {
+		Stream<Integer> anos = this.streamAnos();
+		return anos.max((a1, a2) -> a1.compareTo(a2)).orElse(0);
+	}
+
+	/**
+	 * Cria um Stream contendo os anos de todos os Trabalhos e Artigos.
+	 *
+	 * @return Um Stream de anos.
+	 */
+	private Stream<Integer> streamAnos() {
 		Stream<Integer> artigoAnos = this.artigos.stream().map(artigo -> artigo.getAno());
 		Stream<Integer> trabalhoAnos = this.trabalhos.stream().map(trabalho -> trabalho.getAno());
-		Stream<Integer> anos = Stream.concat(artigoAnos, trabalhoAnos);
-		return anos.max((a1, a2) -> a1.compareTo(a2)).orElse(0);
+		return Stream.concat(artigoAnos, trabalhoAnos);
 	}
 
 	/**
