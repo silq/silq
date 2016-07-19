@@ -2,6 +2,7 @@ package br.ufsc.silq.core.data;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import br.ufsc.silq.core.forms.AvaliarForm;
@@ -48,7 +49,7 @@ public class AvaliacaoResult {
 	}
 
 	public AvaliacaoStats getStats() {
-		return new AvaliacaoStats(this.artigos, this.trabalhos);
+		return new AvaliacaoStats(new HashSet<>(this.artigos), new HashSet<>(this.trabalhos));
 	}
 
 	@Override

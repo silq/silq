@@ -6,12 +6,12 @@ import lombok.Data;
 
 @Data
 public class NivelSimilaridade implements Comparable<NivelSimilaridade> {
-	public final static NivelSimilaridade MUITO_BAIXO = new NivelSimilaridade(0.2F);
-	public final static NivelSimilaridade BAIXO = new NivelSimilaridade(0.4F);
-	public final static NivelSimilaridade NORMAL = new NivelSimilaridade(0.6F);
-	public final static NivelSimilaridade ALTO = new NivelSimilaridade(0.8F);
-	public final static NivelSimilaridade MUITO_ALTO = new NivelSimilaridade(0.9F);
-	public final static NivelSimilaridade TOTAL = new NivelSimilaridade(1.0F);
+	public static final NivelSimilaridade MUITO_BAIXO = new NivelSimilaridade(0.2F);
+	public static final NivelSimilaridade BAIXO = new NivelSimilaridade(0.4F);
+	public static final NivelSimilaridade NORMAL = new NivelSimilaridade(0.6F);
+	public static final NivelSimilaridade ALTO = new NivelSimilaridade(0.8F);
+	public static final NivelSimilaridade MUITO_ALTO = new NivelSimilaridade(0.9F);
+	public static final NivelSimilaridade TOTAL = new NivelSimilaridade(1.0F);
 
 	private final Float value;
 

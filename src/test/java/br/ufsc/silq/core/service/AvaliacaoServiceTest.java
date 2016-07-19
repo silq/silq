@@ -46,8 +46,8 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		Assertions.assertThat(result.getTrabalhos()).isNotEmpty();
 		Assertions.assertThat(result.getDadosGerais().getNome()).isEqualTo("José Luís Almada Güntzel");
 		Assertions.assertThat(result.getStats().getTotalizador()).isNotEmpty();
-		Assertions.assertThat(result.getArtigos().get(0).getConceitos()).isNotEmpty();
-		Assertions.assertThat(result.getTrabalhos().get(0).getConceitos()).isNotEmpty();
+		Assertions.assertThat(result.getArtigos().get(0).hasConceito()).isTrue();
+		Assertions.assertThat(result.getTrabalhos().get(0).hasConceito()).isTrue();
 	}
 
 	@Test
