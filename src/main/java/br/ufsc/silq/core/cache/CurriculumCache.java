@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CurriculumCache extends AbstractExpirableCache<CurriculumLattes> {
 
 	@Override
-	Period expirePeriod() {
+	public Period expirePeriod() {
 		return Period.hours(1);
 	}
 

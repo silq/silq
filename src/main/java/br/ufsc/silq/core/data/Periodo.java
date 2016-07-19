@@ -45,17 +45,17 @@ public class Periodo {
 	}
 
 	/**
-	 * Checa se o período setado inclui o valor passado como parâmetro.
+	 * Checa se o período setado inclui o ano passado como parâmetro.
 	 *
-	 * @param ano
-	 * @return
+	 * @param ano Ano a ser checado.
+	 * @return Verdadeiro caso o período inclua o ano.
 	 */
-	public boolean inclui(int value) {
-		if (this.getInicio() != null && value < this.getInicio()) {
+	public boolean inclui(int ano) {
+		if (this.getInicio() != null && ano < this.getInicio()) {
 			return false;
 		}
 
-		if (this.getFim() != null && value > this.getFim()) {
+		if (this.getFim() != null && ano > this.getFim()) {
 			return false;
 		}
 

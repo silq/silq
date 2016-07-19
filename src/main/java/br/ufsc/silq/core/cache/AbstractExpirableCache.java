@@ -14,8 +14,7 @@ import lombok.ToString;
  * Cache abstrato que mapeia IDs (String) para listas de dados do tipo definido e que limpa os itens de cache
  * após passados um intervalo de tempo definido.
  *
- * @param <T>
- *            Tipo de dado cacheado.
+ * @param <T> Tipo de dado cacheado.
  */
 @ToString
 public abstract class AbstractExpirableCache<T> {
@@ -27,7 +26,7 @@ public abstract class AbstractExpirableCache<T> {
 	 * @param cacheId
 	 *            ID do cache a ser utilizado. Um mesmo ID mapeia vários itens
 	 *            de cache.
-	 * @param T
+	 * @param data
 	 *            Dado a ser salvo no cache com ID especificado, junto com os
 	 *            demais itens já salvos com este ID.
 	 */
@@ -43,7 +42,7 @@ public abstract class AbstractExpirableCache<T> {
 	/**
 	 * Retorna os itens salvos no cache com ID especificado.
 	 *
-	 * @param cacheId
+	 * @param cacheId ID da cache a ser pesquisada.
 	 * @return A lista com os itens de cache com ID especificado ou uma lista vazia caso não existam itens neste ID.
 	 */
 	public CacheList<T> get(String cacheId) {
@@ -61,7 +60,7 @@ public abstract class AbstractExpirableCache<T> {
 	/**
 	 * Informa a data de última modificação da lista de cache com ID especificado.
 	 *
-	 * @param cacheId
+	 * @param cacheId ID da cache a ser pesquisada.
 	 * @return A data de modificação do cache.
 	 */
 	public LocalDateTime getModifiedAt(String cacheId) {
@@ -100,9 +99,9 @@ public abstract class AbstractExpirableCache<T> {
 	 * Não há garantia que os itens de cache sejam de fato limpos. Para isso, o método clearExpired() deve ser invocado
 	 * de tempos em tempos.
 	 *
-	 * @return
+	 * @return O período de expiração da cache.
 	 */
-	abstract Period expirePeriod();
+	public abstract Period expirePeriod();
 
 	public static class CacheList<T> extends ArrayList<T> {
 		private static final long serialVersionUID = 6771137058340431934L;

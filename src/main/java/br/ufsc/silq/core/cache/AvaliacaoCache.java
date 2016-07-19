@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j;
 public class AvaliacaoCache extends AbstractExpirableCache<AvaliacaoResult> {
 
 	@Override
-	Period expirePeriod() {
+	public Period expirePeriod() {
 		return Period.hours(2);
 	}
 
