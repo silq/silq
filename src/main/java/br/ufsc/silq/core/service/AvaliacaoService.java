@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -101,24 +102,23 @@ public class AvaliacaoService {
 		AvaliacaoResult result = new AvaliacaoResult(form, parseResult.getDadosGerais());
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
-			List<Artigo> artigosAvaliados = parseResult.getArtigos().parallelStream()
+			TreeSet<Artigo> artigosAvaliados = parseResult.getArtigos().parallelStream()
 					.filter(artigo -> form.getPeriodoAvaliacao().inclui(artigo.getAno()))
 					.map(artigo -> this.avaliarArtigo(artigo, form))
-					.collect(Collectors.toList());
+					.collect(Collectors.toCollection(() -> new TreeSet<>()));
 
 			result.setArtigos(artigosAvaliados);
 		}
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
-			List<Trabalho> trabalhosAvaliados = parseResult.getTrabalhos().parallelStream()
+			TreeSet<Trabalho> trabalhosAvaliados = parseResult.getTrabalhos().parallelStream()
 					.filter(trabalho -> form.getPeriodoAvaliacao().inclui(trabalho.getAno()))
 					.map(trabalho -> this.avaliarTrabalho(trabalho, form))
-					.collect(Collectors.toList());
+					.collect(Collectors.toCollection(() -> new TreeSet<>()));
 
 			result.setTrabalhos(trabalhosAvaliados);
 		}
 
-		result.order();
 		return result;
 	}
 
