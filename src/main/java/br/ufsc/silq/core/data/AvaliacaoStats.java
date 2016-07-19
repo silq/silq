@@ -102,7 +102,7 @@ public class AvaliacaoStats {
 			ContadorConceitos contador = map.get(c.getAno());
 
 			if (c.hasConceito()) {
-				contador.increment(c.getConceito().getConceito());
+				contador.increment(c.getConceitoMaisSimilar().getConceito());
 			} else {
 				contador.increment(ContadorConceitos.SEM_CONCEITO);
 			}
@@ -124,7 +124,7 @@ public class AvaliacaoStats {
 			ContadorConceitos contador = map.get(c.getAno());
 
 			if (c.hasConceito()) {
-				contador.increment(c.getConceito().getConceito());
+				contador.increment(c.getConceitoMaisSimilar().getConceito());
 			} else {
 				contador.increment(ContadorConceitos.SEM_CONCEITO);
 			}
@@ -143,7 +143,7 @@ public class AvaliacaoStats {
 
 		for (Artigo artigo : this.getArtigos()) {
 			if (artigo.hasConceito()) {
-				Conceito conceito = artigo.getConceito();
+				Conceito conceito = artigo.getConceitoMaisSimilar();
 				totalizadorMap.putIfAbsent(conceito.getConceito(), new AtomicInteger(0));
 				totalizadorMap.get(conceito.getConceito()).incrementAndGet();
 			}
@@ -151,7 +151,7 @@ public class AvaliacaoStats {
 
 		for (Trabalho trabalho : this.getTrabalhos()) {
 			if (trabalho.hasConceito()) {
-				Conceito conceito = trabalho.getConceito();
+				Conceito conceito = trabalho.getConceitoMaisSimilar();
 				totalizadorMap.putIfAbsent(conceito.getConceito(), new AtomicInteger(0));
 				totalizadorMap.get(conceito.getConceito()).incrementAndGet();
 			}

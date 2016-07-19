@@ -59,7 +59,7 @@ public class Trabalho implements Comparable<Trabalho> {
 	 *         haja conceito atribuído a este artigo.
 	 */
 	@JsonIgnore
-	public Conceito getConceito() {
+	public Conceito getConceitoMaisSimilar() {
 		try {
 			return this.conceitos.first();
 		} catch (NoSuchElementException e) {
