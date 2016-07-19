@@ -1,9 +1,8 @@
 package br.ufsc.silq.core.parser.dto;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.TreeSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,7 +17,7 @@ public class Trabalho implements Comparable<Trabalho> {
 	private final String tituloVeiculo;
 
 	@Setter(value = AccessLevel.PROTECTED)
-	private List<Conceito> conceitos = new ArrayList<>();
+	private TreeSet<Conceito> conceitos = new TreeSet<>();
 
 	@Override
 	public int compareTo(Trabalho o) {
@@ -61,7 +60,10 @@ public class Trabalho implements Comparable<Trabalho> {
 	 */
 	@JsonIgnore
 	public Conceito getConceito() {
-		Collections.sort(this.conceitos); // TODO (bonetti)
-		return this.hasConceito() ? this.conceitos.get(0) : null;
+		try {
+			return this.conceitos.first();
+		} catch (NoSuchElementException e) {
+			return null;
+		}
 	}
 }
