@@ -39,6 +39,8 @@ import br.ufsc.silq.core.persistence.entities.QQualisPeriodico;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.core.persistence.repository.QualisPeriodicoRepository;
 import br.ufsc.silq.core.utils.SilqStringUtils;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @Service
 @Transactional(readOnly = true)
@@ -98,7 +100,7 @@ public class AvaliacaoService {
 	 * @param form Formulário contendo as opções de avaliação.
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
 	 */
-	public AvaliacaoResult avaliar(ParseResult parseResult, AvaliarForm form) {
+	public AvaliacaoResult avaliar(ParseResult parseResult, @Valid AvaliarForm form) {
 		AvaliacaoResult result = new AvaliacaoResult(form, parseResult.getDadosGerais());
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
@@ -122,7 +124,7 @@ public class AvaliacaoService {
 		return result;
 	}
 
-	public Artigo avaliarArtigo(Artigo artigo, AvaliarForm avaliarForm) {
+	public Artigo avaliarArtigo(Artigo artigo, @Valid AvaliarForm avaliarForm) {
 		if (artigo.getIssn().isEmpty()) {
 			// TODO (bonetti): Ordenar por ano aqui também
 			return this.avaliarArtigoPorSimilaridade(artigo, avaliarForm);
@@ -131,10 +133,10 @@ public class AvaliacaoService {
 		}
 	}
 
-	private Artigo avaliarArtigoPorSimilaridade(Artigo artigo, AvaliarForm avaliarForm) {
+	private Artigo avaliarArtigoPorSimilaridade(Artigo artigo, @Valid AvaliarForm avaliarForm) {
 		List<Conceito> conceitos = new ArrayList<>();
 		try {
-			conceitos = this.getConceitos(artigo.getTituloVeiculo(), avaliarForm, "TB_QUALIS_PERIODICO");
+			conceitos = this.getConceitos(artigo.getTituloVeiculo(), avaliarForm, TipoAvaliacao.PERIODICO);
 		} catch (SQLException e) {
 			throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
 		}
@@ -142,7 +144,7 @@ public class AvaliacaoService {
 		return artigo;
 	}
 
-	public Artigo avaliarArtigoPorIssn(Artigo artigo, AvaliarForm avaliarForm) {
+	private Artigo avaliarArtigoPorIssn(Artigo artigo, @Valid AvaliarForm avaliarForm) {
 		QQualisPeriodico path = QQualisPeriodico.qualisPeriodico;
 		BooleanExpression query = path.issn.eq(artigo.getIssn())
 				.and(path.areaAvaliacao.eq(avaliarForm.getArea().toUpperCase()));
@@ -159,10 +161,10 @@ public class AvaliacaoService {
 		return artigo;
 	}
 
-	public Trabalho avaliarTrabalho(Trabalho trabalho, AvaliarForm avaliarForm) {
+	public Trabalho avaliarTrabalho(Trabalho trabalho, @Valid AvaliarForm avaliarForm) {
 		List<Conceito> conceitos;
 		try {
-			conceitos = this.getConceitos(trabalho.getTituloVeiculo(), avaliarForm, "TB_QUALIS_EVENTO");
+			conceitos = this.getConceitos(trabalho.getTituloVeiculo(), avaliarForm, TipoAvaliacao.EVENTO);
 		} catch (SQLException e) {
 			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
 		}
@@ -176,19 +178,19 @@ public class AvaliacaoService {
 	 *
 	 * @param tituloVeiculo Título do evento ou periódico que deseja-se avaliar.
 	 * @param avaliarForm Opções de avaliação.
-	 * @param table Tabela base de registros Qualis a ser utilizada na avaliação.
+	 * @param tipoAvaliacao Tipo de avaliação (altera a tabela do banco a ser consultada).
 	 * @return A lista de conceitos do veículo.
 	 * @throws SQLException Caso haja um erro ao executar o SQL.
 	 */
-	public List<Conceito> getConceitos(String tituloVeiculo, AvaliarForm avaliarForm, String table) throws SQLException {
-		tituloVeiculo = SilqStringUtils.normalizeString(tituloVeiculo);
+	public List<Conceito> getConceitos(String tituloVeiculo, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
+		String tituloNormalizado = SilqStringUtils.normalizeString(tituloVeiculo);
 
 		List<Conceito> conceitos = new ArrayList<>();
 
 		Connection connection = this.dataSource.getConnection();
 		Statement st = connection.createStatement();
 		st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade().getValue() + "::real)");
-		String sqlStatement = this.createSqlStatement(table, tituloVeiculo, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS);
+		String sqlStatement = this.createSqlStatement(tipoAvaliacao, tituloNormalizado, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS);
 		ResultSet rs = st.executeQuery(sqlStatement);
 
 		while (rs.next()) {
@@ -217,19 +219,33 @@ public class AvaliacaoService {
 	/**
 	 * Cria uma instrução SQL (Postgres) que, ao executada, retorna os veículos mais similares ao artigo ou trabalho parâmetro.
 	 *
-	 * @param table Tabela a ser utilizada na avaliação.
+	 * @param tipoAvaliacao Tipo de avaliação.
 	 * @param tituloVeiculo Título do veículo onde o artigo ou trabalho foi publicado/apresentado.
 	 * @param area Área de avaliação a ser utilizada.
 	 * @param limit Número máximo de registros similares a serem retornados.
 	 * @return Uma instrução SQL que utiliza a função de similaridade do PostgreSQL.
 	 */
-	protected String createSqlStatement(String table, String tituloVeiculo, String area, int limit) {
+	protected String createSqlStatement(TipoAvaliacao tipoAvaliacao, String tituloVeiculo, String area, int limit) {
 		String sql = "";
 		sql += "SELECT *, SIMILARITY(NO_TITULO, \'" + tituloVeiculo + "\') AS SML";
-		sql += " FROM " + table + " WHERE NO_TITULO % \'" + tituloVeiculo + "\'";
+		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % \'" + tituloVeiculo + "\'";
 		sql += " AND NO_AREA_AVALIACAO LIKE \'%" + area.toUpperCase() + "\'";
 		sql += " ORDER BY SML DESC LIMIT " + limit;
 		return sql;
 	}
 
+	/**
+	 * Tipos de avaliação.
+	 */
+	@AllArgsConstructor
+	@Getter
+	public enum TipoAvaliacao {
+		PERIODICO("TB_QUALIS_PERIODICO"),
+		EVENTO("TB_QUALIS_EVENTO");
+
+		/**
+		 * Nome da tabela utilizada para avaliação.
+		 */
+		private final String table;
+	}
 }
