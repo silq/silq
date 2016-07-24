@@ -17,3 +17,10 @@ silq2-postgresql-tests:
     - POSTGRES_PASSWORD=
   ports:
     - "5430:5432"
+
+silq2-sonar:
+  container_name: silq2-sonar
+  image: sonarqube:5.5-alpine
+  ports:
+    - 9000:9000
+    - 9092:9092
