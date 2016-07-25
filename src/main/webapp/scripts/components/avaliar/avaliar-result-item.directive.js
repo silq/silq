@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .directive('avaliarResultItem', function() {
+    .directive('avaliarResultItem', function(QualisModal) {
         return {
             restrict: 'E',
             scope: {
@@ -16,7 +16,10 @@ angular.module('silq2App')
                 };
 
                 $scope.sugerir = function(item) {
-                    console.log(item);
+                    QualisModal.open(item)
+                        .then(function(result) {
+                            console.log(result);
+                        });
                 };
             }
         };

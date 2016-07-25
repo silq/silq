@@ -1,0 +1,43 @@
+<form class="flex" ng-submit="submit()">
+    <select class="form-control flex-1"
+        ng-model="tipo" ng-change="submit()" ng-hide="mode">
+        <option value="periodicos">Periódicos</option>
+        <option value="eventos">Eventos</option>
+    </select>
+    <div class="flex-5">
+        <input type="search" class="form-control" placeholder="Pesquisar por título do periódico ou evento, ISSN, área de avaliação..." ng-model="query">
+    </div>
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
+
+<br>
+
+<p>Mostrando <strong>{{results.numberOfElements}}</strong> de <strong>{{results.totalElements}}</strong> resultados encontrados.</p>
+
+<table class="table table-striped table-condensed table-hover">
+    <thead>
+        <tr>
+            <!-- <th>#</th> -->
+            <th ng-show="tipo == 'periodicos'">ISSN</th>
+            <th ng-show="tipo == 'eventos'">Sigla</th>
+            <th>Título</th>
+            <th>Conceito</th>
+            <th>Ano</th>
+            <th>Área de avaliação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-show="results.content.length == 0">
+            <td colspan="6" class="text-center">Nenhum resultado encontrado</td>
+        </tr>
+        <tr ng-repeat="result in results.content" ng-click="onItemClick(result)">
+            <!-- <td>{{result.id}}</td> -->
+            <td ng-show="tipo == 'periodicos'" class="nowrap">{{result.issn}}</td>
+            <td ng-show="tipo == 'eventos'">{{result.sigla}}</td>
+            <td>{{result.titulo}}</td>
+            <td>{{result.estrato}}</td>
+            <td>{{result.ano}}</td>
+            <td>{{result.areaAvaliacao}}</td>
+        </tr>
+    </tbody>
+</table>
