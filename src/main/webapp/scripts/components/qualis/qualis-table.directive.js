@@ -28,15 +28,16 @@ angular.module('silq2App')
                 $scope.mode = angular.isDefined($scope.mode) ? $scope.mode : null;
                 $scope.tipo = $scope.mode || 'periodicos';
                 $scope.results = [];
+                $scope.page = 1;
 
                 $scope.onItemClick = function(selected) {
                     $scope.select({selected: selected});
                 };
 
-                $scope.search = function(query) {
+                $scope.search = function(query, page) {
                     var p = $scope.tipo === 'periodicos' ?
-                        Qualis.queryPeriodicos(query) :
-                        Qualis.queryEventos(query);
+                        Qualis.queryPeriodicos(query, page) :
+                        Qualis.queryEventos(query, page);
 
                     p.then(function(resp) {
                         $scope.results = resp.data;
@@ -58,6 +59,10 @@ angular.module('silq2App')
 
                 $scope.submit = function() {
                     $scope.search($scope.query);
+                };
+
+                $scope.pageChanged = function() {
+                    $scope.search($scope.query, $scope.page);
                 };
             }
         };
