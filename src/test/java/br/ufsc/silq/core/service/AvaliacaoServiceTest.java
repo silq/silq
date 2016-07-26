@@ -59,7 +59,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 	}
 
 	@Test
-	public void testAvaliarColecction() throws SilqException {
+	public void testAvaliarCollection() throws SilqException {
 		this.loginUser();
 		GrupoForm grupoForm = new GrupoForm();
 		grupoForm.setNomeGrupo("Grupo de testes #1");

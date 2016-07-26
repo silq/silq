@@ -11,6 +11,9 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.sql.DataSource;
 import javax.validation.Valid;
 
@@ -48,6 +51,9 @@ public class AvaliacaoService {
 
 	@Inject
 	private DataSource dataSource;
+
+	@PersistenceContext
+	private EntityManager em;
 
 	@Inject
 	private QualisPeriodicoRepository qualisPeriodicoRepository;
@@ -183,13 +189,13 @@ public class AvaliacaoService {
 	 * @throws SQLException Caso haja um erro ao executar o SQL.
 	 */
 	public List<Conceito> getConceitos(String tituloVeiculo, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
+		this.setSimilarityThreshold(avaliarForm.getNivelSimilaridade().getValue());
 		String tituloNormalizado = SilqStringUtils.normalizeString(tituloVeiculo);
 
 		List<Conceito> conceitos = new ArrayList<>();
 
 		Connection connection = this.dataSource.getConnection();
 		Statement st = connection.createStatement();
-		st.executeQuery("SELECT set_limit(" + avaliarForm.getNivelSimilaridade().getValue() + "::real)");
 		String sqlStatement = this.createSqlStatement(tipoAvaliacao, tituloNormalizado, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS);
 		ResultSet rs = st.executeQuery(sqlStatement);
 
@@ -202,6 +208,17 @@ public class AvaliacaoService {
 		connection.close();
 
 		return conceitos;
+	}
+
+	/**
+	 * Seta o nível de similaridade mínimo (threshold) que será usado para as queries de similaridade no banco.
+	 *
+	 * @param value Valor numérico de 0 a 1 representando o threshold de similaridade.
+	 */
+	private void setSimilarityThreshold(Float value) {
+		Query query = this.em.createNativeQuery("SELECT set_limit((?1))");
+		query.setParameter(1, value);
+		query.getSingleResult();
 	}
 
 	/**
