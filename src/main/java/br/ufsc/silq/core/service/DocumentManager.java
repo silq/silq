@@ -69,10 +69,10 @@ public class DocumentManager {
 	}
 
 	/**
-	 * Checa se o upload trata-se de um arquivo tipo Zip.
+	 * Checa se o upload trata-se de um arquivo tipo ZIP.
 	 *
-	 * @param upload
-	 * @return
+	 * @param upload Upload de um arquivo.
+	 * @return Verdadeiro caso o upload seja de um arquivo ZIP.
 	 */
 	public boolean isZipUpload(MultipartFile upload) {
 		return upload.getContentType() != null && upload.getContentType().equals("application/zip");
@@ -90,25 +90,19 @@ public class DocumentManager {
 	 *             Caso o arquivo ZIP seja inválido.
 	 */
 	public Document extractXmlDocumentFromZipUpload(MultipartFile upload) throws SilqLattesException {
-		ZipInputStream zis;
 		int bufferSize = 1024;
-		byte buffer[] = new byte[bufferSize];
-		ByteArrayOutputStream dest = new ByteArrayOutputStream();
+		byte[] buffer = new byte[bufferSize];
 		String curriculumStr;
 
-		try {
-			zis = new ZipInputStream(upload.getInputStream());
-
+		try (ByteArrayOutputStream dest = new ByteArrayOutputStream();
+				ZipInputStream zis = new ZipInputStream(upload.getInputStream())) {
 			while (zis.getNextEntry() != null) {
 				int count;
 				while ((count = zis.read(buffer, 0, bufferSize)) != -1) {
 					dest.write(buffer, 0, count);
 				}
 			}
-
 			curriculumStr = new String(dest.toByteArray(), Charset.forName("ISO8859_1"));
-			dest.close();
-
 		} catch (IOException e) {
 			throw new SilqLattesException("Arquivo ZIP inválido", e);
 		}
