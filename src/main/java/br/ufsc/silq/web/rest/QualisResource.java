@@ -47,10 +47,10 @@ public class QualisResource {
 	 * GET /api/qualis/periodicos -> Obtém uma lista (filtrada) com os registros Qualis de periódicos do sistema
 	 */
 	@RequestMapping(value = "/periodicos", method = RequestMethod.GET)
-	public ResponseEntity<?> getPeriodicos(@RequestParam(value = "query", defaultValue = "") String query, Pageable pageable) {
+	public ResponseEntity<Page<QualisPeriodico>> getPeriodicos(@RequestParam(value = "query", defaultValue = "") String query, Pageable pageable) {
 		log.debug("REST request to get Periodicos: {}", pageable);
 
-		Page<QualisPeriodico> periodicos = null;
+		Page<QualisPeriodico> periodicos;
 		if (query.isEmpty()) {
 			periodicos = this.periodicoSearchRepository.findAll(pageable);
 		} else {
@@ -63,10 +63,10 @@ public class QualisResource {
 	 * GET /api/qualis/eventos -> Obtém uma lista (filtrada) com os registros Qualis de eventos do sistema
 	 */
 	@RequestMapping(value = "/eventos", method = RequestMethod.GET)
-	public ResponseEntity<?> getEventos(@RequestParam(value = "query", defaultValue = "") String query, Pageable pageable) {
+	public ResponseEntity<Page<QualisEvento>> getEventos(@RequestParam(value = "query", defaultValue = "") String query, Pageable pageable) {
 		log.debug("REST request to get Eventos: {}", pageable);
 
-		Page<QualisEvento> eventos = null;
+		Page<QualisEvento> eventos;
 
 		if (query.isEmpty()) {
 			eventos = this.eventoSearchRepository.findAll(pageable);
