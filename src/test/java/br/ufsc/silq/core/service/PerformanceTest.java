@@ -53,8 +53,15 @@ public class PerformanceTest extends WebContextTest {
 	 */
 	// @Test
 	public void testCompareExecutionMeanTime() throws SilqLattesException {
+		// Instruções:
+		// * Desabilitar @Cacheable de AvaliacaoService#avaliar antes de executar
 
-		int iterations = 10;
+		// Últimas médias calculadas:
+		// 525ms (10 iterações)
+		// 483ms (20 iterações)
+		// 402ms (50 iterações)
+
+		int iterations = 50;
 		double executionTotalTime = 0;
 
 		for (int i = 0; i < iterations; i++) {
@@ -66,7 +73,6 @@ public class PerformanceTest extends WebContextTest {
 			executionTotalTime += iterationTotal;
 		}
 
-		// Última média calculada: [1.5, 2] segundos com 10 iterações (varia conforme execução)
 		double mean = executionTotalTime / (iterations * 3);
 		log.info("Parsing + Comparing execution mean time: " + mean + " ms");
 	}
