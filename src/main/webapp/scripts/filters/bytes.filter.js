@@ -5,7 +5,7 @@ angular.module('silq2App')
     	return function(bytes, precision) {
             bytes = parseFloat(bytes);
 
-            if (bytes == 0) {
+            if (bytes === 0) {
                 return '0.0 bytes';
             }
 
@@ -21,5 +21,5 @@ angular.module('silq2App')
     		var number = Math.floor(Math.log(bytes) / Math.log(1024));
 
     		return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) +  ' ' + units[number];
-    	}
+    	};
     });
