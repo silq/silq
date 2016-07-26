@@ -1,6 +1,8 @@
 package br.ufsc.silq.core.data;
 
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.dto.Artigo;
@@ -29,15 +31,21 @@ public class AvaliacaoResult {
 
 	/**
 	 * Lista de artigos avaliados, contendo os respectivos {@link Conceito}s.
-	 * Usamos um TreeSet para manter a ordenação natural dos Artigos por ano, de forma decrescente.
 	 */
-	private TreeSet<Artigo> artigos = new TreeSet<>();
+	private List<Artigo> artigos = new ArrayList<>();
 
 	/**
 	 * Lista de trabalhos avaliados, contendo os respectivos {@link Conceito}s.
-	 * Usamos um TreeSet para manter a ordenação natural dos Trabalhos por ano, de forma decrescente.
 	 */
-	private TreeSet<Trabalho> trabalhos = new TreeSet<>();
+	private List<Trabalho> trabalhos = new ArrayList<>();
+
+	/**
+	 * Ordena os artigos e trabalhos deste resultado de avaliação.
+	 */
+	public void sort() {
+		Collections.sort(this.artigos);
+		Collections.sort(this.trabalhos);
+	}
 
 	public AvaliacaoStats getStats() {
 		return new AvaliacaoStats(this.artigos, this.trabalhos);

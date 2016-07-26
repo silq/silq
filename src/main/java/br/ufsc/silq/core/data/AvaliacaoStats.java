@@ -3,10 +3,8 @@ package br.ufsc.silq.core.data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -34,13 +32,13 @@ public class AvaliacaoStats {
 	 * Conjunto de artigos utilizados para gerar estas estatísticas.
 	 */
 	@JsonIgnore
-	private Set<Artigo> artigos = new HashSet<>();
+	private List<Artigo> artigos = new ArrayList<>();
 
 	/**
 	 * Conjunto de trabalhos utilizados para gerar estas estatísticas.
 	 */
 	@JsonIgnore
-	private Set<Trabalho> trabalhos = new HashSet<>();
+	private List<Trabalho> trabalhos = new ArrayList<>();
 
 	/**
 	 * Concatena um {@link AvaliacaoStats} ao objeto atual, unindo as respectivas listas de artigos e trabalhos
@@ -50,8 +48,8 @@ public class AvaliacaoStats {
 	 * @return Um novo objeto {@link AvaliacaoStats} contendo as estatísticas combinadas dos dois objetos.
 	 */
 	public AvaliacaoStats reduce(AvaliacaoStats o) {
-		HashSet<Artigo> copyArtigos = new HashSet<>(this.artigos);
-		HashSet<Trabalho> copyTrabalhos = new HashSet<>(this.trabalhos);
+		ArrayList<Artigo> copyArtigos = new ArrayList<>(this.artigos);
+		ArrayList<Trabalho> copyTrabalhos = new ArrayList<>(this.trabalhos);
 		copyArtigos.addAll(o.getArtigos());
 		copyTrabalhos.addAll(o.getTrabalhos());
 		return new AvaliacaoStats(copyArtigos, copyTrabalhos);

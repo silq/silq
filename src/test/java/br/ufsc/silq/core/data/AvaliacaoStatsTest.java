@@ -1,7 +1,6 @@
 package br.ufsc.silq.core.data;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -18,13 +17,13 @@ import br.ufsc.silq.core.parser.dto.Trabalho;
 public class AvaliacaoStatsTest {
 
 	private AvaliacaoStats stats;
-	private HashSet<Artigo> artigos;
-	private HashSet<Trabalho> trabalhos;
+	private List<Artigo> artigos;
+	private List<Trabalho> trabalhos;
 
 	@Before
 	public void setup() {
-		this.artigos = new HashSet<>();
-		this.trabalhos = new HashSet<>();
+		this.artigos = new ArrayList<>();
+		this.trabalhos = new ArrayList<>();
 
 		this.artigos.add(new Artigo("Artigo 1", 2014, "Veículo 1", "1111-111X"));
 		this.artigos.add(new Artigo("Artigo 2", 2000, "Veículo 2", "2222-222X"));
@@ -116,8 +115,8 @@ public class AvaliacaoStatsTest {
 	}
 
 	private AvaliacaoStats createStats2() {
-		HashSet<Artigo> novosArtigos = new HashSet<>();
-		HashSet<Trabalho> novosTrabalhos = new HashSet<>();
+		List<Artigo> novosArtigos = new ArrayList<>();
+		List<Trabalho> novosTrabalhos = new ArrayList<>();
 
 		novosArtigos.add(new Artigo("Artigo99", 1999, "99' show of articles", "9999-999X"));
 		novosArtigos.add(new Artigo("Artigo00", 2000, "00' show of articles", "0000-000X"));
@@ -149,6 +148,7 @@ public class AvaliacaoStatsTest {
 	public void testEqualityOfReduce() {
 		AvaliacaoStats reduced1 = this.stats.reduce(this.createStats2());
 		AvaliacaoStats reduced2 = this.createStats2().reduce(this.stats);
-		Assertions.assertThat(reduced2).isEqualTo(reduced1);
+		Assertions.assertThat(reduced2.getArtigos()).containsOnlyElementsOf(reduced1.getArtigos());
+		Assertions.assertThat(reduced2.getTrabalhos()).containsOnlyElementsOf(reduced1.getTrabalhos());
 	}
 }
