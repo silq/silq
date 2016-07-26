@@ -1,9 +1,6 @@
 package br.ufsc.silq.core.service;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,7 +11,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.sql.DataSource;
 import javax.validation.Valid;
 
 import org.springframework.cache.annotation.Cacheable;
@@ -49,9 +45,6 @@ import lombok.Getter;
 @Transactional(readOnly = true)
 public class AvaliacaoService {
 
-	@Inject
-	private DataSource dataSource;
-
 	@PersistenceContext
 	private EntityManager em;
 
@@ -60,6 +53,8 @@ public class AvaliacaoService {
 
 	@Inject
 	private LattesParser lattesParser;
+
+	private Float similarityThreshold = Float.valueOf(-1);
 
 	/**
 	 * Avalia um currículo lattes.
@@ -190,24 +185,18 @@ public class AvaliacaoService {
 	 */
 	public List<Conceito> getConceitos(String tituloVeiculo, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
 		this.setSimilarityThreshold(avaliarForm.getNivelSimilaridade().getValue());
-		String tituloNormalizado = SilqStringUtils.normalizeString(tituloVeiculo);
 
-		List<Conceito> conceitos = new ArrayList<>();
+		String sqlStatement = this.createSqlStatement(tipoAvaliacao);
 
-		Connection connection = this.dataSource.getConnection();
-		Statement st = connection.createStatement();
-		String sqlStatement = this.createSqlStatement(tipoAvaliacao, tituloNormalizado, avaliarForm.getArea(), SilqConfig.MAX_PARSE_RESULTS);
-		ResultSet rs = st.executeQuery(sqlStatement);
+		Query query = this.em.createNativeQuery(sqlStatement);
+		query.setParameter(1, SilqStringUtils.normalizeString(tituloVeiculo));
+		query.setParameter(2, avaliarForm.getArea().toUpperCase());
+		query.setParameter(3, SilqConfig.MAX_SIMILARITY_RESULTS);
 
-		while (rs.next()) {
-			conceitos.add(this.createConceito(rs));
-		}
-
-		rs.close();
-		st.close();
-		connection.close();
-
-		return conceitos;
+		List<Object[]> results = query.getResultList();
+		return results.stream()
+				.map(obj -> new Conceito((String) obj[0], (String) obj[1], new NivelSimilaridade((Float) obj[2]), (Integer) obj[3]))
+				.collect(Collectors.toList());
 	}
 
 	/**
@@ -216,38 +205,27 @@ public class AvaliacaoService {
 	 * @param value Valor numérico de 0 a 1 representando o threshold de similaridade.
 	 */
 	private void setSimilarityThreshold(Float value) {
-		Query query = this.em.createNativeQuery("SELECT set_limit((?1))");
-		query.setParameter(1, value);
-		query.getSingleResult();
+		if (!this.similarityThreshold.equals(value)) {
+			Query query = this.em.createNativeQuery("SELECT set_limit((?1))");
+			query.setParameter(1, value);
+			query.getSingleResult();
+			this.similarityThreshold = value;
+		}
 	}
 
 	/**
-	 * Cria um conceito a partir de um ResultSet.
-	 *
-	 * @param rs
-	 * @return
-	 * @throws SQLException
-	 */
-	protected Conceito createConceito(ResultSet rs) throws SQLException {
-		return new Conceito(rs.getString("NO_TITULO"), rs.getString("NO_ESTRATO"),
-				new NivelSimilaridade(rs.getFloat("SML")), rs.getInt("NU_ANO"));
-	}
-
-	/**
-	 * Cria uma instrução SQL (Postgres) que, ao executada, retorna os veículos mais similares ao artigo ou trabalho parâmetro.
+	 * Cria uma query SQL (Postgres) parametrizada que, ao executada, retorna os veículos mais similares ao artigo ou trabalho parâmetro.
 	 *
 	 * @param tipoAvaliacao Tipo de avaliação.
-	 * @param tituloVeiculo Título do veículo onde o artigo ou trabalho foi publicado/apresentado.
-	 * @param area Área de avaliação a ser utilizada.
-	 * @param limit Número máximo de registros similares a serem retornados.
 	 * @return Uma instrução SQL que utiliza a função de similaridade do PostgreSQL.
 	 */
-	protected String createSqlStatement(TipoAvaliacao tipoAvaliacao, String tituloVeiculo, String area, int limit) {
+	protected String createSqlStatement(TipoAvaliacao tipoAvaliacao) {
 		String sql = "";
-		sql += "SELECT *, SIMILARITY(NO_TITULO, \'" + tituloVeiculo + "\') AS SML";
-		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % \'" + tituloVeiculo + "\'";
-		sql += " AND NO_AREA_AVALIACAO LIKE \'%" + area.toUpperCase() + "\'";
-		sql += " ORDER BY SML DESC LIMIT " + limit;
+		sql += "SELECT NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
+		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % ?1";
+		sql += " AND NO_AREA_AVALIACAO = ?2"; // TODO(bonetti): verificar se nomes das áreas batem no banco e no cliente
+												// TODO(bonetti): criar índice no banco para área de avaliação
+		sql += " ORDER BY SML DESC LIMIT ?3";
 		return sql;
 	}
 
