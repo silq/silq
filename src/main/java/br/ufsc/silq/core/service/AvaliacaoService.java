@@ -16,7 +16,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQuery;
 
 import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.data.AvaliacaoCollectionResult;
@@ -147,11 +147,14 @@ public class AvaliacaoService {
 
 	private Artigo avaliarArtigoPorIssn(Artigo artigo, @Valid AvaliarForm avaliarForm) {
 		QQualisPeriodico path = QQualisPeriodico.qualisPeriodico;
-		BooleanExpression query = path.issn.eq(artigo.getIssn())
-				.and(path.areaAvaliacao.eq(avaliarForm.getArea().toUpperCase()));
 
-		Iterable<QualisPeriodico> results = this.qualisPeriodicoRepository.findAll(query,
-				path.ano.subtract(artigo.getAno()).abs().asc());
+		JPAQuery<QualisPeriodico> query = new JPAQuery<>(this.em);
+		query.from(path);
+		query.where(path.issn.eq(artigo.getIssn()));
+		query.where(path.areaAvaliacao.eq(avaliarForm.getArea().toUpperCase()));
+		query.orderBy(path.ano.subtract(artigo.getAno()).abs().asc());
+		query.limit(SilqConfig.MAX_SIMILARITY_RESULTS);
+		List<QualisPeriodico> results = query.fetch();
 
 		List<Conceito> conceitos = new ArrayList<>();
 		for (QualisPeriodico result : results) {
