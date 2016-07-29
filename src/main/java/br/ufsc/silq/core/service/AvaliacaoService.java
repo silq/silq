@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -126,8 +127,7 @@ public class AvaliacaoService {
 	}
 
 	public Artigo avaliarArtigo(Artigo artigo, @Valid AvaliarForm avaliarForm) {
-		if (artigo.getIssn().isEmpty()) {
-			// TODO (bonetti): Ordenar por ano aqui também
+		if (StringUtils.isBlank(artigo.getIssn())) {
 			return this.avaliarArtigoPorSimilaridade(artigo, avaliarForm);
 		} else {
 			return this.avaliarArtigoPorIssn(artigo, avaliarForm);
@@ -209,7 +209,7 @@ public class AvaliacaoService {
 	 */
 	private void setSimilarityThreshold(Float value) {
 		if (!this.similarityThreshold.equals(value)) {
-			Query query = this.em.createNativeQuery("SELECT set_limit((?1))");
+			Query query = this.em.createNativeQuery("SELECT set_limit(?1)");
 			query.setParameter(1, value);
 			query.getSingleResult();
 			this.similarityThreshold = value;
@@ -218,6 +218,10 @@ public class AvaliacaoService {
 
 	/**
 	 * Cria uma query SQL (Postgres) parametrizada que, ao executada, retorna os veículos mais similares ao artigo ou trabalho parâmetro.
+	 * Parâmetros da query:
+	 * ?1: Título do veículo (Exemplo: Journal of Integrated Circuits and Systems)
+	 * ?2: Nome da área de avaliação (Exemplo: CIÊNCIA DA COMPUTAÇÃO)
+	 * ?3: Limit da query (número máximo de resultados a serem retornados)
 	 *
 	 * @param tipoAvaliacao Tipo de avaliação.
 	 * @return Uma instrução SQL que utiliza a função de similaridade do PostgreSQL.
@@ -226,8 +230,7 @@ public class AvaliacaoService {
 		String sql = "";
 		sql += "SELECT NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
 		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % ?1";
-		sql += " AND NO_AREA_AVALIACAO = ?2"; // TODO(bonetti): verificar se nomes das áreas batem no banco e no cliente
-												// TODO(bonetti): criar índice no banco para área de avaliação
+		sql += " AND NO_AREA_AVALIACAO = ?2";
 		sql += " ORDER BY SML DESC LIMIT ?3";
 		return sql;
 	}
