@@ -14,9 +14,9 @@ import com.google.common.base.Supplier;
 public class CacheAssert extends AbstractAssert<CacheAssert, Supplier<?>> {
 
 	/**
-	 * O valor padrão de quão rápido deve ser a segunda execução do método.
+	 * O valor padrão de quantas vezes mais rápida, no mínimo, deve ser a segunda execução do método.
 	 */
-	private static final int DEFAULT_TIMES_FASTER = 25;
+	private static final int DEFAULT_TIMES_FASTER = 10;
 
 	public CacheAssert(Supplier<?> actual) {
 		super(actual, CacheAssert.class);
