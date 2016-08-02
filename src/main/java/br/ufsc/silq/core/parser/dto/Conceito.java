@@ -17,7 +17,7 @@ public class Conceito implements Comparable<Conceito> {
 
 	@Override
 	public int compareTo(Conceito o) {
-		return o.getSimilaridade().compareTo(this.getSimilaridade());
+		return this.getSimilaridade().compareTo(o.getSimilaridade());
 	}
 
 	@Data

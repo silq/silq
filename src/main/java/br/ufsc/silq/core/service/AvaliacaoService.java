@@ -13,8 +13,8 @@ import javax.persistence.Query;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.querydsl.jpa.impl.JPAQuery;
@@ -36,25 +36,21 @@ import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.QQualisPeriodico;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
-import br.ufsc.silq.core.persistence.repository.QualisPeriodicoRepository;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Transactional(readOnly = true)
+@Slf4j
 public class AvaliacaoService {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Inject
-	private QualisPeriodicoRepository qualisPeriodicoRepository;
-
-	@Inject
 	private LattesParser lattesParser;
-
-	private Float similarityThreshold = Float.valueOf(-1);
 
 	/**
 	 * Avalia um currículo lattes.
@@ -64,7 +60,8 @@ public class AvaliacaoService {
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
 	 * @throws SilqError Caso haja um erro no parsing ou avaliação do currículo.
 	 */
-	@Cacheable(cacheNames = "avaliacoes")
+	// TODO (bonetti): cache está fazendo resultados oscilarem!
+	// @Cacheable(cacheNames = "avaliacoes")
 	public AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm) {
 		ParseResult parseResult = null;
 		try {
@@ -126,22 +123,17 @@ public class AvaliacaoService {
 		return result;
 	}
 
+	@SuppressWarnings("unused")
 	public Artigo avaliarArtigo(Artigo artigo, @Valid AvaliarForm avaliarForm) {
-		if (StringUtils.isBlank(artigo.getIssn())) {
-			return this.avaliarArtigoPorSimilaridade(artigo, avaliarForm);
-		} else {
-			return this.avaliarArtigoPorIssn(artigo, avaliarForm);
+		if (StringUtils.isNotBlank(artigo.getIssn())) {
+			artigo = this.avaliarArtigoPorIssn(artigo, avaliarForm);
 		}
-	}
 
-	private Artigo avaliarArtigoPorSimilaridade(Artigo artigo, @Valid AvaliarForm avaliarForm) {
-		List<Conceito> conceitos = new ArrayList<>();
-		try {
-			conceitos = this.getConceitos(artigo.getTituloVeiculo(), avaliarForm, TipoAvaliacao.PERIODICO);
-		} catch (SQLException e) {
-			throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
+		if (SilqConfig.AVALIAR_ARTIGO_POR_SIMILARIDADE && !artigo.hasConceito()) {
+			// Se não encontrou conceito por ISSN, busca por similaridade de título
+			artigo = this.avaliarArtigoPorSimilaridade(artigo, avaliarForm);
 		}
-		artigo.addConceitos(conceitos);
+
 		return artigo;
 	}
 
@@ -165,10 +157,21 @@ public class AvaliacaoService {
 		return artigo;
 	}
 
+	private Artigo avaliarArtigoPorSimilaridade(Artigo artigo, @Valid AvaliarForm avaliarForm) {
+		List<Conceito> conceitos = new ArrayList<>();
+		try {
+			conceitos = this.getConceitos(artigo, avaliarForm, TipoAvaliacao.PERIODICO);
+		} catch (SQLException e) {
+			throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
+		}
+		artigo.addConceitos(conceitos);
+		return artigo;
+	}
+
 	public Trabalho avaliarTrabalho(Trabalho trabalho, @Valid AvaliarForm avaliarForm) {
 		List<Conceito> conceitos;
 		try {
-			conceitos = this.getConceitos(trabalho.getTituloVeiculo(), avaliarForm, TipoAvaliacao.EVENTO);
+			conceitos = this.getConceitos(trabalho, avaliarForm, TipoAvaliacao.EVENTO);
 		} catch (SQLException e) {
 			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
 		}
@@ -178,61 +181,49 @@ public class AvaliacaoService {
 	}
 
 	/**
+	 * Seta o nível de similaridade mínimo (threshold) que será usado para as queries de similaridade no banco.
+	 *
+	 * @param value Valor numérico de 0 a 1 representando o threshold de similaridade.
+	 * @return The value set.
+	 */
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	public Float setSimilarityThreshold(Float value) {
+		// TODO (bonetti): bug da similaridade que não se altera
+		Query query = this.em.createNativeQuery("SELECT set_limit(?1)");
+		query.setParameter(1, value);
+		Float result = (Float) query.getSingleResult();
+		log.trace("Similarity threshold set to {}", result);
+		return result;
+	}
+
+	/**
 	 * Obtém os conceitos de um evento ou periódico realizando uma busca por similaridade na base Qualis.
 	 *
-	 * @param tituloVeiculo Título do evento ou periódico que deseja-se avaliar.
+	 * @param trabalho Trabalho a ser avaliado (deve conter título do veículo e ano).
 	 * @param avaliarForm Opções de avaliação.
 	 * @param tipoAvaliacao Tipo de avaliação (altera a tabela do banco a ser consultada).
 	 * @return A lista de conceitos do veículo.
 	 * @throws SQLException Caso haja um erro ao executar o SQL.
 	 */
-	public List<Conceito> getConceitos(String tituloVeiculo, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
+	public List<Conceito> getConceitos(Trabalho trabalho, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
 		this.setSimilarityThreshold(avaliarForm.getNivelSimilaridade().getValue());
 
-		String sqlStatement = this.createSqlStatement(tipoAvaliacao);
+		String sql = "SELECT NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
+		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % ?1";
+		sql += " AND NO_AREA_AVALIACAO = ?2";
+		sql += " ORDER BY SML DESC, ABS(NU_ANO - ?3) ASC";
+		sql += " LIMIT ?4";
 
-		Query query = this.em.createNativeQuery(sqlStatement);
-		query.setParameter(1, SilqStringUtils.normalizeString(tituloVeiculo));
+		Query query = this.em.createNativeQuery(sql);
+		query.setParameter(1, SilqStringUtils.normalizeString(trabalho.getTituloVeiculo()));
 		query.setParameter(2, avaliarForm.getArea().toUpperCase());
-		query.setParameter(3, SilqConfig.MAX_SIMILARITY_RESULTS);
+		query.setParameter(3, trabalho.getAno());
+		query.setParameter(4, SilqConfig.MAX_SIMILARITY_RESULTS);
 
 		List<Object[]> results = query.getResultList();
 		return results.stream()
 				.map(obj -> new Conceito((String) obj[0], (String) obj[1], new NivelSimilaridade((Float) obj[2]), (Integer) obj[3]))
 				.collect(Collectors.toList());
-	}
-
-	/**
-	 * Seta o nível de similaridade mínimo (threshold) que será usado para as queries de similaridade no banco.
-	 *
-	 * @param value Valor numérico de 0 a 1 representando o threshold de similaridade.
-	 */
-	private void setSimilarityThreshold(Float value) {
-		if (!this.similarityThreshold.equals(value)) {
-			Query query = this.em.createNativeQuery("SELECT set_limit(?1)");
-			query.setParameter(1, value);
-			query.getSingleResult();
-			this.similarityThreshold = value;
-		}
-	}
-
-	/**
-	 * Cria uma query SQL (Postgres) parametrizada que, ao executada, retorna os veículos mais similares ao artigo ou trabalho parâmetro.
-	 * Parâmetros da query:
-	 * ?1: Título do veículo (Exemplo: Journal of Integrated Circuits and Systems)
-	 * ?2: Nome da área de avaliação (Exemplo: CIÊNCIA DA COMPUTAÇÃO)
-	 * ?3: Limit da query (número máximo de resultados a serem retornados)
-	 *
-	 * @param tipoAvaliacao Tipo de avaliação.
-	 * @return Uma instrução SQL que utiliza a função de similaridade do PostgreSQL.
-	 */
-	protected String createSqlStatement(TipoAvaliacao tipoAvaliacao) {
-		String sql = "";
-		sql += "SELECT NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
-		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % ?1";
-		sql += " AND NO_AREA_AVALIACAO = ?2";
-		sql += " ORDER BY SML DESC LIMIT ?3";
-		return sql;
 	}
 
 	/**

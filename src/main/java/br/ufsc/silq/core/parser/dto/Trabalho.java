@@ -60,6 +60,6 @@ public class Trabalho implements Comparable<Trabalho> {
 	 */
 	@JsonIgnore
 	public Conceito getConceitoMaisSimilar() {
-		return this.conceitos.isEmpty() ? null : this.conceitos.get(0);
+		return this.conceitos.stream().max((c1, c2) -> c1.compareTo(c2)).orElse(null);
 	}
 }
