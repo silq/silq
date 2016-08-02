@@ -1,5 +1,7 @@
 package br.ufsc.silq.core.service;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
@@ -55,6 +57,7 @@ public class FeedbackService {
 		feedback.setQuery(form.getQuery());
 		feedback.setUsuario(usuario);
 		feedback.setEvento(evento);
+		feedback.setDate(new Date());
 		this.feedbackEventoRepo.save(feedback);
 		return feedback;
 	}
@@ -77,6 +80,7 @@ public class FeedbackService {
 		feedback.setQuery(form.getQuery());
 		feedback.setUsuario(usuario);
 		feedback.setPeriodico(periodico);
+		feedback.setDate(new Date());
 		this.feedbackPeriodicoRepo.save(feedback);
 		return feedback;
 	}

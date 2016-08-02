@@ -1,5 +1,7 @@
 package br.ufsc.silq.core.service;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.assertj.core.api.Assertions;
@@ -57,6 +59,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(feedback.getQuery()).isEqualTo(this.feedbackEventoForm.getQuery());
 		Assertions.assertThat(feedback.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback.getEvento()).isEqualTo(this.evento);
+		Assertions.assertThat(feedback.getDate()).isCloseTo(new Date(), 1000);
 	}
 
 	@Test
@@ -67,6 +70,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(feedback.getQuery()).isEqualTo(this.feedbackPeriodicoForm.getQuery());
 		Assertions.assertThat(feedback.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback.getPeriodico()).isEqualTo(this.periodico);
+		Assertions.assertThat(feedback.getDate()).isCloseTo(new Date(), 1000);
 	}
 
 	@Test
@@ -80,6 +84,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(feedback2.getQuery()).isEqualTo(this.feedbackEventoForm.getQuery());
 		Assertions.assertThat(feedback2.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback2.getEvento()).isEqualTo(this.evento);
+		Assertions.assertThat(feedback2.getDate()).isCloseTo(new Date(), 1000);
 	}
 
 	@Test
@@ -93,5 +98,6 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(feedback2.getQuery()).isEqualTo(this.feedbackPeriodicoForm.getQuery());
 		Assertions.assertThat(feedback2.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback2.getPeriodico()).isEqualTo(this.periodico);
+		Assertions.assertThat(feedback2.getDate()).isCloseTo(new Date(), 1000);
 	}
 }

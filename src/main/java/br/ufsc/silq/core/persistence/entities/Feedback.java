@@ -1,5 +1,7 @@
 package br.ufsc.silq.core.persistence.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -39,4 +41,7 @@ public abstract class Feedback {
 	@ManyToOne
 	@JoinColumn(name = "co_usuario")
 	private Usuario usuario;
+
+	@Column(name = "dt_feedback")
+	private Date date;
 }

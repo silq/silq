@@ -195,7 +195,8 @@ CREATE TABLE tb_feedback (
     ds_query character varying(500) NOT NULL,
     co_evento numeric(19,0),
     co_periodico numeric(19,0),
-    co_usuario numeric(19,0) NOT NULL
+    co_usuario numeric(19,0) NOT NULL,
+    dt_feedback timestamp without time zone NOT NULL
 );
 
 
