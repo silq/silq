@@ -82,6 +82,20 @@ CREATE SEQUENCE sq_curriculum_lattes
 ALTER TABLE sq_curriculum_lattes OWNER TO postgres;
 
 --
+-- Name: sq_feedback; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE sq_feedback
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE sq_feedback OWNER TO postgres;
+
+--
 -- Name: sq_grupo; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -138,20 +152,6 @@ CREATE SEQUENCE sq_qualis_periodico
 ALTER TABLE sq_qualis_periodico OWNER TO postgres;
 
 --
--- Name: sq_qualis_periodico_antigo; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE sq_qualis_periodico_antigo
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE sq_qualis_periodico_antigo OWNER TO postgres;
-
---
 -- Name: sq_usuario; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -184,6 +184,22 @@ CREATE TABLE tb_curriculum_lattes (
 
 
 ALTER TABLE tb_curriculum_lattes OWNER TO postgres;
+
+--
+-- Name: tb_feedback; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_feedback (
+    co_seq_feedback numeric(19,0) DEFAULT nextval('sq_feedback'::regclass) NOT NULL,
+    co_tipo character(1) NOT NULL,
+    ds_query character varying(500) NOT NULL,
+    co_evento numeric(19,0),
+    co_periodico numeric(19,0),
+    co_usuario numeric(19,0) NOT NULL
+);
+
+
+ALTER TABLE tb_feedback OWNER TO postgres;
 
 --
 -- Name: tb_grupo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -292,6 +308,14 @@ ALTER TABLE ONLY rl_autoridade_usuario
 
 
 --
+-- Name: tb_feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_feedback
+    ADD CONSTRAINT tb_feedback_pkey PRIMARY KEY (co_seq_feedback);
+
+
+--
 -- Name: tb_grupo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -385,6 +409,30 @@ ALTER TABLE ONLY rl_grupo_pesquisador
 
 ALTER TABLE ONLY rl_grupo_pesquisador
     ADD CONSTRAINT fk_rl_grupo_pesquisador_grupo_fkey FOREIGN KEY (co_grupo) REFERENCES tb_grupo(co_seq_grupo);
+
+
+--
+-- Name: tb_feedback_co_evento_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tb_feedback
+    ADD CONSTRAINT tb_feedback_co_evento_fkey FOREIGN KEY (co_evento) REFERENCES tb_qualis_evento(co_seq_qualis_evento);
+
+
+--
+-- Name: tb_feedback_co_periodico_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tb_feedback
+    ADD CONSTRAINT tb_feedback_co_periodico_fkey FOREIGN KEY (co_periodico) REFERENCES tb_qualis_periodico(co_seq_periodico);
+
+
+--
+-- Name: tb_feedback_co_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tb_feedback
+    ADD CONSTRAINT tb_feedback_co_usuario_fkey FOREIGN KEY (co_usuario) REFERENCES tb_usuario(co_seq_usuario);
 
 
 --
