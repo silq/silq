@@ -57,11 +57,9 @@ public class PerformanceTest extends WebContextTest {
 		// * Desabilitar @Cacheable de AvaliacaoService#avaliar antes de executar
 
 		// Últimas médias calculadas:
-		// 525ms (10 iterações)
-		// 483ms (20 iterações)
-		// 402ms (50 iterações)
+		// 514ms (30 iterações)
 
-		int iterations = 50;
+		int iterations = 30;
 		double executionTotalTime = 0;
 
 		for (int i = 0; i < iterations; i++) {
