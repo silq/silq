@@ -12,6 +12,6 @@ public class SilqConfig {
 	 * do veículo (equivalente à avaliação de trabalhos) caso a avaliação por ISSN não retorne nenhum conceito.
 	 * TODO (bonetti): provar que isso ajuda
 	 */
-	public static final boolean AVALIAR_ARTIGO_POR_SIMILARIDADE = true;
+	public static final boolean AVALIAR_ARTIGO_POR_SIMILARIDADE = false;
 
 }

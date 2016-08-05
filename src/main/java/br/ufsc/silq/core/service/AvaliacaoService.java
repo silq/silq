@@ -125,16 +125,20 @@ public class AvaliacaoService {
 
 	@SuppressWarnings("unused")
 	public Artigo avaliarArtigo(Artigo artigo, @Valid AvaliarForm avaliarForm) {
+		// Criamos uma cópia do artigo para realizar a avaliação assim não modificamos o objeto Artigo
+		// em cache retornado por LattesParser#parseCurriculum
+		Artigo artigoConceituado = artigo.copy();
+
 		if (StringUtils.isNotBlank(artigo.getIssn())) {
-			artigo = this.avaliarArtigoPorIssn(artigo, avaliarForm);
+			artigoConceituado = this.avaliarArtigoPorIssn(artigoConceituado, avaliarForm);
 		}
 
-		if (SilqConfig.AVALIAR_ARTIGO_POR_SIMILARIDADE && !artigo.hasConceito()) {
+		if (SilqConfig.AVALIAR_ARTIGO_POR_SIMILARIDADE && !artigoConceituado.hasConceito()) {
 			// Se não encontrou conceito por ISSN, busca por similaridade de título
-			artigo = this.avaliarArtigoPorSimilaridade(artigo, avaliarForm);
+			artigoConceituado = this.avaliarArtigoPorSimilaridade(artigoConceituado, avaliarForm);
 		}
 
-		return artigo;
+		return artigoConceituado;
 	}
 
 	private Artigo avaliarArtigoPorIssn(Artigo artigo, @Valid AvaliarForm avaliarForm) {
@@ -176,8 +180,11 @@ public class AvaliacaoService {
 			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
 		}
 
-		trabalho.addConceitos(conceitos);
-		return trabalho;
+		// Criamos uma cópia do trabalho para realizar a avaliação assim não modificamos o objeto Trabalho
+		// em cache retornado por LattesParser#parseCurriculum
+		Trabalho trabalhoConceituado = trabalho.copy();
+		trabalhoConceituado.addConceitos(conceitos);
+		return trabalhoConceituado;
 	}
 
 	/**

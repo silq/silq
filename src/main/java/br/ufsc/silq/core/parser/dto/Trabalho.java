@@ -12,12 +12,12 @@ import lombok.Setter;
 
 @Data
 public class Trabalho implements Comparable<Trabalho> {
-	private final String titulo;
-	private final Integer ano;
-	private final String tituloVeiculo;
+	protected final String titulo;
+	protected final Integer ano;
+	protected final String tituloVeiculo;
 
 	@Setter(value = AccessLevel.PROTECTED)
-	private List<Conceito> conceitos = new ArrayList<>();
+	protected List<Conceito> conceitos = new ArrayList<>();
 
 	@Override
 	public int compareTo(Trabalho o) {
@@ -61,5 +61,16 @@ public class Trabalho implements Comparable<Trabalho> {
 	@JsonIgnore
 	public Conceito getConceitoMaisSimilar() {
 		return this.conceitos.stream().max((c1, c2) -> c1.compareTo(c2)).orElse(null);
+	}
+
+	/**
+	 * Cria uma cópia exata do trabalho.
+	 *
+	 * @return Um novo objeto {@link Trabalho} contendo valores idênticos ao original.
+	 */
+	public Trabalho copy() {
+		Trabalho novo = new Trabalho(this.titulo, this.ano, this.tituloVeiculo);
+		novo.setConceitos(new ArrayList<>(this.getConceitos()));
+		return novo;
 	}
 }

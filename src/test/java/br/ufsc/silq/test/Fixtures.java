@@ -24,6 +24,7 @@ public class Fixtures {
 	private static final String RONALDO_ZIP = RONALDO_XML + ".zip";
 	private static final String GUNTZEL_ZIP = BASE_PATH + "guntzel.zip";
 	private static final String MARCIO_ZIP = BASE_PATH + "marcio.castro.zip";
+	private static final String MAURICIO_ZIP = BASE_PATH + "mauricio.zip";
 
 	public static final MockMultipartFile ERROR_XML_UPLOAD = createMockUpload(ERROR_XML);
 	public static final MockMultipartFile EMPTY_XML_UPLOAD = createMockUpload(EMPTY_XML);
@@ -39,6 +40,7 @@ public class Fixtures {
 	public static final MockMultipartFile RONALDO_ZIP_UPLOAD = createMockZipUpload(RONALDO_ZIP);
 	public static final MockMultipartFile GUNTZEL_ZIP_UPLOAD = createMockZipUpload(GUNTZEL_ZIP);
 	public static final MockMultipartFile MARCIO_ZIP_UPLOAD = createMockZipUpload(MARCIO_ZIP);
+	public static final MockMultipartFile MAURICIO_ZIP_UPLOAD = createMockZipUpload(MAURICIO_ZIP);
 
 	public static MockMultipartFile createMockUpload(String filepath) {
 		return createMockUpload(filepath, "application/xml");

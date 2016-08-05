@@ -11,6 +11,10 @@ import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.GrupoForm;
+import br.ufsc.silq.core.parser.LattesParser;
+import br.ufsc.silq.core.parser.dto.Artigo;
+import br.ufsc.silq.core.parser.dto.ParseResult;
+import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.Grupo;
 import br.ufsc.silq.test.Fixtures;
@@ -26,6 +30,9 @@ public class AvaliacaoServiceTest extends WebContextTest {
 
 	@Inject
 	GrupoService grupoService;
+
+	@Inject
+	LattesParser lattesParser;
 
 	private AvaliarForm avaliarForm;
 
@@ -47,6 +54,32 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		Assertions.assertThat(result.getStats().getTotalizador()).isNotEmpty();
 		Assertions.assertThat(result.getArtigos().get(0).hasConceito()).isTrue();
 		Assertions.assertThat(result.getTrabalhos().get(0).hasConceito()).isTrue();
+	}
+
+	@Test
+	public void testAvaliarArtigo() throws SilqException {
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.MAURICIO_ZIP_UPLOAD);
+		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
+		Artigo artigo = parseResult.getArtigos().stream().findAny().get();
+
+		Artigo artigoAvaliado = this.avaliacaoService.avaliarArtigo(artigo, this.avaliarForm);
+
+		// Artigo avaliado deve ser uma cópia do parâmetro
+		Assertions.assertThat(artigoAvaliado).isNotSameAs(artigo);
+		Assertions.assertThat(artigo.getConceitos()).isEmpty();
+	}
+
+	@Test
+	public void testAvaliarTrabalho() throws SilqException {
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.MAURICIO_ZIP_UPLOAD);
+		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
+		Trabalho trabalho = parseResult.getTrabalhos().stream().findAny().get();
+
+		Trabalho trabalhoAvaliado = this.avaliacaoService.avaliarTrabalho(trabalho, this.avaliarForm);
+
+		// Trabalho avaliado deve ser uma cópia do parâmetro
+		Assertions.assertThat(trabalhoAvaliado).isNotSameAs(trabalho);
+		Assertions.assertThat(trabalho.getConceitos()).isEmpty();
 	}
 
 	@Test
