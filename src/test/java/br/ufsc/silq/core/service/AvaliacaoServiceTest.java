@@ -19,6 +19,7 @@ import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.Grupo;
 import br.ufsc.silq.test.Fixtures;
 import br.ufsc.silq.test.WebContextTest;
+import br.ufsc.silq.test.asserts.CacheAssert;
 
 public class AvaliacaoServiceTest extends WebContextTest {
 
@@ -85,11 +86,10 @@ public class AvaliacaoServiceTest extends WebContextTest {
 	@Test
 	public void testAvaliarCache() throws SilqException {
 		Assertions.assertThat(true).isTrue();
-		// TODO (bonetti): descomentar depois de arrumar a cache
-		// CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
-		// CacheAssert.assertThat(() -> {
-		// return this.avaliacaoService.avaliar(lattes, this.avaliarForm);
-		// }).isCached();
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
+		CacheAssert.assertThat(() -> {
+			return this.avaliacaoService.avaliar(lattes, this.avaliarForm);
+		}).isCached();
 	}
 
 	@Test

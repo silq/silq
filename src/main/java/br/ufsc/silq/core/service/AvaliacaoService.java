@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,7 +58,7 @@ public class AvaliacaoService {
 	 * Ao setar um novo threshold via {@link #setSimilarityThreshold(Float)} guardamos o valor setado aqui
 	 * para que novas chamadas a este método não resultem em queries desnecessárias caso o valor não tenha sido alterado.
 	 */
-	private Float similarityThreshold = NivelSimilaridade.NORMAL.getValue();
+	private Float similarityThreshold = Float.valueOf(-1);
 
 	/**
 	 * Avalia um currículo lattes.
@@ -67,8 +68,7 @@ public class AvaliacaoService {
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
 	 * @throws SilqError Caso haja um erro no parsing ou avaliação do currículo.
 	 */
-	// TODO (bonetti): cache está fazendo resultados oscilarem!
-	// @Cacheable(cacheNames = "avaliacoes")
+	@Cacheable(cacheNames = "avaliacoes", key = "{ #lattes.id, #avaliarForm.hashCode() }")
 	public AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm) {
 		ParseResult parseResult = null;
 		try {
