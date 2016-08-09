@@ -259,6 +259,10 @@ public class AvaliacaoService {
 		 * Nome da tabela utilizada para avaliação.
 		 */
 		private final String table;
+
+		/**
+		 * Nome da coluna chave primária da tabela.
+		 */
 		private final String pk;
 	}
 }
