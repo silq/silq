@@ -68,10 +68,9 @@ public class LattesParser {
 			AreaConhecimento areaConhecimento = new AreaConhecimento();
 			areaConhecimento.setNomeArea(SilqStringUtils.setHifenIfVazio(areas.get(0)));
 			areaConhecimento.setNomeGrandeArea(SilqStringUtils.setHifenIfVazio(areas.get(3)));
-
-			dadosGeraisResult.setNomeEspecialidade(SilqStringUtils.setHifenIfVazio(areas.get(1)));
-			dadosGeraisResult.setNomeSubAreaConhecimento(SilqStringUtils.setHifenIfVazio(areas.get(2)));
-			dadosGeraisResult.setAreaGrandeAreaConhecimento(areaConhecimento);
+			areaConhecimento.setNomeEspecialidade(SilqStringUtils.setHifenIfVazio(areas.get(1)));
+			areaConhecimento.setNomeSubAreaConhecimento(SilqStringUtils.setHifenIfVazio(areas.get(2)));
+			dadosGeraisResult.setAreaConhecimento(areaConhecimento);
 		}
 
 		List<String> nomeList = AttributeGetter.iterateNodes(ParserSets.NOME_SET, nodoRaiz);

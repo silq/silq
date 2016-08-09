@@ -4,15 +4,15 @@ import java.util.Date;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(of = { "nome", "idCurriculo" })
+@EqualsAndHashCode(of = { "idCurriculo", "ultimaAtualizacao" })
+@ToString(of = { "nome", "idCurriculo" })
 public class DadosGeraisResult {
 	private String nome;
 	private String idCurriculo;
-	private AreaConhecimento areaGrandeAreaConhecimento = new AreaConhecimento();
-	private String nomeEspecialidade;
-	private String nomeSubAreaConhecimento;
+	private AreaConhecimento areaConhecimento = new AreaConhecimento();
 	private TipoOrigemCurriculo tipoOrigemCurriculo;
 	private Date ultimaAtualizacao;
 }

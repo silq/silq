@@ -52,9 +52,10 @@ public class LattesParserTest extends WebContextTest {
 		// System.out.println(dados);
 
 		Assertions.assertThat(dados.getNome()).isEqualTo("Christiane Anneliese Gresse von Wangenheim");
-		Assertions.assertThat(dados.getAreaGrandeAreaConhecimento().toString())
+		Assertions.assertThat(dados.getAreaConhecimento().toString())
 				.isEqualTo("Ciência da Computação - Ciências Exatas e da Terra");
-		Assertions.assertThat(dados.getNomeSubAreaConhecimento()).isEqualTo("Metodologia e Técnicas da Computação");
+		Assertions.assertThat(dados.getAreaConhecimento().getNomeSubAreaConhecimento())
+				.isEqualTo("Metodologia e Técnicas da Computação");
 		Assertions.assertThat(dados.getIdCurriculo()).isEqualTo("3879944876244096");
 
 		Assertions.assertThat(this.lattesParser.extractDadosGerais(this.documentXmlRaul)).isNotNull();

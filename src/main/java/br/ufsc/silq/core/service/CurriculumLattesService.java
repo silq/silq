@@ -79,12 +79,12 @@ public class CurriculumLattesService {
 		} else {
 			CurriculumLattes novoLattes = new CurriculumLattes();
 			novoLattes.setLattesXml(this.documentManager.documentToString(curriculumXml));
-			novoLattes.setAreaConhecimento(result.getAreaGrandeAreaConhecimento().getNomeArea());
-			novoLattes.setSubAreaConhecimento(result.getNomeSubAreaConhecimento());
+			novoLattes.setAreaConhecimento(result.getAreaConhecimento().getNomeArea());
+			novoLattes.setSubAreaConhecimento(result.getAreaConhecimento().getNomeSubAreaConhecimento());
 			novoLattes.setDataAtualizacaoCurriculo(result.getUltimaAtualizacao());
 			novoLattes.setDataAtualizacaoUsuario(new Date());
-			novoLattes.setEspecialidade(result.getNomeEspecialidade());
-			novoLattes.setGrandeAreaConhecimento(result.getAreaGrandeAreaConhecimento().getNomeGrandeArea());
+			novoLattes.setEspecialidade(result.getAreaConhecimento().getNomeEspecialidade());
+			novoLattes.setGrandeAreaConhecimento(result.getAreaConhecimento().getNomeGrandeArea());
 			novoLattes.setIdLattes(result.getIdCurriculo());
 			novoLattes.setNome(result.getNome());
 			log.debug("Criando novo currículo na base de dados: {}", novoLattes);
