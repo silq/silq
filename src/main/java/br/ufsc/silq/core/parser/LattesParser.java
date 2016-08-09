@@ -18,7 +18,6 @@ import br.ufsc.silq.core.parser.dto.AreaConhecimento;
 import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
 import br.ufsc.silq.core.parser.dto.ParseResult;
-import br.ufsc.silq.core.parser.dto.TipoOrigemCurriculo;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.service.DocumentManager;
@@ -59,9 +58,6 @@ public class LattesParser {
 		List<String> dadoGeralList = AttributeGetter.iterateNodes(ParserSets.DADOS_GERAIS_SET, nodoRaiz);
 		dadosGeraisResult.setIdCurriculo(dadoGeralList.get(2));
 		dadosGeraisResult.setUltimaAtualizacao(SilqDataUtils.formatDates(dadoGeralList.get(0), dadoGeralList.get(1)));
-		if ("LATTES_OFFLINE".equals(dadoGeralList.get(3))) {
-			dadosGeraisResult.setTipoOrigemCurriculo(TipoOrigemCurriculo.OFFLINE);
-		}
 
 		List<String> areas = AttributeGetter.iterateNodes(ParserSets.AREAS_SET, nodoRaiz);
 		if (areas.size() > 3) {

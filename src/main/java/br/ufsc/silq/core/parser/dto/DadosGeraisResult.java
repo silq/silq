@@ -13,6 +13,5 @@ public class DadosGeraisResult {
 	private String nome;
 	private String idCurriculo;
 	private AreaConhecimento areaConhecimento = new AreaConhecimento();
-	private TipoOrigemCurriculo tipoOrigemCurriculo;
 	private Date ultimaAtualizacao;
 }
