@@ -29,7 +29,7 @@ angular.module('silq2App')
 
                 $scope.getTrabalhosCSV = function() {
                     return createShallowResults($scope.results.trabalhos);
-                };                
+                };
             }
         };
     });
