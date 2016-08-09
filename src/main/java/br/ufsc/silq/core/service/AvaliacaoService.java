@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.querydsl.jpa.impl.JPAQuery;
@@ -202,7 +201,7 @@ public class AvaliacaoService {
 	 * @return Verdadeiro caso o valor tenha sido alterado ou falso caso não precisou ser alterado pois
 	 *         a avaliação anterior já setou este mesmo valor.
 	 */
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	@Transactional(readOnly = false)
 	public boolean setSimilarityThreshold(Float value) {
 		if (!value.equals(this.similarityThreshold)) {
 			Query query = this.em.createNativeQuery("SELECT set_limit(?1)");
