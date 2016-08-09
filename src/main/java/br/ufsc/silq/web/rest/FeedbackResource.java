@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,13 +26,13 @@ public class FeedbackResource {
 	private FeedbackService feedbackService;
 
 	@RequestMapping(value = "/feedback/evento/", method = RequestMethod.POST)
-	public ResponseEntity<FeedbackEvento> sugerirMatchingEvento(@Valid FeedbackEventoForm form) {
+	public ResponseEntity<FeedbackEvento> sugerirMatchingEvento(@Valid @RequestBody FeedbackEventoForm form) {
 		FeedbackEvento feedback = this.feedbackService.sugerirMatchingEvento(form);
 		return new ResponseEntity<>(feedback, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/feedback/periodico/", method = RequestMethod.POST)
-	public ResponseEntity<FeedbackPeriodico> sugerirMatchingPeriodico(@Valid FeedbackPeriodicoForm form) {
+	public ResponseEntity<FeedbackPeriodico> sugerirMatchingPeriodico(@Valid @RequestBody FeedbackPeriodicoForm form) {
 		FeedbackPeriodico feedback = this.feedbackService.sugerirMatchingPeriodico(form);
 		return new ResponseEntity<>(feedback, HttpStatus.CREATED);
 	}

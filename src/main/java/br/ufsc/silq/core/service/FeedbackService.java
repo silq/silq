@@ -51,7 +51,7 @@ public class FeedbackService {
 				.orElseThrow(() -> new IllegalArgumentException("Evento não encontrado"));
 		Usuario usuario = this.usuarioService.getUsuarioLogado();
 
-		FeedbackEvento feedback = this.feedbackEventoRepo.findOneByEventoAndUsuario(evento, usuario)
+		FeedbackEvento feedback = this.feedbackEventoRepo.findOneByQueryAndUsuario(form.getQuery(), usuario)
 				.orElse(new FeedbackEvento());
 
 		feedback.setQuery(form.getQuery());
@@ -74,7 +74,7 @@ public class FeedbackService {
 				.orElseThrow(() -> new IllegalArgumentException("Periódico não encontrado"));
 		Usuario usuario = this.usuarioService.getUsuarioLogado();
 
-		FeedbackPeriodico feedback = this.feedbackPeriodicoRepo.findOneByPeriodicoAndUsuario(periodico, usuario)
+		FeedbackPeriodico feedback = this.feedbackPeriodicoRepo.findOneByQueryAndUsuario(form.getQuery(), usuario)
 				.orElse(new FeedbackPeriodico());
 
 		feedback.setQuery(form.getQuery());

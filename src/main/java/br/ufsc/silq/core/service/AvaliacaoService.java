@@ -1,5 +1,6 @@
 package br.ufsc.silq.core.service;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -161,7 +162,7 @@ public class AvaliacaoService {
 
 		List<Conceito> conceitos = new ArrayList<>();
 		for (QualisPeriodico result : results) {
-			conceitos.add(new Conceito(result.getTitulo(), result.getEstrato(), NivelSimilaridade.TOTAL, result.getAno()));
+			conceitos.add(new Conceito(result.getId(), result.getTitulo(), result.getEstrato(), NivelSimilaridade.TOTAL, result.getAno()));
 		}
 
 		artigo.addConceitos(conceitos);
@@ -227,7 +228,7 @@ public class AvaliacaoService {
 	public List<Conceito> getConceitos(Trabalho trabalho, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
 		this.setSimilarityThreshold(avaliarForm.getNivelSimilaridade().getValue());
 
-		String sql = "SELECT NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
+		String sql = "SELECT " + tipoAvaliacao.getPk() + ", NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
 		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % ?1";
 		sql += " AND NO_AREA_AVALIACAO = ?2";
 		sql += " ORDER BY SML DESC, ABS(NU_ANO - ?3) ASC";
@@ -241,7 +242,8 @@ public class AvaliacaoService {
 
 		List<Object[]> results = query.getResultList();
 		return results.stream()
-				.map(obj -> new Conceito((String) obj[0], (String) obj[1], new NivelSimilaridade((Float) obj[2]), (Integer) obj[3]))
+				.map(obj -> new Conceito(((BigDecimal) obj[0]).longValue(), (String) obj[1], (String) obj[2],
+						new NivelSimilaridade((Float) obj[3]), (Integer) obj[4]))
 				.collect(Collectors.toList());
 	}
 
@@ -251,12 +253,13 @@ public class AvaliacaoService {
 	@AllArgsConstructor
 	@Getter
 	public enum TipoAvaliacao {
-		PERIODICO("TB_QUALIS_PERIODICO"),
-		EVENTO("TB_QUALIS_EVENTO");
+		PERIODICO("TB_QUALIS_PERIODICO", "CO_SEQ_QUALIS_PERIODICO"),
+		EVENTO("TB_QUALIS_EVENTO", "CO_SEQ_QUALIS_EVENTO");
 
 		/**
 		 * Nome da tabela utilizada para avaliação.
 		 */
 		private final String table;
+		private final String pk;
 	}
 }

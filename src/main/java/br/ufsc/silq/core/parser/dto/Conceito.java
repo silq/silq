@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class Conceito implements Comparable<Conceito> {
 
+	private final Long id;
 	private final String tituloVeiculo;
 	private final String conceito;
 	private final NivelSimilaridade similaridade;

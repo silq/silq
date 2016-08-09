@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .directive('avaliarResultItem', function(QualisModal) {
+    .directive('avaliarResultItem', function(QualisModal, Feedback, Flash) {
         return {
             restrict: 'E',
             scope: {
@@ -18,8 +18,24 @@ angular.module('silq2App')
                 $scope.sugerir = function(item) {
                     QualisModal.open(item)
                         .then(function(result) {
-                            console.log(result);
+                            $scope.feedback(item, result);
                         });
+                };
+
+                $scope.feedback = function(item, conceito) {
+                    var query = item.tituloVeiculo;
+                    var id = conceito.id;
+                    var feedbackRequest;
+
+                    if (item.issn) {
+                        feedbackRequest = Feedback.periodico(query, id);
+                    } else {
+                        feedbackRequest = Feedback.evento(query, id);
+                    }
+
+                    feedbackRequest.then(function() {
+                        Flash.create('success', '<strong>Sucesso!</strong> Feedback registrado');
+                    });
                 };
             }
         };

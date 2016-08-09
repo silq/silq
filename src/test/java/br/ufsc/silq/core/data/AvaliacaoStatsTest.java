@@ -29,17 +29,17 @@ public class AvaliacaoStatsTest {
 		this.artigos.add(new Artigo("Artigo 2", 2000, "Veículo 2", "2222-222X"));
 		this.artigos.add(new Artigo("Artigo 3", 2016, "Veículo 1", "3333-333X"));
 		Artigo artigo4 = new Artigo("Artigo 4", 2016, "Veículo 1", "4444-444X");
-		artigo4.addConceito(new Conceito("Veículo quase 1", "B3", NivelSimilaridade.NORMAL, 2016));
-		artigo4.addConceito(new Conceito("Veículo 1", "A2", new NivelSimilaridade(0.99f), 2016));
-		artigo4.addConceito(new Conceito("Veículo 1", "A3", NivelSimilaridade.ALTO, 2016));
+		artigo4.addConceito(new Conceito(1L, "Veículo quase 1", "B3", NivelSimilaridade.NORMAL, 2016));
+		artigo4.addConceito(new Conceito(2L, "Veículo 1", "A2", new NivelSimilaridade(0.99f), 2016));
+		artigo4.addConceito(new Conceito(3L, "Veículo 1", "A3", NivelSimilaridade.ALTO, 2016));
 		this.artigos.add(artigo4);
 
 		this.trabalhos.add(new Trabalho("Trabalho 4", 1999, "Veículo 3"));
 		this.trabalhos.add(new Trabalho("Trabalho 5", 2003, "Veículo 2"));
 		Trabalho trabalho6 = new Trabalho("Trabalho 6", 1995, "Veículo 2");
-		trabalho6.addConceito(new Conceito("Veículo quase 2", "A2", new NivelSimilaridade(0.467f), 1995));
-		trabalho6.addConceito(new Conceito("Veículo 2", "A1", new NivelSimilaridade(1f), 1995));
-		trabalho6.addConceito(new Conceito("Veículo quase 2", "A3", NivelSimilaridade.BAIXO, 1996));
+		trabalho6.addConceito(new Conceito(4L, "Veículo quase 2", "A2", new NivelSimilaridade(0.467f), 1995));
+		trabalho6.addConceito(new Conceito(5L, "Veículo 2", "A1", new NivelSimilaridade(1f), 1995));
+		trabalho6.addConceito(new Conceito(6L, "Veículo quase 2", "A3", NivelSimilaridade.BAIXO, 1996));
 		this.trabalhos.add(trabalho6);
 
 		this.stats = new AvaliacaoStats(this.artigos, this.trabalhos);
@@ -96,7 +96,7 @@ public class AvaliacaoStatsTest {
 	@Test
 	public void testGetTotalizador() {
 		Artigo artigo42 = new Artigo("Artigo 42", 2000, "Somethin", "4242-42XX");
-		artigo42.addConceito(new Conceito("Veículo", "A2", NivelSimilaridade.NORMAL, 2000));
+		artigo42.addConceito(new Conceito(90L, "Veículo", "A2", NivelSimilaridade.NORMAL, 2000));
 		this.artigos.add(artigo42);
 		this.stats = new AvaliacaoStats(this.artigos, this.trabalhos);
 

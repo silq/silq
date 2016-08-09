@@ -76,28 +76,34 @@ public class FeedbackServiceTest extends WebContextTest {
 	@Test
 	public void testSugerirNovamenteEvento() {
 		FeedbackEvento feedback1 = this.feedbackService.sugerirMatchingEvento(this.feedbackEventoForm);
-		this.feedbackEventoForm.setQuery("Another evento query");
+
+		// Ao salvar a mesma query com feedback de evento diferente
+		QualisEvento outroEvento = this.eventoRepo.findOne(2L);
+		this.feedbackEventoForm.setEventoId(outroEvento.getId());
 		FeedbackEvento feedback2 = this.feedbackService.sugerirMatchingEvento(this.feedbackEventoForm);
 
-		// Só deve manter um feedback por (usuário, evento)
+		// Deve sobrescrever o feedback anterior, mantendo somente um feedback para cada dupla (usuário, query)
 		Assertions.assertThat(feedback2.getId()).isEqualTo(feedback1.getId());
 		Assertions.assertThat(feedback2.getQuery()).isEqualTo(this.feedbackEventoForm.getQuery());
 		Assertions.assertThat(feedback2.getUsuario()).isEqualTo(this.usuarioLogado);
-		Assertions.assertThat(feedback2.getEvento()).isEqualTo(this.evento);
+		Assertions.assertThat(feedback2.getEvento()).isEqualTo(outroEvento);
 		Assertions.assertThat(feedback2.getDate()).isCloseTo(new Date(), 1000);
 	}
 
 	@Test
 	public void testSugerirNovamentePeriodico() {
 		FeedbackPeriodico feedback1 = this.feedbackService.sugerirMatchingPeriodico(this.feedbackPeriodicoForm);
-		this.feedbackEventoForm.setQuery("Another periódico query");
+
+		// Ao salvar a mesma query com feedback de periódico diferente
+		QualisPeriodico outroPeriodico = this.periodicoRepo.findOne(2L);
+		this.feedbackPeriodicoForm.setPeriodicoId(outroPeriodico.getId());
 		FeedbackPeriodico feedback2 = this.feedbackService.sugerirMatchingPeriodico(this.feedbackPeriodicoForm);
 
-		// Só deve manter um feedback por (usuário, periódico)
+		// Deve sobrescrever o feedback anterior, mantendo somente um feedback para cada dupla (usuário, query)
 		Assertions.assertThat(feedback2.getId()).isEqualTo(feedback1.getId());
 		Assertions.assertThat(feedback2.getQuery()).isEqualTo(this.feedbackPeriodicoForm.getQuery());
 		Assertions.assertThat(feedback2.getUsuario()).isEqualTo(this.usuarioLogado);
-		Assertions.assertThat(feedback2.getPeriodico()).isEqualTo(this.periodico);
+		Assertions.assertThat(feedback2.getPeriodico()).isEqualTo(outroPeriodico);
 		Assertions.assertThat(feedback2.getDate()).isCloseTo(new Date(), 1000);
 	}
 }
