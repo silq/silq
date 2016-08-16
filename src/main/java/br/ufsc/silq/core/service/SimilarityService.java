@@ -1,6 +1,7 @@
 package br.ufsc.silq.core.service;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -108,7 +109,7 @@ public class SimilarityService {
 	 * @param pageable Configurações de paginação.
 	 * @return Uma lista de Object[] contendo os dados das tuplas similares à query.
 	 */
-	public List<Object[]> nativeSearch(TipoAvaliacao tipo, String query, Pageable pageable) {
+	public List<Object[]> search(TipoAvaliacao tipo, String query, Pageable pageable) {
 		this.setSimilarityThreshold(0.1F);
 
 		String sql = "SELECT *, SIMILARITY(NO_TITULO, ?1) AS SML";
@@ -123,6 +124,18 @@ public class SimilarityService {
 		q.setParameter(3, pageable.getOffset());
 
 		return q.getResultList();
+	}
+
+	public BigInteger searchCount(TipoAvaliacao tipo, String query) {
+		this.setSimilarityThreshold(0.1F);
+
+		String sql = "SELECT COUNT(*) AS C";
+		sql += " FROM " + tipo.getTable() + " WHERE NO_TITULO % ?1";
+
+		Query q = this.em.createNativeQuery(sql);
+		q.setParameter(1, SilqStringUtils.normalizeString(query));
+
+		return (BigInteger) q.getSingleResult();
 	}
 
 	/**

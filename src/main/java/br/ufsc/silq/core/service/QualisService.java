@@ -30,11 +30,12 @@ public class QualisService {
 	 * @return Uma página (sublista) dos resultados encontrados.
 	 */
 	public PageImpl<SimilarityResult<QualisPeriodico>> searchPeriodicos(String query, Pageable pageable) {
-		List<Object[]> results = this.similarityService.nativeSearch(TipoAvaliacao.PERIODICO, query, pageable);
+		List<Object[]> results = this.similarityService.search(TipoAvaliacao.PERIODICO, query, pageable);
 		List<SimilarityResult<QualisPeriodico>> periodicos = results.stream()
 				.map(this.similarityService::mapResultToPeriodico)
 				.collect(Collectors.toList());
-		return new PageImpl<>(periodicos, pageable, 0);
+		return new PageImpl<>(periodicos, pageable,
+				this.similarityService.searchCount(TipoAvaliacao.PERIODICO, query).intValue());
 	}
 
 	/**
@@ -45,10 +46,11 @@ public class QualisService {
 	 * @return Uma página (sublista) dos resultados encontrados.
 	 */
 	public PageImpl<SimilarityResult<QualisEvento>> searchEventos(String query, Pageable pageable) {
-		List<Object[]> results = this.similarityService.nativeSearch(TipoAvaliacao.EVENTO, query, pageable);
+		List<Object[]> results = this.similarityService.search(TipoAvaliacao.EVENTO, query, pageable);
 		List<SimilarityResult<QualisEvento>> eventos = results.stream()
 				.map(this.similarityService::mapResultToEvento)
 				.collect(Collectors.toList());
-		return new PageImpl<>(eventos, pageable, 0);
+		return new PageImpl<>(eventos, pageable,
+				this.similarityService.searchCount(TipoAvaliacao.EVENTO, query).intValue());
 	}
 }

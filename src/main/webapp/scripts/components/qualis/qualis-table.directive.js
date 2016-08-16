@@ -40,7 +40,6 @@ angular.module('silq2App')
                         Qualis.queryEventos(query, page);
 
                     p.then(function(resp) {
-                        console.log(resp);
                         $scope.results = resp.data;
                     });
                 };
@@ -63,7 +62,7 @@ angular.module('silq2App')
                 };
 
                 $scope.pageChanged = function() {
-                    $scope.search($scope.query, $scope.page);
+                    $scope.search($scope.query, $scope.page - 1);
                 };
             }
         };
