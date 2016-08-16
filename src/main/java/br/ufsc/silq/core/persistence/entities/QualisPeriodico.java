@@ -7,8 +7,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Setting;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,8 +16,6 @@ import lombok.Setter;
 @Table(name = "tb_qualis_periodico")
 @Getter
 @Setter
-@Document(indexName = "qualis", type = "periodico")
-@Setting(settingPath = "/elasticsearch.json")
 public class QualisPeriodico {
 
 	@Id
