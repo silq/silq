@@ -20,6 +20,7 @@
             <th ng-show="tipo == 'periodicos'">ISSN</th>
             <th ng-show="tipo == 'eventos'">Sigla</th>
             <th>Título</th>
+            <th>Similaridade</th>
             <th>Conceito</th>
             <th>Ano</th>
             <th>Área de avaliação</th>
@@ -30,12 +31,13 @@
             <td colspan="6" class="text-center">Nenhum resultado encontrado</td>
         </tr>
         <tr ng-repeat="result in results.content" ng-click="onItemClick(result)">
-            <td ng-show="tipo == 'periodicos'" class="nowrap">{{result.issn}}</td>
-            <td ng-show="tipo == 'eventos'">{{result.sigla}}</td>
-            <td>{{result.titulo}}</td>
-            <td>{{result.estrato}}</td>
-            <td>{{result.ano}}</td>
-            <td>{{result.areaAvaliacao}}</td>
+            <td ng-show="tipo == 'periodicos'" class="nowrap">{{result.resultado.issn}}</td>
+            <td ng-show="tipo == 'eventos'">{{result.resultado.sigla}}</td>
+            <td>{{result.resultado.titulo}}</td>
+            <td ng-class="(result.similaridade.value | similarityClass)">{{result.similaridade.value * 100 | number: 1}}%</td>
+            <td>{{result.resultado.estrato}}</td>
+            <td>{{result.resultado.ano}}</td>
+            <td>{{result.resultado.areaAvaliacao}}</td>
         </tr>
     </tbody>
 </table>

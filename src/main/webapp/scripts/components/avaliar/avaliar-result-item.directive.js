@@ -24,7 +24,7 @@ angular.module('silq2App')
 
                 $scope.feedback = function(item, conceito) {
                     var query = item.tituloVeiculo;
-                    var id = conceito.id;
+                    var id = conceito.resultado.id;
                     var feedbackRequest;
 
                     if (item.issn) {

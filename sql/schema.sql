@@ -361,6 +361,13 @@ CREATE INDEX in_trn_qualis_cco_titulo ON tb_qualis_evento USING gin (no_titulo g
 
 
 --
+-- Name: in_trn_qualis_periodico_titulo; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX in_trn_qualis_periodico_titulo ON tb_qualis_periodico USING gin (no_titulo gin_trgm_ops);
+
+
+--
 -- Name: tb_qualis_evento_no_area_avaliacao_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 

@@ -26,7 +26,7 @@ angular.module('silq2App')
             link: function($scope) {
                 $scope.query = angular.isDefined($scope.query) ? $scope.query : '';
                 $scope.mode = angular.isDefined($scope.mode) ? $scope.mode : null;
-                $scope.tipo = $scope.mode || 'periodicos';
+                $scope.tipo = $scope.mode || 'eventos';
                 $scope.results = [];
                 $scope.page = 1;
 
@@ -40,6 +40,7 @@ angular.module('silq2App')
                         Qualis.queryEventos(query, page);
 
                     p.then(function(resp) {
+                        console.log(resp);
                         $scope.results = resp.data;
                     });
                 };

@@ -7,7 +7,7 @@ angular.module('silq2App')
                 return $http.get('api/qualis/periodicos', {
                     params: {
                         query: query,
-                        page: page || 1
+                        page: page || 0
                     },
                     loadingIndicator: false
                 });
@@ -16,7 +16,7 @@ angular.module('silq2App')
                 return $http.get('api/qualis/eventos', {
                     params: {
                         query: query,
-                        page: page || 1
+                        page: page || 0
                     },
                     loadingIndicator: false
                 });
