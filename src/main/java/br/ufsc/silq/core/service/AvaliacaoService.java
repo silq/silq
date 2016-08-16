@@ -1,6 +1,5 @@
 package br.ufsc.silq.core.service;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,7 +9,6 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
@@ -37,9 +35,7 @@ import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.QQualisPeriodico;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
-import br.ufsc.silq.core.utils.SilqStringUtils;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import br.ufsc.silq.core.service.SimilarityService.TipoAvaliacao;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -47,18 +43,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AvaliacaoService {
 
-	@PersistenceContext
-	private EntityManager em;
-
 	@Inject
 	private LattesParser lattesParser;
 
-	/**
-	 * Nível de similaridade atual sendo usado pelo serviço.
-	 * Ao setar um novo threshold via {@link #setSimilarityThreshold(Float)} guardamos o valor setado aqui
-	 * para que novas chamadas a este método não resultem em queries desnecessárias caso o valor não tenha sido alterado.
-	 */
-	private Float similarityThreshold = Float.valueOf(-1);
+	@Inject
+	private SimilarityService similarityService;
+
+	@PersistenceContext
+	private EntityManager em;
 
 	/**
 	 * Avalia um currículo lattes.
@@ -171,7 +163,7 @@ public class AvaliacaoService {
 	private Artigo avaliarArtigoPorSimilaridade(Artigo artigo, @Valid AvaliarForm avaliarForm) {
 		List<Conceito> conceitos = new ArrayList<>();
 		try {
-			conceitos = this.getConceitos(artigo, avaliarForm, TipoAvaliacao.PERIODICO);
+			conceitos = this.similarityService.getConceitos(artigo, avaliarForm, TipoAvaliacao.PERIODICO);
 		} catch (SQLException e) {
 			throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
 		}
@@ -182,7 +174,7 @@ public class AvaliacaoService {
 	public Trabalho avaliarTrabalho(Trabalho trabalho, @Valid AvaliarForm avaliarForm) {
 		List<Conceito> conceitos;
 		try {
-			conceitos = this.getConceitos(trabalho, avaliarForm, TipoAvaliacao.EVENTO);
+			conceitos = this.similarityService.getConceitos(trabalho, avaliarForm, TipoAvaliacao.EVENTO);
 		} catch (SQLException e) {
 			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
 		}
@@ -192,77 +184,5 @@ public class AvaliacaoService {
 		Trabalho trabalhoConceituado = trabalho.copy();
 		trabalhoConceituado.addConceitos(conceitos);
 		return trabalhoConceituado;
-	}
-
-	/**
-	 * Seta o nível de similaridade mínimo (threshold) que será usado para as queries de similaridade no banco.
-	 *
-	 * @param value Valor numérico de 0 a 1 representando o threshold de similaridade.
-	 * @return Verdadeiro caso o valor tenha sido alterado ou falso caso não precisou ser alterado pois
-	 *         a avaliação anterior já setou este mesmo valor.
-	 */
-	@Transactional(readOnly = false)
-	public boolean setSimilarityThreshold(Float value) {
-		if (!value.equals(this.similarityThreshold)) {
-			Query query = this.em.createNativeQuery("SELECT set_limit(?1)");
-			query.setParameter(1, value);
-			Float result = (Float) query.getSingleResult();
-			log.trace("Similarity threshold set to {}", result);
-			this.similarityThreshold = result;
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
-	 * Obtém os conceitos de um evento ou periódico realizando uma busca por similaridade na base Qualis.
-	 *
-	 * @param trabalho Trabalho a ser avaliado (deve conter título do veículo e ano).
-	 * @param avaliarForm Opções de avaliação.
-	 * @param tipoAvaliacao Tipo de avaliação (altera a tabela do banco a ser consultada).
-	 * @return A lista de conceitos do veículo.
-	 * @throws SQLException Caso haja um erro ao executar o SQL.
-	 */
-	public List<Conceito> getConceitos(Trabalho trabalho, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
-		this.setSimilarityThreshold(avaliarForm.getNivelSimilaridade().getValue());
-
-		String sql = "SELECT " + tipoAvaliacao.getPk() + ", NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
-		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % ?1";
-		sql += " AND NO_AREA_AVALIACAO = ?2";
-		sql += " ORDER BY SML DESC, ABS(NU_ANO - ?3) ASC";
-		sql += " LIMIT ?4";
-
-		Query query = this.em.createNativeQuery(sql);
-		query.setParameter(1, SilqStringUtils.normalizeString(trabalho.getTituloVeiculo()));
-		query.setParameter(2, avaliarForm.getArea().toUpperCase());
-		query.setParameter(3, trabalho.getAno());
-		query.setParameter(4, SilqConfig.MAX_SIMILARITY_RESULTS);
-
-		List<Object[]> results = query.getResultList();
-		return results.stream()
-				.map(obj -> new Conceito(((BigDecimal) obj[0]).longValue(), (String) obj[1], (String) obj[2],
-						new NivelSimilaridade((Float) obj[3]), (Integer) obj[4]))
-				.collect(Collectors.toList());
-	}
-
-	/**
-	 * Tipos de avaliação.
-	 */
-	@AllArgsConstructor
-	@Getter
-	public enum TipoAvaliacao {
-		PERIODICO("TB_QUALIS_PERIODICO", "CO_SEQ_QUALIS_PERIODICO"),
-		EVENTO("TB_QUALIS_EVENTO", "CO_SEQ_QUALIS_EVENTO");
-
-		/**
-		 * Nome da tabela utilizada para avaliação.
-		 */
-		private final String table;
-
-		/**
-		 * Nome da coluna chave primária da tabela.
-		 */
-		private final String pk;
 	}
 }

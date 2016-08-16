@@ -32,7 +32,7 @@ public class QualisResource {
 	@RequestMapping(value = "/periodicos", method = RequestMethod.GET)
 	public ResponseEntity<Page<SimilarityResult<QualisPeriodico>>> getPeriodicos(
 			@RequestParam(value = "query", defaultValue = "") String query, Pageable pageable) {
-		log.debug("REST request to get Periodicos: {}", pageable);
+		log.debug("REST request to get Periodicos: \"{}\" {}", query, pageable);
 
 		PageImpl<SimilarityResult<QualisPeriodico>> periodicos = this.qualisService.searchPeriodicos(query, pageable);
 		return new ResponseEntity<>(periodicos, HttpStatus.OK);
@@ -44,7 +44,7 @@ public class QualisResource {
 	@RequestMapping(value = "/eventos", method = RequestMethod.GET)
 	public ResponseEntity<Page<SimilarityResult<QualisEvento>>> getEventos(
 			@RequestParam(value = "query", defaultValue = "") String query, Pageable pageable) {
-		log.debug("REST request to get Eventos: {}", pageable);
+		log.debug("REST request to get Eventos: \"{}\" {}", query, pageable);
 
 		PageImpl<SimilarityResult<QualisEvento>> eventos = this.qualisService.searchEventos(query, pageable);
 		return new ResponseEntity<>(eventos, HttpStatus.OK);
