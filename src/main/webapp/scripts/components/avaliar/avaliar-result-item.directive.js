@@ -18,13 +18,13 @@ angular.module('silq2App')
                 $scope.sugerir = function(item) {
                     QualisModal.open(item)
                         .then(function(result) {
-                            $scope.feedback(item, result);
+                            $scope.feedback(item, result.resultado);
                         });
                 };
 
                 $scope.feedback = function(item, conceito) {
                     var query = item.tituloVeiculo;
-                    var id = conceito.resultado.id;
+                    var id = conceito.id;
                     var feedbackRequest;
 
                     if (item.issn) {
