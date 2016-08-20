@@ -3,21 +3,15 @@
 angular.module('silq2App')
     .factory('Qualis', function ($resource, $http) {
         return {
-            queryPeriodicos: function(query, page) {
+            queryPeriodicos: function(params) {
                 return $http.get('api/qualis/periodicos', {
-                    params: {
-                        query: query,
-                        page: page || 0
-                    },
+                    params: params,
                     loadingIndicator: false
                 });
             },
-            queryEventos: function(query, page) {
+            queryEventos: function(params) {
                 return $http.get('api/qualis/eventos', {
-                    params: {
-                        query: query,
-                        page: page || 0
-                    },
+                    params: params,
                     loadingIndicator: false
                 });
             },

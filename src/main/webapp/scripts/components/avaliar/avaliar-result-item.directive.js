@@ -6,7 +6,8 @@ angular.module('silq2App')
             restrict: 'E',
             scope: {
                 item: '=item',
-                filter: '=filter'
+                filter: '=filter',
+                form: '=form'
             },
             templateUrl: 'scripts/components/avaliar/avaliar-result-item.html',
             link: function($scope) {
@@ -16,7 +17,7 @@ angular.module('silq2App')
                 };
 
                 $scope.sugerir = function(item) {
-                    QualisModal.open(item)
+                    QualisModal.open(item, $scope.form)
                         .then(function(result) {
                             $scope.feedback(item, result.resultado);
                         });

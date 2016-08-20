@@ -25,15 +25,14 @@ angular.module('silq2App')
         }
 
         return {
-            open: function(item) {
+            open: function(item, avaliarForm) {
                 var modalInstance = $uibModal.open({
                     templateUrl: templateUrl,
                     controller: 'QualisModalController',
                     size: 'lg',
                     resolve: {
-                        item: function () {
-                            return item;
-                        }
+                        item: function () { return item; },
+                        avaliarForm: function() { return avaliarForm; }
                     }
                 });
 
@@ -41,10 +40,14 @@ angular.module('silq2App')
             }
         };
     })
-    .controller('QualisModalController', function($scope, $uibModalInstance, item) {
+    .controller('QualisModalController', function($scope, $uibModalInstance, item, avaliarForm) {
         $scope.item = item;
         $scope.mode = item.issn !== undefined ? 'periodicos' : 'eventos';
-        $scope.query = item.tituloVeiculo + ' ' + item.ano;
+        $scope.query = {
+            query: item.tituloVeiculo,
+            ano: item.ano,
+            area: avaliarForm.area
+        };
 
         $scope.ok = function(selected) {
             $uibModalInstance.close(selected);

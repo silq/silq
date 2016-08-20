@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.SimilarityResult;
 import br.ufsc.silq.core.forms.AvaliarForm;
+import br.ufsc.silq.core.forms.QualisSearchForm;
 import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.QualisEvento;
@@ -105,35 +107,50 @@ public class SimilarityService {
 	 * Utiliza as funções de similaridade nativas do PostgreSQL.
 	 *
 	 * @param tipo Tipo de avaliação: {@link TipoAvaliacao}.
-	 * @param query String de busca.
+	 * @param form Form contendo a query e os filtros de busca.
 	 * @param pageable Configurações de paginação.
 	 * @return Uma lista de Object[] contendo os dados das tuplas similares à query.
 	 */
-	public List<Object[]> search(TipoAvaliacao tipo, String query, Pageable pageable) {
+	public List<Object[]> search(TipoAvaliacao tipo, @Valid QualisSearchForm form, Pageable pageable) {
 		this.setSimilarityThreshold(0.1F);
 
 		String sql = "SELECT *, SIMILARITY(NO_TITULO, ?1) AS SML";
 		sql += " FROM " + tipo.getTable() + " WHERE NO_TITULO % ?1";
+
+		if (StringUtils.isNotBlank(form.getArea())) {
+			sql += " AND NO_AREA_AVALIACAO = ?4";
+		}
+
 		sql += " ORDER BY SML DESC";
 		sql += " LIMIT ?2";
 		sql += " OFFSET ?3";
 
 		Query q = this.em.createNativeQuery(sql);
-		q.setParameter(1, SilqStringUtils.normalizeString(query));
+		q.setParameter(1, SilqStringUtils.normalizeString(form.getQuery()));
 		q.setParameter(2, pageable.getPageSize());
 		q.setParameter(3, pageable.getOffset());
+
+		if (StringUtils.isNotBlank(form.getArea())) {
+			q.setParameter(4, form.getArea().toUpperCase());
+		}
 
 		return q.getResultList();
 	}
 
-	public BigInteger searchCount(TipoAvaliacao tipo, String query) {
+	public BigInteger searchCount(TipoAvaliacao tipo, @Valid QualisSearchForm form) {
 		this.setSimilarityThreshold(0.1F);
 
 		String sql = "SELECT COUNT(*) AS C";
 		sql += " FROM " + tipo.getTable() + " WHERE NO_TITULO % ?1";
+		if (StringUtils.isNotBlank(form.getArea())) {
+			sql += " AND NO_AREA_AVALIACAO = ?2";
+		}
 
 		Query q = this.em.createNativeQuery(sql);
-		q.setParameter(1, SilqStringUtils.normalizeString(query));
+		q.setParameter(1, SilqStringUtils.normalizeString(form.getQuery()));
+		if (StringUtils.isNotBlank(form.getArea())) {
+			q.setParameter(2, form.getArea().toUpperCase());
+		}
 
 		return (BigInteger) q.getSingleResult();
 	}

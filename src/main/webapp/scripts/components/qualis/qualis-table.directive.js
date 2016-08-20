@@ -12,7 +12,7 @@ angular.module('silq2App')
                 mode: '=?',
 
                 /**
-                 * Query inicial.
+                 * Parâmetros de busca inicial.
                  */
                 query: '=?',
 
@@ -24,27 +24,31 @@ angular.module('silq2App')
             },
             templateUrl: 'scripts/components/qualis/qualis-table.html',
             link: function($scope) {
-                $scope.query = angular.isDefined($scope.query) ? $scope.query : '';
+                $scope.query = angular.isDefined($scope.query) ? $scope.query : {
+                    query: '',
+                    area: undefined,
+                    page: 1
+                };
                 $scope.mode = angular.isDefined($scope.mode) ? $scope.mode : null;
                 $scope.tipo = $scope.mode || 'eventos';
                 $scope.results = [];
-                $scope.page = 1;
 
                 $scope.onItemClick = function(selected) {
                     $scope.select({selected: selected});
                 };
 
-                $scope.search = function(query, page) {
+                $scope.search = function() {
+                    var params = angular.copy($scope.query);
+                    params.page -= 1; // API paging is 0-indexed
+
                     var p = $scope.tipo === 'periodicos' ?
-                        Qualis.queryPeriodicos(query, page) :
-                        Qualis.queryEventos(query, page);
+                        Qualis.queryPeriodicos(params) :
+                        Qualis.queryEventos(params);
 
                     p.then(function(resp) {
                         $scope.results = resp.data;
                     });
                 };
-
-                $scope.search($scope.query);
 
                 var delayedSearch;
                 $scope.queryChange = function() {
@@ -53,17 +57,20 @@ angular.module('silq2App')
                     }
 
                     delayedSearch = $timeout(function() {
-                        $scope.search($scope.query);
-                    }, 500);
+                        $scope.search();
+                    }, 300);
                 };
 
                 $scope.submit = function() {
-                    $scope.search($scope.query);
+                    $scope.query.page = 1;
+                    $scope.search();
                 };
 
                 $scope.pageChanged = function() {
-                    $scope.search($scope.query, $scope.page - 1);
+                    $scope.search();
                 };
+
+                $scope.search();
             }
         };
     });

@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import br.ufsc.silq.core.data.SimilarityResult;
+import br.ufsc.silq.core.forms.QualisSearchForm;
 import br.ufsc.silq.core.persistence.entities.QualisEvento;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.test.WebContextTest;
@@ -28,25 +29,25 @@ public class QualisServiceTest extends WebContextTest {
 
 	@Test
 	public void testSearchPeriodicosNoQuery() {
-		PageImpl<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos("", this.pageable);
+		PageImpl<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos(new QualisSearchForm(""), this.pageable);
 		Assertions.assertThat(page.getContent()).isEmpty();
 	}
 
 	@Test
 	public void testSearchPeriodicos() {
-		PageImpl<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos("Test", this.pageable);
+		PageImpl<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos(new QualisSearchForm("Test"), this.pageable);
 		Assertions.assertThat(page.getContent()).isNotEmpty();
 	}
 
 	@Test
 	public void testSearchEventosNoQuery() {
-		PageImpl<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos("", this.pageable);
+		PageImpl<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos(new QualisSearchForm(""), this.pageable);
 		Assertions.assertThat(page.getContent()).isEmpty();
 	}
 
 	@Test
 	public void testSearchEventos() {
-		PageImpl<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos("Test", this.pageable);
+		PageImpl<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos(new QualisSearchForm("Test"), this.pageable);
 		Assertions.assertThat(page.getContent()).isNotEmpty();
 	}
 }
