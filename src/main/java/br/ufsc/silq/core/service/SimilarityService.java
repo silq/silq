@@ -156,7 +156,7 @@ public class SimilarityService {
 	}
 
 	/**
-	 * Mapeia um Object[] retornado por {@link #nativeSearch} para o tipo {@link QualisEvento}.
+	 * Mapeia um Object[] retornado por {@link #search} para o tipo {@link QualisEvento}.
 	 * O método não checa se conteúdo do parâmetro está bem formado.
 	 *
 	 * @param result Um Object[] contendo as informações do evento, na ordem correta.
@@ -175,7 +175,7 @@ public class SimilarityService {
 	}
 
 	/**
-	 * Mapeia um Object[] retornado por {@link #nativeSearch} para o tipo {@link QualisPeriodico}.
+	 * Mapeia um Object[] retornado por {@link #search} para o tipo {@link QualisPeriodico}.
 	 * O método não checa se conteúdo do parâmetro está bem formado.
 	 *
 	 * @param result Um Object[] contendo as informações do periódico, na ordem correta.

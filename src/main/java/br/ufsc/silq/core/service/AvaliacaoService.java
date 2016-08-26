@@ -97,7 +97,7 @@ public class AvaliacaoService {
 	 * @param form Formulário contendo as opções de avaliação.
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
 	 */
-	public AvaliacaoResult avaliar(ParseResult parseResult, @Valid AvaliarForm form) {
+	private AvaliacaoResult avaliar(ParseResult parseResult, @Valid AvaliarForm form) {
 		AvaliacaoResult result = new AvaliacaoResult(form, parseResult.getDadosGerais());
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
@@ -122,6 +122,14 @@ public class AvaliacaoService {
 		return result;
 	}
 
+	/**
+	 * Avalia um artigo conforme as opções de avaliação, retornando uma cópia do Artigo com
+	 * os atributos {@link Artigo#getConceitos()} preenchidos.
+	 *
+	 * @param artigo Artigo a ser avaliado.
+	 * @param avaliarForm Opções de avaliação.
+	 * @return Uma cópia do Artigo parâmetro com os conceitos preenchidos.
+	 */
 	@SuppressWarnings("unused")
 	public Artigo avaliarArtigo(Artigo artigo, @Valid AvaliarForm avaliarForm) {
 		// Criamos uma cópia do artigo para realizar a avaliação assim não modificamos o objeto Artigo
@@ -171,6 +179,14 @@ public class AvaliacaoService {
 		return artigo;
 	}
 
+	/**
+	 * Avalia um trabalho conforme as opções de avaliação, retornando uma cópia do Trabalho com
+	 * os atributos {@link Trabalho#getConceitos()} preenchidos.
+	 *
+	 * @param trabalho Trabalho a ser avaliado.
+	 * @param avaliarForm Opções de avaliação.
+	 * @return Uma cópia do Trabalho parâmetro com os conceitos preenchidos.
+	 */
 	public Trabalho avaliarTrabalho(Trabalho trabalho, @Valid AvaliarForm avaliarForm) {
 		List<Conceito> conceitos;
 		try {
