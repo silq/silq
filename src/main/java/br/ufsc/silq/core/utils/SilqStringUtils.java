@@ -12,7 +12,7 @@ public class SilqStringUtils {
 			return true;
 		}
 		for (int i = 0; i < strLen; i++) {
-			if ((Character.isWhitespace(str.charAt(i)) == false)) {
+			if (Character.isWhitespace(str.charAt(i)) == false) {
 				return false;
 			}
 		}

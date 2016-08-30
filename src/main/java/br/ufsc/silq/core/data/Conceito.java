@@ -1,6 +1,5 @@
-package br.ufsc.silq.core.parser.dto;
+package br.ufsc.silq.core.data;
 
-import br.ufsc.silq.core.data.NivelSimilaridade;
 import lombok.Data;
 
 @Data

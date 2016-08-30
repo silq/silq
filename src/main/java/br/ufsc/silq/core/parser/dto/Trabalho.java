@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.ufsc.silq.core.data.Conceito;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;

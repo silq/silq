@@ -11,7 +11,6 @@ import org.junit.Test;
 import br.ufsc.silq.core.data.AvaliacaoStats.ContadorConceitos;
 import br.ufsc.silq.core.data.AvaliacaoStats.TotalizadorConceito;
 import br.ufsc.silq.core.parser.dto.Artigo;
-import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 
 public class AvaliacaoStatsTest {

@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.ufsc.silq.core.parser.dto.Artigo;
-import br.ufsc.silq.core.parser.dto.Conceito;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import lombok.AllArgsConstructor;
 import lombok.Data;
