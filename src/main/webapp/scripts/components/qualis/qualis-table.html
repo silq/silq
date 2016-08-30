@@ -32,6 +32,9 @@
         </tr>
     </thead>
     <tbody>
+        <tr ng-show="loading">
+            <td colspan="6" class="text-center"><i>Carregando...</i></td>
+        </tr>
         <tr ng-show="results.content.length == 0">
             <td colspan="6" class="text-center">Nenhum resultado encontrado</td>
         </tr>

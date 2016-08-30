@@ -34,12 +34,14 @@ angular.module('silq2App')
                 $scope.mode = angular.isDefined($scope.mode) ? $scope.mode : null;
                 $scope.tipo = $scope.mode || 'eventos';
                 $scope.results = [];
+                $scope.loading = false;
 
                 $scope.onItemClick = function(selected) {
                     $scope.select({selected: selected});
                 };
 
                 $scope.search = function() {
+                    $scope.loading = true;
                     var params = angular.copy($scope.query);
                     params.page -= 1; // API paging is 0-indexed
 
@@ -48,6 +50,7 @@ angular.module('silq2App')
                         Qualis.queryEventos(params);
 
                     p.then(function(resp) {
+                        $scope.loading = false;
                         $scope.results = resp.data;
                     });
                 };
