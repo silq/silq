@@ -14,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Conceito;
-import br.ufsc.silq.core.parser.dto.Conceito.TotalizadorConceito;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -187,6 +186,17 @@ public class AvaliacaoStats {
 			this.putIfAbsent(conceito, 0);
 			this.put(conceito, this.get(conceito) + 1);
 			this.put(TOTAL, this.get(TOTAL) + 1);
+		}
+	}
+
+	@Data
+	public static class TotalizadorConceito implements Comparable<TotalizadorConceito> {
+		private final String conceito;
+		private final Integer qtde;
+
+		@Override
+		public int compareTo(TotalizadorConceito o) {
+			return this.conceito.compareTo(o.getConceito());
 		}
 	}
 }

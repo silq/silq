@@ -20,15 +20,4 @@ public class Conceito implements Comparable<Conceito> {
 	public int compareTo(Conceito o) {
 		return this.getSimilaridade().compareTo(o.getSimilaridade());
 	}
-
-	@Data
-	public static class TotalizadorConceito implements Comparable<TotalizadorConceito> {
-		private final String conceito;
-		private final Integer qtde;
-
-		@Override
-		public int compareTo(TotalizadorConceito o) {
-			return this.conceito.compareTo(o.getConceito());
-		}
-	}
 }
