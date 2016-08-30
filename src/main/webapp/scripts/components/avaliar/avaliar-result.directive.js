@@ -10,15 +10,17 @@ angular.module('silq2App')
             templateUrl: 'scripts/components/avaliar/avaliar-result.html',
             link: function($scope) {
                 var createShallowResults = function(results) {
-                    var arr = angular.copy(results);
-                    arr.forEach(function(item) {
+                    var arr = []; // Array de linhas da tabela
+                    results.forEach(function(item) {
+                        var r = angular.copy(item.obj);
                         var conceito = item.conceitos[0];
                         if (conceito) {
-                            item.conceitoEstrato = conceito.conceito;
-                            item.conceitoSimilaridade = conceito.similaridade;
-                            item.conceitoTitulo = conceito.tituloVeiculo;
-                            item.conceitoAno = conceito.ano;
+                            r.conceitoEstrato = conceito.conceito;
+                            r.conceitoSimilaridade = conceito.similaridade;
+                            r.conceitoTitulo = conceito.tituloVeiculo;
+                            r.conceitoAno = conceito.ano;
                         }
+                        arr.push(r);
                     });
                     return arr;
                 };
