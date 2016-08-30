@@ -30,13 +30,13 @@ public class AvaliacaoStats {
 	 * Conjunto de artigos utilizados para gerar estas estatísticas.
 	 */
 	@JsonIgnore
-	private List<Artigo> artigos = new ArrayList<>();
+	private List<Conceituado<Artigo>> artigos = new ArrayList<>();
 
 	/**
 	 * Conjunto de trabalhos utilizados para gerar estas estatísticas.
 	 */
 	@JsonIgnore
-	private List<Trabalho> trabalhos = new ArrayList<>();
+	private List<Conceituado<Trabalho>> trabalhos = new ArrayList<>();
 
 	/**
 	 * Concatena um {@link AvaliacaoStats} ao objeto atual, unindo as respectivas listas de artigos e trabalhos
@@ -46,8 +46,8 @@ public class AvaliacaoStats {
 	 * @return Um novo objeto {@link AvaliacaoStats} contendo as estatísticas combinadas dos dois objetos.
 	 */
 	public AvaliacaoStats reduce(AvaliacaoStats o) {
-		ArrayList<Artigo> copyArtigos = new ArrayList<>(this.artigos);
-		ArrayList<Trabalho> copyTrabalhos = new ArrayList<>(this.trabalhos);
+		ArrayList<Conceituado<Artigo>> copyArtigos = new ArrayList<>(this.artigos);
+		ArrayList<Conceituado<Trabalho>> copyTrabalhos = new ArrayList<>(this.trabalhos);
 		copyArtigos.addAll(o.getArtigos());
 		copyTrabalhos.addAll(o.getTrabalhos());
 		return new AvaliacaoStats(copyArtigos, copyTrabalhos);
@@ -75,8 +75,8 @@ public class AvaliacaoStats {
 	 * @return Um Stream de anos.
 	 */
 	private Stream<Integer> streamAnos() {
-		Stream<Integer> artigoAnos = this.artigos.stream().map(artigo -> artigo.getAno());
-		Stream<Integer> trabalhoAnos = this.trabalhos.stream().map(trabalho -> trabalho.getAno());
+		Stream<Integer> artigoAnos = this.artigos.stream().map(artigo -> artigo.getObj().getAno());
+		Stream<Integer> trabalhoAnos = this.trabalhos.stream().map(trabalho -> trabalho.getObj().getAno());
 		return Stream.concat(artigoAnos, trabalhoAnos);
 	}
 
@@ -101,8 +101,8 @@ public class AvaliacaoStats {
 		Map<Integer, ContadorConceitos> map = new HashMap<>();
 
 		this.artigos.stream().forEach(c -> {
-			map.putIfAbsent(c.getAno(), new ContadorConceitos());
-			ContadorConceitos contador = map.get(c.getAno());
+			map.putIfAbsent(c.getObj().getAno(), new ContadorConceitos());
+			ContadorConceitos contador = map.get(c.getObj().getAno());
 
 			if (c.hasConceito()) {
 				contador.increment(c.getConceitoMaisSimilar().getConceito());
@@ -123,8 +123,8 @@ public class AvaliacaoStats {
 		Map<Integer, ContadorConceitos> map = new HashMap<>();
 
 		this.trabalhos.stream().forEach(c -> {
-			map.putIfAbsent(c.getAno(), new ContadorConceitos());
-			ContadorConceitos contador = map.get(c.getAno());
+			map.putIfAbsent(c.getObj().getAno(), new ContadorConceitos());
+			ContadorConceitos contador = map.get(c.getObj().getAno());
 
 			if (c.hasConceito()) {
 				contador.increment(c.getConceitoMaisSimilar().getConceito());
@@ -144,7 +144,7 @@ public class AvaliacaoStats {
 	public List<TotalizadorConceito> getTotalizador() {
 		ConcurrentMap<String, AtomicInteger> totalizadorMap = new ConcurrentHashMap<>();
 
-		for (Artigo artigo : this.getArtigos()) {
+		for (Conceituado<Artigo> artigo : this.getArtigos()) {
 			if (artigo.hasConceito()) {
 				Conceito conceito = artigo.getConceitoMaisSimilar();
 				totalizadorMap.putIfAbsent(conceito.getConceito(), new AtomicInteger(0));
@@ -152,7 +152,7 @@ public class AvaliacaoStats {
 			}
 		}
 
-		for (Trabalho trabalho : this.getTrabalhos()) {
+		for (Conceituado<Trabalho> trabalho : this.getTrabalhos()) {
 			if (trabalho.hasConceito()) {
 				Conceito conceito = trabalho.getConceitoMaisSimilar();
 				totalizadorMap.putIfAbsent(conceito.getConceito(), new AtomicInteger(0));

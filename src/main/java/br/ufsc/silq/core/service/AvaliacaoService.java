@@ -24,6 +24,7 @@ import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.data.AvaliacaoStats;
 import br.ufsc.silq.core.data.AvaliacaoType;
 import br.ufsc.silq.core.data.Conceito;
+import br.ufsc.silq.core.data.Conceituado;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.exception.SilqError;
 import br.ufsc.silq.core.exception.SilqLattesException;
@@ -101,7 +102,7 @@ public class AvaliacaoService {
 		AvaliacaoResult result = new AvaliacaoResult(form, parseResult.getDadosGerais());
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
-			List<Artigo> artigosAvaliados = parseResult.getArtigos().parallelStream()
+			List<Conceituado<Artigo>> artigosAvaliados = parseResult.getArtigos().parallelStream()
 					.filter(artigo -> form.getPeriodoAvaliacao().inclui(artigo.getAno()))
 					.map(artigo -> this.avaliarArtigo(artigo, form))
 					.collect(Collectors.toList());
@@ -110,7 +111,7 @@ public class AvaliacaoService {
 		}
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.TRABALHO)) {
-			List<Trabalho> trabalhosAvaliados = parseResult.getTrabalhos().parallelStream()
+			List<Conceituado<Trabalho>> trabalhosAvaliados = parseResult.getTrabalhos().parallelStream()
 					.filter(trabalho -> form.getPeriodoAvaliacao().inclui(trabalho.getAno()))
 					.map(trabalho -> this.avaliarTrabalho(trabalho, form))
 					.collect(Collectors.toList());
@@ -123,32 +124,30 @@ public class AvaliacaoService {
 	}
 
 	/**
-	 * Avalia um artigo conforme as opções de avaliação, retornando uma cópia do Artigo com
-	 * os atributos {@link Artigo#getConceitos()} preenchidos.
+	 * Avalia um artigo conforme as opções de avaliação, retornando um objeto {@link Conceituado}
+	 * contendo o Artigo e os conceitos atribuídos.
 	 *
 	 * @param artigo Artigo a ser avaliado.
 	 * @param avaliarForm Opções de avaliação.
-	 * @return Uma cópia do Artigo parâmetro com os conceitos preenchidos.
+	 * @return Um objeto {@link Conceituado} contendo o artigo original e seus conceitos atribuídos.
 	 */
 	@SuppressWarnings("unused")
-	public Artigo avaliarArtigo(Artigo artigo, @Valid AvaliarForm avaliarForm) {
-		// Criamos uma cópia do artigo para realizar a avaliação assim não modificamos o objeto Artigo
-		// em cache retornado por LattesParser#parseCurriculum
-		Artigo artigoConceituado = artigo.copy();
+	public Conceituado<Artigo> avaliarArtigo(Artigo artigo, @Valid AvaliarForm avaliarForm) {
+		Conceituado<Artigo> artigoConceituado = new Conceituado<>(artigo);
 
 		if (StringUtils.isNotBlank(artigo.getIssn())) {
-			artigoConceituado = this.avaliarArtigoPorIssn(artigoConceituado, avaliarForm);
+			artigoConceituado = this.avaliarArtigoPorIssn(artigo, avaliarForm);
 		}
 
 		if (SilqConfig.AVALIAR_ARTIGO_POR_SIMILARIDADE && !artigoConceituado.hasConceito()) {
 			// Se não encontrou conceito por ISSN, busca por similaridade de título
-			artigoConceituado = this.avaliarArtigoPorSimilaridade(artigoConceituado, avaliarForm);
+			artigoConceituado = this.avaliarArtigoPorSimilaridade(artigo, avaliarForm);
 		}
 
 		return artigoConceituado;
 	}
 
-	private Artigo avaliarArtigoPorIssn(Artigo artigo, @Valid AvaliarForm avaliarForm) {
+	private Conceituado<Artigo> avaliarArtigoPorIssn(Artigo artigo, @Valid AvaliarForm avaliarForm) {
 		QQualisPeriodico path = QQualisPeriodico.qualisPeriodico;
 
 		JPAQuery<QualisPeriodico> query = new JPAQuery<>(this.em);
@@ -164,30 +163,28 @@ public class AvaliacaoService {
 			conceitos.add(new Conceito(result.getId(), result.getTitulo(), result.getEstrato(), NivelSimilaridade.TOTAL, result.getAno()));
 		}
 
-		artigo.addConceitos(conceitos);
-		return artigo;
+		return new Conceituado<>(artigo, conceitos);
 	}
 
-	private Artigo avaliarArtigoPorSimilaridade(Artigo artigo, @Valid AvaliarForm avaliarForm) {
+	private Conceituado<Artigo> avaliarArtigoPorSimilaridade(Artigo artigo, @Valid AvaliarForm avaliarForm) {
 		List<Conceito> conceitos = new ArrayList<>();
 		try {
 			conceitos = this.similarityService.getConceitos(artigo, avaliarForm, TipoAvaliacao.PERIODICO);
 		} catch (SQLException e) {
 			throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
 		}
-		artigo.addConceitos(conceitos);
-		return artigo;
+		return new Conceituado<>(artigo, conceitos);
 	}
 
 	/**
-	 * Avalia um trabalho conforme as opções de avaliação, retornando uma cópia do Trabalho com
-	 * os atributos {@link Trabalho#getConceitos()} preenchidos.
+	 * Avalia um trabalho conforme as opções de avaliação, retornando um objeto {@link Conceituado} que encapsula
+	 * o trabalho parâmetro original e seus conceitos atribuídos.
 	 *
 	 * @param trabalho Trabalho a ser avaliado.
 	 * @param avaliarForm Opções de avaliação.
-	 * @return Uma cópia do Trabalho parâmetro com os conceitos preenchidos.
+	 * @return Um objeto {@link Conceituado} contendo o trabalho original e seus conceitos atribuídos.
 	 */
-	public Trabalho avaliarTrabalho(Trabalho trabalho, @Valid AvaliarForm avaliarForm) {
+	public Conceituado<Trabalho> avaliarTrabalho(Trabalho trabalho, @Valid AvaliarForm avaliarForm) {
 		List<Conceito> conceitos;
 		try {
 			conceitos = this.similarityService.getConceitos(trabalho, avaliarForm, TipoAvaliacao.EVENTO);
@@ -195,10 +192,6 @@ public class AvaliacaoService {
 			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
 		}
 
-		// Criamos uma cópia do trabalho para realizar a avaliação assim não modificamos o objeto Trabalho
-		// em cache retornado por LattesParser#parseCurriculum
-		Trabalho trabalhoConceituado = trabalho.copy();
-		trabalhoConceituado.addConceitos(conceitos);
-		return trabalhoConceituado;
+		return new Conceituado<>(trabalho, conceitos);
 	}
 }

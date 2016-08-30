@@ -24,11 +24,13 @@ angular.module('silq2App')
             },
             templateUrl: 'scripts/components/qualis/qualis-table.html',
             link: function($scope) {
-                $scope.query = angular.isDefined($scope.query) ? $scope.query : {
+                $scope.query = angular.merge({}, {
+                    // Opções default (serão consideradas se não vierem como parãmetro):
                     query: '',
                     area: undefined,
                     page: 1
-                };
+                }, $scope.query);
+
                 $scope.mode = angular.isDefined($scope.mode) ? $scope.mode : null;
                 $scope.tipo = $scope.mode || 'eventos';
                 $scope.results = [];

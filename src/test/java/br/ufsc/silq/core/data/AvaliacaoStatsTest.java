@@ -16,26 +16,26 @@ import br.ufsc.silq.core.parser.dto.Trabalho;
 public class AvaliacaoStatsTest {
 
 	private AvaliacaoStats stats;
-	private List<Artigo> artigos;
-	private List<Trabalho> trabalhos;
+	private List<Conceituado<Artigo>> artigos;
+	private List<Conceituado<Trabalho>> trabalhos;
 
 	@Before
 	public void setup() {
 		this.artigos = new ArrayList<>();
 		this.trabalhos = new ArrayList<>();
 
-		this.artigos.add(new Artigo("Artigo 1", 2014, "Veículo 1", "1111-111X"));
-		this.artigos.add(new Artigo("Artigo 2", 2000, "Veículo 2", "2222-222X"));
-		this.artigos.add(new Artigo("Artigo 3", 2016, "Veículo 1", "3333-333X"));
-		Artigo artigo4 = new Artigo("Artigo 4", 2016, "Veículo 1", "4444-444X");
+		this.artigos.add(new Conceituado<>(new Artigo("Artigo 1", 2014, "Veículo 1", "1111-111X")));
+		this.artigos.add(new Conceituado<>(new Artigo("Artigo 2", 2000, "Veículo 2", "2222-222X")));
+		this.artigos.add(new Conceituado<>(new Artigo("Artigo 3", 2016, "Veículo 1", "3333-333X")));
+		Conceituado<Artigo> artigo4 = new Conceituado<>(new Artigo("Artigo 4", 2016, "Veículo 1", "4444-444X"));
 		artigo4.addConceito(new Conceito(1L, "Veículo quase 1", "B3", NivelSimilaridade.NORMAL, 2016));
 		artigo4.addConceito(new Conceito(2L, "Veículo 1", "A2", new NivelSimilaridade(0.99f), 2016));
 		artigo4.addConceito(new Conceito(3L, "Veículo 1", "A3", NivelSimilaridade.ALTO, 2016));
 		this.artigos.add(artigo4);
 
-		this.trabalhos.add(new Trabalho("Trabalho 4", 1999, "Veículo 3"));
-		this.trabalhos.add(new Trabalho("Trabalho 5", 2003, "Veículo 2"));
-		Trabalho trabalho6 = new Trabalho("Trabalho 6", 1995, "Veículo 2");
+		this.trabalhos.add(new Conceituado<>(new Trabalho("Trabalho 4", 1999, "Veículo 3")));
+		this.trabalhos.add(new Conceituado<>(new Trabalho("Trabalho 5", 2003, "Veículo 2")));
+		Conceituado<Trabalho> trabalho6 = new Conceituado<>(new Trabalho("Trabalho 6", 1995, "Veículo 2"));
 		trabalho6.addConceito(new Conceito(4L, "Veículo quase 2", "A2", new NivelSimilaridade(0.467f), 1995));
 		trabalho6.addConceito(new Conceito(5L, "Veículo 2", "A1", new NivelSimilaridade(1f), 1995));
 		trabalho6.addConceito(new Conceito(6L, "Veículo quase 2", "A3", NivelSimilaridade.BAIXO, 1996));
@@ -94,7 +94,7 @@ public class AvaliacaoStatsTest {
 
 	@Test
 	public void testGetTotalizador() {
-		Artigo artigo42 = new Artigo("Artigo 42", 2000, "Somethin", "4242-42XX");
+		Conceituado<Artigo> artigo42 = new Conceituado<>(new Artigo("Artigo 42", 2000, "Somethin", "4242-42XX"));
 		artigo42.addConceito(new Conceito(90L, "Veículo", "A2", NivelSimilaridade.NORMAL, 2000));
 		this.artigos.add(artigo42);
 		this.stats = new AvaliacaoStats(this.artigos, this.trabalhos);
@@ -114,13 +114,13 @@ public class AvaliacaoStatsTest {
 	}
 
 	private AvaliacaoStats createStats2() {
-		List<Artigo> novosArtigos = new ArrayList<>();
-		List<Trabalho> novosTrabalhos = new ArrayList<>();
+		List<Conceituado<Artigo>> novosArtigos = new ArrayList<>();
+		List<Conceituado<Trabalho>> novosTrabalhos = new ArrayList<>();
 
-		novosArtigos.add(new Artigo("Artigo99", 1999, "99' show of articles", "9999-999X"));
-		novosArtigos.add(new Artigo("Artigo00", 2000, "00' show of articles", "0000-000X"));
+		novosArtigos.add(new Conceituado<>(new Artigo("Artigo99", 1999, "99' show of articles", "9999-999X")));
+		novosArtigos.add(new Conceituado<>(new Artigo("Artigo00", 2000, "00' show of articles", "0000-000X")));
 
-		novosTrabalhos.add(new Trabalho("Trabs", 2030, "Mars"));
+		novosTrabalhos.add(new Conceituado<>(new Trabalho("Trabs", 2030, "Mars")));
 
 		AvaliacaoStats stats2 = new AvaliacaoStats(novosArtigos, novosTrabalhos);
 		return stats2;
@@ -136,8 +136,8 @@ public class AvaliacaoStatsTest {
 	}
 
 	public void testReduceNoSideEffects() {
-		ArrayList<Artigo> artigosCopy = new ArrayList<>(this.stats.getArtigos());
-		ArrayList<Trabalho> trabalhosCopy = new ArrayList<>(this.stats.getTrabalhos());
+		ArrayList<Conceituado<Artigo>> artigosCopy = new ArrayList<>(this.stats.getArtigos());
+		ArrayList<Conceituado<Trabalho>> trabalhosCopy = new ArrayList<>(this.stats.getTrabalhos());
 		this.stats.reduce(this.createStats2());
 		Assertions.assertThat(this.stats.getArtigos()).isEqualTo(artigosCopy);
 		Assertions.assertThat(this.stats.getTrabalhos()).isEqualTo(trabalhosCopy);

@@ -6,18 +6,18 @@
         </button>
 
         <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-            <li><a ng-click="sugerir(item)">Sugerir matching</a></li>
+            <li><a ng-click="sugerir(item.obj)">Sugerir matching</a></li>
         </ul>
     </div>
 
     <p class="qualis-titulo" title="Título do trabalho" highlight-text="filter">
-        <span class="qualis-ano">{{ item.ano }} |</span>
-        {{ item.titulo }}
+        <span class="qualis-ano">{{ item.obj.ano }} |</span>
+        {{ item.obj.titulo }}
     </p>
 
     <p>
-        <span class="qualis-veiculo" title="Título do periódico ou evento" highlight-text="filter">{{ item.tituloVeiculo }}</span>
-        <span class="qualis-issn" title="ISSN" ng-show="item.issn" highlight-text="filter"> | ISSN: {{ item.issn }}</span>
+        <span class="qualis-veiculo" title="Título do periódico ou evento" highlight-text="filter">{{ item.obj.tituloVeiculo }}</span>
+        <span class="qualis-issn" title="ISSN" ng-show="item.obj.issn" highlight-text="filter"> | ISSN: {{ item.obj.issn }}</span>
     </p> {{opened}}
 
     <div ng-class="{ 'qualis-conceito-item': true, 'first': $first }" ng-repeat="(i, conceito) in item.conceitos">
@@ -27,7 +27,7 @@
             </span>
 
             <button class="btn btn-xs" title="Utilizar este conceito"
-                ng-hide="$first" ng-click="feedback(item, conceito)">
+                ng-hide="$first" ng-click="feedback(item.obj, conceito)">
                 <i class="glyphicon glyphicon-arrow-up"></i>
             </button>
         </div>
@@ -38,6 +38,6 @@
 
     <p class="help-block" ng-show="item.conceitos.length === 0">
         <i>Nenhum conceito encontrado</i>
-        | <a ng-click="sugerir(item)">Sugerir matching</a>
+        | <a ng-click="sugerir(item.obj)">Sugerir matching</a>
     </p>
 </div>

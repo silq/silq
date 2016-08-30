@@ -18,11 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.data.Conceito;
+import br.ufsc.silq.core.data.Conceituavel;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.SimilarityResult;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.QualisSearchForm;
-import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.QualisEvento;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.core.utils.SilqStringUtils;
@@ -74,13 +74,13 @@ public class SimilarityService {
 	 * Obtém os conceitos de um evento ou periódico realizando uma busca por similaridade na base Qualis.
 	 * Utiliza as funções de similaridade nativas do PostgreSQL.
 	 *
-	 * @param trabalho Trabalho a ser avaliado (deve conter título do veículo e ano).
+	 * @param conceituavel Trabalho ou artigo a ser avaliado.
 	 * @param avaliarForm Opções de avaliação.
 	 * @param tipoAvaliacao Tipo de avaliação (altera a tabela do banco a ser consultada).
 	 * @return A lista de conceitos do veículo.
 	 * @throws SQLException Caso haja um erro ao executar o SQL.
 	 */
-	public List<Conceito> getConceitos(Trabalho trabalho, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
+	public List<Conceito> getConceitos(Conceituavel conceituavel, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
 		this.setSimilarityThreshold(avaliarForm.getNivelSimilaridade().getValue());
 
 		String sql = "SELECT " + tipoAvaliacao.getPk() + ", NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
@@ -90,9 +90,9 @@ public class SimilarityService {
 		sql += " LIMIT ?4";
 
 		Query query = this.em.createNativeQuery(sql);
-		query.setParameter(1, SilqStringUtils.normalizeString(trabalho.getTituloVeiculo()));
+		query.setParameter(1, SilqStringUtils.normalizeString(conceituavel.getTituloVeiculo()));
 		query.setParameter(2, avaliarForm.getArea().toUpperCase());
-		query.setParameter(3, trabalho.getAno());
+		query.setParameter(3, conceituavel.getAno());
 		query.setParameter(4, SilqConfig.MAX_SIMILARITY_RESULTS);
 
 		List<Object[]> results = query.getResultList();
