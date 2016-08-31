@@ -1,6 +1,5 @@
 package br.ufsc.silq.core.data;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,9 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -20,14 +17,21 @@ import lombok.Setter;
  * @param <T> Tipo do objeto conceituado.
  */
 @Data
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class Conceituado<T extends Comparable<T>> implements Comparable<Conceituado<T>> {
 
 	private final T obj;
 
 	@Setter(value = AccessLevel.PROTECTED)
-	private List<Conceito> conceitos = new ArrayList<>();
+	private List<Conceito> conceitos = new SortedList<>();
+
+	public Conceituado(T obj) {
+		this.obj = obj;
+	}
+
+	public Conceituado(T obj, List<Conceito> conceitos) {
+		this(obj);
+		this.conceitos = new SortedList<>(conceitos);
+	}
 
 	/**
 	 * Adiciona um conceito ao trabalho.
@@ -65,7 +69,7 @@ public class Conceituado<T extends Comparable<T>> implements Comparable<Conceitu
 	 */
 	@JsonIgnore
 	public Conceito getConceitoMaisSimilar() {
-		return this.conceitos.stream().max((c1, c2) -> c1.compareTo(c2)).orElse(null);
+		return this.conceitos.isEmpty() ? null : this.conceitos.get(0);
 	}
 
 	@Override
