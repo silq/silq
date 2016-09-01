@@ -1,7 +1,6 @@
 # SILQ 2
 
 [![Build Status](https://travis-ci.com/CarlosBonetti/silq2.svg?token=TncWKXR1N9y1CQNXWyip&branch=master)](https://travis-ci.com/CarlosBonetti/silq2)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dd5df6c7ef01470da3e2c2b5a626eff0)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CarlosBonetti/silq2&amp;utm_campaign=Badge_Grade)
 
 A base desta aplicação foi gerada utilizando JHipster, você pode encontrar documentação a respeito em  [https://jhipster.github.io](https://jhipster.github.io).
 
