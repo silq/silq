@@ -28,17 +28,31 @@ public class Conceituado<T extends Comparable<T>> implements Comparable<Conceitu
 		this.obj = obj;
 	}
 
-	public Conceituado(T obj, List<Conceito> conceitos) {
+	public Conceituado(T obj, Collection<Conceito> conceitos) {
 		this(obj);
-		this.conceitos = new SortedList<>(conceitos);
+		this.addConceitos(conceitos);
 	}
 
 	/**
 	 * Adiciona um conceito ao trabalho.
+	 * Caso o conceito já exista neste trabalho, então ele é sobrescrito caso algum destes casos seja verdadeiro:
+	 * - Se o {@link NivelSimilaridade} do novo conceito for maior que o antigo;
+	 * - Se o novo conceito tiver a flag {@link Conceito#isFlagged()}
 	 *
 	 * @param conceito O {@link Conceito} a ser adicionado.
 	 */
 	public void addConceito(Conceito conceito) {
+		int pos;
+		if ((pos = this.conceitos.indexOf(conceito)) >= 0) {
+			Conceito antigoConceito = this.conceitos.get(pos);
+
+			if (conceito.compareTo(antigoConceito) <= 0) {
+				this.conceitos.remove(pos);
+			} else {
+				return;
+			}
+		}
+
 		this.conceitos.add(conceito);
 	}
 
@@ -48,7 +62,7 @@ public class Conceituado<T extends Comparable<T>> implements Comparable<Conceitu
 	 * @param conceitos A coleção de {@link Conceito} a ser adicionada.
 	 */
 	public void addConceitos(Collection<Conceito> conceitos) {
-		this.conceitos.addAll(conceitos);
+		conceitos.forEach(this::addConceito);
 	}
 
 	/**

@@ -62,4 +62,9 @@ public class SortedList<T extends Comparable<T>> extends LinkedList<T> {
 		c.forEach(this::add);
 		return !c.isEmpty();
 	}
+
+	@Override
+	public int indexOf(Object o) {
+		return super.indexOf(o);
+	}
 }

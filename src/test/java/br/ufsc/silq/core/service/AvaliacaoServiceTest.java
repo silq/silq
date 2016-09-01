@@ -8,9 +8,12 @@ import org.junit.Test;
 
 import br.ufsc.silq.core.data.AvaliacaoCollectionResult;
 import br.ufsc.silq.core.data.AvaliacaoResult;
+import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.Conceituado;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.AvaliarForm;
+import br.ufsc.silq.core.forms.FeedbackEventoForm;
+import br.ufsc.silq.core.forms.FeedbackPeriodicoForm;
 import br.ufsc.silq.core.forms.GrupoForm;
 import br.ufsc.silq.core.parser.LattesParser;
 import br.ufsc.silq.core.parser.dto.Artigo;
@@ -18,9 +21,13 @@ import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.Grupo;
+import br.ufsc.silq.core.persistence.entities.QualisEvento;
+import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
+import br.ufsc.silq.core.persistence.entities.Usuario;
+import br.ufsc.silq.core.persistence.repository.QualisEventoRepository;
+import br.ufsc.silq.core.persistence.repository.QualisPeriodicoRepository;
 import br.ufsc.silq.test.Fixtures;
 import br.ufsc.silq.test.WebContextTest;
-import br.ufsc.silq.test.asserts.CacheAssert;
 
 public class AvaliacaoServiceTest extends WebContextTest {
 
@@ -34,12 +41,24 @@ public class AvaliacaoServiceTest extends WebContextTest {
 	GrupoService grupoService;
 
 	@Inject
+	FeedbackService feedbackService;
+
+	@Inject
 	LattesParser lattesParser;
+
+	@Inject
+	QualisEventoRepository eventoRepo;
+
+	@Inject
+	QualisPeriodicoRepository periodicoRepo;
 
 	private AvaliarForm avaliarForm;
 
+	private Usuario usuarioLogado;
+
 	@Before
 	public void setup() {
+		this.usuarioLogado = this.loginUser();
 		this.avaliarForm = new AvaliarForm();
 		this.avaliarForm.setArea("Ciência da Computação");
 	}
@@ -64,11 +83,33 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
 		Artigo artigo = parseResult.getArtigos().stream().findAny().get();
 
-		Conceituado<Artigo> artigoAvaliado = this.avaliacaoService.avaliarArtigo(artigo, this.avaliarForm);
+		Conceituado<Artigo> artigoAvaliado = this.avaliacaoService.avaliarArtigo(artigo, this.avaliarForm, null);
 
 		// Artigo avaliado deve ser uma cópia do parâmetro
 		Assertions.assertThat(artigoAvaliado).isNotSameAs(artigo);
 		// Assertions.assertThat(artigoAvaliado.hasConceito()).isTrue();
+	}
+
+	@Test
+	public void testAvaliarArtigoComFeedback() throws SilqException {
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.MAURICIO_ZIP_UPLOAD);
+		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
+		Artigo artigo = parseResult.getArtigos().stream().findAny().get();
+
+		// Dá o feedback
+		QualisPeriodico periodico = this.periodicoRepo.findOne(1L);
+		this.feedbackService.sugerirMatchingPeriodico(new FeedbackPeriodicoForm(periodico.getId(), artigo.getTituloVeiculo()));
+
+		Conceituado<Artigo> artigoAvaliado = this.avaliacaoService.avaliarArtigo(artigo, this.avaliarForm, this.usuarioLogado);
+
+		// Artigo avaliado deve ter o conceito do feedback dado
+		Assertions.assertThat(artigoAvaliado.hasConceito()).isTrue();
+
+		Conceito conceito = artigoAvaliado.getConceitoMaisSimilar();
+		Assertions.assertThat(conceito.getTituloVeiculo()).isEqualTo(periodico.getTitulo());
+		Assertions.assertThat(conceito.getAno()).isEqualTo(periodico.getAno());
+		Assertions.assertThat(conceito.getConceito()).isEqualTo(periodico.getEstrato());
+		Assertions.assertThat(conceito.getSimilaridade()).isEqualTo(0.42f);
 	}
 
 	@Test
@@ -77,7 +118,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
 		Trabalho trabalho = parseResult.getTrabalhos().stream().findAny().get();
 
-		Conceituado<Trabalho> trabalhoAvaliado = this.avaliacaoService.avaliarTrabalho(trabalho, this.avaliarForm);
+		Conceituado<Trabalho> trabalhoAvaliado = this.avaliacaoService.avaliarTrabalho(trabalho, this.avaliarForm, null);
 
 		// Trabalho avaliado deve ser uma cópia do parâmetro
 		Assertions.assertThat(trabalhoAvaliado).isNotSameAs(trabalho);
@@ -85,17 +126,29 @@ public class AvaliacaoServiceTest extends WebContextTest {
 	}
 
 	@Test
-	public void testAvaliarCache() throws SilqException {
-		Assertions.assertThat(true).isTrue();
-		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
-		CacheAssert.assertThat(() -> {
-			return this.avaliacaoService.avaliar(lattes, this.avaliarForm);
-		}).isCached();
+	public void testAvaliarTrabalhoComFeedback() throws SilqException {
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.MAURICIO_ZIP_UPLOAD);
+		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
+		Trabalho trabalho = parseResult.getTrabalhos().stream().findAny().get();
+
+		// Dá o Feedback
+		QualisEvento evento = this.eventoRepo.findOne(1L);
+		this.feedbackService.sugerirMatchingEvento(new FeedbackEventoForm(evento.getId(), trabalho.getTituloVeiculo()));
+
+		Conceituado<Trabalho> trabalhoAvaliado = this.avaliacaoService.avaliarTrabalho(trabalho, this.avaliarForm, this.usuarioLogado);
+
+		// Trabalho avaliado deve ter o conceito do feedback dado
+		Assertions.assertThat(trabalhoAvaliado.hasConceito()).isTrue();
+
+		Conceito conceito = trabalhoAvaliado.getConceitoMaisSimilar();
+		Assertions.assertThat(conceito.getTituloVeiculo()).isEqualTo(evento.getTitulo());
+		Assertions.assertThat(conceito.getAno()).isEqualTo(evento.getAno());
+		Assertions.assertThat(conceito.getConceito()).isEqualTo(evento.getEstrato());
+		Assertions.assertThat(conceito.getSimilaridade()).isEqualTo(0.42f);
 	}
 
 	@Test
 	public void testAvaliarCollection() throws SilqException {
-		this.loginUser();
 		GrupoForm grupoForm = new GrupoForm();
 		grupoForm.setNomeGrupo("Grupo de testes #1");
 		grupoForm.setNomeInstituicao("UFSC");

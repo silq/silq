@@ -14,4 +14,8 @@ public class SilqConfig {
 	 */
 	public static final boolean AVALIAR_ARTIGO_POR_SIMILARIDADE = false;
 
+	/**
+	 * Indica se o algoritmo de avaliação deve considerar feedbacks para rankeamento dos resultados.
+	 */
+	public static final boolean AVALIAR_USANDO_FEEDBACK = true;
 }

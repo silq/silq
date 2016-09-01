@@ -1,8 +1,10 @@
 package br.ufsc.silq.core.data;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(of = "id")
 public class Conceito implements Comparable<Conceito> {
 
 	private final Long id;

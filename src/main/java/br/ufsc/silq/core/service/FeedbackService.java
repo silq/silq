@@ -1,6 +1,7 @@
 package br.ufsc.silq.core.service;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -8,6 +9,8 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.ufsc.silq.core.data.Conceito;
+import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
 import br.ufsc.silq.core.forms.FeedbackPeriodicoForm;
 import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
@@ -83,5 +86,47 @@ public class FeedbackService {
 		feedback.setDate(new Date());
 		this.feedbackPeriodicoRepo.save(feedback);
 		return feedback;
+	}
+
+	/**
+	 * Busca por um feedback de EVENTO com a dada query pertencente ao dado usuário. Caso encontrado, converte-o para
+	 * um objeto {@link Conceito}
+	 *
+	 * @param query Query do feedback buscado.
+	 * @param usuario Usuário dono do feedback buscado.
+	 * @return Um objeto Conceito opcional, populado caso tenha sido encontrado um feedback com os dados parâmetros de busca.
+	 */
+	public Optional<Conceito> getConceitoFeedbackEvento(String query, Usuario usuario) {
+		Optional<FeedbackEvento> feedback = this.feedbackEventoRepo.findOneByQueryAndUsuario(query, usuario);
+		return feedback.map(this::feedbackToConceito);
+	}
+
+	/**
+	 * Busca por um feedback de PERIÓDICO com a dada query pertencente ao dado usuário. Caso encontrado, converte-o para
+	 * um objeto {@link Conceito}
+	 *
+	 * @param query Query do feedback buscado.
+	 * @param usuario Usuário dono do feedback buscado.
+	 * @return Um objeto Conceito opcional, populado caso tenha sido encontrado um feedback com os dados parâmetros de busca.
+	 */
+	public Optional<Conceito> getConceitoFeedbackPeriodico(String query, Usuario usuario) {
+		Optional<FeedbackPeriodico> feedback = this.feedbackPeriodicoRepo.findOneByQueryAndUsuario(query, usuario);
+		return feedback.map(this::feedbackToConceito);
+	}
+
+	private Conceito feedbackToConceito(FeedbackEvento feedback) {
+		QualisEvento evento = feedback.getEvento();
+		Conceito conceito = new Conceito(evento.getId(), evento.getTitulo(), evento.getEstrato(),
+				new NivelSimilaridade(0.42f), evento.getAno());
+		conceito.setFlagged(true);
+		return conceito;
+	}
+
+	private Conceito feedbackToConceito(FeedbackPeriodico feedback) {
+		QualisPeriodico periodico = feedback.getPeriodico();
+		Conceito conceito = new Conceito(periodico.getId(), periodico.getTitulo(), periodico.getEstrato(),
+				new NivelSimilaridade(0.42f), periodico.getAno());
+		conceito.setFlagged(true);
+		return conceito;
 	}
 }
