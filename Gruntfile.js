@@ -358,7 +358,9 @@ module.exports = function (grunt) {
         grunt.task.run([target ? ('serve:' + target) : 'serve']);
     });
 
-    grunt.registerTask('test', [
+    grunt.registerTask('test', []);
+
+    grunt.registerTask('test:e2e', [
         'protractor_webdriver',
         'protractor'
     ]);
