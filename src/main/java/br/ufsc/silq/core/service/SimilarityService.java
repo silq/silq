@@ -193,6 +193,21 @@ public class SimilarityService {
 	}
 
 	/**
+	 * Calcula a similaridade textual entre duas strings.
+	 *
+	 * @param s1 Primeira string.
+	 * @param s2 Segunda string.
+	 * @return O {@link NivelSimilaridade} calculado entre as duas strings.
+	 */
+	public NivelSimilaridade calcularSimilaridade(String s1, String s2) {
+		Query q = this.em.createNativeQuery("SELECT similarity(?1, ?2)");
+		q.setParameter(1, s1);
+		q.setParameter(2, s2);
+		Float value = (Float) q.getSingleResult();
+		return new NivelSimilaridade(value);
+	}
+
+	/**
 	 * Tipos de avaliação.
 	 */
 	@AllArgsConstructor

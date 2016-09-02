@@ -109,7 +109,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito.getTituloVeiculo()).isEqualTo(periodico.getTitulo());
 		Assertions.assertThat(conceito.getAno()).isEqualTo(periodico.getAno());
 		Assertions.assertThat(conceito.getConceito()).isEqualTo(periodico.getEstrato());
-		Assertions.assertThat(conceito.getSimilaridade()).isEqualTo(0.42f);
+		Assertions.assertThat(conceito.getSimilaridade()).isNotNegative();
 	}
 
 	@Test
@@ -144,7 +144,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito.getTituloVeiculo()).isEqualTo(evento.getTitulo());
 		Assertions.assertThat(conceito.getAno()).isEqualTo(evento.getAno());
 		Assertions.assertThat(conceito.getConceito()).isEqualTo(evento.getEstrato());
-		Assertions.assertThat(conceito.getSimilaridade()).isEqualTo(0.42f);
+		Assertions.assertThat(conceito.getSimilaridade()).isNotNegative();
 	}
 
 	@Test
