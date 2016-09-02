@@ -25,6 +25,7 @@
             <span class="label-conceito">
                 <span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span><span class="ano" title="Ano base da avaliação Qualis">{{ conceito.ano }}</span><span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span>
             </span>
+            <span title="Conceito indicado pelo usuário" class="label label-primary" ng-show="conceito.flagged"><i class="glyphicon glyphicon-flag"></i></span>
 
             <button class="btn btn-xs" title="Utilizar este conceito"
                 ng-hide="$first" ng-click="feedback(item.obj, conceito)">
