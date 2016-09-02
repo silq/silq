@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .directive('avaliarResult', function() {
+    .directive('avaliarResult', function($state) {
         return {
             restrict: 'E',
             scope: {
@@ -9,6 +9,16 @@ angular.module('silq2App')
             },
             templateUrl: 'scripts/components/avaliar/avaliar-result.html',
             link: function($scope) {
+                $scope.needRefresh = false;
+
+                $scope.$on('silq:feedback', function() {
+                    $scope.needRefresh = true;
+                });
+
+                $scope.refreshResults = function() {
+                     $state.reload();
+                };
+
                 var createShallowResults = function(results) {
                     var arr = []; // Array de linhas da tabela
                     results.forEach(function(item) {

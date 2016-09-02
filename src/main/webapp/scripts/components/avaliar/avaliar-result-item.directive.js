@@ -47,7 +47,11 @@ angular.module('silq2App')
                     }
 
                     feedbackRequest.then(function() {
-                        Flash.create('success', '<strong>Sucesso!</strong> Feedback registrado');
+                        Flash.create('success', '<strong>Feedback registrado!</strong> Atualize a página para recalcular as estatísticas');
+
+                        // Emite o evento de feedback para atualização
+                        // do status 'modificado' em avaliar-result.controller
+                        $scope.$emit('silq:feedback');
                     });
                 };
             }

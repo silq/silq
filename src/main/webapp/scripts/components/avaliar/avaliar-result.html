@@ -24,6 +24,15 @@
 
         <h4 class="title-border">Totalizador <small>Nível de confiança: {{results.form.nivelSimilaridade.text}}</small></h4>
 
+        <div ng-show="needRefresh" class="alert alert-warning">
+            <p>
+                Alguns conceitos foram manualmente modificados pelo usuário. <a ng-click="refreshResults()">Atualize esta página</a> para recalcular as estatísticas!
+            </p>
+            <p>
+                <button ng-click="refreshResults()" class="btn btn-block btn-primary">Atualizar agora</button>
+            </p>
+        </div>
+
         <table class="table table-condensed table-striped">
             <thead>
                 <th>Conceito</th>
@@ -100,6 +109,11 @@
 
         <div ng-show="active == 2">
             <br />
+            <div ng-show="needRefresh" class="alert alert-warning">
+                <p>
+                    Alguns conceitos foram manualmente modificados pelo usuário. <a ng-click="refreshResults()">Atualize esta página</a> para recalcular as estatísticas!
+                </p>
+            </div>
 
             <chart-publicacoes-por-ano stats="results.stats"></chart-publicacoes-por-ano>
         </div>
