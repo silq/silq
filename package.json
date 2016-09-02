@@ -1,6 +1,6 @@
 {
   "name": "silq2",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "description": "Description for silq2",
   "private": true,
   "cacheDirectories": [
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "postinstall": "bower install && webdriver-manager update",
-    "test": "grunt test",
+    "test": "grunt test:e2e",
     "start": "grunt",
     "package": "mvn package -Pprod -DskipTests"
   },
