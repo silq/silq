@@ -28,6 +28,12 @@ angular.module('silq2App')
                     var id = conceito.id;
                     var feedbackRequest;
 
+                    // Remove o conceito do feedback e o insere novamente no início da lista
+                    $scope.item.conceitos[0].flagged = false;
+                    $scope.item.conceitos.splice($scope.item.conceitos.indexOf(conceito), 1);
+                    $scope.item.conceitos.unshift(conceito);
+                    conceito.flagged = true;
+
                     if (item.issn) {
                         feedbackRequest = Feedback.periodico(query, id);
                     } else {
