@@ -1,5 +1,7 @@
 package br.ufsc.silq.core.forms;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,5 +15,9 @@ public class QualisSearchForm {
 
 	public QualisSearchForm(String query) {
 		this.query = query;
+	}
+
+	public boolean hasQuery() {
+		return StringUtils.isNotBlank(this.query);
 	}
 }

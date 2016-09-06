@@ -16,6 +16,7 @@ import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.test.WebContextTest;
 
 public class QualisServiceTest extends WebContextTest {
+	private final static int PAGE_SIZE = 15;
 
 	@Inject
 	QualisService qualisService;
@@ -24,13 +25,13 @@ public class QualisServiceTest extends WebContextTest {
 
 	@Before
 	public void setUp() {
-		this.pageable = new PageRequest(0, 10);
+		this.pageable = new PageRequest(0, PAGE_SIZE);
 	}
 
 	@Test
 	public void testSearchPeriodicosNullQuery() {
 		Page<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos(new QualisSearchForm(), this.pageable);
-		Assertions.assertThat(page.getNumberOfElements()).isEqualTo(0);
+		Assertions.assertThat(page.getNumberOfElements()).isEqualTo(PAGE_SIZE);
 	}
 
 	@Test
@@ -42,7 +43,7 @@ public class QualisServiceTest extends WebContextTest {
 	@Test
 	public void testSearchEventosNullQuery() {
 		Page<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos(new QualisSearchForm(), this.pageable);
-		Assertions.assertThat(page.getNumberOfElements()).isEqualTo(0);
+		Assertions.assertThat(page.getNumberOfElements()).isEqualTo(PAGE_SIZE);
 	}
 
 	@Test
