@@ -43,31 +43,15 @@ public class SimilarityService {
 	private EntityManager em;
 
 	/**
-	 * Nível de similaridade atual sendo usado pelo serviço.
-	 * Ao setar um novo threshold via {@link #setSimilarityThreshold(Float)} guardamos o valor setado aqui
-	 * para que novas chamadas a este método não resultem em queries desnecessárias caso o valor não tenha sido alterado.
-	 */
-	private Float similarityThreshold = Float.valueOf(-1);
-
-	/**
 	 * Seta o nível de similaridade mínimo (threshold) que será usado para as queries de similaridade no banco.
 	 * Utiliza a função nativa do PostgreSQL `set_limit()`.
 	 *
 	 * @param value Valor numérico de 0 a 1 representando o threshold de similaridade.
-	 * @return Verdadeiro caso o valor tenha sido alterado ou falso caso não precisou ser alterado pois
-	 *         a avaliação anterior já setou este mesmo valor.
 	 */
-	public boolean setSimilarityThreshold(Float value) {
-		if (!value.equals(this.similarityThreshold)) {
-			Query query = this.em.createNativeQuery("SELECT set_limit(?1)");
-			query.setParameter(1, value);
-			Float result = (Float) query.getSingleResult();
-			log.trace("Similarity threshold set to {}", result);
-			this.similarityThreshold = result;
-			return true;
-		}
-
-		return false;
+	public void setSimilarityThreshold(Float value) {
+		Query query = this.em.createNativeQuery("SELECT set_limit(?1)");
+		query.setParameter(1, value);
+		query.getSingleResult();
 	}
 
 	/**
