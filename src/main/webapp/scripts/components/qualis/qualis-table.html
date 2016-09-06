@@ -17,7 +17,13 @@
 
 <br>
 
-<p>Mostrando <strong>{{results.totalElements}}</strong> resultados encontrados.</p>
+<div class="table-info-header row">
+    <p class="col-md-6">Mostrando <strong>{{results.totalElements}}</strong> resultados encontrados.</p>
+
+    <nav class="col-md-6 text-right" aria-label="Page navigation">
+        <ul uib-pagination total-items="results.totalElements" ng-model="query.page" ng-change="pageChanged()" items-per-page="results.size"></ul>
+    </nav>
+</div>
 
 <table class="table table-striped table-condensed table-hover">
     <thead>
@@ -50,6 +56,6 @@
     </tbody>
 </table>
 
-<nav class="text-center" aria-label="Page navigation">
+<nav class="text-right" aria-label="Page navigation">
     <ul uib-pagination total-items="results.totalElements" ng-model="query.page" ng-change="pageChanged()" items-per-page="results.size"></ul>
 </nav>
