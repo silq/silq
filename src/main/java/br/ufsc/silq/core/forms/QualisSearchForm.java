@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QualisSearchForm {
 
-	private String query;
+	private String query = "";
 
 	private String area;
 

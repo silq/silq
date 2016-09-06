@@ -3,7 +3,6 @@ package br.ufsc.silq.web.rest;
 import javax.inject.Inject;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,7 @@ public class QualisResource {
 	@RequestMapping(value = "/periodicos", method = RequestMethod.GET)
 	public ResponseEntity<Page<SimilarityResult<QualisPeriodico>>> getPeriodicos(QualisSearchForm form, Pageable pageable) {
 		log.debug("REST request to get Periodicos: {}, {}", form, pageable);
-		PageImpl<SimilarityResult<QualisPeriodico>> periodicos = this.qualisService.searchPeriodicos(form, pageable);
+		Page<SimilarityResult<QualisPeriodico>> periodicos = this.qualisService.searchPeriodicos(form, pageable);
 		return new ResponseEntity<>(periodicos, HttpStatus.OK);
 	}
 
@@ -42,7 +41,7 @@ public class QualisResource {
 	@RequestMapping(value = "/eventos", method = RequestMethod.GET)
 	public ResponseEntity<Page<SimilarityResult<QualisEvento>>> getEventos(QualisSearchForm form, Pageable pageable) {
 		log.debug("REST request to get Eventos: {}, {}", form, pageable);
-		PageImpl<SimilarityResult<QualisEvento>> eventos = this.qualisService.searchEventos(form, pageable);
+		Page<SimilarityResult<QualisEvento>> eventos = this.qualisService.searchEventos(form, pageable);
 		return new ResponseEntity<>(eventos, HttpStatus.OK);
 	}
 }

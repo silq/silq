@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class QualisService {
 	 * @param pageable Configuração de paginação.
 	 * @return Uma página (sublista) dos resultados encontrados.
 	 */
-	public PageImpl<SimilarityResult<QualisPeriodico>> searchPeriodicos(@Valid QualisSearchForm form, Pageable pageable) {
+	public Page<SimilarityResult<QualisPeriodico>> searchPeriodicos(@Valid QualisSearchForm form, Pageable pageable) {
 		List<Object[]> results = this.similarityService.search(TipoAvaliacao.PERIODICO, form, pageable);
 		List<SimilarityResult<QualisPeriodico>> periodicos = results.stream()
 				.map(this.similarityService::mapResultToPeriodico)
@@ -47,7 +48,7 @@ public class QualisService {
 	 * @param pageable Configuração de paginação.
 	 * @return Uma página (sublista) dos resultados encontrados.
 	 */
-	public PageImpl<SimilarityResult<QualisEvento>> searchEventos(@Valid QualisSearchForm form, Pageable pageable) {
+	public Page<SimilarityResult<QualisEvento>> searchEventos(@Valid QualisSearchForm form, Pageable pageable) {
 		List<Object[]> results = this.similarityService.search(TipoAvaliacao.EVENTO, form, pageable);
 		List<SimilarityResult<QualisEvento>> eventos = results.stream()
 				.map(this.similarityService::mapResultToEvento)

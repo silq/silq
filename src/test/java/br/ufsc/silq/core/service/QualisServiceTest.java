@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -28,26 +28,26 @@ public class QualisServiceTest extends WebContextTest {
 	}
 
 	@Test
-	public void testSearchPeriodicosNoQuery() {
-		PageImpl<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos(new QualisSearchForm(""), this.pageable);
-		Assertions.assertThat(page.getContent()).isEmpty();
+	public void testSearchPeriodicosNullQuery() {
+		Page<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos(new QualisSearchForm(), this.pageable);
+		Assertions.assertThat(page.getNumberOfElements()).isEqualTo(0);
 	}
 
 	@Test
 	public void testSearchPeriodicos() {
-		PageImpl<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos(new QualisSearchForm("Test"), this.pageable);
+		Page<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos(new QualisSearchForm("Test"), this.pageable);
 		Assertions.assertThat(page.getContent()).isNotEmpty();
 	}
 
 	@Test
-	public void testSearchEventosNoQuery() {
-		PageImpl<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos(new QualisSearchForm(""), this.pageable);
-		Assertions.assertThat(page.getContent()).isEmpty();
+	public void testSearchEventosNullQuery() {
+		Page<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos(new QualisSearchForm(), this.pageable);
+		Assertions.assertThat(page.getNumberOfElements()).isEqualTo(0);
 	}
 
 	@Test
 	public void testSearchEventos() {
-		PageImpl<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos(new QualisSearchForm("Test"), this.pageable);
+		Page<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos(new QualisSearchForm("Test"), this.pageable);
 		Assertions.assertThat(page.getContent()).isNotEmpty();
 	}
 }
