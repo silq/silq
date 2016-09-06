@@ -16,7 +16,9 @@ import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.test.WebContextTest;
 
 public class QualisServiceTest extends WebContextTest {
+
 	private final static int PAGE_SIZE = 15;
+	private static final String AREA = "Ciência da Computação";
 
 	@Inject
 	QualisService qualisService;
@@ -35,6 +37,16 @@ public class QualisServiceTest extends WebContextTest {
 	}
 
 	@Test
+	public void testSearchPeriodicosNullQueryAndArea() {
+		Page<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos(
+				new QualisSearchForm(null, AREA), this.pageable);
+		Assertions.assertThat(page.getNumberOfElements()).isEqualTo(PAGE_SIZE);
+		page.forEach(p -> {
+			Assertions.assertThat(p.getResultado().getAreaAvaliacao().equals(AREA));
+		});
+	}
+
+	@Test
 	public void testSearchPeriodicos() {
 		Page<SimilarityResult<QualisPeriodico>> page = this.qualisService.searchPeriodicos(new QualisSearchForm("Test"), this.pageable);
 		Assertions.assertThat(page.getContent()).isNotEmpty();
@@ -44,6 +56,16 @@ public class QualisServiceTest extends WebContextTest {
 	public void testSearchEventosNullQuery() {
 		Page<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos(new QualisSearchForm(), this.pageable);
 		Assertions.assertThat(page.getNumberOfElements()).isEqualTo(PAGE_SIZE);
+	}
+
+	@Test
+	public void testSearchEventosNullQueryAndArea() {
+		Page<SimilarityResult<QualisEvento>> page = this.qualisService.searchEventos(
+				new QualisSearchForm(null, AREA), this.pageable);
+		Assertions.assertThat(page.getNumberOfElements()).isEqualTo(PAGE_SIZE);
+		page.forEach(e -> {
+			Assertions.assertThat(e.getResultado().getAreaAvaliacao().equals(AREA));
+		});
 	}
 
 	@Test

@@ -43,7 +43,14 @@ public class QualisService {
 	 */
 	public Page<SimilarityResult<QualisPeriodico>> searchPeriodicos(@Valid QualisSearchForm form, Pageable pageable) {
 		if (!form.hasQuery()) {
-			Page<QualisPeriodico> periodicos = this.periodicoRepo.findAll(pageable);
+			Page<QualisPeriodico> periodicos;
+
+			if (form.hasArea()) {
+				periodicos = this.periodicoRepo.findAllByAreaAvaliacaoIgnoreCase(form.getArea(), pageable);
+			} else {
+				periodicos = this.periodicoRepo.findAll(pageable);
+			}
+
 			return this.mapToSimilarityResult(pageable, periodicos);
 		}
 
@@ -64,7 +71,14 @@ public class QualisService {
 	 */
 	public Page<SimilarityResult<QualisEvento>> searchEventos(@Valid QualisSearchForm form, Pageable pageable) {
 		if (!form.hasQuery()) {
-			Page<QualisEvento> eventos = this.eventoRepo.findAll(pageable);
+			Page<QualisEvento> eventos;
+
+			if (form.hasArea()) {
+				eventos = this.eventoRepo.findAllByAreaAvaliacaoIgnoreCase(form.getArea(), pageable);
+			} else {
+				eventos = this.eventoRepo.findAll(pageable);
+			}
+
 			return this.mapToSimilarityResult(pageable, eventos);
 		}
 

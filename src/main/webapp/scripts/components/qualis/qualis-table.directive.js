@@ -32,7 +32,7 @@ angular.module('silq2App')
                 }, $scope.query);
 
                 $scope.mode = angular.isDefined($scope.mode) ? $scope.mode : null;
-                $scope.tipo = $scope.mode || 'eventos';
+                $scope.tipo = $scope.mode || 'periodicos';
                 $scope.results = [];
                 $scope.loading = false;
 
