@@ -13,7 +13,7 @@
     "angular-resource": "1.5.7",
     "angular-sanitize": "1.5.7",
     "angular-ui-router": "0.2.15",
-    "jquery": "2.1.4",
+    "jquery": "3.1.0",
     "json3": "3.3.2",
     "modernizr": "3.2.0",
     "ng-file-upload": "11.2.3",
@@ -24,17 +24,9 @@
     "angular-animate": "1.5.7",
     "angular-messages": "1.5.7",
     "angular-cache": "4.5.0",
-    "bootstrap-sass": "^3.3.6",
+    "bootstrap-sass": "3.3.7",
     "ng-csv": "0.3.6",
-    "angular-chart.js": "0.10.2"
-  },
-  "overrides": {
-    "bootstrap": {
-      "main": [
-        "dist/js/bootstrap.js",
-        "dist/css/bootstrap.css",
-        "less/bootstrap.less"
-      ]
-    }
+    "angular-chart.js": "0.10.2",
+    "bootswatch": "3.3.7"
   }
 }

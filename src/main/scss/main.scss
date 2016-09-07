@@ -24,7 +24,9 @@ $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-s
 $font-size-base: 13px;
 
 // bower:scss
+// @import "bootswatch/lumen/variables";
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// @import "bootswatch/lumen/bootswatch";
 // endbower
 
 @import 'grid';
