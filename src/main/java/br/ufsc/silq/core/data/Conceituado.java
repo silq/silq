@@ -2,6 +2,7 @@ package br.ufsc.silq.core.data;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -89,5 +90,9 @@ public class Conceituado<T extends Comparable<T>> implements Comparable<Conceitu
 	@Override
 	public int compareTo(Conceituado<T> o) {
 		return this.obj.compareTo(o.obj);
+	}
+
+	public void keepTopK(int k) {
+		this.setConceitos(this.conceitos.stream().limit(k).collect(Collectors.toList()));
 	}
 }

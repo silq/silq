@@ -5,7 +5,7 @@ public class SilqConfig {
 	/**
 	 * Número máximo de conceitos atribuídos a um trabalho/artigo avaliado.
 	 */
-	public static final int MAX_SIMILARITY_RESULTS = 4;
+	public static final int MAX_SIMILARITY_RESULTS = 5;
 
 	/**
 	 * Seta se o serviço de avaliação deve tentar avaliar artigos usando similaridade do título

@@ -176,6 +176,7 @@ public class AvaliacaoService {
 					.ifPresent(artigoConceituado::addConceito);
 		}
 
+		artigoConceituado.keepTopK(SilqConfig.MAX_SIMILARITY_RESULTS);
 		return artigoConceituado;
 	}
 
@@ -234,6 +235,7 @@ public class AvaliacaoService {
 					.ifPresent(trabalhoConceituado::addConceito);
 		}
 
+		trabalhoConceituado.keepTopK(SilqConfig.MAX_SIMILARITY_RESULTS);
 		return trabalhoConceituado;
 	}
 }

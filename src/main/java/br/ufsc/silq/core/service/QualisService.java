@@ -35,7 +35,7 @@ public class QualisService {
 	private QualisEventoRepository eventoRepo;
 
 	/**
-	 * Pesquisa por peridócios na base Qualis do sistema que sejam similares à query.
+	 * Pesquisa por periódicos na base Qualis do sistema que sejam similares à query.
 	 *
 	 * @param form Form contendo a query e os filtros de busca.
 	 * @param pageable Configuração de paginação.

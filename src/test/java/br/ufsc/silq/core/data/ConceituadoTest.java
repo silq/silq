@@ -10,6 +10,7 @@ public class ConceituadoTest {
 
 	private Conceito conceito1;
 	private Conceito conceito2;
+	private Conceito conceito3;
 	private Conceito conceito1b;
 	private Conceituado<String> conceituado;
 
@@ -19,6 +20,7 @@ public class ConceituadoTest {
 
 		this.conceito1 = new Conceito(1L, "Título 1", "B1", new NivelSimilaridade(0.87f), 2012);
 		this.conceito2 = new Conceito(2L, "Título 2", "B2", new NivelSimilaridade(0.32f), 2010);
+		this.conceito3 = new Conceito(3L, "Título 2", "B3", new NivelSimilaridade(0.52f), 2010);
 		this.conceito1b = new Conceito(1L, "Título 1", "B1", NivelSimilaridade.TOTAL, 2012);
 		this.conceito1b.setFlagged(true);
 
@@ -53,4 +55,11 @@ public class ConceituadoTest {
 		Assertions.assertThat(this.conceituado.getConceitos().get(0).getSimilaridade()).isEqualTo(1f);
 	}
 
+	@Test
+	public void testKeepTopK() {
+		this.conceituado = new Conceituado<>("Test 2", Arrays.asList(this.conceito1, this.conceito2, this.conceito3));
+
+		this.conceituado.keepTopK(2);
+		Assertions.assertThat(this.conceituado.getConceitos()).isEqualTo(Arrays.asList(this.conceito1, this.conceito3));
+	}
 }
