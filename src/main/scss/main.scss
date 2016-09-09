@@ -152,14 +152,6 @@ Developement Ribbon
 }
 
 /* ==========================================================================
-Version number in navbar
-========================================================================== */
-.navbar-version {
-    font-size: 10px;
-    color: #ccc
-}
-
-/* ==========================================================================
 Browser Upgrade Prompt
 ========================================================================== */
 .browserupgrade {
@@ -238,4 +230,21 @@ ul#strengthBar {
     font-size: 0.8em;
     font-weight: 600;
     line-height: 0.9;
+}
+
+.navbar-brand {
+    padding: 8px 15px;
+
+    .navbar-title {
+        font-weight: 600;
+    }
+
+    .navbar-subtitle {
+        font-size: 11px;
+    }
+
+    .navbar-version {
+        font-size: 10px;
+        color: #ccc
+    }
 }
