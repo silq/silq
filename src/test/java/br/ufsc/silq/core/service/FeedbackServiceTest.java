@@ -134,4 +134,28 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito.get().getAno()).isEqualTo(this.evento.getAno());
 		Assertions.assertThat(conceito.get().isFlagged()).isTrue();
 	}
+
+	@Test
+	public void testDeleteFeedbackPeriodico() {
+		this.feedbackService.sugerirMatchingPeriodico(this.feedbackPeriodicoForm);
+		Optional<Conceito> conceito = this.feedbackService.getConceitoFeedbackPeriodico(this.feedbackPeriodicoForm.getQuery(), this.usuarioLogado);
+		Assertions.assertThat(conceito).isPresent();
+
+		Long removed = this.feedbackService.deleteFeedbackPeriodico(this.feedbackPeriodicoForm);
+		conceito = this.feedbackService.getConceitoFeedbackPeriodico(this.feedbackPeriodicoForm.getQuery(), this.usuarioLogado);
+		Assertions.assertThat(conceito).isEmpty();
+		Assertions.assertThat(removed).isEqualTo(1);
+	}
+
+	@Test
+	public void testDeleteFeedbackEvento() {
+		this.feedbackService.sugerirMatchingEvento(this.feedbackEventoForm);
+		Optional<Conceito> conceito = this.feedbackService.getConceitoFeedbackEvento(this.feedbackEventoForm.getQuery(), this.usuarioLogado);
+		Assertions.assertThat(conceito).isPresent();
+
+		Long removed = this.feedbackService.deleteFeedbackEvento(this.feedbackEventoForm);
+		conceito = this.feedbackService.getConceitoFeedbackEvento(this.feedbackEventoForm.getQuery(), this.usuarioLogado);
+		Assertions.assertThat(conceito).isEmpty();
+		Assertions.assertThat(removed).isEqualTo(1);
+	}
 }

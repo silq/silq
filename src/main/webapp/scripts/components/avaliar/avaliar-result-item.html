@@ -20,12 +20,19 @@
         <span class="qualis-issn" title="ISSN" ng-show="item.obj.issn" highlight-text="filter"> | ISSN: {{ item.obj.issn }}</span>
     </p> {{opened}}
 
-    <div ng-class="{ 'qualis-conceito-item': true, 'first': $first }" ng-repeat="(i, conceito) in item.conceitos">
+    <div ng-class="{ 'qualis-conceito-item': true, 'first': $first }" ng-repeat="(i, conceito) in item.conceitos | orderBy: ['-flagged', '-similaridade']">
         <div ng-show="$first || mais">
             <span class="label-conceito">
                 <span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span><span class="ano" title="Ano base da avaliação Qualis">{{ conceito.ano }}</span><span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span>
             </span>
-            <span title="Conceito indicado pelo usuário" class="label label-primary" ng-show="conceito.flagged"><i class="glyphicon glyphicon-flag"></i></span>
+
+            <span ng-show="conceito.flagged" uib-dropdown>
+                <button title="Conceito indicado pelo usuário" class="btn btn-xs btn-primary" uib-dropdown-toggle><i class="glyphicon glyphicon-flag"></i></button>
+
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                    <li><a ng-click="feedbackRemove(item.obj)"><i class="glyphicon glyphicon-remove"></i> Remover indicação</a></li>
+                </ul>
+            </span>
 
             <button class="btn btn-xs" title="Utilizar este conceito"
                 ng-hide="$first" ng-click="feedback(item.obj, conceito)">

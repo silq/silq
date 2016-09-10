@@ -18,23 +18,32 @@ import br.ufsc.silq.core.service.FeedbackService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/feedback")
 @Slf4j
 public class FeedbackResource {
 
 	@Inject
 	private FeedbackService feedbackService;
 
-	@RequestMapping(value = "/feedback/evento/", method = RequestMethod.POST)
-	public ResponseEntity<FeedbackEvento> sugerirMatchingEvento(@Valid @RequestBody FeedbackEventoForm form) {
+	@RequestMapping(value = "/evento/", method = RequestMethod.POST)
+	public ResponseEntity<FeedbackEvento> sugerirMatchingEvento(@RequestBody @Valid FeedbackEventoForm form) {
+		if (form.getEventoId() == null) {
+			this.feedbackService.deleteFeedbackEvento(form);
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+		}
+
 		FeedbackEvento feedback = this.feedbackService.sugerirMatchingEvento(form);
 		return new ResponseEntity<>(feedback, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/feedback/periodico/", method = RequestMethod.POST)
-	public ResponseEntity<FeedbackPeriodico> sugerirMatchingPeriodico(@Valid @RequestBody FeedbackPeriodicoForm form) {
+	@RequestMapping(value = "/periodico/", method = RequestMethod.POST)
+	public ResponseEntity<FeedbackPeriodico> sugerirMatchingPeriodico(@RequestBody @Valid FeedbackPeriodicoForm form) {
+		if (form.getPeriodicoId() == null) {
+			this.feedbackService.deleteFeedbackPeriodico(form);
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+		}
+
 		FeedbackPeriodico feedback = this.feedbackService.sugerirMatchingPeriodico(form);
 		return new ResponseEntity<>(feedback, HttpStatus.CREATED);
 	}
-
 }

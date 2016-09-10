@@ -131,4 +131,24 @@ public class FeedbackService {
 		conceito.setFlagged(true);
 		return conceito;
 	}
+
+	/**
+	 * Remove um feedback de PERIÓDICO do usuário logado.
+	 *
+	 * @param form Form contendo a query a ser removida.
+	 * @return O número de registros excluídos.
+	 */
+	public Long deleteFeedbackPeriodico(@Valid FeedbackPeriodicoForm form) {
+		return this.feedbackPeriodicoRepo.deleteByQueryAndUsuario(form.getQuery(), this.usuarioService.getUsuarioLogado());
+	}
+
+	/**
+	 * Remove um feedback de EVENTO do usuário logado.
+	 *
+	 * @param form Form contendo a query a ser removida.
+	 * @return O número de registros excluídos.
+	 */
+	public Long deleteFeedbackEvento(@Valid FeedbackEventoForm form) {
+		return this.feedbackEventoRepo.deleteByQueryAndUsuario(form.getQuery(), this.usuarioService.getUsuarioLogado());
+	}
 }

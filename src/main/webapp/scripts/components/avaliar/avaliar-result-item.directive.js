@@ -29,21 +29,42 @@ angular.module('silq2App')
 
                 $scope.feedback = function(item, conceito) {
                     var query = item.tituloVeiculo;
-                    var id = conceito.id;
+                    var id = conceito ? conceito.id : null;
                     var feedbackRequest;
 
-                    // Remove o conceito do feedback e o insere novamente no início da lista
-                    if ($scope.item.conceitos.length > 0) {
-                        $scope.item.conceitos[0].flagged = false;
-                        $scope.item.conceitos.splice($scope.item.conceitos.indexOf(conceito), 1);
+                    $scope.item.conceitos.forEach(function(c) {
+                        // Remove a flag de conceitos anteriores
+                        c.flagged = false;
+
+                        // Se veio do modal, também remove da lista de conceitos
+                        if (c.modal) {
+                            var index = $scope.item.conceitos.indexOf(c);
+                            $scope.item.conceitos.splice(index, 1);
+                        }
+                    });
+
+                    if (conceito) {
+                        // Adiciona a flag ao novo conceito
+                        conceito.flagged = true;
+
+                        // Se não possuir o conceito, adiciona-o à lista
+                        // Isso acontece quando o conceito vem do modal
+                        if ($scope.item.conceitos.indexOf(conceito) <= 0) {
+                            conceito.modal = true;
+                            $scope.item.conceitos.push(conceito);
+                        }
                     }
-                    $scope.item.conceitos.unshift(conceito);
-                    conceito.flagged = true;
 
                     if (item.issn) {
-                        feedbackRequest = Feedback.periodico(query, id);
+                        feedbackRequest = Feedback.periodico({
+                            query: query,
+                            periodicoId: id
+                        });
                     } else {
-                        feedbackRequest = Feedback.evento(query, id);
+                        feedbackRequest = Feedback.evento({
+                            query: query,
+                            eventoId: id
+                        });
                     }
 
                     feedbackRequest.then(function() {
@@ -53,6 +74,10 @@ angular.module('silq2App')
                         // do status 'modificado' em avaliar-result.controller
                         $scope.$emit('silq:feedback');
                     });
+                };
+
+                $scope.feedbackRemove = function(item) {
+                    $scope.feedback(item, null);
                 };
             }
         };

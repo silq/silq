@@ -11,4 +11,5 @@ public interface FeedbackPeriodicoRepository extends JpaRepository<FeedbackPerio
 
 	Optional<FeedbackPeriodico> findOneByQueryAndUsuario(String query, Usuario usuario);
 
+	Long deleteByQueryAndUsuario(String query, Usuario usuario);
 }

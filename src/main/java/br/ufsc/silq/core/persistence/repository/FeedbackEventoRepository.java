@@ -11,4 +11,5 @@ public interface FeedbackEventoRepository extends JpaRepository<FeedbackEvento, 
 
 	Optional<FeedbackEvento> findOneByQueryAndUsuario(String query, Usuario usuario);
 
+	Long deleteByQueryAndUsuario(String query, Usuario usuario);
 }
