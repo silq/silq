@@ -15,7 +15,7 @@ SET search_path = public, pg_catalog;
 -- Data for Name: tb_qualis_evento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tb_qualis_evento (co_seq_qualis_evento, ds_sigla, no_titulo, nu_indice_h, no_estrato, no_area_avaliacao, nu_ano) FROM stdin;
+COPY tb_qualis_evento (co_seq_evento, ds_sigla, no_titulo, nu_indice_h, no_estrato, no_area_avaliacao, nu_ano) FROM stdin;
 1	3DIM	International Conference on 3-D Digital Imaging and Modeling	29	B1	CIÊNCIA DA COMPUTAÇÃO	2012
 2	3DUI	IEEE Symposium on 3D User Interfaces	18	B2	CIÊNCIA DA COMPUTAÇÃO	2012
 120	ARVLSI	Conference on Advanced Research in VLSI	9	B4	CIÊNCIA DA COMPUTAÇÃO	2012
