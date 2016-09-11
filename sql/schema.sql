@@ -222,7 +222,7 @@ ALTER TABLE tb_grupo OWNER TO postgres;
 --
 
 CREATE TABLE tb_qualis_evento (
-    co_seq_qualis_evento numeric(19,0) DEFAULT nextval('sq_qualis_evento'::regclass) NOT NULL,
+    co_seq_evento numeric(19,0) DEFAULT nextval('sq_qualis_evento'::regclass) NOT NULL,
     ds_sigla character varying(20),
     no_titulo character varying(255),
     nu_indice_h numeric(3,0),
@@ -289,7 +289,7 @@ ALTER TABLE ONLY rl_grupo_pesquisador
 --
 
 ALTER TABLE ONLY tb_qualis_evento
-    ADD CONSTRAINT pk_qualis_evento PRIMARY KEY (co_seq_qualis_evento);
+    ADD CONSTRAINT pk_qualis_evento PRIMARY KEY (co_seq_evento);
 
 
 --
@@ -424,7 +424,7 @@ ALTER TABLE ONLY rl_grupo_pesquisador
 --
 
 ALTER TABLE ONLY tb_feedback
-    ADD CONSTRAINT tb_feedback_co_evento_fkey FOREIGN KEY (co_evento) REFERENCES tb_qualis_evento(co_seq_qualis_evento);
+    ADD CONSTRAINT tb_feedback_co_evento_fkey FOREIGN KEY (co_evento) REFERENCES tb_qualis_evento(co_seq_evento);
 
 
 --

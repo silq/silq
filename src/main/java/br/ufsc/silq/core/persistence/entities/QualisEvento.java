@@ -19,7 +19,7 @@ import lombok.Setter;
 public class QualisEvento {
 
 	@Id
-	@Column(name = "co_seq_qualis_evento")
+	@Column(name = "co_seq_evento")
 	private Long id;
 
 	@Column(name = "ds_sigla")

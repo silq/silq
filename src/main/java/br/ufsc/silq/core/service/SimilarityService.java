@@ -81,9 +81,14 @@ public class SimilarityService {
 
 		List<Object[]> results = query.getResultList();
 		return results.stream()
-				.map(obj -> new Conceito(((BigDecimal) obj[0]).longValue(), (String) obj[1], (String) obj[2],
-						new NivelSimilaridade((Float) obj[3]), (Integer) obj[4]))
+				.map(this::mapResultToConceito)
 				.collect(Collectors.toList());
+	}
+
+	private Conceito mapResultToConceito(Object[] obj) {
+		Conceito conceito = new Conceito(((BigDecimal) obj[0]).longValue(), (String) obj[1], (String) obj[2],
+				new NivelSimilaridade((Float) obj[3]), (Integer) obj[4]);
+		return conceito;
 	}
 
 	/**
@@ -197,8 +202,8 @@ public class SimilarityService {
 	@AllArgsConstructor
 	@Getter
 	public enum TipoAvaliacao {
-		PERIODICO("TB_QUALIS_PERIODICO", "CO_SEQ_QUALIS_PERIODICO"),
-		EVENTO("TB_QUALIS_EVENTO", "CO_SEQ_QUALIS_EVENTO");
+		PERIODICO("TB_QUALIS_PERIODICO", "CO_SEQ_PERIODICO"),
+		EVENTO("TB_QUALIS_EVENTO", "CO_SEQ_EVENTO");
 
 		/**
 		 * Nome da tabela utilizada para avaliação.
