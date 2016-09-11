@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.querydsl.jpa.impl.JPAQuery;
 
-import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.data.AvaliacaoCollectionResult;
 import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.data.AvaliacaoStats;
@@ -165,18 +164,18 @@ public class AvaliacaoService {
 			artigoConceituado = this.avaliarArtigoPorIssn(artigo, avaliarForm);
 		}
 
-		if (SilqConfig.AVALIAR_ARTIGO_POR_SIMILARIDADE && !artigoConceituado.hasConceito()) {
+		if (avaliarForm.isAvaliarArtigoPorSimilaridade() && !artigoConceituado.hasConceito()) {
 			// Se não encontrou conceito por ISSN, busca por similaridade de título
 			artigoConceituado = this.avaliarArtigoPorSimilaridade(artigo, avaliarForm);
 		}
 
-		if (usuario != null && SilqConfig.AVALIAR_USANDO_FEEDBACK) {
+		if (usuario != null && avaliarForm.isUsarFeedback()) {
 			// Adiciona o conceito feedback do usuário
 			this.feedbackService.getConceitoFeedbackPeriodico(artigo.getTituloVeiculo(), usuario)
 					.ifPresent(artigoConceituado::addConceito);
 		}
 
-		artigoConceituado.keepTopK(SilqConfig.MAX_SIMILARITY_RESULTS);
+		artigoConceituado.keepTopK(avaliarForm.getMaxConceitos());
 		return artigoConceituado;
 	}
 
@@ -188,7 +187,7 @@ public class AvaliacaoService {
 		query.where(path.issn.eq(artigo.getIssn()));
 		query.where(path.areaAvaliacao.eq(avaliarForm.getArea().toUpperCase()));
 		query.orderBy(path.ano.subtract(artigo.getAno()).abs().asc());
-		query.limit(SilqConfig.MAX_SIMILARITY_RESULTS);
+		query.limit(avaliarForm.getMaxConceitos());
 		List<QualisPeriodico> results = query.fetch();
 
 		List<Conceito> conceitos = new ArrayList<>();
@@ -229,13 +228,13 @@ public class AvaliacaoService {
 
 		Conceituado<Trabalho> trabalhoConceituado = new Conceituado<>(trabalho, conceitos);
 
-		if (usuario != null && SilqConfig.AVALIAR_USANDO_FEEDBACK) {
+		if (usuario != null && avaliarForm.isUsarFeedback()) {
 			// Adiciona o conceito feedback do usuário
 			this.feedbackService.getConceitoFeedbackEvento(trabalho.getTituloVeiculo(), usuario)
 					.ifPresent(trabalhoConceituado::addConceito);
 		}
 
-		trabalhoConceituado.keepTopK(SilqConfig.MAX_SIMILARITY_RESULTS);
+		trabalhoConceituado.keepTopK(avaliarForm.getMaxConceitos());
 		return trabalhoConceituado;
 	}
 }

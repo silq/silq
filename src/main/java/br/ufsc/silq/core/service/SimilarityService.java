@@ -16,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.Conceituavel;
 import br.ufsc.silq.core.data.NivelSimilaridade;
@@ -77,7 +76,7 @@ public class SimilarityService {
 		query.setParameter(1, SilqStringUtils.normalizeString(conceituavel.getTituloVeiculo()));
 		query.setParameter(2, avaliarForm.getArea().toUpperCase());
 		query.setParameter(3, conceituavel.getAno());
-		query.setParameter(4, SilqConfig.MAX_SIMILARITY_RESULTS);
+		query.setParameter(4, avaliarForm.getMaxConceitos());
 
 		List<Object[]> results = query.getResultList();
 		return results.stream()

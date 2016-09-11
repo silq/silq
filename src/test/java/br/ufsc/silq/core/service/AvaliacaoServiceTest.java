@@ -6,7 +6,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ufsc.silq.core.SilqConfig;
 import br.ufsc.silq.core.data.AvaliacaoCollectionResult;
 import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.data.Conceito;
@@ -62,6 +61,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		this.usuarioLogado = this.loginUser();
 		this.avaliarForm = new AvaliarForm();
 		this.avaliarForm.setArea("Ciência da Computação");
+		this.avaliarForm.setMaxConceitos(4);
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 
 		// Artigo avaliado deve ser uma cópia do parâmetro
 		Assertions.assertThat(artigoAvaliado).isNotSameAs(artigo);
-		Assertions.assertThat(artigoAvaliado.getConceitos().size()).isLessThanOrEqualTo(SilqConfig.MAX_SIMILARITY_RESULTS);
+		Assertions.assertThat(artigoAvaliado.getConceitos().size()).isLessThanOrEqualTo(this.avaliarForm.getMaxConceitos());
 	}
 
 	@Test
@@ -105,7 +105,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 
 		// Artigo avaliado deve ter o conceito do feedback dado
 		Assertions.assertThat(artigoAvaliado.hasConceito()).isTrue();
-		Assertions.assertThat(artigoAvaliado.getConceitos().size()).isLessThanOrEqualTo(SilqConfig.MAX_SIMILARITY_RESULTS);
+		Assertions.assertThat(artigoAvaliado.getConceitos().size()).isLessThanOrEqualTo(this.avaliarForm.getMaxConceitos());
 
 		Conceito conceito = artigoAvaliado.getConceitoMaisSimilar();
 		Assertions.assertThat(conceito.getTituloVeiculo()).isEqualTo(periodico.getTitulo());
@@ -124,7 +124,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 
 		// Trabalho avaliado deve ser uma cópia do parâmetro
 		Assertions.assertThat(trabalhoAvaliado).isNotSameAs(trabalho);
-		Assertions.assertThat(trabalhoAvaliado.getConceitos().size()).isLessThanOrEqualTo(SilqConfig.MAX_SIMILARITY_RESULTS);
+		Assertions.assertThat(trabalhoAvaliado.getConceitos().size()).isLessThanOrEqualTo(this.avaliarForm.getMaxConceitos());
 	}
 
 	@Test
@@ -141,7 +141,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 
 		// Trabalho avaliado deve ter o conceito do feedback dado
 		Assertions.assertThat(trabalhoAvaliado.hasConceito()).isTrue();
-		Assertions.assertThat(trabalhoAvaliado.getConceitos().size()).isLessThanOrEqualTo(SilqConfig.MAX_SIMILARITY_RESULTS);
+		Assertions.assertThat(trabalhoAvaliado.getConceitos().size()).isLessThanOrEqualTo(this.avaliarForm.getMaxConceitos());
 
 		Conceito conceito = trabalhoAvaliado.getConceitoMaisSimilar();
 		Assertions.assertThat(conceito.getTituloVeiculo()).isEqualTo(evento.getTitulo());
