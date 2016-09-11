@@ -80,7 +80,7 @@ public class AvaliacaoService {
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
 	 * @throws SilqError Caso haja um erro no parsing ou avaliação do currículo.
 	 */
-	private AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm, Usuario usuario) {
+	public AvaliacaoResult avaliar(CurriculumLattes lattes, @Valid AvaliarForm avaliarForm, Usuario usuario) {
 		ParseResult parseResult = null;
 		try {
 			parseResult = this.lattesParser.parseCurriculum(lattes);
@@ -121,7 +121,7 @@ public class AvaliacaoService {
 	 *            os feedbacks deste usuário serão considerados para o fim de avaliação.
 	 * @return Um {@link AvaliacaoResult} contendo os resultados de avaliação.
 	 */
-	private AvaliacaoResult avaliar(ParseResult parseResult, @Valid AvaliarForm form, @Nullable Usuario usuario) {
+	public AvaliacaoResult avaliar(ParseResult parseResult, @Valid AvaliarForm form, @Nullable Usuario usuario) {
 		AvaliacaoResult result = new AvaliacaoResult(form, parseResult.getDadosGerais());
 
 		if (form.getTipoAvaliacao().includes(AvaliacaoType.ARTIGO)) {
