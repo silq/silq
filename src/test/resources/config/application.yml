@@ -13,8 +13,8 @@
 spring:
     datasource:
         driver-class-name: org.postgresql.ds.PGSimpleDataSource
-        url: jdbc:postgresql://localhost:5430/silq2
-        name:
+        url: jdbc:postgresql://localhost:5430/
+        name: silq2
         username: postgres
         password:
     jpa:
