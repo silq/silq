@@ -115,10 +115,8 @@ public class UsuarioService {
 	 * @return A entidade {@link Usuario} do usuário logado.
 	 */
 	public Usuario getUsuarioLogado() {
-		Usuario usuario = this.usuarioRepository.findOneByEmailAndAtivoTrue(SecurityUtils.getCurrentUser().getUsername())
+		return this.usuarioRepository.findOneByEmailAndAtivoTrue(SecurityUtils.getCurrentUser().getUsername())
 				.orElseThrow(() -> new IllegalStateException("User not found!"));
-		usuario.getAutoridades().size(); // força o carregamento das autoridades
-		return usuario;
 	}
 
 	/**
