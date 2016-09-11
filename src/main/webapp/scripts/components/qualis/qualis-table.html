@@ -25,36 +25,38 @@
     </nav>
 </div>
 
-<table class="table table-striped table-condensed table-hover">
-    <thead>
-        <tr>
-            <th ng-show="tipo == 'periodicos'">ISSN</th>
-            <th ng-show="tipo == 'eventos'">Sigla</th>
-            <th>Título</th>
-            <th ng-show="results.content[0].similaridade">Similaridade</th>
-            <th>Conceito</th>
-            <th>Ano</th>
-            <th>Área de avaliação</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-show="loading">
-            <td colspan="6" class="text-center"><i>Carregando...</i></td>
-        </tr>
-        <tr ng-show="results.content.length == 0">
-            <td colspan="6" class="text-center">Nenhum resultado encontrado</td>
-        </tr>
-        <tr ng-repeat="result in results.content" ng-click="onItemClick(result)">
-            <td ng-show="tipo == 'periodicos'" class="nowrap">{{result.resultado.issn}}</td>
-            <td ng-show="tipo == 'eventos'">{{result.resultado.sigla}}</td>
-            <td>{{result.resultado.titulo}}</td>
-            <td ng-show="result.similaridade" ng-class="(result.similaridade.value | similarityClass)">{{result.similaridade.value * 100 | number: 1}}%</td>
-            <td>{{result.resultado.estrato}}</td>
-            <td>{{result.resultado.ano}}</td>
-            <td>{{result.resultado.areaAvaliacao}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+            <tr>
+                <th ng-show="tipo == 'periodicos'">ISSN</th>
+                <th ng-show="tipo == 'eventos'">Sigla</th>
+                <th>Título</th>
+                <th ng-show="results.content[0].similaridade">Similaridade</th>
+                <th>Conceito</th>
+                <th>Ano</th>
+                <th>Área de avaliação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-show="loading">
+                <td colspan="6" class="text-center"><i>Carregando...</i></td>
+            </tr>
+            <tr ng-show="results.content.length == 0">
+                <td colspan="6" class="text-center">Nenhum resultado encontrado</td>
+            </tr>
+            <tr ng-repeat="result in results.content" ng-click="onItemClick(result)">
+                <td ng-show="tipo == 'periodicos'" class="nowrap">{{result.resultado.issn}}</td>
+                <td ng-show="tipo == 'eventos'">{{result.resultado.sigla}}</td>
+                <td>{{result.resultado.titulo}}</td>
+                <td ng-show="result.similaridade" ng-class="(result.similaridade.value | similarityClass)">{{result.similaridade.value * 100 | number: 1}}%</td>
+                <td>{{result.resultado.estrato}}</td>
+                <td>{{result.resultado.ano}}</td>
+                <td>{{result.resultado.areaAvaliacao}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <nav class="text-right" aria-label="Page navigation">
     <ul uib-pagination total-items="results.totalElements" ng-model="query.page" ng-change="pageChanged()" items-per-page="results.size"></ul>
