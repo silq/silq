@@ -36,8 +36,8 @@ public class ConceitoTest {
 
 	@Test
 	public void testCompareFlagged() {
-		Conceito conceitoFlagged = new Conceito(1L, "Título Flagged", "B1", new NivelSimilaridade(0.4F), 2016);
-		conceitoFlagged.setFlagged(true);
+		Conceito conceitoFlagged = new Conceito(1L, "Título Feedback", "B1", new NivelSimilaridade(0.4F), 2016);
+		conceitoFlagged.setFeedback(true);
 		this.conceitos.add(conceitoFlagged);
 
 		Collections.sort(this.conceitos);

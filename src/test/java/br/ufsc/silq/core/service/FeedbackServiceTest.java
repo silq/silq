@@ -119,7 +119,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito.get().getTituloVeiculo()).isEqualTo(this.periodico.getTitulo());
 		Assertions.assertThat(conceito.get().getConceito()).isEqualTo(this.periodico.getEstrato());
 		Assertions.assertThat(conceito.get().getAno()).isEqualTo(this.periodico.getAno());
-		Assertions.assertThat(conceito.get().isFlagged()).isTrue();
+		Assertions.assertThat(conceito.get().isFeedback()).isTrue();
 	}
 
 	@Test
@@ -132,7 +132,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito.get().getTituloVeiculo()).isEqualTo(this.evento.getTitulo());
 		Assertions.assertThat(conceito.get().getConceito()).isEqualTo(this.evento.getEstrato());
 		Assertions.assertThat(conceito.get().getAno()).isEqualTo(this.evento.getAno());
-		Assertions.assertThat(conceito.get().isFlagged()).isTrue();
+		Assertions.assertThat(conceito.get().isFeedback()).isTrue();
 	}
 
 	@Test

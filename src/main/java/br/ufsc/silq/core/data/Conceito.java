@@ -14,10 +14,10 @@ public class Conceito implements Comparable<Conceito> {
 	private final Integer ano;
 
 	/**
-	 * Flag usada para indicar se este conceito foi manualmente escolhihdo pelo usuário.
+	 * Flag usada para indicar se este conceito foi manualmente escolhido pelo usuário.
 	 * Em caso positivo, então este conceito será escolhido independente da similaridade dos demais.
 	 */
-	private boolean flagged = false;
+	private boolean feedback = false;
 
 	public Float getSimilaridade() {
 		return this.similaridade.getValue();
@@ -25,9 +25,9 @@ public class Conceito implements Comparable<Conceito> {
 
 	@Override
 	public int compareTo(Conceito o) {
-		if (this.isFlagged()) {
+		if (this.isFeedback()) {
 			return -1;
-		} else if (o.isFlagged()) {
+		} else if (o.isFeedback()) {
 			return 1;
 		}
 

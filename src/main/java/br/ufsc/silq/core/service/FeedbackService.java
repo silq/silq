@@ -120,7 +120,7 @@ public class FeedbackService {
 		QualisEvento evento = feedback.getEvento();
 		Conceito conceito = new Conceito(evento.getId(), evento.getTitulo(), evento.getEstrato(),
 				this.similarityService.calcularSimilaridade(feedback.getQuery(), evento.getTitulo()), evento.getAno());
-		conceito.setFlagged(true);
+		conceito.setFeedback(true);
 		return conceito;
 	}
 
@@ -128,7 +128,7 @@ public class FeedbackService {
 		QualisPeriodico periodico = feedback.getPeriodico();
 		Conceito conceito = new Conceito(periodico.getId(), periodico.getTitulo(), periodico.getEstrato(),
 				this.similarityService.calcularSimilaridade(feedback.getQuery(), periodico.getTitulo()), periodico.getAno());
-		conceito.setFlagged(true);
+		conceito.setFeedback(true);
 		return conceito;
 	}
 

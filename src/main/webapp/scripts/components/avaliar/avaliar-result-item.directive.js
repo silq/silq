@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .directive('avaliarResultItem', function(QualisModal, Feedback, Flash) {
+    .directive('avaliarResultItem', function(QualisModal, Feedback, Flash, Principal) {
         return {
             restrict: 'E',
             scope: {
@@ -12,6 +12,11 @@ angular.module('silq2App')
             templateUrl: 'scripts/components/avaliar/avaliar-result-item.html',
             link: function($scope) {
                 $scope.mais = false;
+                $scope.admin = false;
+                Principal.hasAuthority('ROLE_ADMIN').then(function(result) {
+                    $scope.admin = result;
+                });
+
                 $scope.verMais = function(flag) {
                     $scope.mais = flag;
                 };
@@ -27,14 +32,24 @@ angular.module('silq2App')
                         });
                 };
 
+                var contains = function(arr, key, value) {
+                    var result = false;
+                    arr.forEach(function(el) {
+                        if (el[key] === value) {
+                            result = true;
+                        }
+                    });
+                    return result;
+                };
+
                 $scope.feedback = function(item, conceito) {
                     var query = item.tituloVeiculo;
                     var id = conceito ? conceito.id : null;
                     var feedbackRequest;
 
                     $scope.item.conceitos.forEach(function(c) {
-                        // Remove a flag de conceitos anteriores
-                        c.flagged = false;
+                        // Remove a flag de feedback de conceitos anteriores
+                        c.feedback = false;
 
                         // Se veio do modal, também remove da lista de conceitos
                         if (c.modal) {
@@ -44,12 +59,12 @@ angular.module('silq2App')
                     });
 
                     if (conceito) {
-                        // Adiciona a flag ao novo conceito
-                        conceito.flagged = true;
+                        // Adiciona a flag de feedback ao novo conceito
+                        conceito.feedback = true;
 
                         // Se não possuir o conceito, adiciona-o à lista
                         // Isso acontece quando o conceito vem do modal
-                        if ($scope.item.conceitos.indexOf(conceito) <= 0) {
+                        if (!contains($scope.item.conceitos, 'id', conceito.id)) {
                             conceito.modal = true;
                             $scope.item.conceitos.push(conceito);
                         }

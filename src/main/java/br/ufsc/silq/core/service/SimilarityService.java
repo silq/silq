@@ -86,9 +86,8 @@ public class SimilarityService {
 	}
 
 	private Conceito mapResultToConceito(Object[] obj) {
-		Conceito conceito = new Conceito(((BigDecimal) obj[0]).longValue(), (String) obj[1], (String) obj[2],
+		return new Conceito(((BigDecimal) obj[0]).longValue(), (String) obj[1], (String) obj[2],
 				new NivelSimilaridade((Float) obj[3]), (Integer) obj[4]);
-		return conceito;
 	}
 
 	/**

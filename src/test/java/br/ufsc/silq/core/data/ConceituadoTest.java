@@ -22,7 +22,7 @@ public class ConceituadoTest {
 		this.conceito2 = new Conceito(2L, "Título 2", "B2", new NivelSimilaridade(0.32f), 2010);
 		this.conceito3 = new Conceito(3L, "Título 2", "B3", new NivelSimilaridade(0.52f), 2010);
 		this.conceito1b = new Conceito(1L, "Título 1", "B1", NivelSimilaridade.TOTAL, 2012);
-		this.conceito1b.setFlagged(true);
+		this.conceito1b.setFeedback(true);
 
 		Assertions.assertThat(this.conceito1).isEqualTo(this.conceito1b);
 	}
