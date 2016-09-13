@@ -99,7 +99,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 
 		// Dá o feedback
 		QualisPeriodico periodico = this.periodicoRepo.findOne(1L);
-		this.feedbackService.sugerirMatchingPeriodico(new FeedbackPeriodicoForm(periodico.getId(), artigo.getTituloVeiculo()));
+		this.feedbackService.sugerirMatchingPeriodico(new FeedbackPeriodicoForm(periodico.getId(), artigo.getTituloVeiculo(), periodico.getAno()));
 
 		Conceituado<Artigo> artigoAvaliado = this.avaliacaoService.avaliarArtigo(artigo, this.avaliarForm, this.usuarioLogado);
 
@@ -135,7 +135,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 
 		// Dá o Feedback
 		QualisEvento evento = this.eventoRepo.findOne(1L);
-		this.feedbackService.sugerirMatchingEvento(new FeedbackEventoForm(evento.getId(), trabalho.getTituloVeiculo()));
+		this.feedbackService.sugerirMatchingEvento(new FeedbackEventoForm(evento.getId(), trabalho.getTituloVeiculo(), evento.getAno()));
 
 		Conceituado<Trabalho> trabalhoAvaliado = this.avaliacaoService.avaliarTrabalho(trabalho, this.avaliarForm, this.usuarioLogado);
 

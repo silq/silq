@@ -11,9 +11,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FeedbackEventoForm {
 
+	/**
+	 * ID do evento dado como feedback.
+	 */
 	private Long eventoId;
 
+	/**
+	 * Query do feedback.
+	 * Representa o título do evento de um trabalho do pesquisador.
+	 */
 	@NotBlank
 	private String query;
 
+	/**
+	 * Ano do trabalho do pesquisador.
+	 */
+	private Integer ano;
 }

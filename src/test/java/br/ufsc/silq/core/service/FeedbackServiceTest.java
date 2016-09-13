@@ -47,10 +47,10 @@ public class FeedbackServiceTest extends WebContextTest {
 		this.usuarioLogado = this.loginUser();
 
 		this.evento = this.eventoRepo.findOne(1L);
-		this.feedbackEventoForm = new FeedbackEventoForm(this.evento.getId(), "The evento query here");
+		this.feedbackEventoForm = new FeedbackEventoForm(this.evento.getId(), "The evento query here", this.evento.getAno());
 
 		this.periodico = this.periodicoRepo.findOne(1L);
-		this.feedbackPeriodicoForm = new FeedbackPeriodicoForm(this.periodico.getId(), "The periódico query here");
+		this.feedbackPeriodicoForm = new FeedbackPeriodicoForm(this.periodico.getId(), "The periódico query here", this.periodico.getAno());
 	}
 
 	@Test
@@ -59,6 +59,7 @@ public class FeedbackServiceTest extends WebContextTest {
 
 		Assertions.assertThat(feedback.getId()).isNotNull();
 		Assertions.assertThat(feedback.getQuery()).isEqualTo(this.feedbackEventoForm.getQuery());
+		Assertions.assertThat(feedback.getAno()).isEqualTo(this.feedbackEventoForm.getAno());
 		Assertions.assertThat(feedback.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback.getEvento()).isEqualTo(this.evento);
 		Assertions.assertThat(feedback.getDate()).isCloseTo(new Date(), 1000);
@@ -70,6 +71,7 @@ public class FeedbackServiceTest extends WebContextTest {
 
 		Assertions.assertThat(feedback.getId()).isNotNull();
 		Assertions.assertThat(feedback.getQuery()).isEqualTo(this.feedbackPeriodicoForm.getQuery());
+		Assertions.assertThat(feedback.getAno()).isEqualTo(this.feedbackPeriodicoForm.getAno());
 		Assertions.assertThat(feedback.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback.getPeriodico()).isEqualTo(this.periodico);
 		Assertions.assertThat(feedback.getDate()).isCloseTo(new Date(), 1000);

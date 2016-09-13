@@ -44,6 +44,7 @@ angular.module('silq2App')
 
                 $scope.feedback = function(item, conceito) {
                     var query = item.tituloVeiculo;
+                    var ano = item.ano;
                     var id = conceito ? conceito.id : null;
                     var feedbackRequest;
 
@@ -73,11 +74,13 @@ angular.module('silq2App')
                     if (item.issn) {
                         feedbackRequest = Feedback.periodico({
                             query: query,
+                            ano: ano,
                             periodicoId: id
                         });
                     } else {
                         feedbackRequest = Feedback.evento({
                             query: query,
+                            ano: ano,
                             eventoId: id
                         });
                     }

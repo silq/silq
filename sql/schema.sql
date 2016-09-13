@@ -10,6 +10,13 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
+-- Name: postgres; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE postgres IS 'default administrative connection database';
+
+
+--
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
@@ -196,7 +203,8 @@ CREATE TABLE tb_feedback (
     co_evento numeric(19,0),
     co_periodico numeric(19,0),
     co_usuario numeric(19,0) NOT NULL,
-    dt_feedback timestamp without time zone NOT NULL
+    dt_feedback timestamp without time zone NOT NULL,
+    nu_ano integer
 );
 
 

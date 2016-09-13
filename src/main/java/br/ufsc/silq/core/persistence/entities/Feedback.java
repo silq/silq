@@ -38,6 +38,9 @@ public abstract class Feedback {
 	@Column(name = "ds_query")
 	private String query;
 
+	@Column(name = "nu_ano")
+	private Integer ano;
+
 	@ManyToOne
 	@JoinColumn(name = "co_usuario")
 	private Usuario usuario;

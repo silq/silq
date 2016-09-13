@@ -60,6 +60,7 @@ public class FeedbackService {
 				.orElse(new FeedbackEvento());
 
 		feedback.setQuery(form.getQuery());
+		feedback.setAno(form.getAno());
 		feedback.setUsuario(usuario);
 		feedback.setEvento(evento);
 		feedback.setDate(new Date());
@@ -83,6 +84,7 @@ public class FeedbackService {
 				.orElse(new FeedbackPeriodico());
 
 		feedback.setQuery(form.getQuery());
+		feedback.setAno(form.getAno());
 		feedback.setUsuario(usuario);
 		feedback.setPeriodico(periodico);
 		feedback.setDate(new Date());
