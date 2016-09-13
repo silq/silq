@@ -11,7 +11,7 @@ $ pg_dump -h 0.0.0.0 -p 5431 -d silq2 -U postgres -a -t tb_qualis_evento > sql/q
 Para ciar a base de dados através do arquivos gerados:
 
 ```
-psql -h 0.0.0.0 -p 5431 -U postgres -f sql/schema.sql
-psql -h 0.0.0.0 -p 5431 -U postgres -f sql/qualis_evento.sql
-psql -h 0.0.0.0 -p 5431 -U postgres -f sql/qualis_periodico.sql
+psql -h 0.0.0.0 -p 5431 -U postgres -d silq2 -f sql/schema.sql
+psql -h 0.0.0.0 -p 5431 -U postgres -d silq2 -f sql/qualis_evento.sql
+psql -h 0.0.0.0 -p 5431 -U postgres -d silq2 -f sql/qualis_periodico.sql
 ```
