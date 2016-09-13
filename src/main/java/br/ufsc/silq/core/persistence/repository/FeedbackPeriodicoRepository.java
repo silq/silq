@@ -1,5 +1,6 @@
 package br.ufsc.silq.core.persistence.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +13,6 @@ public interface FeedbackPeriodicoRepository extends JpaRepository<FeedbackPerio
 	Optional<FeedbackPeriodico> findOneByQueryAndUsuario(String query, Usuario usuario);
 
 	Long deleteByQueryAndUsuario(String query, Usuario usuario);
+
+	List<FeedbackPeriodico> findAllByUsuario(Usuario usuario);
 }
