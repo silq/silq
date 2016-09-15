@@ -11,7 +11,7 @@ import br.ufsc.silq.core.forms.FeedbackEventoForm;
 import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.test.WebContextTest;
 
-public class MeasurementTest extends WebContextTest {
+public class MeasurementServiceTest extends WebContextTest {
 
 	@Inject
 	MeasurementService measurementService;
