@@ -83,6 +83,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/qualis/**").permitAll()
             .antMatchers("/api/logs/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/audits/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/api/measurement/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/api/**").authenticated()
             .antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/health/**").hasAuthority(AuthoritiesConstants.ADMIN)

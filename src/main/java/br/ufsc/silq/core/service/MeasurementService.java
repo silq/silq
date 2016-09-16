@@ -1,6 +1,7 @@
 package br.ufsc.silq.core.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,10 +31,13 @@ import lombok.extern.slf4j.Slf4j;
 public class MeasurementService {
 
 	@Inject
-	SimilarityService similarityService;
+	private SimilarityService similarityService;
 
 	@Inject
-	FeedbackEventoRepository feedbackEventoRepo;
+	private FeedbackEventoRepository feedbackEventoRepo;
+
+	@Inject
+	private UsuarioService usuarioService;
 
 	/**
 	 * Realiza uma medição de acurácia do algoritmo de avaliação do sistema utilizando como "valores verdade" os feedbacks dados pelo usuário indicado.
@@ -54,6 +58,34 @@ public class MeasurementService {
 		MeasurementResult result = new MeasurementResult(threshold);
 		feedbacksEventos.forEach(feedback -> this.measureFeedback(feedback, result, avaliarForm));
 		return result;
+	}
+
+	/**
+	 * Realiza uma série de medições, da mesma forma que {@link #measure(Usuario, NivelSimilaridade)}, variando
+	 * o threshold dado como parâmetro.
+	 * Utiliza os feedbacks do usuário atual como resultados de controle.
+	 *
+	 * @param initialThreshold Valor inicial de threshold a ser utilizado
+	 * @param finalThreshold Valor final de threshold a ser utilizado.
+	 * @param step O step a ser usado para incremento do threshold.
+	 * @return Uma lista dos resultados das medições, incluindo Precisão, Revocação e Número correto de matches feitos pelo sistema.
+	 */
+	public List<MeasurementResult> measure(float initialThreshold, float finalThreshold, float step) {
+		Usuario usuarioLogado = this.usuarioService.getUsuarioLogado();
+		List<MeasurementResult> results = new ArrayList<>();
+
+		int i = 0;
+		float threshold = initialThreshold;
+
+		while (threshold <= finalThreshold) {
+			MeasurementResult measure = this.measure(usuarioLogado, new NivelSimilaridade(threshold));
+			results.add(measure);
+			log.debug("Measurement for threshold {}: {}", threshold, measure);
+
+			i++;
+			threshold = initialThreshold + step * i;
+		}
+		return results;
 	}
 
 	private void measureFeedback(FeedbackEvento feedback, MeasurementResult result, AvaliarForm avaliarForm) {

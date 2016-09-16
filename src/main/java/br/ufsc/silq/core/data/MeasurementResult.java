@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lombok.Data;
-
 import br.ufsc.silq.core.service.MeasurementService;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Resultado de uma avaliação de precisão/revocação do algoritmo de avaliação do sistema, realizado por {@link MeasurementService}.
  */
-@Data
+@RequiredArgsConstructor
 public class MeasurementResult {
 	private final NivelSimilaridade threshold;
 	private List<Boolean> matches = new ArrayList<>();
@@ -24,32 +23,36 @@ public class MeasurementResult {
 		this.recalls.add(recall);
 	}
 
-	public float threshold() {
+	public float getThreshold() {
 		return this.threshold.getValue();
 	}
 
-	public int size() {
+	public int getSize() {
 		return this.precisions.size();
 	}
 
-	public double match() {
+	public double getMatch() {
 		double numberOfMatches = this.matches.stream().filter(m -> m.booleanValue()).collect(Collectors.toList()).size();
-		return numberOfMatches / this.size();
+		return numberOfMatches / this.getSize();
 	}
 
-	public double precision() {
+	public double getPrecision() {
 		double sum = this.precisions.stream().mapToDouble(Double::doubleValue).sum();
-		return sum / this.size();
+		return sum / this.getSize();
 	}
 
-	public double recall() {
+	public double getRecall() {
 		double sum = this.recalls.stream().mapToDouble(Double::doubleValue).sum();
-		return sum / this.size();
+		return sum / this.getSize();
 	}
 
 	@Override
 	public String toString() {
-		return "MeasurementResult[size=" + this.size() + ",threshold=" + this.threshold() + ",match=" + this.match() + ",precision=" + this.precision() + ",recall=" + this.recall()
+		return "MeasurementResult[size=" + this.getSize()
+				+ ",threshold=" + this.getThreshold()
+				+ ",match=" + this.getMatch()
+				+ ",precision=" + this.getPrecision()
+				+ ",recall=" + this.getRecall()
 				+ "]";
 	}
 

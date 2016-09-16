@@ -1,0 +1,23 @@
+<header class="text-center">
+  <h2>Medições</h2>
+  <p class="help-block">Mede algumas estatísticas do algoritmo de avaliação do sistema usando os feedbacks do usuário logado como dados de controle.</p>
+</header>
+
+<table class="table table-condensed table-bordered table-striped">
+  <thead>
+    <th class="text-center">Threshold</th>
+    <th class="text-center">Matches corretos</th>
+    <th class="text-center">Precisão</th>
+    <th class="text-center">Revocação</th>
+    <th class="text-center">N° feedbacks</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="result in results">
+      <td class="text-right">{{result.threshold | number: 3}}</td>
+      <td class="text-right">{{result.match | number: 3}}</td>
+      <td class="text-right">{{result.precision | number: 3}}</td>
+      <td class="text-right">{{result.recall | number: 3}}</td>
+      <td class="text-right">{{result.size}}</td>
+    </tr>
+  </tbody>
+</table>
