@@ -42,12 +42,7 @@ angular.module('silq2App')
                     return result;
                 };
 
-                $scope.feedback = function(item, conceito) {
-                    var query = item.tituloVeiculo;
-                    var ano = item.ano;
-                    var id = conceito ? conceito.id : null;
-                    var feedbackRequest;
-
+                var clearFeedbackList = function() {
                     $scope.item.conceitos.forEach(function(c) {
                         // Remove a flag de feedback de conceitos anteriores
                         c.feedback = false;
@@ -58,17 +53,52 @@ angular.module('silq2App')
                             $scope.item.conceitos.splice(index, 1);
                         }
                     });
+                };
 
-                    if (conceito) {
-                        // Adiciona a flag de feedback ao novo conceito
-                        conceito.feedback = true;
+                var emitChange = function() {
+                    Flash.create('success', '<strong>Feedback registrado!</strong> Atualize a página para recalcular as estatísticas');
 
-                        // Se não possuir o conceito, adiciona-o à lista
-                        // Isso acontece quando o conceito vem do modal
-                        if (!contains($scope.item.conceitos, 'id', conceito.id)) {
-                            conceito.modal = true;
-                            $scope.item.conceitos.push(conceito);
-                        }
+                    // Emite o evento de feedback para atualização
+                    // do status 'modificado' em avaliar-result.controller
+                    $scope.$emit('silq:feedback');
+                };
+
+                $scope.feedbackDelete = function(item) {
+                    clearFeedbackList();
+
+                    var body = {
+                        query: item.tituloVeiculo,
+                        ano: item.ano
+                    };
+
+                    var feedbackRequest;
+                    if (item.issn) {
+                        feedbackRequest = Feedback.deletePeriodico(body);
+                    } else {
+                        feedbackRequest = Feedback.deleteEvento(body);
+                    }
+
+                    feedbackRequest.then(function() {
+                        emitChange();
+                    });
+                };
+
+                $scope.feedback = function(item, conceito) {
+                    var query = item.tituloVeiculo;
+                    var ano = item.ano;
+                    var id = conceito.id;
+                    var feedbackRequest;
+
+                    clearFeedbackList();
+
+                    // Adiciona a flag de feedback ao novo conceito
+                    conceito.feedback = true;
+
+                    // Se não possuir o conceito, adiciona-o à lista
+                    // Isso acontece quando o conceito vem do modal
+                    if (!contains($scope.item.conceitos, 'id', conceito.id)) {
+                        conceito.modal = true;
+                        $scope.item.conceitos.push(conceito);
                     }
 
                     if (item.issn) {
@@ -86,16 +116,8 @@ angular.module('silq2App')
                     }
 
                     feedbackRequest.then(function() {
-                        Flash.create('success', '<strong>Feedback registrado!</strong> Atualize a página para recalcular as estatísticas');
-
-                        // Emite o evento de feedback para atualização
-                        // do status 'modificado' em avaliar-result.controller
-                        $scope.$emit('silq:feedback');
+                        emitChange();
                     });
-                };
-
-                $scope.feedbackRemove = function(item) {
-                    $scope.feedback(item, null);
                 };
             }
         };

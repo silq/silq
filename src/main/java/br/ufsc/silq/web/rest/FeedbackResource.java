@@ -27,23 +27,25 @@ public class FeedbackResource {
 
 	@RequestMapping(value = "/evento/", method = RequestMethod.POST)
 	public ResponseEntity<FeedbackEvento> sugerirMatchingEvento(@RequestBody @Valid FeedbackEventoForm form) {
-		if (form.getEventoId() == null) {
-			this.feedbackService.deleteFeedbackEvento(form);
-			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-		}
-
 		FeedbackEvento feedback = this.feedbackService.sugerirMatchingEvento(form);
 		return new ResponseEntity<>(feedback, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/periodico/", method = RequestMethod.POST)
 	public ResponseEntity<FeedbackPeriodico> sugerirMatchingPeriodico(@RequestBody @Valid FeedbackPeriodicoForm form) {
-		if (form.getPeriodicoId() == null) {
-			this.feedbackService.deleteFeedbackPeriodico(form);
-			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-		}
-
 		FeedbackPeriodico feedback = this.feedbackService.sugerirMatchingPeriodico(form);
 		return new ResponseEntity<>(feedback, HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/evento/delete", method = RequestMethod.POST)
+	public ResponseEntity<FeedbackPeriodico> deletarFeedbackEvento(@RequestBody @Valid FeedbackEventoForm form) {
+		this.feedbackService.deleteFeedbackEvento(form);
+		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+	}
+
+	@RequestMapping(value = "/periodico/delete", method = RequestMethod.POST)
+	public ResponseEntity<FeedbackPeriodico> deletarFeedbackPeriodico(@RequestBody @Valid FeedbackPeriodicoForm form) {
+		this.feedbackService.deleteFeedbackPeriodico(form);
+		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 	}
 }
