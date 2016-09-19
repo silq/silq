@@ -13,6 +13,8 @@ public class FeedbackEventoForm {
 
 	/**
 	 * ID do evento dado como feedback.
+	 * Se for nulo, indica um feedback negativo, ou seja, que não existe evento cadastrado no sistema
+	 * que seja um match para este trabalho.
 	 */
 	private Long eventoId;
 
@@ -27,4 +29,13 @@ public class FeedbackEventoForm {
 	 * Ano do trabalho do pesquisador.
 	 */
 	private Integer ano;
+
+	/**
+	 * Checa se o feedback é negativo, ou seja, não existe registro Qualis que seja um match para esta query.
+	 * 
+	 * @return Verdadeiro se for um feedback negativo.
+	 */
+	public boolean isNegativo() {
+		return this.eventoId == null;
+	}
 }

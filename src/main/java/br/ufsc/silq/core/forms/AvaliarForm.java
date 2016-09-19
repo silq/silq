@@ -4,6 +4,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.validator.constraints.NotBlank;
 
 import br.ufsc.silq.core.data.AvaliacaoType;
@@ -62,4 +63,8 @@ public class AvaliarForm {
 	 * Se os artigos devem ser avaliados por similaridade (da mesma maneira que os eventos) além da avaliação por ISSN.
 	 */
 	private boolean avaliarArtigoPorSimilaridade = false;
+
+	public boolean hasArea() {
+		return StringUtils.isNotBlank(this.getArea());
+	}
 }

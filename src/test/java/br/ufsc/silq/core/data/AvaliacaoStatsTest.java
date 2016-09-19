@@ -41,6 +41,11 @@ public class AvaliacaoStatsTest {
 		trabalho6.addConceito(new Conceito(6L, "Veículo quase 2", "A3", NivelSimilaridade.BAIXO, 1996));
 		this.trabalhos.add(trabalho6);
 
+		Conceituado<Trabalho> trabalho7 = new Conceituado<>(new Trabalho("Trabalho 7", 2000, "Veículo 3"));
+		trabalho7.addConceito(new Conceito(7L, "Veículo que será ignorado", "A2", new NivelSimilaridade(0.967f), 2000));
+		trabalho7.setFeedbackNegativo(true);
+		this.trabalhos.add(trabalho7);
+
 		this.stats = new AvaliacaoStats(this.artigos, this.trabalhos);
 	}
 
@@ -72,7 +77,7 @@ public class AvaliacaoStatsTest {
 	@Test
 	public void testGetQtdeTrabalhosPorAno() {
 		Map<Integer, ContadorConceitos> map = this.stats.getQtdeTrabalhosPorAno();
-		Assertions.assertThat(map).containsOnlyKeys(1995, 1999, 2003);
+		Assertions.assertThat(map).containsOnlyKeys(1995, 1999, 2000, 2003);
 
 		Assertions.assertThat(map.get(1995).get(ContadorConceitos.TOTAL)).isEqualTo(1);
 		Assertions.assertThat(map.get(1995).get(ContadorConceitos.SEM_CONCEITO)).isEqualTo(0);

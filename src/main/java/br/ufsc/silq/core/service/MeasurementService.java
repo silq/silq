@@ -95,7 +95,9 @@ public class MeasurementService {
 
 		QualisEvento eventoFeedback = feedback.getEvento();
 
-		avaliarForm.setArea(eventoFeedback.getAreaAvaliacao()); // TODO: se área do feedback for diferente da área do evento?
+		if (eventoFeedback != null) {
+			avaliarForm.setArea(eventoFeedback.getAreaAvaliacao()); // TODO: se área do feedback for diferente da área do evento?
+		}
 
 		Trabalho trabalho = new Trabalho("", feedback.getAno(), feedback.getQuery()); // O Título do trabalho é ignorado pela avaliação
 
@@ -103,14 +105,23 @@ public class MeasurementService {
 		try {
 			conceitos = this.similarityService.getConceitos(trabalho, avaliarForm, TipoAvaliacao.EVENTO);
 		} catch (SQLException e) {
-			log.error("Erro ao realizar medição do feedback: " + feedback, e);
+			log.error("Erro ao obter conceitos do feedback: " + feedback, e);
 			return;
 		}
 
-		if (conceitos.isEmpty()) {
-			// Sistema não encontrou nada
-			// Todos os valores ficam 0!
-		} else {
+		if (eventoFeedback == null) {
+			// Caso seja um feedback negativo
+			if (!conceitos.isEmpty()) {
+				// e o sistema encontrou conceitos (erroneamente)
+				result.addResult(false, 0D, 0D); // TODO: a revocação aqui é 0 mesmo?
+			} else {
+				// e o sistema NÃO encontrou conceitos (corretamente)
+				result.addResult(true, 1D, 1D);
+			}
+			return;
+		}
+
+		if (!conceitos.isEmpty()) {
 			Conceito chosen = conceitos.get(0);
 			if (chosen.getId().equals(eventoFeedback.getId())) {
 				match = true;

@@ -160,4 +160,36 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito).isEmpty();
 		Assertions.assertThat(removed).isEqualTo(1);
 	}
+
+	@Test
+	public void testSugerirMatchingNegativoEvento() {
+		FeedbackEventoForm form = new FeedbackEventoForm(null, "Query apenas", null);
+		Assertions.assertThat(form.isNegativo()).isTrue();
+
+		FeedbackEvento feedback = this.feedbackService.sugerirMatchingEvento(form);
+
+		Assertions.assertThat(feedback.isNegativo()).isTrue();
+		Assertions.assertThat(feedback.getId()).isNotNull();
+		Assertions.assertThat(feedback.getQuery()).isEqualTo(form.getQuery());
+		Assertions.assertThat(feedback.getAno()).isEqualTo(form.getAno());
+		Assertions.assertThat(feedback.getUsuario()).isEqualTo(this.usuarioLogado);
+		Assertions.assertThat(feedback.getEvento()).isNull();
+		Assertions.assertThat(feedback.getDate()).isCloseTo(new Date(), 1000);
+	}
+
+	@Test
+	public void testSugerirMatchingNegativoPeriodico() {
+		FeedbackPeriodicoForm form = new FeedbackPeriodicoForm(null, "Apenas a query", null);
+		Assertions.assertThat(form.isNegativo()).isTrue();
+
+		FeedbackPeriodico feedback = this.feedbackService.sugerirMatchingPeriodico(form);
+
+		Assertions.assertThat(feedback.isNegativo()).isTrue();
+		Assertions.assertThat(feedback.getId()).isNotNull();
+		Assertions.assertThat(feedback.getQuery()).isEqualTo(form.getQuery());
+		Assertions.assertThat(feedback.getAno()).isEqualTo(form.getAno());
+		Assertions.assertThat(feedback.getUsuario()).isEqualTo(this.usuarioLogado);
+		Assertions.assertThat(feedback.getPeriodico()).isNull();
+		Assertions.assertThat(feedback.getDate()).isCloseTo(new Date(), 1000);
+	}
 }

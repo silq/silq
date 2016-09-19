@@ -19,4 +19,13 @@ public class FeedbackEvento extends Feedback {
 	@JoinColumn(name = "co_evento")
 	private QualisEvento evento;
 
+	/**
+	 * Checa se o feedback é negativo.
+	 * Um feedback negativo indica que não existe registro qualis no sistema que seja um match válido para esta query.
+	 *
+	 * @return Veridadeiro se for um feedback negativo.
+	 */
+	public boolean isNegativo() {
+		return this.evento == null;
+	}
 }

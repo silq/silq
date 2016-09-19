@@ -25,6 +25,12 @@ public class Conceituado<T extends Comparable<T>> implements Comparable<Conceitu
 	@Setter(value = AccessLevel.PROTECTED)
 	private List<Conceito> conceitos = new SortedList<>();
 
+	/**
+	 * Marca o objeto conceituado como tendo um feedback negativo.
+	 * Neste caso, todos os conceitos atribuídos a este Conceituado devem ser ignorados.
+	 */
+	private boolean feedbackNegativo = false;
+
 	public Conceituado(T obj) {
 		this.obj = obj;
 	}
@@ -73,7 +79,7 @@ public class Conceituado<T extends Comparable<T>> implements Comparable<Conceitu
 	 */
 	@JsonIgnore
 	public boolean hasConceito() {
-		return !this.conceitos.isEmpty();
+		return !this.conceitos.isEmpty() && !this.feedbackNegativo;
 	}
 
 	/**
@@ -84,7 +90,8 @@ public class Conceituado<T extends Comparable<T>> implements Comparable<Conceitu
 	 */
 	@JsonIgnore
 	public Conceito getConceitoMaisSimilar() {
-		return this.conceitos.isEmpty() ? null : this.conceitos.get(0);
+		// Se for um feedback negativo, ignora todos os conceitos atribuídos
+		return this.conceitos.isEmpty() || this.feedbackNegativo ? null : this.conceitos.get(0);
 	}
 
 	@Override

@@ -68,13 +68,17 @@ public class SimilarityService {
 
 		String sql = "SELECT " + tipoAvaliacao.getPk() + ", NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
 		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % ?1";
-		sql += " AND NO_AREA_AVALIACAO = ?2";
+		if (avaliarForm.hasArea()) {
+			sql += " AND NO_AREA_AVALIACAO = ?2";
+		}
 		sql += " ORDER BY SML DESC, ABS(NU_ANO - ?3) ASC";
 		sql += " LIMIT ?4";
 
 		Query query = this.em.createNativeQuery(sql);
 		query.setParameter(1, SilqStringUtils.normalizeString(conceituavel.getTituloVeiculo()));
-		query.setParameter(2, avaliarForm.getArea().toUpperCase());
+		if (avaliarForm.hasArea()) {
+			query.setParameter(2, avaliarForm.getArea().toUpperCase());
+		}
 		query.setParameter(3, conceituavel.getAno());
 		query.setParameter(4, avaliarForm.getMaxConceitos());
 

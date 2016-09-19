@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -33,6 +34,8 @@ import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
+import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
+import br.ufsc.silq.core.persistence.entities.FeedbackPeriodico;
 import br.ufsc.silq.core.persistence.entities.QQualisPeriodico;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.core.persistence.entities.Usuario;
@@ -170,9 +173,17 @@ public class AvaliacaoService {
 		}
 
 		if (usuario != null && avaliarForm.isUsarFeedback()) {
-			// Adiciona o conceito feedback do usuário
-			this.feedbackService.getConceitoFeedbackPeriodico(artigo.getTituloVeiculo(), usuario)
-					.ifPresent(artigoConceituado::addConceito);
+			// Checa pelo feedback do usuário
+			Optional<FeedbackPeriodico> feedback = this.feedbackService.getFeedbackPeriodico(artigo.getTituloVeiculo(), usuario);
+			if (feedback.isPresent()) {
+				if (feedback.get().isNegativo()) {
+					// Se for um feedback negativo, marca o artigo como tendo um feedback negativo
+					artigoConceituado.setFeedbackNegativo(true);
+				} else {
+					// Se o feedback é um periódico válido, adiciona-o como conceito
+					artigoConceituado.addConceito(this.feedbackService.feedbackToConceito(feedback.get()));
+				}
+			}
 		}
 
 		artigoConceituado.keepTopK(avaliarForm.getMaxConceitos());
@@ -229,9 +240,17 @@ public class AvaliacaoService {
 		Conceituado<Trabalho> trabalhoConceituado = new Conceituado<>(trabalho, conceitos);
 
 		if (usuario != null && avaliarForm.isUsarFeedback()) {
-			// Adiciona o conceito feedback do usuário
-			this.feedbackService.getConceitoFeedbackEvento(trabalho.getTituloVeiculo(), usuario)
-					.ifPresent(trabalhoConceituado::addConceito);
+			// Checa pelo feedback do usuário
+			Optional<FeedbackEvento> feedback = this.feedbackService.getFeedbackEvento(trabalho.getTituloVeiculo(), usuario);
+			if (feedback.isPresent()) {
+				if (feedback.get().isNegativo()) {
+					// Se for um feedback negativo, marca o trabalho como tendo um feedback negativo
+					trabalhoConceituado.setFeedbackNegativo(true);
+				} else {
+					// Se o feedback é um evento válido, adiciona-o como conceito
+					trabalhoConceituado.addConceito(this.feedbackService.feedbackToConceito(feedback.get()));
+				}
+			}
 		}
 
 		trabalhoConceituado.keepTopK(avaliarForm.getMaxConceitos());

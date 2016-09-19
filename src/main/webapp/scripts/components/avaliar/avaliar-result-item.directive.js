@@ -43,6 +43,7 @@ angular.module('silq2App')
                 };
 
                 var clearFeedbackList = function() {
+                    $scope.item.feedbackNegativo = false;
                     $scope.item.conceitos.forEach(function(c) {
                         // Remove a flag de feedback de conceitos anteriores
                         c.feedback = false;
@@ -86,19 +87,24 @@ angular.module('silq2App')
                 $scope.feedback = function(item, conceito) {
                     var query = item.tituloVeiculo;
                     var ano = item.ano;
-                    var id = conceito.id;
+                    var id = conceito ? conceito.id : null;
                     var feedbackRequest;
 
                     clearFeedbackList();
 
-                    // Adiciona a flag de feedback ao novo conceito
-                    conceito.feedback = true;
+                    if (conceito) {
+                        // Adiciona a flag de feedback ao novo conceito
+                        conceito.feedback = true;
 
-                    // Se não possuir o conceito, adiciona-o à lista
-                    // Isso acontece quando o conceito vem do modal
-                    if (!contains($scope.item.conceitos, 'id', conceito.id)) {
-                        conceito.modal = true;
-                        $scope.item.conceitos.push(conceito);
+                        // Se não possuir o conceito, adiciona-o à lista
+                        // Isso acontece quando o conceito vem do modal
+                        if (!contains($scope.item.conceitos, 'id', conceito.id)) {
+                            conceito.modal = true;
+                            $scope.item.conceitos.push(conceito);
+                        }
+                    } else {
+                        // é um feedback negativo
+                        $scope.item.feedbackNegativo = true;
                     }
 
                     if (item.issn) {

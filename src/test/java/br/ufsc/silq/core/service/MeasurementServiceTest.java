@@ -69,4 +69,18 @@ public class MeasurementServiceTest extends WebContextTest {
 		Assertions.assertThat(result.getRecall()).isEqualTo(1);
 		Assertions.assertThat(result.getPrecision()).isCloseTo(0.3333, Offset.offset(0.001));
 	}
+
+	@Test
+	public void testMeasureFeedbackNegativo() {
+		this.feedbackService.sugerirMatchingEvento(new FeedbackEventoForm(null, "symposium 3d user interfaces", 2010));
+
+		MeasurementResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.BAIXO);
+		result.debug();
+
+		Assertions.assertThat(result.getSize()).isEqualTo(1);
+		Assertions.assertThat(result.getThreshold()).isEqualTo(NivelSimilaridade.BAIXO.getValue());
+		Assertions.assertThat(result.getMatch()).isEqualTo(0);
+		Assertions.assertThat(result.getRecall()).isEqualTo(0);
+		Assertions.assertThat(result.getPrecision()).isEqualTo(0);
+	}
 }
