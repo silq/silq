@@ -14,9 +14,9 @@
   <tbody>
     <tr ng-repeat="result in results">
       <td class="text-right">{{result.threshold | number: 3}}</td>
-      <td class="text-right">{{result.match | number: 3}}</td>
-      <td class="text-right">{{result.precision | number: 3}}</td>
-      <td class="text-right">{{result.recall | number: 3}}</td>
+      <td class="text-right">{{result.match * 100 | number: 3}}%</td>
+      <td class="text-right">{{result.precision * 100 | number: 3}}%</td>
+      <td class="text-right">{{result.recall * 100 | number: 3}}%</td>
       <td class="text-right">{{result.size}}</td>
     </tr>
   </tbody>
