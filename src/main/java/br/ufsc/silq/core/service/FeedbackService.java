@@ -139,6 +139,7 @@ public class FeedbackService {
 		QualisEvento evento = feedback.getEvento();
 		Conceito conceito = new Conceito(evento.getId(), evento.getTitulo(), evento.getEstrato(),
 				this.similarityService.calcularSimilaridade(feedback.getQuery(), evento.getTitulo()), evento.getAno());
+		conceito.setSiglaVeiculo(evento.getSigla());
 		conceito.setFeedback(true);
 		return conceito;
 	}

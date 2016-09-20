@@ -12,6 +12,7 @@ public class Conceito implements Comparable<Conceito> {
 	private final String conceito;
 	private final NivelSimilaridade similaridade;
 	private final Integer ano;
+	private String siglaVeiculo;
 
 	/**
 	 * Flag usada para indicar se este conceito foi manualmente escolhido pelo usuário.

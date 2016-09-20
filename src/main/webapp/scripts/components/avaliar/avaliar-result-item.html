@@ -36,7 +36,7 @@
     <div ng-class="{ 'qualis-conceito-item': true, 'first': $first }" ng-repeat="(i, conceito) in item.conceitos | orderBy: ['-feedback', '-similaridade']">
         <div ng-show="mais || ($first && !item.feedbackNegativo)">
             <span class="label-conceito">
-                <span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span><span class="ano" title="Ano base da avaliação Qualis">{{ conceito.ano }}</span><span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span>
+                <span class="conceito" title="Conceito calculado">{{ conceito.conceito }}</span><span class="similaridade" title="Grau de confiança para o cálculo de conceito" ng-class="'bg-dark-' + (conceito.similaridade | similarityClass)">{{ conceito.similaridade * 100 | number: 0 }}%</span><span class="ano" title="Ano base da avaliação Qualis">{{ conceito.ano }}</span><span ng-show="conceito.siglaVeiculo" class="sigla" title="Sigla do evento similar">{{ conceito.siglaVeiculo }}</span><span class="titulo" title="Título do periódico ou evento similar">{{ conceito.tituloVeiculo }}</span>
             </span>
 
             <span ng-show="conceito.feedback" uib-dropdown>

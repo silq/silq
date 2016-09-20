@@ -50,10 +50,10 @@
     white-space: nowrap;
     background: #fff;
 
-    & > span {
+    span {
         padding: 0px 6px;
-        border-width: 1px;
-        border-style: solid;
+        border: 1px solid #ccc;
+        border-left: 0;
         display: inline-block;
 
         &:first-child {
@@ -77,14 +77,7 @@
         font-weight: 600;
     }
 
-    .titulo, .ano {
-        border-color: #ccc;
-        max-width: 100%;
-    }
-
     .ano {
-        border-left-width: 0;
-        border-right-width: 0;
         font-weight: 600;
     }
 }

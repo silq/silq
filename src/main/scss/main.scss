@@ -40,10 +40,22 @@ a { cursor: pointer; }
 dt { font-weight: 600; }
 dd { margin-bottom: 10px; }
 
-.bg-dark-success { background-color: $brand-success; border-color: $brand-success; }
-.bg-dark-warning { background-color: $brand-warning; border-color: $brand-warning; }
-.bg-dark-danger { background-color: $brand-danger; border-color: $brand-danger; }
-.bg-dark-info { background-color: $brand-info; border-color: $brand-info; }
+.bg-dark-success {
+    background-color: $brand-success;
+    border-color: $brand-success !important; 
+}
+.bg-dark-warning {
+    background-color: $brand-warning;
+    border-color: $brand-warning !important;
+}
+.bg-dark-danger {
+    background-color: $brand-danger;
+    border-color: $brand-danger !important;
+}
+.bg-dark-info {
+    background-color: $brand-info;
+    border-color: $brand-info !important;
+}
 
 .main-content {
     min-height: 50vh;

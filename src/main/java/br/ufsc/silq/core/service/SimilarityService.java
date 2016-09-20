@@ -66,7 +66,7 @@ public class SimilarityService {
 	public List<Conceito> getConceitos(Conceituavel conceituavel, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
 		this.setSimilarityThreshold(avaliarForm.getNivelSimilaridade().getValue());
 
-		String sql = "SELECT " + tipoAvaliacao.getPk() + ", NO_TITULO, NO_ESTRATO, SIMILARITY(NO_TITULO, ?1) AS SML, NU_ANO";
+		String sql = "SELECT *, SIMILARITY(NO_TITULO, ?1) AS SML";
 		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % ?1";
 		if (avaliarForm.hasArea()) {
 			sql += " AND NO_AREA_AVALIACAO = ?2";
@@ -84,13 +84,29 @@ public class SimilarityService {
 
 		List<Object[]> results = query.getResultList();
 		return results.stream()
-				.map(this::mapResultToConceito)
+				.map(r -> this.mapResultToConceito(r, tipoAvaliacao))
 				.collect(Collectors.toList());
 	}
 
-	private Conceito mapResultToConceito(Object[] obj) {
-		return new Conceito(((BigDecimal) obj[0]).longValue(), (String) obj[1], (String) obj[2],
-				new NivelSimilaridade((Float) obj[3]), (Integer) obj[4]);
+	private Conceito mapResultToConceito(Object[] result, TipoAvaliacao tipoAvaliacao) {
+		if (TipoAvaliacao.EVENTO.equals(tipoAvaliacao)) {
+			long id = ((BigDecimal) result[0]).longValue();
+			String sigla = (String) result[1];
+			String titulo = (String) result[2];
+			String estrato = (String) result[4];
+			Integer ano = (Integer) result[6];
+			Float similaridade = (Float) result[7];
+			Conceito conceito = new Conceito(id, titulo, estrato, new NivelSimilaridade(similaridade), ano);
+			conceito.setSiglaVeiculo(sigla);
+			return conceito;
+		} else {
+			long id = ((BigDecimal) result[0]).longValue();
+			String titulo = (String) result[2];
+			String estrato = (String) result[3];
+			Integer ano = (Integer) result[5];
+			Float similaridade = (Float) result[6];
+			return new Conceito(id, titulo, estrato, new NivelSimilaridade(similaridade), ano);
+		}
 	}
 
 	/**
