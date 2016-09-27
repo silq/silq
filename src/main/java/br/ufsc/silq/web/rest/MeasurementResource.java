@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufsc.silq.core.data.MeasurementResult;
@@ -23,7 +24,11 @@ public class MeasurementResource {
 	private MeasurementService measurementService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<MeasurementResult>> measure() {
-		return new ResponseEntity<>(this.measurementService.measure(0.1f, 1f, 0.05f), HttpStatus.OK);
+	public ResponseEntity<List<MeasurementResult>> measure(
+			@RequestParam(defaultValue = "0.1") float initialThreshold,
+			@RequestParam(defaultValue = "1") float finalThreshold,
+			@RequestParam(defaultValue = "0.1") float step,
+			@RequestParam(defaultValue = "10000") int limit) {
+		return new ResponseEntity<>(this.measurementService.measure(initialThreshold, finalThreshold, step, limit), HttpStatus.OK);
 	}
 }

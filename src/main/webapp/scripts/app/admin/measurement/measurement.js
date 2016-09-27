@@ -5,7 +5,7 @@ angular.module('silq2App')
         $stateProvider
             .state('measurement', {
                 parent: 'admin',
-                url: '/measurement',
+                url: '/measurement?initialThreshold&finalThreshold&step&limit',
                 data: {
                     authorities: ['ROLE_ADMIN']
                 },

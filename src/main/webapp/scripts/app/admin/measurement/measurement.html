@@ -6,18 +6,20 @@
 <table class="table table-condensed table-bordered table-striped">
   <thead>
     <th class="text-center">Threshold</th>
-    <th class="text-center">P@1</th>
-    <th class="text-center">Precisão</th>
-    <th class="text-center">Revocação</th>
+    <th class="text-center">Exatidão</th>
+    <th class="text-center">MRR</th>
     <th class="text-center">N° feedbacks</th>
   </thead>
   <tbody>
     <tr ng-repeat="result in results">
       <td class="text-right">{{result.threshold | number: 3}}</td>
       <td class="text-right">{{result.match * 100 | number: 3}}%</td>
-      <td class="text-right">{{result.precision * 100 | number: 3}}%</td>
-      <td class="text-right">{{result.recall * 100 | number: 3}}%</td>
+      <td class="text-right">{{result.meanReciprocralRank | number: 5}}</td>
       <td class="text-right">{{result.size}}</td>
     </tr>
   </tbody>
 </table>
+
+<canvas id="line" class="chart chart-line" chart-data="data"
+  chart-labels="labels" chart-series="series" chart-options="options">
+</canvas>
