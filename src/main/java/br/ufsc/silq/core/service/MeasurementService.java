@@ -53,7 +53,7 @@ public class MeasurementService {
 		List<FeedbackEvento> feedbacksEventos = this.feedbackEventoRepo.findAllByUsuario(usuario);
 
 		AvaliarForm avaliarForm = new AvaliarForm();
-		avaliarForm.setMaxConceitos(100);
+		avaliarForm.setMaxConceitos(5);
 		avaliarForm.setAvaliarArtigoPorSimilaridade(false);
 		avaliarForm.setUsarFeedback(false);
 		avaliarForm.setNivelSimilaridade(threshold);
@@ -126,10 +126,10 @@ public class MeasurementService {
 			// Caso seja um feedback negativo: não existe um resultado real
 			if (!conceitos.isEmpty()) {
 				// e o sistema encontrou conceitos (erroneamente)
-				return new MeasureEntry(false, null);
+				return new MeasureEntry(false, 0.0);
 			} else {
 				// e o sistema NÃO encontrou conceitos (corretamente)
-				return new MeasureEntry(true, null);
+				return new MeasureEntry(true, 1.0);
 			}
 		}
 
