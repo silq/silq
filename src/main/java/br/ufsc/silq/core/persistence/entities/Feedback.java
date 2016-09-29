@@ -47,4 +47,7 @@ public abstract class Feedback {
 
 	@Column(name = "dt_feedback")
 	private Date date;
+
+	@Column(name = "st_validation")
+	private Boolean validation = false;
 }

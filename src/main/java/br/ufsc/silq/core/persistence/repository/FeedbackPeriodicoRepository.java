@@ -10,7 +10,7 @@ import br.ufsc.silq.core.persistence.entities.Usuario;
 
 public interface FeedbackPeriodicoRepository extends JpaRepository<FeedbackPeriodico, Long> {
 
-	Optional<FeedbackPeriodico> findOneByQueryAndUsuario(String query, Usuario usuario);
+	Optional<FeedbackPeriodico> findOneByQueryAndUsuarioAndValidation(String query, Usuario usuario, Boolean validation);
 
 	Long deleteByQueryAndUsuario(String query, Usuario usuario);
 

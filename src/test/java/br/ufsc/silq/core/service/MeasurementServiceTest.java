@@ -10,7 +10,9 @@ import org.junit.Test;
 import br.ufsc.silq.core.data.MeasurementResult;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
+import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
 import br.ufsc.silq.core.persistence.entities.Usuario;
+import br.ufsc.silq.core.persistence.repository.FeedbackEventoRepository;
 import br.ufsc.silq.test.WebContextTest;
 
 public class MeasurementServiceTest extends WebContextTest {
@@ -21,6 +23,9 @@ public class MeasurementServiceTest extends WebContextTest {
 	@Inject
 	FeedbackService feedbackService;
 
+	@Inject
+	FeedbackEventoRepository feedbackEventoRepo;
+
 	private Usuario usuarioLogado;
 
 	@Before
@@ -28,9 +33,15 @@ public class MeasurementServiceTest extends WebContextTest {
 		this.usuarioLogado = this.loginUser();
 	}
 
+	private void saveFeedback(FeedbackEventoForm form) {
+		FeedbackEvento feedback = this.feedbackService.sugerirMatchingEvento(form);
+		feedback.setValidation(true); // Marca como sendo um feedback de validação, para ser considerado pela medição
+		this.feedbackEventoRepo.save(feedback);
+	}
+
 	@Test
 	public void testMeasureFeedbackExactMatch() {
-		this.feedbackService.sugerirMatchingEvento(new FeedbackEventoForm(2L, "symposium 3d user interfaces", 2010));
+		this.saveFeedback(new FeedbackEventoForm(2L, "symposium 3d user interfaces", 2010));
 
 		MeasurementResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.NORMAL, 100);
 		// result.debug();
@@ -43,7 +54,7 @@ public class MeasurementServiceTest extends WebContextTest {
 
 	@Test
 	public void testMeasure() {
-		this.feedbackService.sugerirMatchingEvento(new FeedbackEventoForm(2L, "3d user interfaces conference", 2010));
+		this.saveFeedback(new FeedbackEventoForm(2L, "3d user interfaces conference", 2010));
 
 		MeasurementResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.BAIXO, 100);
 		// result.debug();
@@ -56,7 +67,7 @@ public class MeasurementServiceTest extends WebContextTest {
 
 	@Test
 	public void testMeasureFeedbackNegativo() {
-		this.feedbackService.sugerirMatchingEvento(new FeedbackEventoForm(null, "symposium 3d user interfaces", 2010));
+		this.saveFeedback(new FeedbackEventoForm(null, "symposium 3d user interfaces", 2010));
 
 		MeasurementResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.BAIXO, 100);
 		// result.debug();

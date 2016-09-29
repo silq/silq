@@ -26,6 +26,7 @@ import br.ufsc.silq.core.data.AvaliacaoType;
 import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.Conceituado;
 import br.ufsc.silq.core.data.NivelSimilaridade;
+import br.ufsc.silq.core.data.SimilarityResult;
 import br.ufsc.silq.core.exception.SilqError;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
@@ -174,14 +175,14 @@ public class AvaliacaoService {
 
 		if (usuario != null && avaliarForm.isUsarFeedback()) {
 			// Checa pelo feedback do usuário
-			Optional<FeedbackPeriodico> feedback = this.feedbackService.getFeedbackPeriodico(artigo.getTituloVeiculo(), usuario);
+			Optional<SimilarityResult<FeedbackPeriodico>> feedback = this.feedbackService.getFeedbackPeriodico(artigo.getTituloVeiculo(), usuario);
 			if (feedback.isPresent()) {
-				if (feedback.get().isNegativo()) {
+				if (feedback.get().getResultado().isNegativo()) {
 					// Se for um feedback negativo, marca o artigo como tendo um feedback negativo
 					artigoConceituado.setFeedbackNegativo(true);
 				} else {
 					// Se o feedback é um periódico válido, adiciona-o como conceito
-					artigoConceituado.addConceito(this.feedbackService.feedbackToConceito(feedback.get()));
+					artigoConceituado.addConceito(this.feedbackService.feedbackPeriodicoToConceito(feedback.get()));
 				}
 			}
 		}
@@ -241,14 +242,14 @@ public class AvaliacaoService {
 
 		if (usuario != null && avaliarForm.isUsarFeedback()) {
 			// Checa pelo feedback do usuário
-			Optional<FeedbackEvento> feedback = this.feedbackService.getFeedbackEvento(trabalho.getTituloVeiculo(), usuario);
+			Optional<SimilarityResult<FeedbackEvento>> feedback = this.feedbackService.getFeedbackEvento(trabalho.getTituloVeiculo(), usuario);
 			if (feedback.isPresent()) {
-				if (feedback.get().isNegativo()) {
+				if (feedback.get().getResultado().isNegativo()) {
 					// Se for um feedback negativo, marca o trabalho como tendo um feedback negativo
 					trabalhoConceituado.setFeedbackNegativo(true);
 				} else {
 					// Se o feedback é um evento válido, adiciona-o como conceito
-					trabalhoConceituado.addConceito(this.feedbackService.feedbackToConceito(feedback.get()));
+					trabalhoConceituado.addConceito(this.feedbackService.feedbackEventoToConceito(feedback.get()));
 				}
 			}
 		}

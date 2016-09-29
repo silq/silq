@@ -1,6 +1,5 @@
 package br.ufsc.silq.core.service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
 import br.ufsc.silq.core.data.Conceito;
+import br.ufsc.silq.core.data.Conceituado;
 import br.ufsc.silq.core.data.MeasurementResult;
 import br.ufsc.silq.core.data.MeasurementResult.MeasureEntry;
 import br.ufsc.silq.core.data.NivelSimilaridade;
@@ -21,7 +21,6 @@ import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
 import br.ufsc.silq.core.persistence.entities.QualisEvento;
 import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.persistence.repository.FeedbackEventoRepository;
-import br.ufsc.silq.core.service.SimilarityService.TipoAvaliacao;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -33,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MeasurementService {
 
 	@Inject
-	private SimilarityService similarityService;
+	private AvaliacaoService avaliacaoService;
 
 	@Inject
 	private FeedbackEventoRepository feedbackEventoRepo;
@@ -50,7 +49,7 @@ public class MeasurementService {
 	 * @return O resultado da medição, incluindo Precisão, Revocação e Número correto de matches feitos pelo sistema.
 	 */
 	public MeasurementResult measure(Usuario usuario, NivelSimilaridade threshold, int limit) {
-		List<FeedbackEvento> feedbacksEventos = this.feedbackEventoRepo.findAllByUsuario(usuario);
+		List<FeedbackEvento> feedbacksEventos = this.feedbackEventoRepo.findAllByUsuarioAndValidation(usuario, true);
 
 		AvaliarForm avaliarForm = new AvaliarForm();
 		avaliarForm.setMaxConceitos(5);
@@ -60,7 +59,7 @@ public class MeasurementService {
 
 		MeasurementResult result = new MeasurementResult(threshold);
 		feedbacksEventos.parallelStream().limit(limit).forEach(feedback -> {
-			MeasureEntry measure = this.measureFeedback(feedback, avaliarForm);
+			MeasureEntry measure = this.measureFeedback(feedback, avaliarForm, usuario);
 			if (measure != null) {
 				result.addResult(measure);
 			}
@@ -105,7 +104,7 @@ public class MeasurementService {
 		return results;
 	}
 
-	private MeasureEntry measureFeedback(FeedbackEvento feedback, AvaliarForm avaliarForm) {
+	private MeasureEntry measureFeedback(FeedbackEvento feedback, AvaliarForm avaliarForm, Usuario usuario) {
 		QualisEvento eventoFeedback = feedback.getEvento();
 
 		if (eventoFeedback != null) {
@@ -114,13 +113,10 @@ public class MeasurementService {
 
 		Trabalho trabalho = new Trabalho("", feedback.getAno(), feedback.getQuery()); // O Título do trabalho é ignorado pela avaliação
 
-		List<Conceito> conceitos;
-		try {
-			conceitos = this.similarityService.getConceitos(trabalho, avaliarForm, TipoAvaliacao.EVENTO);
-		} catch (SQLException e) {
-			log.error("Erro ao obter conceitos do feedback: " + feedback, e);
-			return null;
-		}
+		Conceituado<Trabalho> conceituado = this.avaliacaoService.avaliarTrabalho(trabalho, avaliarForm, usuario);
+		// List<Conceito> conceitos = this.similarityService.getConceitos(trabalho, avaliarForm, TipoAvaliacao.EVENTO);
+
+		List<Conceito> conceitos = conceituado.getConceitos();
 
 		if (eventoFeedback == null) {
 			// Caso seja um feedback negativo: não existe um resultado real

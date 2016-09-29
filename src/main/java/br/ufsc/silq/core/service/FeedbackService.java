@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufsc.silq.core.data.Conceito;
+import br.ufsc.silq.core.data.SimilarityResult;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
 import br.ufsc.silq.core.forms.FeedbackPeriodicoForm;
 import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
@@ -53,7 +54,7 @@ public class FeedbackService {
 	 */
 	public FeedbackEvento sugerirMatchingEvento(@Valid FeedbackEventoForm form) {
 		Usuario usuario = this.usuarioService.getUsuarioLogado();
-		FeedbackEvento feedback = this.feedbackEventoRepo.findOneByQueryAndUsuario(form.getQuery(), usuario)
+		FeedbackEvento feedback = this.feedbackEventoRepo.findOneByQueryAndUsuarioAndValidation(form.getQuery(), usuario, false)
 				.orElse(new FeedbackEvento());
 
 		if (!form.isNegativo()) {
@@ -81,7 +82,7 @@ public class FeedbackService {
 	 */
 	public FeedbackPeriodico sugerirMatchingPeriodico(@Valid FeedbackPeriodicoForm form) {
 		Usuario usuario = this.usuarioService.getUsuarioLogado();
-		FeedbackPeriodico feedback = this.feedbackPeriodicoRepo.findOneByQueryAndUsuario(form.getQuery(), usuario)
+		FeedbackPeriodico feedback = this.feedbackPeriodicoRepo.findOneByQueryAndUsuarioAndValidation(form.getQuery(), usuario, false)
 				.orElse(new FeedbackPeriodico());
 
 		if (!form.isNegativo()) {
@@ -101,12 +102,12 @@ public class FeedbackService {
 		return feedback;
 	}
 
-	public Optional<FeedbackPeriodico> getFeedbackPeriodico(String query, Usuario usuario) {
-		return this.feedbackPeriodicoRepo.findOneByQueryAndUsuario(query, usuario);
+	public Optional<SimilarityResult<FeedbackPeriodico>> getFeedbackPeriodico(String query, Usuario usuario) {
+		return Optional.ofNullable(this.similarityService.searchFeedback(FeedbackPeriodico.class, query, usuario));
 	}
 
-	public Optional<FeedbackEvento> getFeedbackEvento(String query, Usuario usuario) {
-		return this.feedbackEventoRepo.findOneByQueryAndUsuario(query, usuario);
+	public Optional<SimilarityResult<FeedbackEvento>> getFeedbackEvento(String query, Usuario usuario) {
+		return Optional.ofNullable(this.similarityService.searchFeedback(FeedbackEvento.class, query, usuario));
 	}
 
 	/**
@@ -118,8 +119,8 @@ public class FeedbackService {
 	 * @return Um objeto Conceito opcional, populado caso tenha sido encontrado um feedback com os dados parâmetros de busca.
 	 */
 	public Optional<Conceito> getConceitoFeedbackEvento(String query, Usuario usuario) {
-		Optional<FeedbackEvento> feedback = this.getFeedbackEvento(query, usuario);
-		return feedback.map(this::feedbackToConceito);
+		Optional<SimilarityResult<FeedbackEvento>> feedback = this.getFeedbackEvento(query, usuario);
+		return feedback.map(this::feedbackEventoToConceito);
 	}
 
 	/**
@@ -131,23 +132,25 @@ public class FeedbackService {
 	 * @return Um objeto Conceito opcional, populado caso tenha sido encontrado um feedback com os dados parâmetros de busca.
 	 */
 	public Optional<Conceito> getConceitoFeedbackPeriodico(String query, Usuario usuario) {
-		Optional<FeedbackPeriodico> feedback = this.getFeedbackPeriodico(query, usuario);
-		return feedback.map(this::feedbackToConceito);
+		Optional<SimilarityResult<FeedbackPeriodico>> feedback = this.getFeedbackPeriodico(query, usuario);
+		return feedback.map(this::feedbackPeriodicoToConceito);
 	}
 
-	public Conceito feedbackToConceito(FeedbackEvento feedback) {
+	public Conceito feedbackEventoToConceito(SimilarityResult<FeedbackEvento> result) {
+		FeedbackEvento feedback = result.getResultado();
 		QualisEvento evento = feedback.getEvento();
 		Conceito conceito = new Conceito(evento.getId(), evento.getTitulo(), evento.getEstrato(),
-				this.similarityService.calcularSimilaridade(feedback.getQuery(), evento.getTitulo()), evento.getAno());
+				result.getSimilaridade(), evento.getAno());
 		conceito.setSiglaVeiculo(evento.getSigla());
 		conceito.setFeedback(true);
 		return conceito;
 	}
 
-	public Conceito feedbackToConceito(FeedbackPeriodico feedback) {
+	public Conceito feedbackPeriodicoToConceito(SimilarityResult<FeedbackPeriodico> result) {
+		FeedbackPeriodico feedback = result.getResultado();
 		QualisPeriodico periodico = feedback.getPeriodico();
 		Conceito conceito = new Conceito(periodico.getId(), periodico.getTitulo(), periodico.getEstrato(),
-				this.similarityService.calcularSimilaridade(feedback.getQuery(), periodico.getTitulo()), periodico.getAno());
+				result.getSimilaridade(), periodico.getAno());
 		conceito.setFeedback(true);
 		return conceito;
 	}

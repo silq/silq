@@ -10,9 +10,9 @@ import br.ufsc.silq.core.persistence.entities.Usuario;
 
 public interface FeedbackEventoRepository extends JpaRepository<FeedbackEvento, Long> {
 
-	Optional<FeedbackEvento> findOneByQueryAndUsuario(String query, Usuario usuario);
+	Optional<FeedbackEvento> findOneByQueryAndUsuarioAndValidation(String query, Usuario usuario, Boolean validation);
 
 	Long deleteByQueryAndUsuario(String query, Usuario usuario);
 
-	List<FeedbackEvento> findAllByUsuario(Usuario usuario);
+	List<FeedbackEvento> findAllByUsuarioAndValidation(Usuario usuario, Boolean validation);
 }

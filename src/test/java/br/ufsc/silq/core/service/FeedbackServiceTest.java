@@ -63,6 +63,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(feedback.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback.getEvento()).isEqualTo(this.evento);
 		Assertions.assertThat(feedback.getDate()).isCloseTo(new Date(), 1000);
+		Assertions.assertThat(feedback.getValidation()).isFalse();
 	}
 
 	@Test

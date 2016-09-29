@@ -6,12 +6,14 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Session;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +24,10 @@ import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.SimilarityResult;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.QualisSearchForm;
+import br.ufsc.silq.core.persistence.entities.Feedback;
 import br.ufsc.silq.core.persistence.entities.QualisEvento;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
+import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,6 +55,10 @@ public class SimilarityService {
 		Query query = this.em.createNativeQuery("SELECT set_limit(?1)");
 		query.setParameter(1, value);
 		query.getSingleResult();
+	}
+
+	private Session getCurrentSession() {
+		return this.em.unwrap(Session.class);
 	}
 
 	/**
@@ -197,6 +205,42 @@ public class SimilarityService {
 		periodico.setAreaAvaliacao((String) result[4]);
 		periodico.setAno((Integer) result[5]);
 		return new SimilarityResult<>(periodico, new NivelSimilaridade((Float) result[6]));
+	}
+
+	/**
+	 * Pesquisa por feedbacks semelhantes à query e pertencentes ao usuário.
+	 *
+	 * @param clazz Tipo do Feedback a ser retornado (deve extender {@link Feedback}}.
+	 * @param query Query a ser pesquisada.
+	 * @param usuario Usuário que fez o feedback. Só serão pesquisados feedbacks deste usuário.
+	 * @return O feedback mais similar à query, ou {@code null} caso não encontrado.
+	 */
+	public <T extends Feedback> SimilarityResult<T> searchFeedback(Class<T> clazz, String query, Usuario usuario) {
+		this.setSimilarityThreshold(1.0f); // TODO
+
+		String sql = "";
+		sql += "SELECT *, SIMILARITY(ds_query, :query) AS sml FROM tb_feedback";
+		sql += " WHERE co_usuario = :usuarioId";
+		sql += " AND st_validation = false";
+		sql += " AND co_tipo = :discriminator";
+		sql += " AND ds_query % :query";
+		sql += " ORDER BY sml DESC";
+		sql += " LIMIT 1";
+
+		org.hibernate.Query qr = this.getCurrentSession().createSQLQuery(sql)
+				.addEntity(clazz)
+				.addScalar("sml")
+				.setString("query", query)
+				.setLong("usuarioId", usuario.getId())
+				.setString("discriminator", clazz.getAnnotation(DiscriminatorValue.class).value());
+		List<Object[]> results = qr.list();
+
+		if (results.isEmpty()) {
+			return null;
+		}
+
+		Object[] first = results.get(0);
+		return new SimilarityResult<>((T) first[0], new NivelSimilaridade((float) first[1]));
 	}
 
 	/**
