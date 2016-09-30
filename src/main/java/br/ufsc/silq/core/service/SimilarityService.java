@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -50,9 +51,9 @@ public class SimilarityService {
 	 * @param value Valor numérico de 0 a 1 representando o threshold de similaridade.
 	 */
 	public void setSimilarityThreshold(Float value) {
-		Query query = this.em.createNativeQuery("SELECT set_limit(?1)");
-		query.setParameter(1, value);
-		query.getSingleResult();
+		Query query = this.getCurrentSession().createSQLQuery("SELECT set_limit(:limit)");
+		query.setParameter("limit", value);
+		query.uniqueResult();
 	}
 
 	private Session getCurrentSession() {
@@ -80,7 +81,7 @@ public class SimilarityService {
 		sql += " ORDER BY SML DESC, ABS(NU_ANO - :ano) ASC";
 		sql += " LIMIT :limit";
 
-		org.hibernate.Query q = this.getCurrentSession().createSQLQuery(sql)
+		Query q = this.getCurrentSession().createSQLQuery(sql)
 				.addEntity(clazz)
 				.addScalar("sml")
 				.setString("query", SilqStringUtils.normalizeString(conceituavel.getTituloVeiculo()))
@@ -122,7 +123,7 @@ public class SimilarityService {
 		sql += " LIMIT :limit";
 		sql += " OFFSET :offset";
 
-		org.hibernate.Query q = this.getCurrentSession().createSQLQuery(sql)
+		Query q = this.getCurrentSession().createSQLQuery(sql)
 				.addEntity(clazz)
 				.addScalar("sml")
 				.addScalar("total")
@@ -163,13 +164,13 @@ public class SimilarityService {
 		sql += " ORDER BY sml DESC";
 		sql += " LIMIT 1";
 
-		org.hibernate.Query qr = this.getCurrentSession().createSQLQuery(sql)
+		Query q = this.getCurrentSession().createSQLQuery(sql)
 				.addEntity(clazz)
 				.addScalar("sml")
 				.setString("query", query)
 				.setLong("usuarioId", usuario.getId())
 				.setString("discriminator", clazz.getAnnotation(DiscriminatorValue.class).value());
-		List<Object[]> results = qr.list();
+		List<Object[]> results = q.list();
 
 		if (results.isEmpty()) {
 			return null;
@@ -187,10 +188,10 @@ public class SimilarityService {
 	 * @return O {@link NivelSimilaridade} calculado entre as duas strings.
 	 */
 	public NivelSimilaridade calcularSimilaridade(String s1, String s2) {
-		Query q = this.em.createNativeQuery("SELECT similarity(?1, ?2)");
-		q.setParameter(1, s1);
-		q.setParameter(2, s2);
-		Float value = (Float) q.getSingleResult();
+		SQLQuery q = this.getCurrentSession().createSQLQuery("SELECT similarity(:s1, :s2)");
+		q.setParameter("s1", s1);
+		q.setParameter("s2", s2);
+		Float value = (Float) q.uniqueResult();
 		return new NivelSimilaridade(value);
 	}
 }

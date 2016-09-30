@@ -3,23 +3,25 @@ package br.ufsc.silq.core.persistence.entities;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @MappedSuperclass
-@Data
+@Getter
+@Setter
 public abstract class Qualis {
 
 	@Column(name = "no_titulo")
-	private String titulo;
+	protected String titulo;
 
 	@Column(name = "nu_ano")
-	private Integer ano;
+	protected Integer ano;
 
 	@Column(name = "no_estrato")
-	private String estrato;
+	protected String estrato;
 
 	@Column(name = "no_area_avaliacao")
-	private String areaAvaliacao;
+	protected String areaAvaliacao;
 
 	public abstract Long getId();
 }
