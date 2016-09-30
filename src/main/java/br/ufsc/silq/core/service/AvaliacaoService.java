@@ -1,6 +1,5 @@
 package br.ufsc.silq.core.service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -38,9 +37,9 @@ import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
 import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
 import br.ufsc.silq.core.persistence.entities.FeedbackPeriodico;
 import br.ufsc.silq.core.persistence.entities.QQualisPeriodico;
+import br.ufsc.silq.core.persistence.entities.QualisEvento;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.core.persistence.entities.Usuario;
-import br.ufsc.silq.core.service.SimilarityService.TipoAvaliacao;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -213,8 +212,8 @@ public class AvaliacaoService {
 	private Conceituado<Artigo> avaliarArtigoPorSimilaridade(Artigo artigo, @Valid AvaliarForm avaliarForm) {
 		List<Conceito> conceitos = new ArrayList<>();
 		try {
-			conceitos = this.similarityService.getConceitos(artigo, avaliarForm, TipoAvaliacao.PERIODICO);
-		} catch (SQLException e) {
+			conceitos = this.similarityService.getConceitos(QualisPeriodico.class, artigo, avaliarForm);
+		} catch (Exception e) {
 			throw new SilqError("Erro ao avaliar artigo: " + artigo.getTitulo(), e);
 		}
 		return new Conceituado<>(artigo, conceitos);
@@ -233,8 +232,8 @@ public class AvaliacaoService {
 	public Conceituado<Trabalho> avaliarTrabalho(Trabalho trabalho, @Valid AvaliarForm avaliarForm, @Nullable Usuario usuario) {
 		List<Conceito> conceitos;
 		try {
-			conceitos = this.similarityService.getConceitos(trabalho, avaliarForm, TipoAvaliacao.EVENTO);
-		} catch (SQLException e) {
+			conceitos = this.similarityService.getConceitos(QualisEvento.class, trabalho, avaliarForm);
+		} catch (Exception e) {
 			throw new SilqError("Erro ao avaliar trabalho: " + trabalho.getTitulo(), e);
 		}
 

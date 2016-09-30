@@ -13,7 +13,7 @@ import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.Conceituavel;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.forms.AvaliarForm;
-import br.ufsc.silq.core.service.SimilarityService.TipoAvaliacao;
+import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.test.WebContextTest;
 import lombok.Data;
 
@@ -39,7 +39,7 @@ public class SimilarityServiceTest extends WebContextTest {
 	@Test
 	public void testGetConceitos() throws SQLException {
 		ConcreteConceituavel c1 = new ConcreteConceituavel("Testing", 2010);
-		List<Conceito> conceitos = this.similarityService.getConceitos(c1, this.avaliarForm, TipoAvaliacao.PERIODICO);
+		List<Conceito> conceitos = this.similarityService.getConceitos(QualisPeriodico.class, c1, this.avaliarForm);
 		Assertions.assertThat(conceitos).isNotEmpty();
 	}
 

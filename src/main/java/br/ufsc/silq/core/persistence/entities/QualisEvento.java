@@ -25,18 +25,7 @@ public class QualisEvento extends Qualis {
 	@Column(name = "ds_sigla")
 	private String sigla;
 
-	@Column(name = "no_titulo")
-	private String titulo;
-
 	@Column(name = "nu_indice_h")
 	private Integer indiceH;
 
-	@Column(name = "no_estrato")
-	private String estrato;
-
-	@Column(name = "no_area_avaliacao")
-	private String areaAvaliacao;
-
-	@Column(name = "nu_ano")
-	private Integer ano;
 }

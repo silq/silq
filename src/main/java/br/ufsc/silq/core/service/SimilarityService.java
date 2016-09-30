@@ -1,8 +1,6 @@
 package br.ufsc.silq.core.service;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,8 +29,6 @@ import br.ufsc.silq.core.persistence.entities.Feedback;
 import br.ufsc.silq.core.persistence.entities.Qualis;
 import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.utils.SilqStringUtils;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -67,56 +63,39 @@ public class SimilarityService {
 	 * Obtém os conceitos de um evento ou periódico realizando uma busca por similaridade na base Qualis.
 	 * Utiliza as funções de similaridade nativas do PostgreSQL.
 	 *
+	 * @param clazz Tipo do registro qualis a ser pesquisado. Deve extender {@link Qualis}.
 	 * @param conceituavel Trabalho ou artigo a ser avaliado.
 	 * @param avaliarForm Opções de avaliação.
-	 * @param tipoAvaliacao Tipo de avaliação (altera a tabela do banco a ser consultada).
 	 * @return A lista de conceitos do veículo.
-	 * @throws SQLException Caso haja um erro ao executar o SQL.
 	 */
-	public List<Conceito> getConceitos(Conceituavel conceituavel, @Valid AvaliarForm avaliarForm, TipoAvaliacao tipoAvaliacao) throws SQLException {
+	public <T extends Qualis> List<Conceito> getConceitos(Class<T> clazz, Conceituavel conceituavel, @Valid AvaliarForm avaliarForm) {
 		this.setSimilarityThreshold(avaliarForm.getNivelSimilaridade().getValue());
 
-		String sql = "SELECT *, SIMILARITY(NO_TITULO, ?1) AS SML";
-		sql += " FROM " + tipoAvaliacao.getTable() + " WHERE NO_TITULO % ?1";
+		String sql = "SELECT *, SIMILARITY(NO_TITULO, :query) AS SML";
+		sql += " FROM " + clazz.getAnnotation(Table.class).name();
+		sql += " WHERE NO_TITULO % :query";
 		if (avaliarForm.hasArea()) {
-			sql += " AND NO_AREA_AVALIACAO = ?2";
+			sql += " AND NO_AREA_AVALIACAO = :area";
 		}
-		sql += " ORDER BY SML DESC, ABS(NU_ANO - ?3) ASC";
-		sql += " LIMIT ?4";
+		sql += " ORDER BY SML DESC, ABS(NU_ANO - :ano) ASC";
+		sql += " LIMIT :limit";
 
-		Query query = this.em.createNativeQuery(sql);
-		query.setParameter(1, SilqStringUtils.normalizeString(conceituavel.getTituloVeiculo()));
+		org.hibernate.Query q = this.getCurrentSession().createSQLQuery(sql)
+				.addEntity(clazz)
+				.addScalar("sml")
+				.setString("query", SilqStringUtils.normalizeString(conceituavel.getTituloVeiculo()))
+				.setInteger("ano", conceituavel.getAno())
+				.setInteger("limit", avaliarForm.getMaxConceitos());
+
 		if (avaliarForm.hasArea()) {
-			query.setParameter(2, avaliarForm.getArea().toUpperCase());
+			q.setString("area", avaliarForm.getArea().toUpperCase());
 		}
-		query.setParameter(3, conceituavel.getAno());
-		query.setParameter(4, avaliarForm.getMaxConceitos());
 
-		List<Object[]> results = query.getResultList();
-		return results.stream()
-				.map(r -> this.mapResultToConceito(r, tipoAvaliacao))
+		List<Object[]> tuples = q.list();
+
+		return tuples.stream()
+				.map(r -> new Conceito((T) r[0], new NivelSimilaridade((float) r[1])))
 				.collect(Collectors.toList());
-	}
-
-	private Conceito mapResultToConceito(Object[] result, TipoAvaliacao tipoAvaliacao) {
-		if (TipoAvaliacao.EVENTO.equals(tipoAvaliacao)) {
-			long id = ((BigDecimal) result[0]).longValue();
-			String sigla = (String) result[1];
-			String titulo = (String) result[2];
-			String estrato = (String) result[4];
-			Integer ano = (Integer) result[6];
-			Float similaridade = (Float) result[7];
-			Conceito conceito = new Conceito(id, titulo, estrato, new NivelSimilaridade(similaridade), ano);
-			conceito.setSiglaVeiculo(sigla);
-			return conceito;
-		} else {
-			long id = ((BigDecimal) result[0]).longValue();
-			String titulo = (String) result[2];
-			String estrato = (String) result[3];
-			Integer ano = (Integer) result[5];
-			Float similaridade = (Float) result[6];
-			return new Conceito(id, titulo, estrato, new NivelSimilaridade(similaridade), ano);
-		}
 	}
 
 	/**
@@ -213,25 +192,5 @@ public class SimilarityService {
 		q.setParameter(2, s2);
 		Float value = (Float) q.getSingleResult();
 		return new NivelSimilaridade(value);
-	}
-
-	/**
-	 * Tipos de avaliação.
-	 */
-	@AllArgsConstructor
-	@Getter
-	public enum TipoAvaliacao {
-		PERIODICO("TB_QUALIS_PERIODICO", "CO_SEQ_PERIODICO"),
-		EVENTO("TB_QUALIS_EVENTO", "CO_SEQ_EVENTO");
-
-		/**
-		 * Nome da tabela utilizada para avaliação.
-		 */
-		private final String table;
-
-		/**
-		 * Nome da coluna chave primária da tabela.
-		 */
-		private final String pk;
 	}
 }
