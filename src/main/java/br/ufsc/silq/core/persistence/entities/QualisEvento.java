@@ -16,7 +16,7 @@ import lombok.Setter;
 @Table(name = "tb_qualis_evento")
 @Getter
 @Setter
-public class QualisEvento {
+public class QualisEvento extends Qualis {
 
 	@Id
 	@Column(name = "co_seq_evento")

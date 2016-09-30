@@ -10,10 +10,13 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.Table;
 import javax.validation.Valid;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,8 +28,7 @@ import br.ufsc.silq.core.data.SimilarityResult;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.QualisSearchForm;
 import br.ufsc.silq.core.persistence.entities.Feedback;
-import br.ufsc.silq.core.persistence.entities.QualisEvento;
-import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
+import br.ufsc.silq.core.persistence.entities.Qualis;
 import br.ufsc.silq.core.persistence.entities.Usuario;
 import br.ufsc.silq.core.utils.SilqStringUtils;
 import lombok.AllArgsConstructor;
@@ -121,90 +123,45 @@ public class SimilarityService {
 	 * Realiza uma busca nos dados Qualis dado uma query qualquer.
 	 * Utiliza as funções de similaridade nativas do PostgreSQL.
 	 *
-	 * @param tipo Tipo de avaliação: {@link TipoAvaliacao}.
+	 * @param clazz Tipo do registro qualis a ser pesquisado. Deve extender {@link Qualis}.
 	 * @param form Form contendo a query e os filtros de busca.
 	 * @param pageable Configurações de paginação.
-	 * @return Uma lista de Object[] contendo os dados das tuplas similares à query.
+	 * @return Uma página dos resultados encontrados.
 	 */
-	public List<Object[]> search(TipoAvaliacao tipo, @Valid QualisSearchForm form, Pageable pageable) {
+	public <T extends Qualis> Page<SimilarityResult<T>> searchQualis(Class<T> clazz, @Valid QualisSearchForm form, Pageable pageable) {
 		this.setSimilarityThreshold(0.1F);
 
-		String sql = "SELECT *, SIMILARITY(NO_TITULO, ?1) AS SML";
-		sql += " FROM " + tipo.getTable() + " WHERE NO_TITULO % ?1";
+		String sql = "SELECT *, SIMILARITY(NO_TITULO, :query) AS sml, COUNT(*) OVER() AS total";
+		sql += " FROM " + clazz.getAnnotation(Table.class).name();
+		sql += " WHERE NO_TITULO % :query";
 
 		if (StringUtils.isNotBlank(form.getArea())) {
-			sql += " AND NO_AREA_AVALIACAO = ?4";
+			sql += " AND NO_AREA_AVALIACAO = :area";
 		}
 
 		sql += " ORDER BY SML DESC";
-		sql += " LIMIT ?2";
-		sql += " OFFSET ?3";
+		sql += " LIMIT :limit";
+		sql += " OFFSET :offset";
 
-		Query q = this.em.createNativeQuery(sql);
-		q.setParameter(1, SilqStringUtils.normalizeString(form.getQuery()));
-		q.setParameter(2, pageable.getPageSize());
-		q.setParameter(3, pageable.getOffset());
+		org.hibernate.Query q = this.getCurrentSession().createSQLQuery(sql)
+				.addEntity(clazz)
+				.addScalar("sml")
+				.addScalar("total")
+				.setString("query", SilqStringUtils.normalizeString(form.getQuery()))
+				.setInteger("limit", pageable.getPageSize())
+				.setInteger("offset", pageable.getOffset());
 
 		if (StringUtils.isNotBlank(form.getArea())) {
-			q.setParameter(4, form.getArea().toUpperCase());
+			q.setString("area", form.getArea().toUpperCase());
 		}
 
-		return q.getResultList();
-	}
+		List<Object[]> tuples = q.list();
+		BigInteger total = tuples.isEmpty() ? BigInteger.valueOf(0) : (BigInteger) tuples.get(0)[2];
 
-	public BigInteger searchCount(TipoAvaliacao tipo, @Valid QualisSearchForm form) {
-		this.setSimilarityThreshold(0.1F);
-
-		String sql = "SELECT COUNT(*) AS C";
-		sql += " FROM " + tipo.getTable() + " WHERE NO_TITULO % ?1";
-		if (StringUtils.isNotBlank(form.getArea())) {
-			sql += " AND NO_AREA_AVALIACAO = ?2";
-		}
-
-		Query q = this.em.createNativeQuery(sql);
-		q.setParameter(1, SilqStringUtils.normalizeString(form.getQuery()));
-		if (StringUtils.isNotBlank(form.getArea())) {
-			q.setParameter(2, form.getArea().toUpperCase());
-		}
-
-		return (BigInteger) q.getSingleResult();
-	}
-
-	/**
-	 * Mapeia um Object[] retornado por {@link #search} para o tipo {@link QualisEvento}.
-	 * O método não checa se conteúdo do parâmetro está bem formado.
-	 *
-	 * @param result Um Object[] contendo as informações do evento, na ordem correta.
-	 * @return Uma nova entidade {@link QualisEvento}.
-	 */
-	public SimilarityResult<QualisEvento> mapResultToEvento(Object[] result) {
-		QualisEvento evento = new QualisEvento();
-		evento.setId(((BigDecimal) result[0]).longValue());
-		evento.setSigla((String) result[1]);
-		evento.setTitulo((String) result[2]);
-		evento.setIndiceH(((BigDecimal) result[3]).intValue());
-		evento.setEstrato((String) result[4]);
-		evento.setAreaAvaliacao((String) result[5]);
-		evento.setAno((Integer) result[6]);
-		return new SimilarityResult<>(evento, new NivelSimilaridade((Float) result[7]));
-	}
-
-	/**
-	 * Mapeia um Object[] retornado por {@link #search} para o tipo {@link QualisPeriodico}.
-	 * O método não checa se conteúdo do parâmetro está bem formado.
-	 *
-	 * @param result Um Object[] contendo as informações do periódico, na ordem correta.
-	 * @return Uma nova entidade {@link QualisPeriodico}.
-	 */
-	public SimilarityResult<QualisPeriodico> mapResultToPeriodico(Object[] result) {
-		QualisPeriodico periodico = new QualisPeriodico();
-		periodico.setId(((BigDecimal) result[0]).longValue());
-		periodico.setIssn((String) result[1]);
-		periodico.setTitulo((String) result[2]);
-		periodico.setEstrato((String) result[3]);
-		periodico.setAreaAvaliacao((String) result[4]);
-		periodico.setAno((Integer) result[5]);
-		return new SimilarityResult<>(periodico, new NivelSimilaridade((Float) result[6]));
+		List<SimilarityResult<T>> results = tuples.stream()
+				.map(r -> new SimilarityResult<>((T) r[0], new NivelSimilaridade((float) r[1])))
+				.collect(Collectors.toList());
+		return new PageImpl<>(results, pageable, total.intValue());
 	}
 
 	/**

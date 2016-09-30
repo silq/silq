@@ -1,8 +1,6 @@
 package br.ufsc.silq.core.service;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -19,7 +17,6 @@ import br.ufsc.silq.core.persistence.entities.QualisEvento;
 import br.ufsc.silq.core.persistence.entities.QualisPeriodico;
 import br.ufsc.silq.core.persistence.repository.QualisEventoRepository;
 import br.ufsc.silq.core.persistence.repository.QualisPeriodicoRepository;
-import br.ufsc.silq.core.service.SimilarityService.TipoAvaliacao;
 
 @Service
 @Transactional
@@ -54,12 +51,7 @@ public class QualisService {
 			return this.mapToSimilarityResult(pageable, periodicos);
 		}
 
-		List<Object[]> results = this.similarityService.search(TipoAvaliacao.PERIODICO, form, pageable);
-		List<SimilarityResult<QualisPeriodico>> periodicos = results.stream()
-				.map(this.similarityService::mapResultToPeriodico)
-				.collect(Collectors.toList());
-		return new PageImpl<>(periodicos, pageable,
-				this.similarityService.searchCount(TipoAvaliacao.PERIODICO, form).intValue());
+		return this.similarityService.searchQualis(QualisPeriodico.class, form, pageable);
 	}
 
 	/**
@@ -82,12 +74,7 @@ public class QualisService {
 			return this.mapToSimilarityResult(pageable, eventos);
 		}
 
-		List<Object[]> results = this.similarityService.search(TipoAvaliacao.EVENTO, form, pageable);
-		List<SimilarityResult<QualisEvento>> eventos = results.stream()
-				.map(this.similarityService::mapResultToEvento)
-				.collect(Collectors.toList());
-		return new PageImpl<>(eventos, pageable,
-				this.similarityService.searchCount(TipoAvaliacao.EVENTO, form).intValue());
+		return this.similarityService.searchQualis(QualisEvento.class, form, pageable);
 	}
 
 	private <T> Page<SimilarityResult<T>> mapToSimilarityResult(Pageable pageable, Page<T> periodicos) {
