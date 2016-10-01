@@ -10,35 +10,28 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: postgres; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON DATABASE postgres IS 'default administrative connection database';
-
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: pg_trgm; Type: EXTENSION; Schema: -; Owner: 
+-- Name: pg_trgm; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS pg_trgm WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION pg_trgm; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION pg_trgm; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION pg_trgm IS 'text similarity measurement and index searching based on trigrams';
@@ -51,7 +44,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: rl_autoridade_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: rl_autoridade_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE rl_autoridade_usuario (
@@ -63,7 +56,7 @@ CREATE TABLE rl_autoridade_usuario (
 ALTER TABLE rl_autoridade_usuario OWNER TO postgres;
 
 --
--- Name: rl_grupo_pesquisador; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: rl_grupo_pesquisador; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE rl_grupo_pesquisador (
@@ -173,7 +166,7 @@ CREATE SEQUENCE sq_usuario
 ALTER TABLE sq_usuario OWNER TO postgres;
 
 --
--- Name: tb_curriculum_lattes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_curriculum_lattes; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE tb_curriculum_lattes (
@@ -193,7 +186,7 @@ CREATE TABLE tb_curriculum_lattes (
 ALTER TABLE tb_curriculum_lattes OWNER TO postgres;
 
 --
--- Name: tb_feedback; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_feedback; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE tb_feedback (
@@ -204,14 +197,15 @@ CREATE TABLE tb_feedback (
     co_periodico numeric(19,0),
     co_usuario numeric(19,0) NOT NULL,
     dt_feedback timestamp without time zone NOT NULL,
-    nu_ano integer
+    nu_ano integer,
+    st_validation boolean DEFAULT false
 );
 
 
 ALTER TABLE tb_feedback OWNER TO postgres;
 
 --
--- Name: tb_grupo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_grupo; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE tb_grupo (
@@ -226,7 +220,7 @@ CREATE TABLE tb_grupo (
 ALTER TABLE tb_grupo OWNER TO postgres;
 
 --
--- Name: tb_qualis_evento; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_qualis_evento; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE tb_qualis_evento (
@@ -243,7 +237,7 @@ CREATE TABLE tb_qualis_evento (
 ALTER TABLE tb_qualis_evento OWNER TO postgres;
 
 --
--- Name: tb_qualis_periodico; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_qualis_periodico; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE tb_qualis_periodico (
@@ -259,7 +253,7 @@ CREATE TABLE tb_qualis_periodico (
 ALTER TABLE tb_qualis_periodico OWNER TO postgres;
 
 --
--- Name: tb_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_usuario; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE tb_usuario (
@@ -277,7 +271,7 @@ CREATE TABLE tb_usuario (
 ALTER TABLE tb_usuario OWNER TO postgres;
 
 --
--- Name: pk_dado_geral; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: pk_dado_geral; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY tb_curriculum_lattes
@@ -285,7 +279,7 @@ ALTER TABLE ONLY tb_curriculum_lattes
 
 
 --
--- Name: pk_grupo_pesquisador; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: pk_grupo_pesquisador; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY rl_grupo_pesquisador
@@ -293,7 +287,7 @@ ALTER TABLE ONLY rl_grupo_pesquisador
 
 
 --
--- Name: pk_qualis_evento; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: pk_qualis_evento; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY tb_qualis_evento
@@ -301,7 +295,7 @@ ALTER TABLE ONLY tb_qualis_evento
 
 
 --
--- Name: pk_usuario; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: pk_usuario; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY tb_usuario
@@ -309,7 +303,7 @@ ALTER TABLE ONLY tb_usuario
 
 
 --
--- Name: rl_autoridade_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: rl_autoridade_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY rl_autoridade_usuario
@@ -317,7 +311,7 @@ ALTER TABLE ONLY rl_autoridade_usuario
 
 
 --
--- Name: tb_feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY tb_feedback
@@ -325,7 +319,7 @@ ALTER TABLE ONLY tb_feedback
 
 
 --
--- Name: tb_grupo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_grupo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY tb_grupo
@@ -333,7 +327,7 @@ ALTER TABLE ONLY tb_grupo
 
 
 --
--- Name: tb_qualis_periodico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_qualis_periodico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY tb_qualis_periodico
@@ -341,63 +335,63 @@ ALTER TABLE ONLY tb_qualis_periodico
 
 
 --
--- Name: in_curriculum_lattes; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: in_curriculum_lattes; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE UNIQUE INDEX in_curriculum_lattes ON tb_curriculum_lattes USING btree (id_lattes, data_atualizacao_curriculo);
 
 
 --
--- Name: in_email_usuario; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: in_email_usuario; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE UNIQUE INDEX in_email_usuario ON tb_usuario USING btree (ds_email);
 
 
 --
--- Name: in_trgm_qualis_avaliacao_avaliacao; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: in_trgm_qualis_avaliacao_avaliacao; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE INDEX in_trgm_qualis_avaliacao_avaliacao ON tb_qualis_evento USING gin (no_area_avaliacao gin_trgm_ops);
 
 
 --
--- Name: in_trn_qualis_cco_titulo; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: in_trn_qualis_cco_titulo; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE INDEX in_trn_qualis_cco_titulo ON tb_qualis_evento USING gin (no_titulo gin_trgm_ops);
 
 
 --
--- Name: in_trn_qualis_periodico_titulo; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: in_trn_qualis_periodico_titulo; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE INDEX in_trn_qualis_periodico_titulo ON tb_qualis_periodico USING gin (no_titulo gin_trgm_ops);
 
 
 --
--- Name: tb_qualis_evento_no_area_avaliacao_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_qualis_evento_no_area_avaliacao_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE INDEX tb_qualis_evento_no_area_avaliacao_idx ON tb_qualis_evento USING btree (no_area_avaliacao);
 
 
 --
--- Name: tb_qualis_periodico_co_issn_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_qualis_periodico_co_issn_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE INDEX tb_qualis_periodico_co_issn_idx ON tb_qualis_periodico USING btree (co_issn);
 
 
 --
--- Name: tb_qualis_periodico_co_issn_no_area_avaliacao_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_qualis_periodico_co_issn_no_area_avaliacao_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE INDEX tb_qualis_periodico_co_issn_no_area_avaliacao_idx ON tb_qualis_periodico USING btree (co_issn, no_area_avaliacao);
 
 
 --
--- Name: tb_qualis_periodico_no_area_avaliacao_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tb_qualis_periodico_no_area_avaliacao_idx; Type: INDEX; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE INDEX tb_qualis_periodico_no_area_avaliacao_idx ON tb_qualis_periodico USING btree (no_area_avaliacao);
@@ -472,4 +466,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
