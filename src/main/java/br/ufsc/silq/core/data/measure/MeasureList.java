@@ -1,4 +1,4 @@
-package br.ufsc.silq.core.data;
+package br.ufsc.silq.core.data.measure;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,17 +6,15 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.service.MeasurementService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Resultado de uma avaliação de precisão/revocação do algoritmo de avaliação do sistema, realizado por {@link MeasurementService}.
+ * Uma lista de {@link MeasureEntry}. Define funções de cálculo sobre a lista.
  */
 @RequiredArgsConstructor
-public class MeasurementResult {
+public class MeasureList {
 	private final NivelSimilaridade threshold;
 
 	/**
@@ -68,13 +66,5 @@ public class MeasurementResult {
 	public void debug() {
 		System.out.println(this.toString());
 		System.out.println("Measures: " + this.measures);
-	}
-
-	@Data
-	@AllArgsConstructor
-	@NoArgsConstructor
-	public static class MeasureEntry {
-		private Boolean match;
-		private Double reciprocralRank;
 	}
 }

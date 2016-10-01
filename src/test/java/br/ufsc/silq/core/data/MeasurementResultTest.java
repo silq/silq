@@ -3,13 +3,14 @@ package br.ufsc.silq.core.data;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
-import br.ufsc.silq.core.data.MeasurementResult.MeasureEntry;
+import br.ufsc.silq.core.data.measure.MeasureEntry;
+import br.ufsc.silq.core.data.measure.MeasureList;
 
 public class MeasurementResultTest {
 
 	@Test
 	public void test() {
-		MeasurementResult result = new MeasurementResult(NivelSimilaridade.NORMAL);
+		MeasureList result = new MeasureList(NivelSimilaridade.NORMAL);
 		Assertions.assertThat(result.getThreshold()).isEqualTo(NivelSimilaridade.NORMAL.getValue());
 
 		result.addResult(new MeasureEntry(true, 1.0));

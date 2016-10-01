@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.ufsc.silq.core.data.MeasurementResult;
+import br.ufsc.silq.core.data.measure.MeasureResult;
 import br.ufsc.silq.core.service.MeasurementService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +24,7 @@ public class MeasurementResource {
 	private MeasurementService measurementService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<MeasurementResult>> measure(
+	public ResponseEntity<List<MeasureResult>> measure(
 			@RequestParam(defaultValue = "0.1") float initialThreshold,
 			@RequestParam(defaultValue = "1") float finalThreshold,
 			@RequestParam(defaultValue = "0.1") float step,

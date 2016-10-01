@@ -5,17 +5,28 @@
 
 <table class="table table-condensed table-bordered table-striped">
   <thead>
-    <th class="text-center">Threshold</th>
-    <th class="text-center">Exatidão</th>
-    <th class="text-center">MRR</th>
-    <th class="text-center">N° feedbacks</th>
+    <tr>
+      <th class="text-center" colspan="2"></th>
+      <th class="text-center" colspan="2">Sem feedback</th>
+      <th class="text-center" colspan="2">Com feedback</th>
+    </tr>
+    <tr>
+      <th class="text-center">Threshold</th>
+      <th class="text-center">N° testes</th>
+      <th class="text-center">Exatidão</th>
+      <th class="text-center">MRR</th>
+      <th class="text-center">Exatidão</th>
+      <th class="text-center">MRR</th>
+    </tr>
   </thead>
   <tbody>
     <tr ng-repeat="result in results">
       <td class="text-right">{{result.threshold | number: 3}}</td>
-      <td class="text-right">{{result.match * 100 | number: 3}}%</td>
-      <td class="text-right">{{result.meanReciprocralRank | number: 5}}</td>
       <td class="text-right">{{result.size}}</td>
+      <td class="text-right">{{result.noFeedback.match * 100 | number: 3}}%</td>
+      <td class="text-right">{{result.noFeedback.meanReciprocralRank | number: 5}}</td>
+      <td class="text-right">{{result.withFeedback.match * 100 | number: 3}}%</td>
+      <td class="text-right">{{result.withFeedback.meanReciprocralRank | number: 5}}</td>
     </tr>
   </tbody>
 </table>

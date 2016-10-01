@@ -14,8 +14,9 @@ angular.module('silq2App')
             var mrr = []; // Valores MRR
             $scope.results.forEach(function(data) {
                 $scope.labels.push(data.threshold);
-                match.push(data.match);
-                mrr.push(data.meanReciprocralRank);
+
+                match.push(data.noFeedback.match);
+                mrr.push(data.noFeedback.meanReciprocralRank);
             });
             $scope.data = [match, mrr];
         });

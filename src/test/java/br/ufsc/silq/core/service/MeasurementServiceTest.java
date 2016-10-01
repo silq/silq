@@ -7,8 +7,9 @@ import org.assertj.core.data.Offset;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ufsc.silq.core.data.MeasurementResult;
 import br.ufsc.silq.core.data.NivelSimilaridade;
+import br.ufsc.silq.core.data.measure.MeasureList;
+import br.ufsc.silq.core.data.measure.MeasureResult;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
 import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
 import br.ufsc.silq.core.persistence.entities.Usuario;
@@ -43,38 +44,41 @@ public class MeasurementServiceTest extends WebContextTest {
 	public void testMeasureFeedbackExactMatch() {
 		this.saveFeedback(new FeedbackEventoForm(2L, "symposium 3d user interfaces", 2010));
 
-		MeasurementResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.NORMAL, 100);
-		// result.debug();
+		MeasureResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.NORMAL, 100);
+		MeasureList noFeedback = result.getNoFeedback();
+		MeasureList withFeedback = result.getWithFeedback();
 
 		Assertions.assertThat(result.getSize()).isEqualTo(1);
 		Assertions.assertThat(result.getThreshold()).isEqualTo(NivelSimilaridade.NORMAL.getValue());
-		Assertions.assertThat(result.getMatch()).isEqualTo(1);
-		Assertions.assertThat(result.getMeanReciprocralRank()).isEqualTo(1.0);
+		Assertions.assertThat(noFeedback.getMatch()).isEqualTo(1);
+		Assertions.assertThat(noFeedback.getMeanReciprocralRank()).isEqualTo(1.0);
 	}
 
 	@Test
 	public void testMeasure() {
 		this.saveFeedback(new FeedbackEventoForm(2L, "3d user interfaces conference", 2010));
 
-		MeasurementResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.BAIXO, 100);
-		// result.debug();
+		MeasureResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.BAIXO, 100);
+		MeasureList noFeedback = result.getNoFeedback();
+		MeasureList withFeedback = result.getWithFeedback();
 
 		Assertions.assertThat(result.getSize()).isEqualTo(1);
 		Assertions.assertThat(result.getThreshold()).isEqualTo(NivelSimilaridade.BAIXO.getValue());
-		Assertions.assertThat(result.getMatch()).isEqualTo(0);
-		Assertions.assertThat(result.getMeanReciprocralRank()).isCloseTo(0.333, Offset.offset(0.01));
+		Assertions.assertThat(noFeedback.getMatch()).isEqualTo(0);
+		Assertions.assertThat(noFeedback.getMeanReciprocralRank()).isCloseTo(0.333, Offset.offset(0.01));
 	}
 
 	@Test
 	public void testMeasureFeedbackNegativo() {
 		this.saveFeedback(new FeedbackEventoForm(null, "symposium 3d user interfaces", 2010));
 
-		MeasurementResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.BAIXO, 100);
-		// result.debug();
+		MeasureResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.BAIXO, 100);
+		MeasureList noFeedback = result.getNoFeedback();
+		MeasureList withFeedback = result.getWithFeedback();
 
 		Assertions.assertThat(result.getSize()).isEqualTo(1);
 		Assertions.assertThat(result.getThreshold()).isEqualTo(NivelSimilaridade.BAIXO.getValue());
-		Assertions.assertThat(result.getMatch()).isEqualTo(0);
-		Assertions.assertThat(result.getMeanReciprocralRank()).isEqualTo(0.0);
+		Assertions.assertThat(noFeedback.getMatch()).isEqualTo(0);
+		Assertions.assertThat(noFeedback.getMeanReciprocralRank()).isEqualTo(0.0);
 	}
 }

@@ -12,9 +12,10 @@ import org.springframework.util.StopWatch;
 
 import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.Conceituado;
-import br.ufsc.silq.core.data.MeasurementResult;
-import br.ufsc.silq.core.data.MeasurementResult.MeasureEntry;
 import br.ufsc.silq.core.data.NivelSimilaridade;
+import br.ufsc.silq.core.data.measure.MeasureEntry;
+import br.ufsc.silq.core.data.measure.MeasureList;
+import br.ufsc.silq.core.data.measure.MeasureResult;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
@@ -48,7 +49,7 @@ public class MeasurementService {
 	 * @param limit O número máximo de feedbacks a serem considerados na avaliação.
 	 * @return O resultado da medição, incluindo Precisão, Revocação e Número correto de matches feitos pelo sistema.
 	 */
-	public MeasurementResult measure(Usuario usuario, NivelSimilaridade threshold, int limit) {
+	public MeasureResult measure(Usuario usuario, NivelSimilaridade threshold, int limit) {
 		List<FeedbackEvento> feedbacksEventos = this.feedbackEventoRepo.findAllByUsuarioAndValidation(usuario, true);
 
 		AvaliarForm avaliarForm = new AvaliarForm();
@@ -57,14 +58,25 @@ public class MeasurementService {
 		avaliarForm.setUsarFeedback(false);
 		avaliarForm.setNivelSimilaridade(threshold);
 
-		MeasurementResult result = new MeasurementResult(threshold);
+		MeasureList noFeedback = new MeasureList(threshold);
+		feedbacksEventos.parallelStream().limit(limit).forEach(feedback -> {
+			br.ufsc.silq.core.data.measure.MeasureEntry measure = this.measureFeedback(feedback, avaliarForm, usuario);
+			if (measure != null) {
+				noFeedback.addResult(measure);
+			}
+		});
+
+		avaliarForm.setUsarFeedback(true);
+
+		MeasureList withFeedback = new MeasureList(threshold);
 		feedbacksEventos.parallelStream().limit(limit).forEach(feedback -> {
 			MeasureEntry measure = this.measureFeedback(feedback, avaliarForm, usuario);
 			if (measure != null) {
-				result.addResult(measure);
+				withFeedback.addResult(measure);
 			}
 		});
-		return result;
+
+		return new MeasureResult(noFeedback, withFeedback, withFeedback.getSize(), threshold);
 	}
 
 	/**
@@ -78,7 +90,7 @@ public class MeasurementService {
 	 * @param limit O número máximo de feedbacks a ser considerado na avaliação.
 	 * @return Uma lista dos resultados das medições, incluindo Precisão, Revocação e Número correto de matches feitos pelo sistema.
 	 */
-	public List<MeasurementResult> measure(float initialThreshold, float finalThreshold, float step, int limit) {
+	public List<MeasureResult> measure(float initialThreshold, float finalThreshold, float step, int limit) {
 		if (initialThreshold < 0 || finalThreshold > 1 || initialThreshold > finalThreshold) {
 			throw new IllegalArgumentException("Parâmetros inválidos");
 		}
@@ -86,13 +98,13 @@ public class MeasurementService {
 		StopWatch watch = new StopWatch();
 		watch.start();
 		Usuario usuarioLogado = this.usuarioService.getUsuarioLogado();
-		List<MeasurementResult> results = new ArrayList<>();
+		List<MeasureResult> results = new ArrayList<>();
 
 		int i = 0;
 		float threshold = initialThreshold;
 
 		while (threshold <= finalThreshold) {
-			MeasurementResult measure = this.measure(usuarioLogado, new NivelSimilaridade(threshold), limit);
+			MeasureResult measure = this.measure(usuarioLogado, new NivelSimilaridade(threshold), limit);
 			results.add(measure);
 			log.debug("Measurement for threshold {}: {}", threshold, measure);
 
