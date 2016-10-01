@@ -150,10 +150,11 @@ public class SimilarityService {
 	 * @param clazz Tipo do Feedback a ser retornado (deve extender {@link Feedback}}.
 	 * @param query Query a ser pesquisada.
 	 * @param usuario Usuário que fez o feedback. Só serão pesquisados feedbacks deste usuário.
+	 * @param threshold Treshold da pesquisa.
 	 * @return O feedback mais similar à query, ou {@code null} caso não encontrado.
 	 */
-	public <T extends Feedback> SimilarityResult<T> searchFeedback(Class<T> clazz, String query, Usuario usuario) {
-		this.setSimilarityThreshold(1.0f); // TODO
+	public <T extends Feedback> SimilarityResult<T> searchFeedback(Class<T> clazz, String query, Usuario usuario, NivelSimilaridade threshold) {
+		this.setSimilarityThreshold(threshold.getValue());
 
 		String sql = "";
 		sql += "SELECT *, SIMILARITY(ds_query, :query) AS sml FROM tb_feedback";

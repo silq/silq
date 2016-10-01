@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.ufsc.silq.core.data.Conceito;
+import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.SimilarityResult;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
 import br.ufsc.silq.core.forms.FeedbackPeriodicoForm;
@@ -102,38 +103,32 @@ public class FeedbackService {
 		return feedback;
 	}
 
-	public Optional<SimilarityResult<FeedbackPeriodico>> getFeedbackPeriodico(String query, Usuario usuario) {
-		return Optional.ofNullable(this.similarityService.searchFeedback(FeedbackPeriodico.class, query, usuario));
-	}
-
-	public Optional<SimilarityResult<FeedbackEvento>> getFeedbackEvento(String query, Usuario usuario) {
-		return Optional.ofNullable(this.similarityService.searchFeedback(FeedbackEvento.class, query, usuario));
-	}
-
 	/**
-	 * Busca por um feedback de EVENTO com a dada query pertencente ao dado usuário. Caso encontrado, converte-o para
-	 * um objeto {@link Conceito}
+	 * Busca por um feedback de PERIÓDICO com a dada query pertencente ao dado usuário e cujo nível de similaridade textual
+	 * seja igual ou superior ao threshold.
+	 * Retorna o feedback com maior similaridade à query.
 	 *
 	 * @param query Query do feedback buscado.
 	 * @param usuario Usuário dono do feedback buscado.
-	 * @return Um objeto Conceito opcional, populado caso tenha sido encontrado um feedback com os dados parâmetros de busca.
+	 * @param threshold Nível de similaridade mínimo entre a query e o feedback.
+	 * @return Um {@link SimilarityResult} opcional contendo o {@link FeedbackPeriodico} encontrado e o nível de similaridade.
 	 */
-	public Optional<Conceito> getConceitoFeedbackEvento(String query, Usuario usuario) {
-		Optional<SimilarityResult<FeedbackEvento>> feedback = this.getFeedbackEvento(query, usuario);
-		return feedback.map(this::feedbackEventoToConceito);
+	public Optional<SimilarityResult<FeedbackPeriodico>> getFeedbackPeriodico(String query, Usuario usuario, NivelSimilaridade threshold) {
+		return Optional.ofNullable(this.similarityService.searchFeedback(FeedbackPeriodico.class, query, usuario, threshold));
 	}
 
 	/**
-	 * Busca por um feedback de PERIÓDICO com a dada query pertencente ao dado usuário. Caso encontrado, converte-o para
-	 * um objeto {@link Conceito}
+	 * Busca por um feedback de EVENTO com a dada query pertencente ao dado usuário e cujo nível de similaridade textual
+	 * seja igual ou superior ao threshold.
+	 * Retorna o feedback com maior similaridade à query.
 	 *
 	 * @param query Query do feedback buscado.
 	 * @param usuario Usuário dono do feedback buscado.
-	 * @return Um objeto Conceito opcional, populado caso tenha sido encontrado um feedback com os dados parâmetros de busca.
+	 * @param threshold Nível de similaridade mínimo entre a query e o feedback.
+	 * @return Um {@link SimilarityResult} opcional contendo o {@link FeedbackEvento} encontrado e o nível de similaridade.
 	 */
-	public Optional<Conceito> getConceitoFeedbackPeriodico(String query, Usuario usuario) {
-		Optional<SimilarityResult<FeedbackPeriodico>> feedback = this.getFeedbackPeriodico(query, usuario);
-		return feedback.map(this::feedbackPeriodicoToConceito);
+	public Optional<SimilarityResult<FeedbackEvento>> getFeedbackEvento(String query, Usuario usuario, NivelSimilaridade threshold) {
+		return Optional.ofNullable(this.similarityService.searchFeedback(FeedbackEvento.class, query, usuario, threshold));
 	}
 
 	public Conceito feedbackEventoToConceito(SimilarityResult<FeedbackEvento> result) {

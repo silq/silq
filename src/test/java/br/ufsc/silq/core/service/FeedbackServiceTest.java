@@ -9,7 +9,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ufsc.silq.core.data.Conceito;
+import br.ufsc.silq.core.data.NivelSimilaridade;
+import br.ufsc.silq.core.data.SimilarityResult;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
 import br.ufsc.silq.core.forms.FeedbackPeriodicoForm;
 import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
@@ -76,6 +77,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(feedback.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback.getPeriodico()).isEqualTo(this.periodico);
 		Assertions.assertThat(feedback.getDate()).isCloseTo(new Date(), 1000);
+		Assertions.assertThat(feedback.getValidation()).isFalse();
 	}
 
 	@Test
@@ -93,6 +95,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(feedback2.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback2.getEvento()).isEqualTo(outroEvento);
 		Assertions.assertThat(feedback2.getDate()).isCloseTo(new Date(), 1000);
+		Assertions.assertThat(feedback2.getValidation()).isFalse();
 	}
 
 	@Test
@@ -110,55 +113,76 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(feedback2.getUsuario()).isEqualTo(this.usuarioLogado);
 		Assertions.assertThat(feedback2.getPeriodico()).isEqualTo(outroPeriodico);
 		Assertions.assertThat(feedback2.getDate()).isCloseTo(new Date(), 1000);
+		Assertions.assertThat(feedback2.getValidation()).isFalse();
 	}
 
 	@Test
-	public void testGetConceitoFeedbackPeriodico() {
+	public void testGetFeedbackPeriodicoComSimilaridadeTotal() {
 		this.feedbackService.sugerirMatchingPeriodico(this.feedbackPeriodicoForm);
-		Optional<Conceito> conceito = this.feedbackService.getConceitoFeedbackPeriodico(this.feedbackPeriodicoForm.getQuery(), this.usuarioLogado);
+		Optional<SimilarityResult<FeedbackPeriodico>> result = this.feedbackService.getFeedbackPeriodico(
+				this.feedbackPeriodicoForm.getQuery(), this.usuarioLogado, NivelSimilaridade.TOTAL);
 
-		Assertions.assertThat(conceito).isPresent();
-		Assertions.assertThat(conceito.get().getId()).isEqualTo(this.feedbackPeriodicoForm.getPeriodicoId());
-		Assertions.assertThat(conceito.get().getTituloVeiculo()).isEqualTo(this.periodico.getTitulo());
-		Assertions.assertThat(conceito.get().getConceito()).isEqualTo(this.periodico.getEstrato());
-		Assertions.assertThat(conceito.get().getAno()).isEqualTo(this.periodico.getAno());
-		Assertions.assertThat(conceito.get().isFeedback()).isTrue();
+		Assertions.assertThat(result).isPresent();
+		Assertions.assertThat(result.get().getResultado().getPeriodico().getId()).isEqualTo(this.feedbackPeriodicoForm.getPeriodicoId());
+		Assertions.assertThat(result.get().getSimilaridade()).isEqualTo(NivelSimilaridade.TOTAL);
 	}
 
 	@Test
-	public void testGetConceitoFeedbackEvento() {
+	public void testGetFeedbackEventoComSimilaridadeTotal() {
 		this.feedbackService.sugerirMatchingEvento(this.feedbackEventoForm);
-		Optional<Conceito> conceito = this.feedbackService.getConceitoFeedbackEvento(this.feedbackEventoForm.getQuery(), this.usuarioLogado);
+		Optional<SimilarityResult<FeedbackEvento>> result = this.feedbackService.getFeedbackEvento(
+				this.feedbackEventoForm.getQuery(), this.usuarioLogado, NivelSimilaridade.TOTAL);
 
-		Assertions.assertThat(conceito).isPresent();
-		Assertions.assertThat(conceito.get().getId()).isEqualTo(this.feedbackEventoForm.getEventoId());
-		Assertions.assertThat(conceito.get().getTituloVeiculo()).isEqualTo(this.evento.getTitulo());
-		Assertions.assertThat(conceito.get().getConceito()).isEqualTo(this.evento.getEstrato());
-		Assertions.assertThat(conceito.get().getAno()).isEqualTo(this.evento.getAno());
-		Assertions.assertThat(conceito.get().isFeedback()).isTrue();
+		Assertions.assertThat(result).isPresent();
+		Assertions.assertThat(result.get().getResultado().getEvento().getId()).isEqualTo(this.feedbackEventoForm.getEventoId());
+		Assertions.assertThat(result.get().getSimilaridade()).isEqualTo(NivelSimilaridade.TOTAL);
+	}
+
+	@Test
+	public void testGetFeedbackPeriodicoComSimilaridadeParcial() {
+		this.feedbackService.sugerirMatchingPeriodico(this.feedbackPeriodicoForm);
+		Optional<SimilarityResult<FeedbackPeriodico>> result = this.feedbackService.getFeedbackPeriodico(
+				this.feedbackPeriodicoForm.getQuery() + " ftw", this.usuarioLogado, NivelSimilaridade.NORMAL);
+
+		Assertions.assertThat(result).isPresent();
+		Assertions.assertThat(result.get().getResultado().getPeriodico().getId()).isEqualTo(this.feedbackPeriodicoForm.getPeriodicoId());
+		Assertions.assertThat(result.get().getSimilaridade().getValue()).isCloseTo(0.86f, Assertions.within(0.02f));
+	}
+
+	@Test
+	public void testGetFeedbackEventoComSimilaridadeParial() {
+		this.feedbackService.sugerirMatchingEvento(this.feedbackEventoForm);
+		Optional<SimilarityResult<FeedbackEvento>> result = this.feedbackService.getFeedbackEvento(
+				this.feedbackEventoForm.getQuery() + " ftw", this.usuarioLogado, NivelSimilaridade.NORMAL);
+
+		Assertions.assertThat(result).isPresent();
+		Assertions.assertThat(result.get().getResultado().getEvento().getId()).isEqualTo(this.feedbackEventoForm.getEventoId());
+		Assertions.assertThat(result.get().getSimilaridade().getValue()).isCloseTo(0.86f, Assertions.within(0.02f));
 	}
 
 	@Test
 	public void testDeleteFeedbackPeriodico() {
 		this.feedbackService.sugerirMatchingPeriodico(this.feedbackPeriodicoForm);
-		Optional<Conceito> conceito = this.feedbackService.getConceitoFeedbackPeriodico(this.feedbackPeriodicoForm.getQuery(), this.usuarioLogado);
-		Assertions.assertThat(conceito).isPresent();
+		Optional<SimilarityResult<FeedbackPeriodico>> result = this.feedbackService.getFeedbackPeriodico(
+				this.feedbackPeriodicoForm.getQuery(), this.usuarioLogado, NivelSimilaridade.TOTAL);
+		Assertions.assertThat(result).isPresent();
 
 		Long removed = this.feedbackService.deleteFeedbackPeriodico(this.feedbackPeriodicoForm);
-		conceito = this.feedbackService.getConceitoFeedbackPeriodico(this.feedbackPeriodicoForm.getQuery(), this.usuarioLogado);
-		Assertions.assertThat(conceito).isEmpty();
+		result = this.feedbackService.getFeedbackPeriodico(this.feedbackPeriodicoForm.getQuery(), this.usuarioLogado, NivelSimilaridade.TOTAL);
+		Assertions.assertThat(result).isEmpty();
 		Assertions.assertThat(removed).isEqualTo(1);
 	}
 
 	@Test
 	public void testDeleteFeedbackEvento() {
 		this.feedbackService.sugerirMatchingEvento(this.feedbackEventoForm);
-		Optional<Conceito> conceito = this.feedbackService.getConceitoFeedbackEvento(this.feedbackEventoForm.getQuery(), this.usuarioLogado);
-		Assertions.assertThat(conceito).isPresent();
+		Optional<SimilarityResult<FeedbackEvento>> result = this.feedbackService.getFeedbackEvento(
+				this.feedbackEventoForm.getQuery(), this.usuarioLogado, NivelSimilaridade.TOTAL);
+		Assertions.assertThat(result).isPresent();
 
 		Long removed = this.feedbackService.deleteFeedbackEvento(this.feedbackEventoForm);
-		conceito = this.feedbackService.getConceitoFeedbackEvento(this.feedbackEventoForm.getQuery(), this.usuarioLogado);
-		Assertions.assertThat(conceito).isEmpty();
+		result = this.feedbackService.getFeedbackEvento(this.feedbackEventoForm.getQuery(), this.usuarioLogado, NivelSimilaridade.TOTAL);
+		Assertions.assertThat(result).isEmpty();
 		Assertions.assertThat(removed).isEqualTo(1);
 	}
 

@@ -174,7 +174,8 @@ public class AvaliacaoService {
 
 		if (usuario != null && avaliarForm.isUsarFeedback()) {
 			// Checa pelo feedback do usuário
-			Optional<SimilarityResult<FeedbackPeriodico>> feedback = this.feedbackService.getFeedbackPeriodico(artigo.getTituloVeiculo(), usuario);
+			Optional<SimilarityResult<FeedbackPeriodico>> feedback = this.feedbackService.getFeedbackPeriodico(artigo.getTituloVeiculo(),
+					usuario, NivelSimilaridade.NORMAL); // TODO
 			if (feedback.isPresent()) {
 				if (feedback.get().getResultado().isNegativo()) {
 					// Se for um feedback negativo, marca o artigo como tendo um feedback negativo
@@ -241,7 +242,8 @@ public class AvaliacaoService {
 
 		if (usuario != null && avaliarForm.isUsarFeedback()) {
 			// Checa pelo feedback do usuário
-			Optional<SimilarityResult<FeedbackEvento>> feedback = this.feedbackService.getFeedbackEvento(trabalho.getTituloVeiculo(), usuario);
+			Optional<SimilarityResult<FeedbackEvento>> feedback = this.feedbackService.getFeedbackEvento(trabalho.getTituloVeiculo(),
+					usuario, NivelSimilaridade.NORMAL); // TODO
 			if (feedback.isPresent()) {
 				if (feedback.get().getResultado().isNegativo()) {
 					// Se for um feedback negativo, marca o trabalho como tendo um feedback negativo
