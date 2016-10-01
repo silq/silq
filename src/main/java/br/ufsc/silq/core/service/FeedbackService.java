@@ -131,6 +131,12 @@ public class FeedbackService {
 		return Optional.ofNullable(this.similarityService.searchFeedback(FeedbackEvento.class, query, usuario, threshold));
 	}
 
+	/**
+	 * Transforma um {@link SimilarityResult} contendo um {@link FeedbackEvento} para um objeto {@link Conceito}.
+	 * 
+	 * @param result O resultado a ser convertido.
+	 * @return Um novo objeto {@link Conceito} criado a partir do parâmetro.
+	 */
 	public Conceito feedbackEventoToConceito(SimilarityResult<FeedbackEvento> result) {
 		FeedbackEvento feedback = result.getResultado();
 		QualisEvento evento = feedback.getEvento();
@@ -141,6 +147,12 @@ public class FeedbackService {
 		return conceito;
 	}
 
+	/**
+	 * Transforma um {@link SimilarityResult} contendo um {@link FeedbackPeriodico} para um objeto {@link Conceito}.
+	 * 
+	 * @param result O resultado a ser convertido.
+	 * @return Um novo objeto {@link Conceito} criado a partir do parâmetro.
+	 */
 	public Conceito feedbackPeriodicoToConceito(SimilarityResult<FeedbackPeriodico> result) {
 		FeedbackPeriodico feedback = result.getResultado();
 		QualisPeriodico periodico = feedback.getPeriodico();

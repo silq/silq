@@ -9,6 +9,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.SimilarityResult;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
@@ -158,6 +159,37 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(result).isPresent();
 		Assertions.assertThat(result.get().getResultado().getEvento().getId()).isEqualTo(this.feedbackEventoForm.getEventoId());
 		Assertions.assertThat(result.get().getSimilaridade().getValue()).isCloseTo(0.86f, Assertions.within(0.02f));
+	}
+
+	@Test
+	public void testFeedbackPeriodicoToConceito() {
+		this.feedbackService.sugerirMatchingPeriodico(this.feedbackPeriodicoForm);
+		Optional<SimilarityResult<FeedbackPeriodico>> result = this.feedbackService.getFeedbackPeriodico(
+				this.feedbackPeriodicoForm.getQuery(), this.usuarioLogado, NivelSimilaridade.TOTAL);
+
+		Assertions.assertThat(result).isPresent();
+		Conceito conceito = this.feedbackService.feedbackPeriodicoToConceito(result.get());
+		Assertions.assertThat(conceito.getTituloVeiculo()).isEqualTo(this.periodico.getTitulo());
+		Assertions.assertThat(conceito.getAno()).isEqualTo(this.periodico.getAno());
+		Assertions.assertThat(conceito.getConceito()).isEqualTo(this.periodico.getEstrato());
+		Assertions.assertThat(conceito.getSimilaridade()).isEqualTo(NivelSimilaridade.TOTAL.getValue());
+		Assertions.assertThat(conceito.isFeedback()).isTrue();
+	}
+
+	@Test
+	public void testFeedbackEventoToConceito() {
+		this.feedbackService.sugerirMatchingEvento(this.feedbackEventoForm);
+		Optional<SimilarityResult<FeedbackEvento>> result = this.feedbackService.getFeedbackEvento(
+				this.feedbackEventoForm.getQuery(), this.usuarioLogado, NivelSimilaridade.TOTAL);
+
+		Assertions.assertThat(result).isPresent();
+		Conceito conceito = this.feedbackService.feedbackEventoToConceito(result.get());
+		Assertions.assertThat(conceito.getTituloVeiculo()).isEqualTo(this.evento.getTitulo());
+		Assertions.assertThat(conceito.getAno()).isEqualTo(this.evento.getAno());
+		Assertions.assertThat(conceito.getConceito()).isEqualTo(this.evento.getEstrato());
+		Assertions.assertThat(conceito.getSimilaridade()).isEqualTo(NivelSimilaridade.TOTAL.getValue());
+		Assertions.assertThat(conceito.isFeedback()).isTrue();
+		Assertions.assertThat(conceito.getSiglaVeiculo()).isEqualTo(this.evento.getSigla());
 	}
 
 	@Test
