@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('silq2App')
-    .controller('MeasurementController', function ($scope, $stateParams, Measurement) {
+    .controller('MeasurementController', function ($scope, $stateParams, $filter, Measurement) {
         $scope.results = [];
 
         var params = $stateParams;
@@ -13,11 +13,30 @@ angular.module('silq2App')
             var match = []; // Valores Exatidão
             var mrr = []; // Valores MRR
             $scope.results.forEach(function(data) {
-                $scope.labels.push(data.threshold);
+                $scope.labels.push($filter('number')(data.threshold, 3));
 
                 match.push(data.noFeedback.match);
                 mrr.push(data.noFeedback.meanReciprocralRank);
             });
             $scope.data = [match, mrr];
+            $scope.options = {
+                legend: {
+                    display: true
+                },
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Threshold'
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Trabalhos corretamente avaliados / MRR'
+                        }
+                    }],
+                }
+            };
         });
     });
