@@ -42,11 +42,11 @@ public class Conceito implements Comparable<Conceito> {
 
 	@Override
 	public int compareTo(Conceito o) {
-		if (this.isFeedback()) {
-			return -1;
-		} else if (o.isFeedback()) {
-			return 1;
-		}
+		// if (this.isFeedback()) {
+		// return -1;
+		// } else if (o.isFeedback()) {
+		// return 1;
+		// }
 
 		return -this.getSimilaridade().compareTo(o.getSimilaridade());
 	}

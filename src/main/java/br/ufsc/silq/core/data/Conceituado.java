@@ -44,7 +44,7 @@ public class Conceituado<T extends Comparable<T>> implements Comparable<Conceitu
 	 * Adiciona um conceito ao trabalho.
 	 * Caso o conceito já exista neste trabalho, então ele é sobrescrito caso algum destes casos seja verdadeiro:
 	 * - Se o {@link NivelSimilaridade} do novo conceito for maior que o antigo;
-	 * - Se o novo conceito tiver a flag {@link Conceito#isFlagged()}
+	 * - Se o novo conceito tiver a flag {@link Conceito#isFeedback()}
 	 *
 	 * @param conceito O {@link Conceito} a ser adicionado.
 	 */

@@ -159,7 +159,6 @@ public class AvaliacaoService {
 	 *            os feedbacks deste usuário serão considerados para o fim de avaliação.
 	 * @return Um objeto {@link Conceituado} contendo o artigo original e seus conceitos atribuídos.
 	 */
-	@SuppressWarnings("unused")
 	public Conceituado<Artigo> avaliarArtigo(Artigo artigo, @Valid AvaliarForm avaliarForm, @Nullable Usuario usuario) {
 		Conceituado<Artigo> artigoConceituado = new Conceituado<>(artigo);
 
@@ -175,7 +174,7 @@ public class AvaliacaoService {
 		if (usuario != null && avaliarForm.isUsarFeedback()) {
 			// Checa pelo feedback do usuário
 			Optional<SimilarityResult<FeedbackPeriodico>> feedback = this.feedbackService.getFeedbackPeriodico(artigo.getTituloVeiculo(),
-					usuario, NivelSimilaridade.NORMAL); // TODO
+					usuario, avaliarForm.getNivelSimilaridade());
 			if (feedback.isPresent()) {
 				if (feedback.get().getResultado().isNegativo()) {
 					// Se for um feedback negativo, marca o artigo como tendo um feedback negativo
@@ -243,7 +242,7 @@ public class AvaliacaoService {
 		if (usuario != null && avaliarForm.isUsarFeedback()) {
 			// Checa pelo feedback do usuário
 			Optional<SimilarityResult<FeedbackEvento>> feedback = this.feedbackService.getFeedbackEvento(trabalho.getTituloVeiculo(),
-					usuario, NivelSimilaridade.NORMAL); // TODO
+					usuario, avaliarForm.getNivelSimilaridade());
 			if (feedback.isPresent()) {
 				if (feedback.get().getResultado().isNegativo()) {
 					// Se for um feedback negativo, marca o trabalho como tendo um feedback negativo

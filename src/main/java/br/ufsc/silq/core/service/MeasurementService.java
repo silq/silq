@@ -76,7 +76,7 @@ public class MeasurementService {
 			}
 		});
 
-		return new MeasureResult(noFeedback, withFeedback, withFeedback.getSize(), threshold);
+		return new MeasureResult(noFeedback, withFeedback, noFeedback.getSize(), threshold);
 	}
 
 	/**
@@ -126,8 +126,6 @@ public class MeasurementService {
 		Trabalho trabalho = new Trabalho("", feedback.getAno(), feedback.getQuery()); // O Título do trabalho é ignorado pela avaliação
 
 		Conceituado<Trabalho> conceituado = this.avaliacaoService.avaliarTrabalho(trabalho, avaliarForm, usuario);
-		// List<Conceito> conceitos = this.similarityService.getConceitos(trabalho, avaliarForm, TipoAvaliacao.EVENTO);
-
 		List<Conceito> conceitos = conceituado.getConceitos();
 
 		if (eventoFeedback == null) {
