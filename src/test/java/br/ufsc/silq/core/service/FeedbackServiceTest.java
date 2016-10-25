@@ -12,6 +12,7 @@ import org.junit.Test;
 import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.SimilarityResult;
+import br.ufsc.silq.core.data.TipoConceito;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
 import br.ufsc.silq.core.forms.FeedbackPeriodicoForm;
 import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
@@ -173,7 +174,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito.getAno()).isEqualTo(this.periodico.getAno());
 		Assertions.assertThat(conceito.getConceito()).isEqualTo(this.periodico.getEstrato());
 		Assertions.assertThat(conceito.getSimilaridade()).isEqualTo(NivelSimilaridade.TOTAL.getValue());
-		Assertions.assertThat(conceito.isFeedback()).isTrue();
+		Assertions.assertThat(conceito.getTipoConceito()).isEqualTo(TipoConceito.FEEDBACK);
 	}
 
 	@Test
@@ -188,7 +189,7 @@ public class FeedbackServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito.getAno()).isEqualTo(this.evento.getAno());
 		Assertions.assertThat(conceito.getConceito()).isEqualTo(this.evento.getEstrato());
 		Assertions.assertThat(conceito.getSimilaridade()).isEqualTo(NivelSimilaridade.TOTAL.getValue());
-		Assertions.assertThat(conceito.isFeedback()).isTrue();
+		Assertions.assertThat(conceito.getTipoConceito()).isEqualTo(TipoConceito.FEEDBACK);
 		Assertions.assertThat(conceito.getSiglaVeiculo()).isEqualTo(this.evento.getSigla());
 	}
 

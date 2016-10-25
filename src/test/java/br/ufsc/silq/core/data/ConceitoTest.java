@@ -33,18 +33,4 @@ public class ConceitoTest {
 		Assertions.assertThat(this.conceitos.get(1)).isSameAs(this.conceito1);
 		Assertions.assertThat(this.conceitos.get(2)).isSameAs(this.conceito2);
 	}
-
-	// @Test
-	public void testCompareFlagged() {
-		Conceito conceitoFlagged = new Conceito(1L, "Título Feedback", "B1", new NivelSimilaridade(0.4F), 2016);
-		conceitoFlagged.setFeedback(true);
-		this.conceitos.add(conceitoFlagged);
-
-		Collections.sort(this.conceitos);
-		Assertions.assertThat(this.conceitos.get(0)).isSameAs(conceitoFlagged);
-		Assertions.assertThat(this.conceitos.get(1)).isSameAs(this.conceito3);
-		Assertions.assertThat(this.conceitos.get(2)).isSameAs(this.conceito1);
-		Assertions.assertThat(this.conceitos.get(3)).isSameAs(this.conceito2);
-	}
-
 }

@@ -24,6 +24,7 @@ import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.Conceituavel;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.SimilarityResult;
+import br.ufsc.silq.core.data.TipoConceito;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.QualisSearchForm;
 import br.ufsc.silq.core.persistence.entities.Feedback;
@@ -95,7 +96,7 @@ public class SimilarityService {
 		List<Object[]> tuples = q.list();
 
 		return tuples.stream()
-				.map(r -> new Conceito((T) r[0], new NivelSimilaridade((float) r[1])))
+				.map(r -> new Conceito((T) r[0], new NivelSimilaridade((float) r[1]), TipoConceito.SIMILARIDADE_TEXTUAL))
 				.collect(Collectors.toList());
 	}
 

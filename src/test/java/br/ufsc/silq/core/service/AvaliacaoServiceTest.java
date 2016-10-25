@@ -10,6 +10,8 @@ import br.ufsc.silq.core.data.AvaliacaoCollectionResult;
 import br.ufsc.silq.core.data.AvaliacaoResult;
 import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.Conceituado;
+import br.ufsc.silq.core.data.Periodo;
+import br.ufsc.silq.core.data.TipoConceito;
 import br.ufsc.silq.core.exception.SilqException;
 import br.ufsc.silq.core.forms.AvaliarForm;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
@@ -80,15 +82,21 @@ public class AvaliacaoServiceTest extends WebContextTest {
 
 	@Test
 	public void testAvaliarArtigo() throws SilqException {
-		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.MAURICIO_ZIP_UPLOAD);
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.CHRISTIANE_ZIP_UPLOAD);
+		this.avaliarForm.setPeriodoAvaliacao(new Periodo(2006, 2006));
 		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
-		Artigo artigo = parseResult.getArtigos().stream().findAny().get();
+		// Obtemos um artigo de 2006 pois é o único ano em que todos os artigos da Prof. Christiane
+		// possuem match Qualis válido
+		Artigo artigo = parseResult.getArtigos().stream()
+				.filter(a -> a.getAno().equals(2006))
+				.findAny().get();
 
 		Conceituado<Artigo> artigoAvaliado = this.avaliacaoService.avaliarArtigo(artigo, this.avaliarForm, null);
 
 		// Artigo avaliado deve ser uma cópia do parâmetro
 		Assertions.assertThat(artigoAvaliado).isNotSameAs(artigo);
 		Assertions.assertThat(artigoAvaliado.getConceitos().size()).isLessThanOrEqualTo(this.avaliarForm.getMaxConceitos());
+		Assertions.assertThat(artigoAvaliado.getConceitoMaisSimilar().getTipoConceito()).isEqualTo(TipoConceito.ISSN);
 	}
 
 	@Test
@@ -112,6 +120,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito.getAno()).isEqualTo(periodico.getAno());
 		Assertions.assertThat(conceito.getConceito()).isEqualTo(periodico.getEstrato());
 		Assertions.assertThat(conceito.getSimilaridade()).isNotNegative();
+		Assertions.assertThat(conceito.getTipoConceito()).isEqualTo(TipoConceito.FEEDBACK);
 	}
 
 	@Test
@@ -125,6 +134,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		// Trabalho avaliado deve ser uma cópia do parâmetro
 		Assertions.assertThat(trabalhoAvaliado).isNotSameAs(trabalho);
 		Assertions.assertThat(trabalhoAvaliado.getConceitos().size()).isLessThanOrEqualTo(this.avaliarForm.getMaxConceitos());
+		Assertions.assertThat(trabalhoAvaliado.getConceitoMaisSimilar().getTipoConceito()).isEqualTo(TipoConceito.SIMILARIDADE_TEXTUAL);
 	}
 
 	@Test
@@ -148,6 +158,7 @@ public class AvaliacaoServiceTest extends WebContextTest {
 		Assertions.assertThat(conceito.getAno()).isEqualTo(evento.getAno());
 		Assertions.assertThat(conceito.getConceito()).isEqualTo(evento.getEstrato());
 		Assertions.assertThat(conceito.getSimilaridade()).isNotNegative();
+		Assertions.assertThat(conceito.getTipoConceito()).isEqualTo(TipoConceito.FEEDBACK);
 	}
 
 	@Test

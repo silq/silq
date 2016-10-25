@@ -26,6 +26,7 @@ import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.Conceituado;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.SimilarityResult;
+import br.ufsc.silq.core.data.TipoConceito;
 import br.ufsc.silq.core.exception.SilqError;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
@@ -203,10 +204,13 @@ public class AvaliacaoService {
 
 		List<Conceito> conceitos = new ArrayList<>();
 		for (QualisPeriodico result : results) {
-			conceitos.add(new Conceito(result.getId(), result.getTitulo(), result.getEstrato(), NivelSimilaridade.TOTAL, result.getAno()));
+			Conceito conceito = new Conceito(result.getId(), result.getTitulo(), result.getEstrato(), NivelSimilaridade.TOTAL, result.getAno());
+			conceito.setTipoConceito(TipoConceito.ISSN);
+			conceitos.add(conceito);
 		}
 
-		return new Conceituado<>(artigo, conceitos);
+		Conceituado<Artigo> conceituado = new Conceituado<>(artigo, conceitos);
+		return conceituado;
 	}
 
 	private Conceituado<Artigo> avaliarArtigoPorSimilaridade(Artigo artigo, @Valid AvaliarForm avaliarForm) {

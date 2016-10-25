@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.ufsc.silq.core.data.Conceito;
 import br.ufsc.silq.core.data.NivelSimilaridade;
 import br.ufsc.silq.core.data.SimilarityResult;
+import br.ufsc.silq.core.data.TipoConceito;
 import br.ufsc.silq.core.forms.FeedbackEventoForm;
 import br.ufsc.silq.core.forms.FeedbackPeriodicoForm;
 import br.ufsc.silq.core.persistence.entities.FeedbackEvento;
@@ -133,7 +134,7 @@ public class FeedbackService {
 
 	/**
 	 * Transforma um {@link SimilarityResult} contendo um {@link FeedbackEvento} para um objeto {@link Conceito}.
-	 * 
+	 *
 	 * @param result O resultado a ser convertido.
 	 * @return Um novo objeto {@link Conceito} criado a partir do parâmetro.
 	 */
@@ -143,13 +144,13 @@ public class FeedbackService {
 		Conceito conceito = new Conceito(evento.getId(), evento.getTitulo(), evento.getEstrato(),
 				result.getSimilaridade(), evento.getAno());
 		conceito.setSiglaVeiculo(evento.getSigla());
-		conceito.setFeedback(true);
+		conceito.setTipoConceito(TipoConceito.FEEDBACK);
 		return conceito;
 	}
 
 	/**
 	 * Transforma um {@link SimilarityResult} contendo um {@link FeedbackPeriodico} para um objeto {@link Conceito}.
-	 * 
+	 *
 	 * @param result O resultado a ser convertido.
 	 * @return Um novo objeto {@link Conceito} criado a partir do parâmetro.
 	 */
@@ -158,7 +159,7 @@ public class FeedbackService {
 		QualisPeriodico periodico = feedback.getPeriodico();
 		Conceito conceito = new Conceito(periodico.getId(), periodico.getTitulo(), periodico.getEstrato(),
 				result.getSimilaridade(), periodico.getAno());
-		conceito.setFeedback(true);
+		conceito.setTipoConceito(TipoConceito.FEEDBACK);
 		return conceito;
 	}
 

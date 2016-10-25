@@ -17,19 +17,15 @@ public class Conceito implements Comparable<Conceito> {
 	private final NivelSimilaridade similaridade;
 	private final Integer ano;
 	private String siglaVeiculo;
+	private TipoConceito tipoConceito;
 
-	/**
-	 * Flag usada para indicar se este conceito foi manualmente escolhido pelo usuário.
-	 * Em caso positivo, então este conceito será escolhido independente da similaridade dos demais.
-	 */
-	private boolean feedback = false;
-
-	public Conceito(Qualis result, NivelSimilaridade similaridade) {
+	public Conceito(Qualis result, NivelSimilaridade similaridade, TipoConceito tipoConceito) {
 		this.id = result.getId();
 		this.tituloVeiculo = result.getTitulo();
 		this.conceito = result.getEstrato();
 		this.ano = result.getAno();
 		this.similaridade = similaridade;
+		this.tipoConceito = tipoConceito;
 
 		if (result instanceof QualisEvento) {
 			this.siglaVeiculo = ((QualisEvento) result).getSigla();
@@ -42,12 +38,10 @@ public class Conceito implements Comparable<Conceito> {
 
 	@Override
 	public int compareTo(Conceito o) {
-		// if (this.isFeedback()) {
-		// return -1;
-		// } else if (o.isFeedback()) {
-		// return 1;
-		// }
-
 		return -this.getSimilaridade().compareTo(o.getSimilaridade());
+	}
+
+	public boolean isFeedback() {
+		return TipoConceito.FEEDBACK.equals(this.getTipoConceito());
 	}
 }
