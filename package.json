@@ -1,7 +1,7 @@
 {
   "name": "silq2",
   "version": "2.0.0",
-  "description": "Description for silq2",
+  "description": "Sistema de Integração Lattes-Qualis",
   "private": true,
   "cacheDirectories": [
     "node_modules",

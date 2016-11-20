@@ -28,7 +28,7 @@ public class MeasurementResource {
 			@RequestParam(defaultValue = "0.1") float initialThreshold,
 			@RequestParam(defaultValue = "1") float finalThreshold,
 			@RequestParam(defaultValue = "0.1") float step,
-			@RequestParam(defaultValue = "10000") int limit) {
+			@RequestParam(defaultValue = "25") int limit) {
 		return new ResponseEntity<>(this.measurementService.measure(initialThreshold, finalThreshold, step, limit), HttpStatus.OK);
 	}
 }
