@@ -17,7 +17,7 @@ public class ParserSets {
 
 	public static final ParserSet PRODUCOES_SET = new ParserSet(
 			Arrays.asList("producao-bibliografica", "trabalhos-em-eventos", "trabalho-em-eventos"),
-			Arrays.asList("ano-do-trabalho", "titulo-do-trabalho", "nome-do-evento"),
+			Arrays.asList("ano-do-trabalho", "natureza", "titulo-do-trabalho", "nome-do-evento"),
 			Arrays.asList("dados-basicos-do-trabalho", "detalhamento-do-trabalho"));
 
 	public static final ParserSet DADOS_GERAIS_SET = new ParserSet(Arrays.asList("curriculo-vitae"),

@@ -17,6 +17,7 @@ import br.ufsc.silq.core.parser.attribute.AttributeGetter;
 import br.ufsc.silq.core.parser.dto.AreaConhecimento;
 import br.ufsc.silq.core.parser.dto.Artigo;
 import br.ufsc.silq.core.parser.dto.DadosGeraisResult;
+import br.ufsc.silq.core.parser.dto.NaturezaPublicacao;
 import br.ufsc.silq.core.parser.dto.ParseResult;
 import br.ufsc.silq.core.parser.dto.Trabalho;
 import br.ufsc.silq.core.persistence.entities.CurriculumLattes;
@@ -94,12 +95,13 @@ public class LattesParser {
 		List<String> trabalhos = AttributeGetter.iterateNodes(ParserSets.PRODUCOES_SET, raiz);
 		if (!trabalhos.isEmpty()) {
 			List<Trabalho> trabalhosParse = new ArrayList<>();
-			for (int i = 0; i < trabalhos.size(); i += 3) {
-				String titulo = trabalhos.get(i + 1);
+			for (int i = 0; i < trabalhos.size(); i += 4) {
 				Integer ano = ArtigoAttributeGetter.parseIntegerSafely(trabalhos.get(i));
-				String tituloVeiculo = trabalhos.get(i + 2);
+				NaturezaPublicacao natureza = NaturezaPublicacao.parse(trabalhos.get(i + 1));
+				String titulo = trabalhos.get(i + 2);
+				String tituloVeiculo = trabalhos.get(i + 3);
 
-				trabalhosParse.add(new Trabalho(titulo, ano, tituloVeiculo));
+				trabalhosParse.add(new Trabalho(titulo, ano, tituloVeiculo, natureza));
 			}
 
 			parseResult.setTrabalhos(trabalhosParse);

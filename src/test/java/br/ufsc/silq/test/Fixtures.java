@@ -12,6 +12,7 @@ public class Fixtures {
 
 	private static final String ERROR_XML = BASE_PATH + "error.xml";
 	private static final String EMPTY_XML = BASE_PATH + "empty.xml";
+	private static final String CARINA_XML = BASE_PATH + "carina.xml";
 	private static final String CHRISTIANE_XML = BASE_PATH + "christiane.xml";
 	private static final String RAUL_XML = BASE_PATH + "raul.xml";
 	private static final String RONALDO_XML = BASE_PATH + "ronaldo.xml";
@@ -28,6 +29,7 @@ public class Fixtures {
 
 	public static final MockMultipartFile ERROR_XML_UPLOAD = createMockUpload(ERROR_XML);
 	public static final MockMultipartFile EMPTY_XML_UPLOAD = createMockUpload(EMPTY_XML);
+	public static final MockMultipartFile CARINA_XML_UPLOAD = createMockUpload(CARINA_XML);
 	public static final MockMultipartFile CHRISTIANE_XML_UPLOAD = createMockUpload(CHRISTIANE_XML);
 	public static final MockMultipartFile RAUL_XML_UPLOAD = createMockUpload(RAUL_XML);
 	public static final MockMultipartFile RONALDO_XML_UPLOAD = createMockUpload(RONALDO_XML);

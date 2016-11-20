@@ -11,9 +11,10 @@
         </ul>
     </div>
 
-    <p class="qualis-titulo" title="Título do trabalho" highlight-text="filter">
-        <span class="qualis-ano">{{ item.obj.ano }} |</span>
-        {{ item.obj.titulo }}
+    <p class="qualis-titulo" title="Título do trabalho">
+        <span class="qualis-ano" highlight-text="filter">{{ item.obj.ano }} |</span>
+        <span class="qualis-title" highlight-text="filter">{{ item.obj.titulo }}</span>
+        <span class="label label-primary" ng-show="item.obj.natureza != 'Completo'">{{ item.obj.natureza }}</span>
     </p>
 
     <p>
