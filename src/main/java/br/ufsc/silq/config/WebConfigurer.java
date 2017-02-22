@@ -52,10 +52,10 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		this.log.info("Web application configuration, using profiles: {}", Arrays.toString(this.env.getActiveProfiles()));
 		EnumSet<DispatcherType> disps = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ASYNC);
-		if (!this.env.acceptsProfiles(Constants.SPRING_PROFILE_FAST)) {
+		if (!this.env.acceptsProfiles(Profiles.FAST)) {
 			this.initMetrics(servletContext, disps);
 		}
-		if (this.env.acceptsProfiles(Constants.SPRING_PROFILE_PRODUCTION)) {
+		if (this.env.acceptsProfiles(Profiles.PRODUCTION)) {
 			this.initCachingHttpHeadersFilter(servletContext, disps);
 			this.initStaticResourcesProductionFilter(servletContext, disps);
 		}

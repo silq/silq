@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableMetrics(proxyTargetClass = true)
-@Profile("!" + Constants.SPRING_PROFILE_FAST)
+@Profile("!" + Profiles.FAST)
 public class MetricsConfiguration extends MetricsConfigurerAdapter {
 
     private static final String PROP_METRIC_REG_JVM_MEMORY = "jvm.memory";
@@ -69,7 +69,7 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
 
     @Configuration
     @ConditionalOnClass(Graphite.class)
-    @Profile("!" + Constants.SPRING_PROFILE_FAST)
+    @Profile("!" + Profiles.FAST)
     public static class GraphiteRegistry {
 
         private final Logger log = LoggerFactory.getLogger(GraphiteRegistry.class);
@@ -100,7 +100,7 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
 
     @Configuration
     @ConditionalOnClass(SparkReporter.class)
-    @Profile("!" + Constants.SPRING_PROFILE_FAST)
+    @Profile("!" + Profiles.FAST)
     public static class SparkRegistry {
 
         private final Logger log = LoggerFactory.getLogger(SparkRegistry.class);

@@ -8,6 +8,7 @@ Sistema de Integração Lattes-Qualis: http://silq.inf.ufsc.br.
 
 Antes de poder construir esta aplicação, instale e configure em sua máquina:
 
+1. Java 8
 1. [Maven][]: Para gerenciamento das dependências Java;
 1. [Node.js][]: Utilizamos para rodar o servidor de desenvolvimento e para construir o front-end do projeto;
 1. [Docker][]: Para gerenciamento das imagens das bases de dados de desenvolvimento e teste.
@@ -32,9 +33,23 @@ $ mvn clean install -DskipTests
 
 ## Banco de dados
 
-Para construção do banco de dados, execute o arquivo `sql/schema.sql`. Posteriormente, execute `sql/qualis_evento.sql` e `sql/qualis_periodico.sql` para inserção dos registros Qualis.
+Utilizamos docker para gerenciamento dos bancos de dados de desenvolvimento e teste. Utilize `docker-compose` (pode ser necessário instalá-lo) para criar as bases de dados de desenvolvimento e de testes com o comando `docker-compose -f docker-compose.yml up -d`.
 
-Utilizamos docker para gerenciamento dos bancos de dados de desenvolvimento e teste. Utilize `docker-compose` (pode ser necessário instalá-lo) para criar as bases de dados com o comando `docker-compose -f docker-compose.yml up -d`.
+As credenciais de conexão com o banco estão no arquivo `docker-compose.yml`.
+
+### Criação do esquema e dados iniciais
+
+Execute o arquivo `sql/schema.sql`. Posteriormente, execute `sql/qualis_evento.sql` e `sql/qualis_periodico.sql` para inserção dos registros Qualis.
+
+Os seguintes comandos podem ser utilizados para tanto:
+
+```
+psql -h 0.0.0.0 -p 5432 -U postgres -d silq2 -f sql/schema.sql
+psql -h 0.0.0.0 -p 5432 -U postgres -d silq2 -f sql/qualis_evento.sql
+psql -h 0.0.0.0 -p 5432 -U postgres -d silq2 -f sql/qualis_periodico.sql
+```
+
+Também é necessário executar estes scripts para a base de testes.
 
 ## Construindo a aplicação
 

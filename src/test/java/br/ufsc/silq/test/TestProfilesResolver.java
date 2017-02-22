@@ -2,12 +2,12 @@ package br.ufsc.silq.test;
 
 import org.springframework.test.context.ActiveProfilesResolver;
 
-import br.ufsc.silq.config.Constants;
+import br.ufsc.silq.config.Profiles;
 
 public class TestProfilesResolver implements ActiveProfilesResolver {
 	public static String[] defaultProfiles = {
-			Constants.SPRING_PROFILE_TEST,
-			Constants.SPRING_PROFILE_FAST
+			Profiles.TEST,
+			Profiles.FAST
 	};
 
 	@Override

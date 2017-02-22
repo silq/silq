@@ -9,8 +9,6 @@ import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.MetricFilterAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.MetricRepositoryAutoConfiguration;
@@ -20,15 +18,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
 
-import br.ufsc.silq.config.Constants;
+import br.ufsc.silq.config.Profiles;
+import lombok.extern.slf4j.Slf4j;
 import br.ufsc.silq.config.JHipsterProperties;
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
 @EnableConfigurationProperties({ JHipsterProperties.class })
+@Slf4j
 public class Application {
-
-	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	@Inject
 	private Environment env;
@@ -52,20 +50,15 @@ public class Application {
 		} else {
 			log.info("Running with Spring profile(s) : {}", Arrays.toString(this.env.getActiveProfiles()));
 			Collection<String> activeProfiles = Arrays.asList(this.env.getActiveProfiles());
-			if (activeProfiles.contains(Constants.SPRING_PROFILE_DEVELOPMENT)
-					&& activeProfiles.contains(Constants.SPRING_PROFILE_PRODUCTION)) {
+			if (activeProfiles.contains(Profiles.DEVELOPMENT)
+					&& activeProfiles.contains(Profiles.PRODUCTION)) {
 				log.error("You have misconfigured your application! "
 						+ "It should not run with both the 'dev' and 'prod' profiles at the same time.");
 			}
-			if (activeProfiles.contains(Constants.SPRING_PROFILE_PRODUCTION)
-					&& activeProfiles.contains(Constants.SPRING_PROFILE_FAST)) {
+			if (activeProfiles.contains(Profiles.PRODUCTION)
+					&& activeProfiles.contains(Profiles.FAST)) {
 				log.error("You have misconfigured your application! "
 						+ "It should not run with both the 'prod' and 'fast' profiles at the same time.");
-			}
-			if (activeProfiles.contains(Constants.SPRING_PROFILE_DEVELOPMENT)
-					&& activeProfiles.contains(Constants.SPRING_PROFILE_CLOUD)) {
-				log.error("You have misconfigured your application! "
-						+ "It should not run with both the 'dev' and 'cloud' profiles at the same time.");
 			}
 		}
 	}
@@ -94,7 +87,7 @@ public class Application {
 		if (!source.containsProperty("spring.profiles.active")
 				&& !System.getenv().containsKey("SPRING_PROFILES_ACTIVE")) {
 
-			app.setAdditionalProfiles(Constants.SPRING_PROFILE_DEVELOPMENT);
+			app.setAdditionalProfiles(Profiles.DEVELOPMENT);
 		}
 	}
 }
