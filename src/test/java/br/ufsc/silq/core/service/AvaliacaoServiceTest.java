@@ -101,9 +101,11 @@ public class AvaliacaoServiceTest extends WebContextTest {
 
 	@Test
 	public void testAvaliarArtigoComFeedback() throws SilqException {
-		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.MAURICIO_ZIP_UPLOAD);
+		CurriculumLattes lattes = this.curriculumService.saveFromUpload(Fixtures.GUNTZEL_ZIP_UPLOAD);
 		ParseResult parseResult = this.lattesParser.parseCurriculum(lattes);
-		Artigo artigo = parseResult.getArtigos().stream().findAny().get();
+		
+		// Escolhe um artigo sem nenhum matching realizado pelo sistema
+		Artigo artigo = parseResult.getArtigos().stream().filter(a -> a.getAno().equals(2007)).findAny().get();
 
 		// Dá o feedback
 		QualisPeriodico periodico = this.periodicoRepo.findOne(1L);
