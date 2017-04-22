@@ -4,7 +4,7 @@ angular.module('silq2App')
 
 .constant('ENV', 'dev')
 
-.constant('VERSION', '2.3.1')
+.constant('VERSION', '2.3.2')
 
 .constant('LANDING_PAGE', 'home')
 
