@@ -2,28 +2,24 @@
 
 <configuration scan="true">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    
+    <appender name="papertrail" class="com.papertrailapp.logback.Syslog4jAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%-5level %logger{35}: %m%n%xEx</pattern>
+		</layout>
 
-<!-- The FILE and ASYNC appenders are here as examples for a production configuration -->
-<!--
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>90</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <charset>utf-8</charset>
-            <Pattern>%d %-5level [%thread] %logger{0}: %msg%n</Pattern>
-        </encoder>
-    </appender>
+		<syslogConfig
+			class="org.productivity.java.syslog4j.impl.net.tcp.ssl.SSLTCPNetSyslogConfig">
+			<host>logs4.papertrailapp.com</host>
+			<port>32475</port>
+			<ident>SILQ</ident>
+			<maxMessageLength>128000</maxMessageLength>
+		</syslogConfig>
+	</appender>
 
-    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-        <queueSize>512</queueSize>
-        <appender-ref ref="FILE"/>
-    </appender>
--->
+    <logger name="br.ufsc.silq" level="DEBUG"/>
 
-    <logger name="br.ufsc.silq" level="@logback.loglevel@"/>
-
+	<logger name="org.hibernate.type" level="WARN" />
     <logger name="javax.activation" level="WARN"/>
     <logger name="javax.mail" level="WARN"/>
     <logger name="javax.xml.bind" level="WARN"/>
@@ -55,8 +51,18 @@
         <resetJUL>true</resetJUL>
     </contextListener>
 
-    <root level="@logback.loglevel@">
-        <appender-ref ref="CONSOLE"/>
-    </root>
+	<springProfile name="!prod">
+		<root level="INFO">
+        	<appender-ref ref="CONSOLE"/>
+    	</root>	
+	</springProfile>
+	
+	<springProfile name="prod">
+		<root level="INFO">
+        	<appender-ref ref="CONSOLE"/>
+        	<appender-ref ref="papertrail"/>
+    	</root>	
+	</springProfile>
+    
 
 </configuration>
