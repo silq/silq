@@ -50,3 +50,9 @@ update tb_qualis_periodico set no_area_avaliacao = 'FILOSOFIA' where no_area_ava
 
 update tb_qualis_periodico set no_area_avaliacao = 'TEOLOGIA' where no_area_avaliacao = 'FILOSOFIA/TEOLOGIA:subcomissão TEOLOGIA';
 -- 1766 registros atualizados
+
+# Qualis conferência 2013-2015
+
+* Títulos da linha de cabeçalho alterados para os nomes correspondentes das colunas da tabela `tb_qualis_evento` da base de dados. As colunas desnecessárias foram removidas.
+
+* Remoção da sigla do início do nome do evento utilizando a expressão regular `^(.+) - (.*)$`.

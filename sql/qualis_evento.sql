@@ -1723,6 +1723,871 @@ COPY tb_qualis_evento (co_seq_evento, ds_sigla, no_titulo, nu_indice_h, no_estra
 1701	X-Meeting	International Conference of the Brazilian Association for Bioinformatics and Computational Biology	8	B4	CIÊNCIA DA COMPUTAÇÃO	2012
 1702	XP	International Conference on Agile Processes in Software Engineering and eXtreme Programming	20	B2	CIÊNCIA DA COMPUTAÇÃO	2012
 1703	XSym	International XML Database Symposium	15	B3	CIÊNCIA DA COMPUTAÇÃO	2012
+2578	BMVC	British Machine Vision Conference	41	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+3007	ECC	European Control Conference	20	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2580	CEC	IEEE Congress on Evolutionary Computation	51	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2579	CCGRID	IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing	34	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2577	ASPLOS	International Conference on Architectural Support for Programming Languages and Operating Systems	49	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2576	ASIACRYPT	Annual International Conference on the Theory and Applications of Cryptology and Information Security	36	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2575	ASIACCS	ACM Symposium on Information, Computer and Communications Security	31	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2574	ASE	IEEE/ACM International Conference on Automated Software Engineering	31	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2573	ALLERTON	Allerton Conference on Communication, Control, and Computing	36	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2572	ACM-SIGSPATIAL	International Conference on Advances in Geographic Information Systems	27	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2571	ACL	Annual Meeting of the Association for Computational Linguistics	70	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2570	AAMAS	International Conference on Autonomous Agents and Multiagent Systems	39	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2859	ICEBE	International Conference on e-Business Engineering	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2709	HT	ACM Conference on Hypertext and Social Media	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2569	AAAI	Conference on Artificial Intelligence	49	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+3433	WVC	Workshop de Visão Computacional	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3432	WTTM	Workshop on the Theory of Transactional Memory	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3431	WTranS	Workshop de Transparência de Sistema	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3430	WRVA	Workshop de Realidade Virtual e Aumentada	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3429	WPEIF	Workshop de Pesquisa Experimental da Internet do Futuro	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3428	WP2P+	Workshop de Redes P2P, Dinâmicas, Sociais e Orientadas a Conteúdo	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3427	WoMO	International Workshop on Modular Ontologies 	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3426	WOCCES	Workshop de Comunicação em Sistemas Embarcados Crítico	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3425	WMOD	Workshop on Software Modularity 	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3424	WISM	Workshop on Web Information Systems Modeling	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3423	WHC	World Haptics Conference	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3422	WFA	Workshop de Ferramentas e Aplicações	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3421	WESB	Workshop de Engenharia de Software Baseada em Busca	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3420	WER	Workshop on Requirements Engineering	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3419	WEAC	Workshop sobre Educação em Arquitetura de Computadores	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3418	WDES	Workshop de Desenvolvimento Distribuído de Software	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3417	WCGE	Workshop de Computação Aplicada ao Governo Eletrônico	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3416	WCAS	Workshop on Circuits and Systems Design	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3415	WCAMA	Workshop de Computação Aplicada à Gestão do Meio Ambiente e Recursos Naturais	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3414	WAC	Web as Corpus Workshop	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3413	VPQM	International Workshop on Video Processing and Quality Metrics for Consumer Electronics	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3412	VEM	Workshop on Software Visualization, Evolution and Maintenance	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3411	URBCOMP	International Workshop on Urban Computing	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3410	UBICOMM-IARIA	IARIA International Conference on Mobile Ubiquitous Computing, Systems, Services and Technologies	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3409	ToRPorEsp	Workshop on Tools and Resources for Automatically Processing Portuguese and Spanish	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3408	SWWS-WC	WC International Conference on Semantic Web and Web Services	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3407	SOFTENG-IARIA	IARIA International Conference on Advances and Trends in Software Engineering	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3406	SLISW	Simposio Latinoamericano de Ingeniería de Software	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3405	SERP-WC	WC International Conference on Software Engineering Research and Practice	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3404	SEMEVAL	International Workshop on Semantic Evaluation	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3403	SEMAPROIARIA	IARIA International Conference on Advances in Semantic Processing	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3402	SELSE	Workshop on Silicon Errors in Logic – System Effects 	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3401	SECURWARE-IARIA	IARIA International Conference on Emerging Security Information, Systems and Technologies	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3400	SCCTSA	International Workshop on Smart City Clouds: Technologies, Systems and Applications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3399	SBIAGRO	Congresso Brasileiro de Agroinformática	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3398	SAST	Brazilian Workshop on Systematic and Automated Software Testing	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3397	SAM-WC	WC International Conference on Security and Management	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3396	SACCONET	International Conference on Smart Communications in Network Technologies	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3395	RESER	International Workshop on Replication in Empirical Software Engineering Research	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3394	REM	Workshop on Reactivity, Events and Modularity	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3393	PDPTAWC	WC International Conference on Parallel and Distributed Processing Techniques and Applications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3392	PATAT	International Conference on the Practice and Theory of Automated Timetabling	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3391	PAAMSW	International Workshops of Practical Applications of Agents, Multi-Agent Systems, and Sustainability	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3390	NRW	Asia Pacific Advanced Network Research Workshop	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3389	NLPCS	International Workshop on Natural Language Processing and Cognitive Science	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3388	MSVWC	WC International Conference on Modeling, Simulation and Visualization Methods	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3387	MS-ST	IEEE MS Special Track on Services for the Ubiquitous Web	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3386	MASLE	Workshop in Multiagent System Based Learning Environments	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3385	LISS	International Conference on Logistics, Informatics and Services Sciences	1	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3384	LAWCG	Latin American Workshop on Cliques in Graphs	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3383	LANOMS	Latin-American Network Operations and Management Symposium	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3382	LANMR	Latin American Workshop on Logic/Languages, Algorithms and New Methods of Reasoning	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3381	LAFM	Latin American Workshop on Formal Methods	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3380	IWS	Iberchip Workshop	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3379	IWPSE	International Workshop on Principles of Software Evolution	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3378	ISWPC	International Symposium on Wireless and Pervasive Computing	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3377	ISCAW	Image-Based Smart City Application Workshop 	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3376	IPVC-WC	WC International Conference on Image Processing, Computer Vision, and Pattern Recognition	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3375	IPCV-WC	WC International Conference on Image Processing, Computer Vision, and Pattern Recognition (WC)	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3374	IoTAAL	Workshop on Internet of Things for Ambient Assisted Living	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3373	INTELLI-IARIA	IARIA International Conference on Intelligent Systems and Applications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3372	INNOV-IARIA	IARIA International Conference on Communications, Computation, Networks and Technologies	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3371	IEMSS	International Congress on Environmental Modelling & Software	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3370	ICWNWC	WC International Conference on Wireless Networks	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3369	ICWMC-IARIA	IARIA International Conference on Wireless and Mobile Communications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3368	ICSNC-IARIA	IARIA International Conference on Systems and Networks Communications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3367	ICSEA-IARIA	IARIA International Conference on Software Engineering Advances	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3366	ICONS-IARIA	IARIA International Conference on Systems	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3365	ICNS-IARIA	IARIA International Conference on Networking and Services	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3364	ICN-IARIA	IARIA International Conference on Networks	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3363	ICIW-IARIA	IARIA International Conference on Internet and Web Applications and Services	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3362	ICIQ	International Conference on Information Quality	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3361	ICIEOM	International Conference on Industrial Engineering and Operations Management	4	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3360	ICDS-IARIA	IARIA International Conference on Digital Society	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3359	ICDP	International Conference on Imaging for Crime Detection and Prevention	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3358	ICCE	IEEE International Conference on Consumer Electronics	2	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3357	ICAS-IARIA	IARIA International Conference on Autonomic and Autonomous Systems	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3356	ICARSC	IEEE International Conference on Autonomous Robot Systems and Competitions	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3355	ICAI-WC	International Conference on Artificial Intelligence	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3354	Iberchip	Iberchip Workshop	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3353	HUMANCOM	International Conference on Human-centric Ubiquitous Computing and Applications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3352	HPPN	Workshop on High Performance and Programmable Networking	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3351	GeoPROCESSING-IARIA	IARIA International Conference on Advanced Geographic Information Systems, Applications, and Services	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3350	GEOINFO	Brazilian Symposium on GeoInformatics	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3349	FLINS	International FLINS Conference on Decision Making and Soft Computing	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3348	FECS-WS	WS International Conference on Frontiers in Education: Computer  Science and Computer Engineering	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3347	EVA	Electronic Visualisation and the Arts	6	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3346	EUROCOMB	European Conference on Combinatorics, Graph Theory and Applications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3345	EUROCG	European Workshop on Computational Geometry	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3344	ETELEMED-IARIA	IARIA International Conference on eHealth, Telemedicine, and Social Medicine	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3343	ENERGY-IARIA	IARIA International Conference on Smart Grids, Green Communications and IT Energy-aware Technologies	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3342	eKNOW	IARIA International Conference on Information, Process, and Knowledge Management	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3341	EIS	SPIE Human Vision and Electronic Imaging	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3340	EEEWC	International Conference on e-Learning, e-Business, Enterprise Information Systems, and e-Government	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3339	DP	SPIE Digital Photography	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3338	DCSS	SPIE Defence + Secutity	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3337	DCM	International Workshop on Developments in Computational Models	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3336	DBKD-AIARIA	IARIA International Conference on Advances in Databases, Knowledge, and Data Applications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3335	DATAANALYTICS-IARIA	IARIA International Conference on Data Analytics	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3334	DAPSE	International Workshop on Data Analysis Patterns in Software Engineering	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3333	CSC-WC	 WC International Conference on Scientific Computing	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3332	CONTEXT-BPM	International Workshop on Context for Business Process Management	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3331	CONTECSI	International Conference on Information Systems and Technology Management	3	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3330	COGNITIVE-IARIA	IARIA International Conference on Advanced Cognitive Technologies and Applications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3329	CobRA	International Workshop on Exploring Component-based Techniques for Constructing Reference Architectures	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3328	CNMAC	Congresso Nacional de Matemática Aplicada e Computacional	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3327	CLOUDCOMPUTING-IARIA	IARIA International Conference on Cloud Computing, GRIDs, and Virtualization	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3326	CLAIO	Latin-Ibero-American Conference on Operations Research	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3325	CBIC	Congresso Brasileiro de Inteligência Computacional	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3324	CARE	Workshop on Collaborative Agents Research and Development	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3323	C4BIE	International Workshop on Cloud for Business, Industry and Enterprises	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3322	BRASNAM	Brazilian Workshop on Social Network Analysis and Mining	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3321	BNAIC	Benelux Conference on Artificial Intelligence	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3320	BIOSTEC	International Joint Conference on Biomedical Engineering Systems and Technologies	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3319	BioCOMP-WC	WC International Conference on Bioinformatics & Computational Biology	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3318	ARGMAS	International Workshop on Argumentation in Multiagent Systems	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3317	AM	Audio Mostly on Interaction With Sound	7	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3316	ALIO/EURO	Workshop on Applied Combinatorial Optimization	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3315	AICT-IARIA	IARIA Advanced International Conference on Telecommunications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3314	ADVCOMP-IARIA	 IARIA International Conference on Advanced Engineering Computing and Applications in Sciences	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3313	ACRA	Australasian Conference on Robotics and Automation	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3312	ACHI-IARIA	IARIA International Conference on Advances in Computer-Human Interactions	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3311	AAATE	Association for the Advancement of Assistive Technology in Europe Conference	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3310	3DIPM	Three-Dimensional Image Processing, Measurement and Applications	0	B5	CIÊNCIA DA COMPUTAÇÃO	2015
+3309	WWWW	International World Wide Web Conference (Workshops)	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3308	WNUT	Workshop on Noisy User-generated Text	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3307	WIM	Workshop de Informática Médica	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3306	WearSys	Workshop on Wearable Systems and Applications	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3305	WAMCA	Workshop on Applications for Multi-Core Architectures	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3304	TEI	International Conference on Tangible, Embedded and Embodied Interaction	24	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3303	T&DLA	IEEE PES Transmission & Distribution Conference and Exposition Latin America	8	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3302	SWEET	Workshop on Scalable Workflow Execution Engines and Technologies	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3301	SustainIT	Conference on Sustainable Internet and ICT for Sustainability	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3300	SUMMERSIM	Summer Simulation Multi-conference	4	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3299	SUGARLOAFPLOP	Latin American Conference on Pattern Languages of Programming	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3298	SSCI	Multiconference	3	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3297	SOCM	International Workshop on the Theory and Practice of Social Machines	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3296	SEMISH	Seminário Integrado de Software e Hardware	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3295	SDIEV	IEEE Symposium on Differential Evolution	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3294	SCSS	International Symposium on Symbolic Computation in Software Science	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3293	SOCO	Intentational Conference on Software Composition	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3292	SBPO	Simpósio Brasileiro de Pesquisa Operacional	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3291	SBMICRO	Symposium on Microelectronics Technology and Devices	4	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3290	SBCUP	Simpósio Brasileiro de Computação Ubíqua e Pervasiva	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3289	SBCM	Simpósio Brasileiro de Computação Musical	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3288	SBACPADW	International Symposium on Computer Architecture and High Performance Computing Workshop	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3287	PLATEAU	Workshop on Evaluation and Usability of Programming Languages and Tools	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3286	NFmcp	 International Workshop on New Frontiers in Mining Complex Patterns	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3285	MULTIPROG	Workshop on Programmability Issues for Heterogeneous Multicore	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3284	MTD	International Workshop on Managing Technical Debt	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3283	MobiArch	Workshop on Mobility in the Evolving Internet Architecture	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3282	MISE	Workshop on Modeling in Software Engineering	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3281	LACLO	Latin American Conference on Learning Objects and Technologies	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3280	LA-CCI	Latin American Conference on Computational Intelligence	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3279	KnowLOD	Workshop on Knowledge Discovery and Data Mining Meets Linked Open Data	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3278	IWLS	International Workshop on Logic and Synthesis	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3277	ITA	International Conference on Internet Technologies and Applications	2	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3276	ISEOLE	International Workshop on Intelligent Support in Exploratory and Open-Ended Learning Environments	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3275	ISCRAM	International Conference on Information Systems for Crisis Response and Management	3	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3274	ISBRA	International Symposium on Bioinformatics Research and Applications	11	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3273	IPDPSW	IEEE International Parallel & Distributed Processing Symposium Workshops	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3272	INDUSCON	International Conference on Industry Applications	8	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3271	IMOC	SBMO/IEEE MTT-S International Microwave and Optoelectronics Conference	8	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3270	ICCW	IEEE International Conference on Communications Workshops	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3269	ICCVE	International Conference on Connected Vehicles & Exp	8	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3268	ICCSIT	International Conference on Computer Science and Information Technology	3	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3267	IEEEIA	IEEE Symposium on Intelligent Agents	3	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3266	GREENS	International Workshop on Green and Sustainable Software	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3265	GeoPrivacy	Workshop on Privacy in Geographic Information Collection and Analysis	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3264	GCCE	IEEE Global Conference on Consumer Electronics	9	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3263	FOIS	International Conference on Formal Ontology in Information Systems	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3262	FOFAI	International Workshop on Formal Ontologies for Artificial Intelligence	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3261	FOCI	IEEE Symposium on Foundations of Computational Intelligence	3	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3260	FLinAI	Workshop on Fuzzy Logic in AI	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3259	FCTA	International Conference on Fuzzy Computation Theory and Applications	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3258	EXAMPI	Workshop on Exascale MPI	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3257	EVLBP	International Workshop on Evolutionary Business Processes	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3256	EUROPKI	European Public Key Infrastructure Workshop	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3255	EURO	European Conference on Operational Research	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3254	ERLANG	ACM SIGPLAN Erlang Workshop	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3253	ENIAC	Encontro Nacional de Inteligencia Artificial e Computacional	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3252	EMAS	International Workshop on Engineering Multiagent Systems	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3251	ECSAW	European Conference on Software Architecture Workshops	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3250	DroNet	Workshop on Micro Aerial Vehicle Networks, Systems, and Applications for Civilian Use	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3249	DMNPL	Workshop on Interactions between Data Mining and Natural Language Processing	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3248	DESAFIE	Workshop de Desafios da Computação Aplicada à Educação	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3247	DeMiMoP	Workshop on Decision Mining & Modeling for Business Processes	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3246	DCCW	ACM Workshop on Distributed Cloud Computing	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3245	DaMNet	Workshop on Data Mining in Networks	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3244	CSA	International Conference on Computer Sciences and Applications	4	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3243	CORAL	International Workshop on Emerging COgnitive Radio Applications and aLgorithms	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3242	CONIELECOMP	International Conference on Electronics, Communications and Computers	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3241	CONFIRM	International Conference on Information Resources Management	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3240	COIN	International Workshop on Coordination, Organisations, Institutions and Norms	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3239	COGNISE	International Workshop on Cognitive Aspects of Information Systems Engineering	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3238	CLIHC	Latin American Conference on Human Computer Interaction	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3237	CLCAR	Latin American Conference on High-Performance Computing	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3236	CIVTS	IEEE Symposium on Computational Intelligence in Vehicles and Transportation Systems	3	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3235	CIT/IUCC/DASC/PICOM	CIT, IUCC, DASC, PICOM	3	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3234	CIMSIVP	IEEE Symposium on Computational Intelligence for Multimedia, Signal and Vision Processing	3	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3233	CIBSE	Congresso Ibero-Americano em Engenharia de Software	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3232	CHASE	International Workshop on Cooperative and Human Aspects of Software Engineering	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3231	CBSF	Congresso Brasileiro de Sistemas Fuzzy	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3141	BSB	Brazilian Symposium on Bioinformatics	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3140	BRACIS	Brazilian Conference on Intelligent System (ENIAC)	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3139	BIBM	IEEE International Conference on Bioinformatics and Biomedicine	14	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3138	BDCLOUD	International Conference on Big Data and Cloud Computing	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3137	BCB	ACM International Conference on Bioinformatics and Computational Biology and Health Informatics	13	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3136	ARRAY	IEEE International Symposium on Phased Array Systems & Technology	5	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3135	ACE	Advances in Computer Entertainment Technology	14	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3134	3DTV	3DTV Conference: The True Vision-Capture, Transmission and Display of 3D Video	14	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3133	WUWNET	International Conference on UnderWater Networks and Systems	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3132	WSC	Winter Simulation Conference	23	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3131	WOLLIC	Workshop on Logic, Language, Information and Computation	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3130	WOCC	Wireless and Optical Communications Conference	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3129	WMNC	Wireless and Mobile Networking Conference	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3128	WiSec	ACM Conference on Security & Privacy in Wireless and Mobile Networks	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3127	WG	International Workshop on Graph-Theoretic Concepts in Computer Science	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3126	WEBIST	International Conference on Web Information Systems and Technologies	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3125	WAOA	Workshop on Approximation and Online Algorithms	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3124	WALCOM	International Workshop on Algorithms and Computation	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3123	W2GIS	International Symposium Web and Wireless Geographical Information Systems	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3122	VRST	ACM Symposium on Virtual Reality Software and Technology	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3121	VNC	IEEE Vehicular Networking Conference	19	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3120	VISSOFT	IEEE Working Conference on Software Visualization	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3119	UIC	IEEE International Conference on Ubiquitous Intelligence and Computing	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3118	TSD	International Conference on Text, Speech and Dialogue	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3117	TAROS	Towards Autonomous Robotics Systems	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3116	SVR	Symposium on Virtual and Augmented Reality	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3115	SSPR	International Workshop on Structural and Syntactic Pattern Recognition	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3114	SOCC	IEEE International System-on-Chip Conference	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3113	SISAP	SISAP -International Conference on Similarity Search and Applications	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3112	SIMULTECH	International Conference on Simulation and Modeling Methodologies, Technologies and Applications	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3111	SIGDOC	International Conference on Design of Communication	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3110	SBRC	Simpósio Brasileiro de Redes de Computadores e Sistemas Distribuídos	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3109	SBIA	Brazilian Symposium on Artificial Intelligence	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3108	SBGAMES	Simpósio Brasileiro de Jogos e Entretenimento Digital	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3107	SBES	Brazilian Symposium on Software Engineering	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3106	SBBD	Simpósio Brasileiro de Banco de Dados	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3105	SANER	IEEE International Conference on Software Analysis, Evolution and Reengineering	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3104	RSP	International Symposium on Rapid System Prototyping	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3103	ROSE	International Symposium on Robotic and Sensors Environments	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3102	QUATIC	International Conference on Quality of Information and Communications Technology	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3101	QoSA	International ACM Sigsoft Conference on the Quality of Software Architectures	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3100	PROMISE	International Conference on Predictive Models and Data Analytics in Software Engineering	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3099	PROFES	International Conference on Product-Focused Software Process Improvement	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3098	PRIMA	PRIMA -International Conference on Principles and Practice of Multi-Agent Systems	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3097	PLOP	Conference on Pattern Languages of Programs	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3096	PE-WASUN	ACM International Symposium on Performance Evaluation of Wireless Ad Hoc, Sensor, and Ubiquitous Networks	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3095	ParCO	International Conference on Parallel Computing	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3094	PAAMS	International Conference on Practical Applications of Agents, Multi-Agent Systems and Sustainability	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3093	OSS	International Conference on Open Source Systems	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3092	OR	International Conference on Operations Research	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3091	NOF	International Conference on Network of the Future	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3090	NEWCAS	IEEE International New Circuits and Systems Conference	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3089	NCA	IEEE International Symposium on Network Computing and Applications	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3088	NAFIPS	Annual Conference of the North American Fuzzy Information Processing Society	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3087	NABIC	World Congress on Nature and Biologically Inspired Computing	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3086	MTSR	International Conference on Metadata and Semantics Research	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3085	MSN	IEEE International Conference on Mobile Ad-Hoc and Sensor Networks	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3084	MS	IEEE International Conference on Mobile Services	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3083	MOBIWAC	ACM International Symposium on Mobility Management and Wireless Access	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3082	MLDM	International Conference on Machine Learning and Data Mining	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3081	MIG	ACM Siggraph Conference on Motion in Games	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3080	MEDES	International Conference on Management of Emergent Digital EcoSystems	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3079	MDAI	International Conference on Modeling Decisions for Artificial Intelligence	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3078	MCPR2	Mexican Conference on Pattern Recognition	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3077	MATES	German Conference on Multiagent System Technologies	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3076	LATW	Latin American Test Workshop	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3075	LATINCOM	IEEE  Latin-American Conference on Communications	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3074	LASCAS	IEEE Latin American Symposium on Circuits and Systems	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3073	KESAMSTA	International KES Conference on Agents and Multi-Agent Systems: Technologies and Applications	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3072	JCSSE	International Joint Conference on Computer Science and Software Engineering	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3071	IWBBIO	International Work-Conference on Bioinformatics and Biomedical Engineering	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3070	IWANN	International Work-Conference on Artificial and Natural Neural Networks	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3069	IVAPP	International Conference on Information Visualization Theory and Applications	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3068	ITSC	IEEE International Conference on Intelligent Transportation Systems	25	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3067	ITHET	International Conference on Information Technology Based Higher Education and Training	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3066	IST 	International Conference on Imaging Systems and Techniques	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3065	ISMIS	International Symposium on Methodologies for Intelligent Systems	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3064	ISGTEUROPE	IEEE International Conference on Innovative Smart Grid Technologies	21	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3063	ISCIS	International Symposium on Computer and Information Sciences	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3062	ISBI	IEEE International Symposium on Biomedical Imaging	23	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3061	IISA	International Conference on Information, Intelligence, Systems and Applications	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3060	IHC	Simpósio Brasileiro sobre Fatores Humanos em Sistemas Computacionais	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3059	IGIC	IEEE International Games Innovation Conference	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3058	IGARSS	IEEE International Geoscience and Remote Sensing Symposium	24	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3057	IFM	International Conference on Integrated Formal Methods	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3056	IFAC	World Congress of the International Federation  of Automatic Control	35	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3055	IECON	Annual Conference of the IEEE Industrial Electronics Society	29	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3054	IDEAS	International Database Engineering and Applications Symposium	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3053	IDEAL	International Conference on Intelligent Data Engineering and Automated Learning	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3052	IDC	International Symposium on Intelligent Distributed Computing	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3051	ICVR	International Conference on Virtual Rehabilitation	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3050	ICTSS	IFIP International Conference on Testing Software and Systems	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3049	ICTIR	International Conference on the Theory of Information Retrieval	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3048	ICTAC	International Colloquium on Theoretical Aspects of Computing	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3047	ICSSSM	International Conference on Service Systems and Service Management	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3046	ICSR	International Conference on Software Reuse	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3045	ICSOFT	International Conference on Software and Data Technologies	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3044	ICSOB	International Conference on Software Business	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3043	ICMCS	IEEE International Conference on Multimedia and Expo	25	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3042	ICMC 	International Computer Music Conference	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3041	ICM	International Conference on Microelectronics	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3040	ICLP	International Conference on Logic Programming	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3039	ICINCO	International Conference on Informatics in Control, Automation and Robotics	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3038	ICEIS	International Conference on Enterprice Information Systems	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3037	ICECSYS	IEEE International Conference on Electronics, Circuits and Systems	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3036	ICCPS	International Conference on Cyber-Physical Systems	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3035	ICCP	IEEE International Conference on Intelligent Computer Communication and Processing	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3034	ICAT	International Conference on Artificial Reality and Telexistence	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3033	IbPRIA	Iberian Conference on Pattern Recognition and Image Analysis	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3032	IBERAMIA	Ibero-American Conference on Artificial Intelligence	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3031	IAS	Industry Applications Society Annual Meeting	21	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3030	HIS	International Conference on Hybrid Intelligent Systems	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3029	HEALTHCOM	IEEE International Conference on E-health Networking, Application & Services	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3028	GROUP	International Conference on Supporting Group Work	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3027	GRAPP	International Conference on Computer Graphics Theory and Applications	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3026	GPCE	ACM International Conference on Generative Programming: Concepts and Experiences	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3025	GPC	International Conference on Grid And Pervasive Computing	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3024	GIIS	Global Information Infrastructure and Networking Symposium	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3023	FG	Conference on Formal Grammar	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3022	FDL	Forum on Specification & Design Languages	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3021	FAW	International Frontiers of Algorithmics Workshop	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3020	FACS	International Conference on Formal Aspects of Component Software	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3019	EWSN	European Conference on Wireless Sensor Networks	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3018	EVOLVE	The EVOLVE International conference	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3017	EUVIP	European Workshop on Visual Information Processing	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3016	EUSFLAT	Conference of the European Society for Fuzzy Logic and Technology	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3015	EUMAS	European Conference on Multi-Agent Systems	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3014	EUC	IEEE/IFIP International Conferences on Embedded and Ubiquitous Computing	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3013	ETFA	IEEE International Conference on Emerging Technologies and Factory Automation	21	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3012	EPIA	Portuguese Conference on Artificial Intelligence	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3011	ENASE	International Conference on Evaluation of Novel Approaches to Software Engineering	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3010	ECMS	European Conference on Modelling and Simulation	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3009	ECCTD	European Conference on Circuit Theory and Design	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3008	ECCE	European Conference on Cognitive Ergonomics	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3006	DSRT	IEEE/ACM International Symposium on Distributed Simulation and Real Time Applications	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3005	DILS	International Conference on Data Integration in Life Sciences	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3004	DCAI	International Symposium on Distributed Computing and Artificial Intelligence	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3003	DAIS	International Conference on Distributed Applications and Interoperable Systems	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3002	CSIIRW	Annual Cyber Security and Information Intelligence Research Workshop	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3001	COSN	Conference on Online Social Networks	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+3000	CompSysTech	International Conference on Computer Systems and Technologies	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2999	COGSCI	Annual Meeting of the Cognitive Science Society	24	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2998	CITS	International Conference on Computer, Information, and Telecommunication Systems	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2997	CC	International Conference on Compiler Construction	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2996	BRC	ISSNIP Biosignals and Biorobotics Conference	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2995	BMEI	International Conference BioMedical Engineering and Informatics	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2994	BIR	International Conferences on Perspectives in Business Informatics Research	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2993	BIBE	IEEE International Conference on BioInformatics and BioEngineering	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2992	ATC	International Conference on Advanced Technologies for Communications	9	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2991	ASYNC	IEEE International Symposium on Asynchronous Circuits and Systems	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2990	ANTS	International Conference on Swarm Intelligence	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2989	AMW	Alberto Mendelzon International Workshop on Foundations of Data Management	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2988	AMIA	Annual Symposium of the American Medical Informatics Association	25	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2987	AICT	International Conference on Application of Information and Communication Technologies	10	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2986	AICCSA	ACS/IEEE International Conference on Computer Systems and Applications	8	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2985	AGERE	Workshop on Programming based on Actors, Agents, and Decentralized Control	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2984	ADHOC-NOW	Ad-Hoc, Mobile and Wireless Networks	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2983	ACIVS	Advanced Concepts for Intelligent Vision Systems	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2982	AAIM	International Conference on Algorithmic Aspects of Information and Management	0	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2981	3PGCIC	International Conference on P2P, Parallel, Grid, Cloud and Internet Computing	11	B2	CIÊNCIA DA COMPUTAÇÃO	2015
+2980	XP	International Conference on Agile Software Development	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2979	WI-WIC	IEEE/WIC/ACM International Conference on Web Intelligence and Intelligent Agent Technology	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2978	WISE	International Conference on Web Information Systems Engineering	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2977	WICSA	Working IEEE/IFIP Conference on Software Architecture	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2976	WEBI	International Conference on Web Intelligence	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2975	WETICE	IEEE International Conference on Enabling Technologies: Infrastructure for Collaborative Enterprises	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2974	WEB3D	International Conference on 3D Web Technology	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2973	WD	Wireless Days Conference	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2972	WCNC	IEEE Wireless Communications and Networking Conference	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2971	WABI	Workshop on Algorithms in Bioinformatics	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2970	VTS	IEEE VLSI Test Symposium	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2969	VRCAI	International Conference on Virtual Reality Continuum and its Applications	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2968	VLSI	International Conference on Very Large Scale Integration	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2967	VLSID	International Conference on VLSI Design	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2966	VLHCC	IEEE Symposium on Visual Languages and Human-Centric Computing	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2965	VISAPP	International Conference on Computer Vision Theory and Applications	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2964	VCIP	IEEE International Conference on Visual Communications and Image Processing	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2963	UKSIM	International Conference on Modelling and Simulation	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2962	TPDL	International Conference on Theory and Practice of Digital Libraries	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2961	SUM	International Conference on Scalable Uncertainty Management	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2960	SSDBM	International Conference on Scientific and Statistical Database Management	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2959	SSBSE	International Symposium on Search Based Software Engineering	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2958	SRDS	IEEE Symposium on Reliable Distributed Systems	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2957	SPLASH	ACM SIGPLAN Conference on Systems, Programming, Languages and Applications: Software for Humanity	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2956	SPIRE	International Symposium on String Processing and Information Retrieval 	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2955	SOSE	IEEE International Symposium on Service-Oriented System Engineering	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2954	SOFSEM	International Conference on Current Trends in Theory and Practice of Computer Science	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2953	SOFTCOM	International Conference on Software, Telecommunications and Computer Networks	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2952	SOFSEM	International Conference on Current Trends in Theory and Practice of Computer Science	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2951	SOCS	International Symposium on Combinatorial Search	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2950	SOCINFO	International Conference on Social Informatics	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2949	SIMUTOOLS	International Conference on Simulation Tools and Techniques	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2948	SIBGRAPI	Conference on Graphics, Patterns and Images	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2947	SEKE	International Conference on Software Engineering and Knowledge Engineering	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2946	SEFM	International Conference on Software Engineering and Formal Methods	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2945	SEAA	Euromicro Conference on Software Engineering and Advanced Applications	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2944	SCAM	IEEE International Working Conference on Source Code Analysis and Manipulation	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2943	SBIE	Simpósio Brasileiro de Informática na Educação	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2942	SBAC-PAD	International Symposium on Computer Architecture and High Performance Computing	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2941	SASO	International Conference on Self-Adaptive and Self-Organizing Systems	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2940	SAMOS	International Conference on Embedded Computer Systems: Architectures, Modeling and Simulation	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2939	SAFECOMP	International Conference on Computer Safety, Reliability, and Security	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2938	RTCSA	International Conference on Embedded and Real-Time Computing Systems and Applications	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2937	ROBOCUP	Robocup International Symposium	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2936	RFID	IEEE International Conference on RFID	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2799	CISIS	International Conference on Complex, Intelligent, and Software Intensive Systems	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2935	REFSQ	International Working Conference on Requirements Engineering: Foundations for Software Quality	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2934	RECONFIG	International Conference on Reconfigurable Computing and FPGAs	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2933	RCIS	International Conference on Research Challenges in Information Science	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2932	RANLP	International Conference on Recent Advances in Natural Language Processing 	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2931	QEST	International Conference on Quantitative Evaluation of Systems	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2930	PST	Annual Conference on Privacy, Security and Trust 	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2929	PRDC	Pacific Rim International Symposium on Dependable Computing	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2928	PETRA	ACM International Conference on PErvasive Technologies Related to Assistive Environments	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2927	PDCAT	International Conference on Parallel and Distributed Computing, Applications and Technologies	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2926	PCS	Picture Coding Symposium	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2925	PADS	ACM SIGSIM Conference on Principles of Advanced Discrete Simulation	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2845	GLVLSI	ACM Great Lakes Symposium on VLSI	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2844	GLOBALSIP	Global Conference on Signal and Information Processing	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2843	GRAPHICSINTERFACE	International Conference on Graphics, Visualization, & Human-Computer Interation	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2842	FUZZIEEE	IEEE International Conference on Fuzzy Systems	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2841	FSTTCS	Annual Conference on Foundations of Software Technology and Theoretical Computer Science	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2840	FSKD	International Conference on Fuzzy Systems and Knowledge Discovery	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2839	FLAIRS	International Florida Artificial Intelligence Conference (AAAI)	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2838	FIE	IEEE Frontiers in Education Conference	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2837	FEDCSIS	Federated Conference on Computer Science and Information Systems	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2836	EWSDN	European Workshop on Software Defined Networks	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2835	EVOCOP	European Conference on Evolutionary Computation in Combinatorial Optimization	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2834	EVOAPPLICATIONS	European Conference on the Applications of Evolutionary Computation	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2833	EuroGP	European Conference on Genetic Programming	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2832	ETS	European Test Symposium	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2831	ESCIENCE	IEEE International Conference on e-Science	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2830	ESANN	European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2829	ER	International Conference on Conceptual Modeling	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2828	EMO	International Conference on Evolutionary Multi-Criterion Optimization	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2827	EGOV	International Conference on Electronic Government	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2826	ECSQARU	European Conference on Symbolic and Quantitative Approaches to Reasoning and Uncertainty	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2825	ECSA	European Conference on Software Architecture	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2824	ECMDAFA	European Conference on Modelling Foundations and Applications	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2823	ECAL	European Conference on Artificial Life	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2822	EASE	International Conference on Evaluation and Assessment in Software Engineering	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2821	ICDSP	IEEE International Conference on Digital Signal Processing	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2820	DSD	Euromicro Conference on Digital System Design	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2819	DRCN	International Conference on the Design of Reliable Communication Networks	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2818	DOLAP	 International Workshop On Data Warehousing and OLAP	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2817	DOCENG	ACM SIGWEB International Symposium on Document Engineering	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2816	DGO	Annual International Conference on Digital Government Research	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2815	DFT	IEEE International Symposium on Defect and Fault Tolerance in VLSI Systems	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2814	DEXA	International Conference on Database and Expert Systems Applications	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2813	DDECS	International Symposium on Design and Diagnostics of Electronic Circuits and Systems	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2812	DCC	Data Compression Conference	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2811	DAWAK	International Conference on Big Data Analytics and Knowledge Discovery	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2810	DAS	International Workshop on Document Analysis Systems	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2809	CSEE&T	Conference on Software Engineering Education and Training	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2808	CSE	International Conference on Computational Science and Engineering	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2807	CSCWD	IEEE International Conference on Computer Supported Cooperative Work in Design	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2806	CPM	Annual Symposium on Combinatorial Pattern Matching	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2805	CogSIMA	IEEE International Multi-Disciplinary Conference on Cognitive Methods in Situation Awareness and Decision Support	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2804	COCOON	International Computing and Combinatorics Conference	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2803	CMSB	International Conference on Computational Methods in Systems Biology	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2802	CloudNet	IEEE International Conference on Cloud Networking	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2801	CIT	IEEE International Conference on Computer and Information Technology	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2800	CISTI	Iberian Conference on Information Systems and Technologies	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2798	CIDM	Symposium on Computational Intelligence and Data Mining	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2797	CIARP	Iberoamerican Congress on Pattern Recognition	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2796	CGC	International Conference on Cloud and Green Computing 	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2795	CF	ACM International Conference on Computing Frontiers	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2794	CDC	IEEE Conference on Decision and Control	45	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2793	CCCG	Canadian Conference on Computational Geometry	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2792	CBSE	International ACM Sigsoft Symposium on Component-Based Software Engineering	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2791	CBMS	International Symposium on Computer-Based Medical Systems	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2790	CBMI	International Workshop on Content-Based Multimedia Indexing	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2789	CASON	International Conferennce on Computational Aspects of Social Networks	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2788	CASES	International Conference on Compilers, Architecture, and Synthesis for Embedded Systems	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2787	CASE	IEEE Conference on Automation Science and Engineering	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2786	CASCON	Annual International Conference on Computer Science and Software Engineering	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2785	CANS	International Conference on Cryptology and Network Security	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2784	CAIP	International Conference on Computer Analysis of Images and Patterns 	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2783	BMSB	International Symposium on Broadband Multimedia Systems and Broadcasting	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2782	BIOSIG	International Conference of the Biometrics Special Interest Group	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2781	BIGDATA	IEEE International Congress on BigData	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2780	ASAP	IEEE International Conference on Application-specific Systems, Architectures and Processors	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2779	ARC	International Symposium on Applied Reconfigurable Computing	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2778	APLAS	Asian Symposium on Programming Languages and Systems	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2777	AI	Canadian Conference on Artificial Intelligence	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+3230	BWILD	International Workshop on Biometrics in the Wild	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3229	BRESCI	Brazilian e-Science Workshop	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3228	BPMS2	Workshop on Social and Human Aspects of Business Process Management	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3227	BIOKDD	International Workshop on Biological Knowledge Discovery and Data Mining	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3226	BigSpatial	ACM SIGSPATIAL International Workshop on Analytics for Big Geospatial Data	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3225	BIGDSE	IEEE/ACM International Workshop on Big Data Software Engineering	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3224	BeyondMR	Workshop on Algorithms and Systems for MapReduce and Beyond	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3223	BAI	Workshop on Advances in Bioinformatics and Artificial Intelligence: bridging the Gaps	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3222	ATT	International Workshop on Agents in Traffic and Transportation 	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3221	A-TEST	International Workshop on Automating Test Case Design, Selection and Evaluation	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3220	APDCM	Workshop on Advances in Parallel and Distributed Computational Models	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3219	APCASE	Asia-Pacific Conference on Computer Aided System Engineering	4	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3218	AISEC	ACM Workshop on Artificial Intelligence and Security	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3217	ADVANCE	International Workshop on ADVANCEs in ICT Infrastructures and Services	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3216	3DOR	Eurographics Workshop on 3D Object Retrieval	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3215	3DCVE	International Workshop on Collaborative Virtual Environments	0	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3214	21CW	IEEE Conference on Norbert Wiener in the 21st Century	4	B4	CIÊNCIA DA COMPUTAÇÃO	2015
+3213	WSCG	International Conference in Central Europe on Computer Graphics and Visualization and Computer Vision	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3212	WSCAD	Simpósio em Sistemas Computacionais de Alto Desempenho	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3211	WPerformance	Workshop em Desempenho de Sistemas Computacionais e de Comunicação	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3210	WIE	Workshop de Informática na Escola	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3209	WF-IoT	IEEE World Forum on Internet of Things	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3208	WFCS	IEEE World Conference on Factory Communication Systems	12	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3207	WEI	Workshop sobre Educação em Computação	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3206	WEBMEDIA	Brazilian Symposium on Multimedia and the Web	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3205	SYSCON	IEEE International Systems Conference	14	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3204	STIL	Brazilian Symposium in Information and Human Language Technology	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3203	SPA	Signal Processing: Algorithms, Architectures, Arrangements, and Applications Conference	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3202	SOC	International Symposium on System-on-Chip	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3201	SMARTGREENS	International Conference on Smart Grids and Green ICT Systems	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3200	SIIE	Simpósio Internacional de Informática Educatica	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3199	SENSORNETS	International Conference on Sensor Networks	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3198	SCCC	International Conference of the Chilean Computer Science Society	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3197	SBSI	Simpósio Brasileiro de Sistemas de Informação	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3196	SBSeg	Simpósio Brasileiro em Segurança da Informação e de Sistemas Computacionais	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3195	SBSC	Simpósio Brasileiro de Sistemas Colaborativos	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3194	SBQS	Simpósio Brasileiro de Qualidade de Software	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3193	SBMF	Brazilian Symposium on Formal Methods	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3192	SBLP	Brazilian Symposium on Programming Languages	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3191	SBESC	Brazilian Symposium on Computing System Engineering	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3190	SBCCI	Symposium on Integrated Circuits and Systems Design	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3189	SBCARS	Brazilian Symposium on Components, Architectures and Reuse Software	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3188	QoMEX	International Workshop on Quality of Multimedia Experience	18	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3187	PATMOS	International Workshop on Power and Timing Modeling, Optimization and Simulation	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3186	NETWORKS	International Telecommunications Network Strategy and Planning Symposium	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3185	MEMEA	IEEE International Symposium on Medical Measurements and Applications	16	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3184	M&N	IEEE International Workshop on Measurements & Networking	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3183	LA-WEB	Latin American Web Congress	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3182	LATINCRYPT	International Conference on Cryptology and Information Security in Latin America	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3181	LANC	Latin American Networking Conference	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3180	LAGOS	Latin-American Algorithms, Graphs and Optimization Symposium	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3179	LADC	Latin-American Symposium on Dependable Computing	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3178	KMO	International Conference on Knowledge Management in Organizations	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3177	ISTAR	International  i*Workshop	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3176	ISSI	International Society of Scientometrics and Informetrics Conference	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3175	ISMM	International Symposium on Mathematical Morphology	15	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3174	ISIE	IEEE International Symposium on Industrial Electronics	23	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3173	ISDEVEL	International Conference on Information Systems Development	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3172	ISCOPT	International Symposium on Combinatorial Optimization	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3171	INTECH	International Conference on Innovative Computing Technology	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3170	IJCCI	International Joint Conference on Computational Intelligence	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3169	IHM	Conférence Francophone sur l’Interaction Homme-Machine	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3168	IFUZZY	International Conference on Fuzzy Theory and its Applications	5	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3167	IEAAIE	International Conference on Industrial Engineering & Other Applications of Applied Intelligence Systems	12	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3166	IDCS	International Conference on Internet and Distributed Computing Systems	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3165	ICUMT	International Conference on Ultra Modern Telecommunications	14	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3164	ICUAS	International Conference on Unmanned Aircraft Systems	15	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3163	ICIT	IEEE International Conference on Industrial Technology	14	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3162	ICIST	International Conference on Information and Software Technologies	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3161	ICIIP	International Conference on Image Information Processing	15	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3160	I3E	International Conference on e-Commerce, e-Business, and e-Government	5	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3159	ICED	International Conference on Engineering Design	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3158	ICCEBerlin	IEEE International Conference on Consumer Electronics Berlin	12	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3157	ICCDCS	International Caribbean Conference on Devices, Circuits and Systems	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3156	EXP.AT	Experiment@ International Conference	5	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3155	EuroPloP	 European Conference on Pattern Languages of Programs	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3154	EUROITV	European Conference on Interactive TV	16	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3153	EDCC	European Dependable Computing Conference	0	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3152	EATIS	Euro American Conference on Telematics and Information Systems	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3151	EANN	Internation Conference on Engineering Applications of Neural Networks	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3150	DEPCOS	International Conference on Dependability and Complex Systems	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3149	CSEDU	International Conference on Computer Supported Education	13	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3148	CRIWG	International Conference on Collaboration and Technology	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3147	COMPIMAGE	International Symposium CompIMAGE	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3146	COLOGNETWENTE	Cologne-Twente Workshop on Graphs and Combinatorial Optimization	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3145	CLEI	Conferencia Latinoamericana de Informática	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3144	CDVE	International Conference on Cooperative Design, Visualization, and Engineering	6	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3143	CCECE	Canadian Conference on Electrical and Computer Engineering	15	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+3142	CADGRAPHICS	International Conference on Computer-Aided Design and Computer Graphics	7	B3	CIÊNCIA DA COMPUTAÇÃO	2015
+2776	AHS	Adaptive Hardware and Systems	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2775	AH	Augmented Human International Conference	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2774	AGILE	Agile Conference	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2773	AGI	Conference on Artificial General Intelligence	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2772	ADBIS	East European Conference on Advances in Databases and Information Systems	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2771	3DUI	IEEE Symposium on 3D User Interfaces	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2770	3DIC	3D System Integration	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2769	WOWMOM	International Symposium on a World of Wireless, Mobile and Multimedia Networks	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2768	WIMOB	International Conference on Wireless and Mobile Computing, Networking and Communications	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2767	WEBSCI	Web Science Conference	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2766	WEA	Workshop on Experimental and Efficient Algorithms	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2765	WCRE	Working Conference on Reverse Engineering	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2764	VAST	IEEE Conference on Visual Analytics Science and Technology	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2763	VAMOS	International Workshop on Variability Modelling of Software-intensive Systems	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2762	UCC	IEEE/ACM International Conference on Utility and Cloud Computing	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2761	TRUSTCOM	International Conference on Trust, Security and Privacy in Computing and Communications	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2760	COMPGEOM	International Symposium on Computational Geometry	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2759	SMC	IEEE International Conference on Systems, Man and Cybernetics	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2758	SLT	Workshop on Spoken Language Technology	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2757	SERVICES	IEEE World Congress on Services	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2756	IEEESCC	IEEE International Conference on Services Computing	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2755	SAT	International Conference on Theory and Applications of Satisfiability Testing	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2754	SACRYPT	Workshop on Selected Areas in Cryptography	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2753	RTSS	Real-Time Systems Symposium	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2752	RECOMB	International Conference on Research in Computational Molecular Biology	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2751	RE	International Requirements Engineering Conference	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2750	PDP	Euromicro International Conference on Parallel, Distributed and Network-Based Processing	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2749	PAM	Passive and Active Network Measurement Conference	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2748	PAKDD	Pacific-Asia Conference on Knowledge Discovery and Data Mining	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2747	PacificVis	IEEE Pacific Visualization Symposium	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2746	NOMS	IEEE/IFIP Network Operations and Management Symposium	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2745	NFM	NASA Formal Methods Symposium	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2744	NETWORKING	IFIP Networking Conference	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2743	MODULARITY	International Conference on Modularity	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2742	MODELS	International Conference on Model Driven Engineering Languages and Systems	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2741	MMSYS	ACM Multimedia Systems Conference	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2740	MIDDLEWARE	International Middleware Conference	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2739	MDM	IEEE International Conference on Mobile Data Management	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2738	MASCOTS	International Symposium on the Modeling, Analysis, and Simulation of Computer and Telecommunication Systems	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2737	KR	International Conference on Principles of Knowledge Representation and Reasoning	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2736	JCDL	ACM/IEEE Joint Conference on Digital Libraries	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2735	IWCMC	International Conference on Wireless Communications and Mobile Computing	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2734	IUI	International Conference on Intelligent User Interfaces	26	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2733	ITICSE	ACM Conference on Innovation and Technology in Computer Science Education	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2732	ISWCS	International Symposium on Wireless Communication Systems	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2731	ISSRE	IEEE International Symposium on Software Reliability Engineering	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2730	ISPASS	International Symposium on Performance Analysis of Systems and Software	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2729	ISLPED	International Symposium on Low Power Electronics and Design	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2728	ISCC	International Symposium on Computers and Communications	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2727	INTERACT	IFIP TC 13 International Conference on Human-Computer Interaction	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2726	IMIS	International Conference on Innovative Mobile and Internet Services in Ubiquitous Computing	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2725	IM	IFIP/IEEE International Symposium on Integrated Network Management	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2724	IISWC	IEEE International Symposium on Workload Characterization	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2723	ICWS	IEEE International Conference on Web Services	26	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2722	ICSTV	IEEE International Conference on Software Testing, Verification and Validation	26	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2721	ICSOC	International Conference on Service Oriented Computing	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2720	ICPR	International Conference on Pattern Recognition	26	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2719	ICPE	International Conference on Performance Engineering	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2718	ICPC	International Conference on Program Comprehension	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2717	ICPADS	International Conference on Parallel and Distributed Systems	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2716	ICNC	International Conference on Computing, Networking and Communications	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2715	ICCD	International Conference on Computer Design	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2714	ICCCN	International Conference on Computer Communications and Networks	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2713	ICB	International Conference on Biometrics	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2712	ICAISC	International Conference on Artificial Intelligence and Soft Computing	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2711	I3D	ACM Symposium on Interactive 3D Graphics and Games	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2710	I2MTC	IEEE International Instrumentation and Measurement Technology Conference	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2708	HPCC	International Conference on High Performance Computing and Communications	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2707	FPL	International Conference on Field-Programmable Logic and Applications	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2706	FMCAD	International Conference on Formal Methods in Computer-Aided Design	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2705	FM	International Symposium on Formal Methods	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2704	FCCM	IEEE Annual International Symposium on Field-Programmable Custom Computing Machines	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2703	FASE	International Conference on Fundamental Approaches to Software Engineering	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2702	EUSIPCO	European Signal Processing Conference	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2701	ESEM	ACM/IEEE International Symposium on Empirical Software Engineering and Measurement	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2700	ESA	European Symposium on Algorithms	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2699	EICS	Symposium on Engineering Interactive Computing Systems	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2698	EDOC	IEEE International Enterprise Distributed Object Computing Conference	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2697	EDM	International Conference on Educational Data Mining	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2696	ECOOP	European Conference on Object-Oriented Programming	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2695	ECIS	European Conference on Information Systems	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2694	ECIR	European Conference on Information Retrieval	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2693	ECAI	European Conference on Artificial Intelligence	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2692	DEBS	International Conference on Distributed and Event-Based Systems	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2691	DCOSS	International Conference on Distributed Computing in Sensor Systems	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2690	CSMR	European Conference on Software Maintenance and Reengineering	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2689	CP	International Conference on Principles and Practice of Constraint Programming	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2688	CONCUR	International Conference on Concurrency Theory	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2687	COMSNETS	International Conference on COMmunication Systems & NETworkS	23	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2686	COMPSAC	Annual International Computers, Software & Applications Conference	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2685	COLING	International Conference on Computational Linguistics	26	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2684	CODES+ISSS	International Conference on Hardware/Software Codesign and System Synthesis	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2683	CNSM	International Conference on Network and Service Management	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2682	CLUSTER	IEEE International Conference on Cluster Computing	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2681	CLOSER	International Conference on Cloud Computing and Services Science	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2680	CIG	IEEE Conference on Computational Intelligence and Games	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2679	CICLING	International Conference on Intelligent Text Processing and Computational Linguistics	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2678	CICC	IEEE Custom Integrated Circuits Conference	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2677	CGO	International Symposium on Code Generation and Optimization	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2676	CCNC	Annual IEEE Consumer Communications & Networking Conference	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2675	CAISE	International Conference on Advanced Information Systems Engineering	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2674	BPM	International Conference on Business Process Management	24	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2673	ASSETS	International ACM SIGACCESS Conference on Computers and Accessibility	21	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2672	ASONAM	IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2671	ARES	International Conference on Availability, Reliability and Security	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2670	AMCIS	Americas Conference on Information Systems	20	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2669	AINA	IEEE International Conference on Advanced Information Networking and Applications	25	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2668	AIIDE	AAAI Conference on Artificial Intelligence and Interactive Digital Entertainment 	19	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2667	AIED	Artificial Intelligence in Education Conference	22	A2	CIÊNCIA DA COMPUTAÇÃO	2015
+2666	WWW	International World Wide Web Conferences	74	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2665	WSDM	ACM Conference International Conference on Web Search and Data Mining	58	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2664	WACV	Winter Conference on Applications of Computer Vision	27	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2663	UbiComp	ACM International Joint Conference on Pervasive and Ubiquitous Computing	41	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2662	SPLC	International Software Product Line Conference: New Directions in Systems and Software Product Line Engineering	28	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2661	SOCIALCOM	International Conference on Social Computing	34	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2660	SMARTGRIDCOMM	IEEE International Conference on Smart Grid Communications	31	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2659	SIGMOD	ACM Conference on Management Data	65	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2658	SIGKDD	ACM International Conference on Knowledge Discovery and Data Mining	67	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2657	SIGIR	 International ACM SIGIR Conference on Research and Development in Information Retrieval	50	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2656	SIGCSE	ACM Technical Symposium on Computer Science Education	28	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2655	SIGCOMM	ACM SIGCOMM Conference	64	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2654	SenSys	ACM Conference on Embedded Network Sensor Systems	33	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2653	SDM	SIAM International Conference on Data Mining	35	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2652	SC	International Conference for High Performance Computing, Networking, Storage and Analysis	48	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2651	SAC	ACM Symposium on Applied Computing	31	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2650	RECSYS	ACM Conference on Recommender Systems	35	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2649	PPOPP	ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming	34	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2648	POPL	Symposium on Principles of Programming Languages	48	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2647	PLDI	SIGPLAN Conference on Programming Language Design and Implementation	45	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2646	PIMRC	International Symposium on Personal, Indoor and Mobile Radio Communications	27	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2645	PERCOM	International Conference on Pervasive Computing and Communications	28	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2644	OOPSLA	Conference on Object-Oriented Programming Systems, Languages, and Applications	36	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2643	MSR	Working Conference on Mining Software Repositories	34	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2642	MHCI	International Conference on Human-Computer Interaction with Mobile Devices and Services Adjunct 	30	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2641	MOBICOM	ACM/IEEE International Conference on Mobile Computing and Networking	44	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2640	LREC	International Conference on Language Resources and Evaluation	35	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2639	LAK	International Learning Analytics and Knowledge Conference	32	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2638	KDD	ACM SIGKDD Conference on Knowledge Discovery and Data Mining	67	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2637	ISWC	International Semantic Web Conference	40	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2636	ISMIR	International Society for Music Information Retrieval Conference	31	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2635	ISIT	International Symposium on Information Theory	45	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2634	ISCAS	IEEE International Symposium on Circuits and Systems	27	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2633	ISCA	International Symposium on Computer Architecture	50	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2632	IROS	IEEE/RSJ International Conference on Intelligent Robots and Systems	50	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2631	IPSN	International Conference on Information Processing in Sensor Networks	33	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2630	IPDPS	IEEE International Parallel & Distributed Processing Symposium	41	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2629	INTERSPEECH	Conference of the International Speech Communication Association	44	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2604	HLT	International Conference Baltic Human Language Technology	35	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2603	HICSS	Hawaii International Conference on System Sciences	39	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2602	GLOBECOM	IEEE Global Communications Conference	45	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2601	GECCO	Genetic and Evolutionary Computation Conference	30	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2600	FUSION	International Conference on Information Fusion	29	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2599	FGR	IEEE International Conference on Automatic Face and Gesture Recognition	37	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2598	EUROSYS	European Conference on Computer Systems	38	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2597	EUROPAR	European Conference on Parallel Computing	27	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2596	ESWS	European Semantic Web Conference	34	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2595	ESEC	Joint Meeting on European Software Engineering Conference and Foundations of Software Engineering	41	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2594	EMNLP	Conference on Empirical Methods in Natural Language Processing	55	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2593	EDBT	International Conference on Extending Database Technology	31	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2592	ECRTS	Euromicro Conference on Real-Time Systems	29	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2591	ECML	European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases	30	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2590	DSN	Annual IEEE/IFIP International Conference on Dependable Systems and Networks	28	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2589	DATE	Design, Automation and Test in Europe Conference and Exhibition	39	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2588	DAC	Design Automation Conference	43	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2587	CVPR	IEEE Conference on Computer Vision and Pattern Recognition	140	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2586	CSCW	ACM Conference on Computer Supported Cooperative Work & Social Computing	49	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2585	CONEXT	Conference on Emerging Network Experiment and Technology	34	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2584	CloudCom	IEEE International Conference on Cloud Computing Technology and Science	31	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2583	CIKM	ACM International Conference on Information and Knowledge Management	42	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2582	CHI	ACM Conference on Human Factors in Computing Systems	83	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2581	CHES	Conference on Cryptographic Hardware and Embedded Systems	33	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2924	PACT	International Conference on Parallel Computing Technologies	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2923	P2P	International Conference on Peer-to-Peer Computing	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2922	OPODIS	International Conference on Principles of Distributed Systems	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2921	NTMS	IFIP International Conference on New Technologies, Mobility and Security	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2920	NLDB	International Conference on Application of Natural Language to Information Systems	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2919	MWSCAS	International Midwest Symposium on Circuits and Systems	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2918	MUM	International Conference on Mobile and Ubiquitous Multimedia	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2917	MSWIM	ACM International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2916	MOBIQUITOUS	International Conference on Mobile and Ubiquitous Systems: Computing, Networking and Services	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2915	MMSP	International Workshop on Multimedia and Signal Processing	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2914	MMM	International Conference on Multimedia Modelling	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2913	MLSP	International Workshop on Machine Learning for Signal Processing	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2912	MICCAI	International Conference on Medical Image Computing and Computer Assisted Intervention	30	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2911	MICAI	Mexican International Conference on Artificial Intelligence	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2910	MEDHOCNET	Annual Mediterranean Ad Hoc Networking Workshop	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2909	LPNMR	International Conference on Logic Programming and Non-monotonic Reasoning	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2908	LION	Learning and Intelligent Optimization Conference	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2907	LCN	IEEE Conference on Local Computer Networks	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2906	LATIN	Latin American Symposium on Theoretical Informatics	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2905	KES	International Conference on Knowledge-Based and Intelligent Information & Engineering Systems	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2904	IWSSIP	International Conference on Systems, Signals and Image Processing	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2903	IWEC	International Workshop on Entertainment Computing	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2902	IVS	Intelligent Vehicles Symposium	34	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2901	IV	International Conference on Information Visualisation	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2900	ITS	International Conference on Intelligent Tutoring Systems	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2899	ITNG	International Conference on Information Technology : New Generations	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2898	ISVLSI	IEEE Computer Society Annual Symposium on VLSI	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2897	ISVC	International Symposium on Visual Computing	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2896	ISQED	International Symposium on Quality Electronic Design	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2895	ISPDC	International Symposium on Parallel and Distributed Computing	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2894	ISPD	ACM International Symposium on Physical Design	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2893	ISORC	IEEE International Symposium on RealTime Distributed Computing 	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2892	ISNN	International Symposium on Neural Networks	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2891	ISM	IEEE International Symposium on Multimedia	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2890	ISI	IEEE International Conference on Intelligence and Security Informatics	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2889	ISDA	International Conference on Intelligent Systems Design and Applications	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2888	ISAAC	International Symposium Algorithms and Computation	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2887	IRI	IEEE International Conference on Information Reuse and Integration	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2886	IPCCC	International Performance, Computing, and Communications Conference	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2885	IOLTS	IEEE International On-Line Testing Symposium	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2884	INDIN	IEEE International Conference on Industrial Informatics	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2883	INCOS	International Conference on Intelligent Networking and Collaborative Systems	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2882	IMR	International Meshing Roundtable and User Forum	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2881	IIWAS	International Conference on Information Integration and Web-based Applications & Services	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2880	IEEENANO	International Conference on Nanotechnology	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2879	ICWE	International Conference on Web Engineering	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2878	ICVS	International Conference on Computer Vision Systems	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2877	ICTON	International Conference on Transparent Optical Networks	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2876	ICTAI	IEEE International Conference on Tools with Artificial Intelligence	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2875	ICT	International Conference on Telecommunications	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2874	ICST	International Conference on Sensing Technology	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2873	ICSI	International Conference on Swarm Intelligence	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2872	ICSC	International Conference on Semantic Computing	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2871	ICRA	IEEE International Conference on Robotics and Automation	68	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2870	ICONIP	International Conference on Neural Information Processing	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2869	ICNC-FSKD	International Conference on Natural Computation	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2868	ICMLA	IEEE International Conference on Machine Learning and Applications	17	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2867	ICITST	International Conference for Internet Technology and Secured Transactions	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2866	ICIC	International Conference on Intelligent Computing	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2865	ICIAR	International Conference on Image Analysis and Recognition	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2864	ICIAP	International Conference on Image Analysis and Processing	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2863	ICGSE	IEEE International Conference on Global Software Engineering	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2862	ICFHR	International Conference on Frontiers in Handwriting Recognition	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2861	ICFEM	International Conference on Formal Engineering Methods	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2860	ICEC	IFIP International Conference on Entertainment Computing	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2858	ICCSA	International Conference on Computational Science and Its Applications	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2857	ICCA	International Conference on Control and Automation	12	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2856	ICASSP	IEEE International Conference on Acoustics, Speech and Signal Processing	61	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2855	ICAR	International Conference on Advanced Robotics	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2854	ICANN	International Conference on Artificial Neural Networks	16	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2853	ICALT	IEEE International Conference on Advanced Learning Technologies	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2852	ICAART	International Conference on Agents and Artificial Intelligence	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2851	IAT	IEEE/WIC/ACM International Conference on Intelligent Agent Technology	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2850	HPCS	International Conference on High Performance Computing & Simulation	18	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2849	HIPC	IEEE International Conference on High Performance Computing	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2848	HCOMP	Conference on Human Computation and Crowdsourcing	14	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2847	HASE	IEEE International Symposium on High Assurance Systems Engineering	13	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2846	HAIS	International Conference on Hybrid Artificial Intelligence Systems	15	B1	CIÊNCIA DA COMPUTAÇÃO	2015
+2628	INFOCOM	IEEE International Conference on Computer Communications	80	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2627	IMC	ACM Internet Measurement Conference	45	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2626	IJCNN	IEEE International Joint Conference on Neural Networks	27	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2625	IJCAI	International Joint Conference on Artificial Intelligence	55	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2624	IEEECLOUD	IEEE International Conference on Cloud Computing 	43	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2623	ICWSM	International AAAI Conference on Weblogs and Social Media	60	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2622	ICSM	IEEE International Conference on Software Maintenance and Evolution	27	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2621	ICSE	International Conference on Software Engineering	63	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2620	ICPP	International Conference on Parallel Processing	29	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2619	ACMICN	ACM International Conference on Information-Centric Networking	29	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2618	ICMR	ACM International Conference on Multimedia Information Retrieval 	28	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2617	ICML	International Conference on Machine Learning	76	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2616	ICIS	International Conference on Computer and Information Science	27	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2615	ICIP	IEEE International Conference on Image Processing	35	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2614	ICDM	IEEE International Conference on Data Mining	39	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2613	ICDE	IEEE International Conference on Data Engineering	52	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2612	ICDCS	International Conference on Distributed Computing Systems	38	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2611	ICDAR	International Conference on Document Analysis and Recognition	31	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2610	ICCS	International Conference on Computational Science	37	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2609	ICCAD	IEEE/ACM International Conference on ComputerAided Design	28	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2608	ICC	IEEE International Conference on Communications	48	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2607	HPDC	International Symposium on High Performance Distributed Computing	29	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2606	HPCA	IEEE  International Symposium on High Performance Computer Architecture	42	A1	CIÊNCIA DA COMPUTAÇÃO	2015
+2605	HOTNETS	ACM Workshop on Hot Topics in Networks	27	A1	CIÊNCIA DA COMPUTAÇÃO	2015
 \.
 
 
