@@ -56,3 +56,5 @@ update tb_qualis_periodico set no_area_avaliacao = 'TEOLOGIA' where no_area_aval
 * Títulos da linha de cabeçalho alterados para os nomes correspondentes das colunas da tabela `tb_qualis_evento` da base de dados. As colunas desnecessárias foram removidas.
 
 * Remoção da sigla do início do nome do evento utilizando a expressão regular `^(.+) - (.*)$`.
+
+* Os registros foram inseridos com o ano base de 2015 através do arquivo `QualisConferencias2013-2015.csv` e copiados para os anos base 2013 e 2014.

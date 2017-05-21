@@ -56,7 +56,7 @@ public class MeasurementServiceTest extends WebContextTest {
 
 	@Test
 	public void testMeasure() {
-		this.saveFeedback(new FeedbackEventoForm(2L, "3d user interfaces conference", 2010));
+		this.saveFeedback(new FeedbackEventoForm(46L, "agile conference", 2010));
 
 		MeasureResult result = this.measurementService.measure(this.usuarioLogado, NivelSimilaridade.BAIXO, 100);
 		MeasureList noFeedback = result.getNoFeedback();
