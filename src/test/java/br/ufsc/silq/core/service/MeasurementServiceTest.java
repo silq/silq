@@ -65,7 +65,7 @@ public class MeasurementServiceTest extends WebContextTest {
 		Assertions.assertThat(result.getSize()).isEqualTo(1);
 		Assertions.assertThat(result.getThreshold()).isEqualTo(NivelSimilaridade.BAIXO.getValue());
 		Assertions.assertThat(noFeedback.getMatch()).isEqualTo(0);
-		Assertions.assertThat(noFeedback.getMeanReciprocralRank()).isCloseTo(0.25, Offset.offset(0.01));
+		Assertions.assertThat(noFeedback.getMeanReciprocralRank()).isCloseTo(0.2, Offset.offset(0.01));
 	}
 
 	@Test
