@@ -1,0 +1,1180 @@
+ds_sigla	no_titulo	no_estrato
+AAAI	Conference on Artificial Intelligence	A1
+AAMAS	International Conference on Autonomous Agents and Multiagent Systems	A1
+ACL	Annual Meeting of the Association for Computational Linguistics	A1
+ACMSOCC	ACM Symposium on Cloud Computing	A1
+ALLERTON	Allerton Conference on Communication, Control, and Computing	A1
+ASE	IEEE/ACM International Conference on Automated Software Engineering	A1
+ASIACRYPT	Annual International Conference on the Theory and Applications of Cryptology and Information Security	A1
+ASPLOS	International Conference on Architectural Support for Programming Languages and Operating Systems	A1
+BMVC	British Machine Vision Conference	A1
+CCGRID	IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing	A1
+CCS	ACM Symposium on Information, Computer and Communications Security	A1
+CEC	IEEE Congress on Evolutionary Computation	A1
+CHES	Conference on Cryptographic Hardware and Embedded Systems	A1
+CHI	ACM Conference on Human Factors in Computing Systems	A1
+CIKM	ACM International Conference on Information and Knowledge Management	A1
+CloudCom	IEEE International Conference on Cloud Computing Technology and Science	A1
+CONEXT	Conference on Emerging Network Experiment and Technology	A1
+CSCW	ACM Conference on Computer Supported Cooperative Work & Social Computing	A1
+CVPR	IEEE Conference on Computer Vision and Pattern Recognition	A1
+DAC	Design Automation Conference	A1
+DATE	Design, Automation and Test in Europe Conference and Exhibition	A1
+DSN	Annual IEEE/IFIP International Conference on Dependable Systems and Networks	A1
+ECCV	European Conference on Computer Vision	A1
+ECML	European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases	A1
+ECRTS	Euromicro Conference on Real-Time Systems	A1
+EDBT	International Conference on Extending Database Technology	A1
+EMNLP	Conference on Empirical Methods in Natural Language Processing	A1
+ESWS	European Semantic Web Conference	A1
+EUROPAR	European Conference on Parallel Computing	A1
+EUROSYS	European Conference on Computer Systems	A1
+FGR	IEEE International Conference on Automatic Face and Gesture Recognition	A1
+FSE/ESEC	Joint Meeting on European Software Engineering Conference and Foundations of Software Engineering	A1
+FUSION	International Conference on Information Fusion	A1
+GECCO	Genetic and Evolutionary Computation Conference	A1
+GIS	ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems	A1
+GLOBECOM	IEEE Global Communications Conference	A1
+HICSS	Hawaii International Conference on System Sciences	A1
+HLT	International Conference Baltic Human Language Technology	A1
+HOTNETS	ACM Workshop on Hot Topics in Networks	A1
+HPCA	IEEE International Symposium on High Performance Computer Architecture	A1
+HPDC	International Symposium on High Performance Distributed Computing	A1
+ICASSP	IEEE International Conference on Acoustics, Speech and Signal Processing	A1
+ICC	IEEE International Conference on Communications	A1
+ICCAD	IEEE/ACM International Conference on ComputerAided Design	A1
+ICCS	International Conference on Computational Science	A1
+ICDAR	International Conference on Document Analysis and Recognition	A1
+ICDCS	International Conference on Distributed Computing Systems	A1
+ICDE	IEEE International Conference on Data Engineering	A1
+ICDM	IEEE International Conference on Data Mining	A1
+ICIP	IEEE International Conference on Image Processing	A1
+ICIS	International Conference on Information Systems	A1
+ICML	International Conference on Machine Learning	A1
+ICMR	ACM International Conference on Multimedia Retrieval	A1
+ICN	ACM International Conference on Information-Centric Networking	A1
+ICPP	International Conference on Parallel Processing	A1
+ICRA	IEEE International Conference on Robotics and Automation	A1
+ICSE	International Conference on Software Engineering	A1
+ICSM	IEEE International Conference on Software Maintenance and Evolution	A1
+ICWSM	International AAAI Conference on Weblogs and Social Media	A1
+IEEECLOUD	IEEE International Conference on Cloud Computing	A1
+IJCAI	International Joint Conference on Artificial Intelligence	A1
+IJCNN	IEEE International Joint Conference on Neural Networks	A1
+IMC	ACM Internet Measurement Conference	A1
+INFOCOM	IEEE International Conference on Computer Communications	A1
+INTERSPEECH	Conference of the International Speech Communication Association	A1
+IPDPS	IEEE International Parallel & Distributed Processing Symposium	A1
+IPSN	International Conference on Information Processing in Sensor Networks	A1
+IROS	IEEE/RSJ International Conference on Intelligent Robots and Systems	A1
+ISCA	International Symposium on Computer Architecture	A1
+ISCAS	IEEE International Symposium on Circuits and Systems	A1
+ISIT	International Symposium on Information Theory	A1
+ISMIR	International Society for Music Information Retrieval Conference	A1
+ISSTA	International Symposium on Software Testing and Analysis	A1
+ISWC	International Semantic Web Conference	A1
+KDD	ACM SIGKDD Conference on Knowledge Discovery and Data Mining	A1
+LAK	International Learning Analytics and Knowledge Conference	A1
+LREC	International Conference on Language Resources and Evaluation	A1
+MICCAI	International Conference on Medical Image Computing and Computer Assisted Intervention	A1
+MOBICOM	ACM/IEEE International Conference on Mobile Computing and Networking	A1
+MOBILEHCI	International Conference on Human-Computer Interaction with Mobile Devices and Services Adjunct	A1
+MSR	Working Conference on Mining Software Repositories	A1
+NSDI	Networked Systems Design and Implementation	A1
+OOPSLA	Conference on Object-Oriented Programming Systems, Languages, and Applications	A1
+PACTT	International Conference on Parallel Architectures and Compilation Techniques	A1
+PERCOM	International Conference on Pervasive Computing and Communications	A1
+PIMRC	International Symposium on Personal, Indoor and Mobile Radio Communications	A1
+PLDI	SIGPLAN Conference on Programming Language Design and Implementation	A1
+POPL	Symposium on Principles of Programming Languages	A1
+PPOPP	ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming	A1
+RECSYS	ACM Conference on Recommender Systems	A1
+SAC	ACM Symposium on Applied Computing	A1
+SC	International Conference for High Performance Computing, Networking, Storage and Analysis	A1
+SDM	SIAM International Conference on Data Mining	A1
+SenSys	ACM Conference on Embedded Network Sensor Systems	A1
+SIGCOMM	ACM SIGCOMM Conference	A1
+SIGCSE	ACM Technical Symposium on Computer Science Education	A1
+SIGIR	International ACM SIGIR Conference on Research and Development in Information Retrieval	A1
+SIGMOD	ACM Conference on Management Data	A1
+SOCIALCOM	International Conference on Social Computing	A1
+SODA	ACM-SIAM Symposium on Discrete Algorithms	A1
+SPLC	International Software Product Line Conference: New Directions in Systems and Software Product Line Engineering	A1
+UAI	Conference on Uncertainty in Artificial Intelligence	A1
+UbiComp	ACM International Joint Conference on Pervasive and Ubiquitous Computing	A1
+UIST	User Interface Software Technology Symposium	A1
+WACV	Winter Conference on Applications of Computer Vision	A1
+WSDM	ACM Conference International Conference on Web Search and Data Mining	A1
+WWW	International World Wide Web Conferences	A1
+AIED	Intternational Conference on Artificial Intelligence in Education	A2
+AIIDE	AAAI Conference on Artificial Intelligence and Interactive Digital Entertainment	A2
+AINA	IEEE International Conference on Advanced Information Networking and Applications	A2
+AMCIS	Americas Conference on Information Systems	A2
+ARES	International Conference on Availability, Reliability and Security	A2
+ASONAM	IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining	A2
+ASSETS	International ACM SIGACCESS Conference on Computers and Accessibility	A2
+AVSS	IEEE International Conference on Advanced Video and Signal Based Surveillance	A2
+BPM	International Conference on Business Process Management	A2
+BTAS	IEEE International Conference on Biometrics: Theory, Applications, and Systems	A2
+CADE	International Conference on Automated Deduction	A2
+CAISE	International Conference on Advanced Information Systems Engineering	A2
+CGO	International Symposium on Code Generation and Optimization	A2
+CICC	IEEE Custom Integrated Circuits Conference	A2
+CICLING	International Conference on Intelligent Text Processing and Computational Linguistics	A2
+CIG	IEEE Conference on Computational Intelligence and Games	A2
+CLOSER	International Conference on Cloud Computing and Services Science	A2
+CLUSTER	IEEE International Conference on Cluster Computing	A2
+CNSM	International Conference on Network and Service Management	A2
+CODES+ISSS	International Conference on Hardware/Software Codesign and System Synthesis	A2
+COLING	International Conference on Computational Linguistics	A2
+COMPGEOM	International Symposium on Computational Geometry	A2
+COMPSAC	Annual International Computers, Software & Applications Conference	A2
+COMSNETS	International Conference on COMmunication Systems & NETworkS	A2
+CONCUR	International Conference on Concurrency Theory	A2
+CoopIS	International Conference on Cooperative Information Systems	A2
+CP	International Conference on Principles and Practice of Constraint Programming	A2
+CSF	IEEE Computer Security Foundations Symposium	A2
+CSMR	European Conference on Software Maintenance and Reengineering	A2
+CT-RSA	RSA Conference Cryptographers' Track	A2
+DCOSS	International Conference on Distributed Computing in Sensor Systems	A2
+DEBS	International Conference on Distributed and Event-Based Systems	A2
+ECAI	European Conference on Artificial Intelligence	A2
+ECIR	European Conference on Information Retrieval	A2
+ECIS	European Conference on Information Systems	A2
+ECOOP	European Conference on Object-Oriented Programming	A2
+EDM	International Conference on Educational Data Mining	A2
+EDOC	IEEE International Enterprise Distributed Object Computing Conference	A2
+EICS	ACM SIGCHI Symposium on Engineering Interactive Computing Systems	A2
+ESA	European Symposium on Algorithms	A2
+ESEM	ACM/IEEE International Symposium on Empirical Software Engineering and Measurement	A2
+ESORICS	European Symposium on Research in Computer Security	A2
+ETRA	Biennial ACM Symposium on Eye Tracking Research & Applications	A2
+EUSIPCO	European Signal Processing Conference	A2
+FASE	International Conference on Fundamental Approaches to Software Engineering	A2
+FCCM	IEEE Annual International Symposium on Field-Programmable Custom Computing Machines	A2
+FM	International Symposium on Formal Methods	A2
+FMCAD	International Conference on Formal Methods in Computer-Aided Design	A2
+FPL	International Conference on Field-Programmable Logic and Applications	A2
+HPCC	International Conference on High Performance Computing and Communications	A2
+HT	ACM Conference on Hypertext and Social Media	A2
+I2MTC	IEEE International Instrumentation and Measurement Technology Conference	A2
+I3D	ACM Symposium on Interactive 3D Graphics and Games	A2
+ICAISC	International Conference on Artificial Intelligence and Soft Computing	A2
+ICAPS	International Conference on Automated Planning and Scheduling	A2
+ICB	International Conference on Biometrics	A2
+ICCCN	International Conference on Computer Communications and Networks	A2
+ICCD	International Conference on Computer Design	A2
+ICCNC	International Conference on Computing, Networking and Communications	A2
+ICME	IEEE International Conference on Multimedia and Expo	A2
+ICPADS	International Conference on Parallel and Distributed Systems	A2
+ICPC	International Conference on Program Comprehension	A2
+ICPE	International Conference on Performance Engineering	A2
+ICPR	International Conference on Pattern Recognition	A2
+ICSOC	International Conference on Service Oriented Computing	A2
+ICSTV	IEEE International Conference on Software Testing, Verification and Validation	A2
+ICWS	IEEE International Conference on Web Services	A2
+IEEESCC	IEEE International Conference on Services Computing	A2
+IGSC	International Green and Sustainable Computing Conference	A2
+IISWC	IEEE International Symposium on Workload Characterization	A2
+IM	IFIP/IEEE International Symposium on Integrated Network Management	A2
+IMIS	International Conference on Innovative Mobile and Internet Services in Ubiquitous Computing	A2
+INTERACT	IFIP TC 13 International Conference on Human-Computer Interaction	A2
+ISCC	International Symposium on Computers and Communications	A2
+ISLPED	International Symposium on Low Power Electronics and Design	A2
+ISMAR	International Symposium on Mixed and Augmented Reality	A2
+ISPASS	IEEE International Symposium on Performance Analysis of Systems and Software	A2
+ISSRE	IEEE International Symposium on Software Reliability Engineering	A2
+ISWCS	International Symposium on Wireless Communication Systems	A2
+ITICSE	Conference on Innovation and Technology in Computer Science Education	A2
+IUI	International Conference on Intelligent User Interfaces	A2
+IWCMC	International Wireless Communications and Mobile Computing Conference	A2
+JCDL	ACM/IEEE Joint Conference on Digital Libraries	A2
+KR	International Conference on Principles of Knowledge Representation and Reasoning	A2
+MASCOTS	International Symposium on the Modeling, Analysis, and Simulation of Computer and Telecommunication Systems	A2
+MDM	IEEE International Conference on Mobile Data Management	A2
+MIDDLEWARE	International Middleware Conference	A2
+MMSYS	ACM Multimedia Systems Conference	A2
+MOBIHOC	ACM International Symposium on Mobile Ad Hoc Networking and Computing	A2
+MODELS	International Conference on Model Driven Engineering Languages and Systems	A2
+MODULARITY	International Conference on Modularity	A2
+MSST	IEEE Symposium on Mass Storage Systems and Technologies	A2
+NETWORKING	IFIP Networking Conference	A2
+NFM	NASA Formal Methods Symposium	A2
+NOMS	IEEE/IFIP Network Operations and Management Symposium	A2
+OM	International Workshop on Ontology Matching	A2
+PacificVis	IEEE Pacific Visualization Symposium	A2
+PAKDD	Pacific-Asia Conference on Knowledge Discovery and Data Mining	A2
+PAM	Passive and Active Network Measurement Conference	A2
+PDP	Euromicro International Conference on Parallel, Distributed and Network-Based Processing	A2
+RE	IEEE International Requirements Engineering Conference	A2
+RECOMB	International Conference on Research in Computational Molecular Biology	A2
+RTSS	Real-Time Systems Symposium	A2
+SACRYPT	Workshop on Selected Areas in Cryptography	A2
+SANER	IEEE International Conference on Software Analysis, Evolution and Reengineering	A2
+SAT	International Conference on Theory and Applications of Satisfiability Testing	A2
+SEA	International Symposium on Experimental Algorithms	A2
+SEAMS	International Symposium on Software Engineering for Adaptive and Self-Managing Systems	A2
+SERVICES	IEEE World Congress on Services	A2
+SIGGRAPH	International Conference and Exibition on Computer Graphics and Interactive Techniques	A2
+SLT	Workshop on Spoken Language Technology	A2
+SMC	IEEE International Conference on Systems, Man and Cybernetics	A2
+TABLETOPS	International Conference on Interactive Tabletops and Surfaces	A2
+TEI	International Conference on Tangible, Embedded and Embodied Interaction	A2
+TREC	Text Retrieval Conference	A2
+TRUSTCOM	International Conference on Trust, Security and Privacy in Computing and Communications	A2
+UCC	IEEE/ACM International Conference on Utility and Cloud Computing	A2
+UMAP	International Conference on User Modeling, Adaptation and Personalization	A2
+VAMOS	International Workshop on Variability Modelling of Software-intensive Systems	A2
+VAST	IEEE Conference on Visual Analytics Science and Technology	A2
+VNC	IEEE Vehicular Networking Conference	A2
+WCRE	Working Conference on Reverse Engineering	A2
+WEBSCI	Web Science Conference	A2
+WIMOB	IEEE International Conference on Wireless and Mobile Computing, Networking and Communications	A2
+WOWMOM	International Symposium on a World of Wireless, Mobile and Multimedia Networks	A2
+WSC	Winter Simulation Conference	A2
+3DIC	International 3D System Integration Conference	B1
+3DTV	3DTV Conference: The True Vision-Capture, Transmission and Display of 3D Video	B1
+3DUI	IEEE Symposium on 3D User Interfaces	B1
+3PGCIC	International Conference on P2P, Parallel, Grid, Cloud and Internet Computing	B1
+ACE	International Conference on Advances in Computer Entertainment Technology	B1
+ACIVS	Advanced Concepts for Intelligent Vision Systems	B1
+ADBIS	East European Conference on Advances in Databases and Information Systems	B1
+ADHOC-NOW	International Conference on Ad-Hoc Networks and Wireless	B1
+AGI	Conference on Artificial General Intelligence	B1
+AGILE	Agile Conference	B1
+AH	Augmented Human International Conference	B1
+AHS	NASA/ESA Conference on Adaptive Hardware and Systems	B1
+AI	Canadian Conference on Artificial Intelligence	B1
+AMW	Alberto Mendelzon International Workshop on Foundations of Data Management	B1
+APLAS	Asian Symposium on Programming Languages and Systems	B1
+ARC	International Symposium on Applied Reconfigurable Computing	B1
+ASAP	IEEE International Conference on Application-specific Systems, Architectures and Processors	B1
+BIBE	IEEE International Conference on BioInformatics and BioEngineering	B1
+BIBM	IEEE International Conference on Bioinformatics and Biomedicine	B1
+BIGDATA	IEEE International Congress on BigData	B1
+BIOSIG	International Conference of the Biometrics Special Interest Group	B1
+BMEI	International Conference BioMedical Engineering and Informatics	B1
+BMSB	IEEE International Symposium on Broadband Multimedia Systems and Broadcasting	B1
+CAIP	International Conference on Computer Analysis of Images and Patterns	B1
+CANS	International Conference on Cryptology and Network Security	B1
+CASCON	Annual International Conference on Computer Science and Software Engineering	B1
+CASE	IEEE Conference on Automation Science and Engineering	B1
+CASES	International Conference on Compilers, Architecture, and Synthesis for Embedded Systems	B1
+CASON	International Conferennce on Computational Aspects of Social Networks	B1
+CBI	IEEE Conference on Business Informatics	B1
+CBMI	International Workshop on Content-Based Multimedia Indexing	B1
+CBMS	International Symposium on Computer-Based Medical Systems	B1
+CBSE	International ACM Sigsoft Symposium on Component-Based Software Engineering	B1
+CCCG	Canadian Conference on Computational Geometry	B1
+CCECE	Canadian Conference on Electrical and Computer Engineering	B1
+CDC	IEEE Conference on Decision and Control	B1
+CF	ACM International Conference on Computing Frontiers	B1
+CGC	International Conference on Cloud and Green Computing	B1
+CHASE	International Workshop on Cooperative and Human Aspects of Software Engineering	B1
+CIARP	Iberoamerican Congress on Pattern Recognition	B1
+CIDM	Symposium on Computational Intelligence and Data Mining	B1
+CISIS	International Conference on Complex, Intelligent, and Software Intensive Systems	B1
+CIT	IEEE International Conference on Computer and Information Technology	B1
+CloudNet	IEEE International Conference on Cloud Networking	B1
+CMSB	International Conference on Computational Methods in Systems Biology	B1
+COCOON	International Computing and Combinatorics Conference	B1
+CogSIMA	IEEE International Multi-Disciplinary Conference on Cognitive Methods in Situation Awareness and Decision Support	B1
+COMMA	International Conference on Computational Models of Argument	B1
+CPM	Annual Symposium on Combinatorial Pattern Matching	B1
+CSCWD	IEEE International Conference on Computer Supported Cooperative Work in Design	B1
+CSE	International Conference on Computational Science and Engineering	B1
+CSEDU	International Conference on Computer Supported Education	B1
+CSEE&T	Conference on Software Engineering Education and Training	B1
+CSNDSP	International Symposium on Communication Systems, Networks and Digital Signal Processing	B1
+DAS	International Workshop on Document Analysis Systems	B1
+DAWAK	International Conference on Big Data Analytics and Knowledge Discovery	B1
+DCC	Data Compression Conference	B1
+DDECS	IEEE International Symposium on Design and Diagnostics of Electronic Circuits and Systems	B1
+DEXA	International Conference on Database and Expert Systems Applications	B1
+DFT	IEEE International Symposium on Defect and Fault Tolerance in VLSI Systems	B1
+DGO	Annual International Conference on Digital Government Research	B1
+DOCENG	ACM SIGWEB International Symposium on Document Engineering	B1
+DOLAP	International Workshop On Data Warehousing and OLAP	B1
+DRCN	International Conference on the Design of Reliable Communication Networks	B1
+DSD	Euromicro Conference on Digital System Design	B1
+DSRT	IEEE/ACM International Symposium on Distributed Simulation and Real Time Applications	B1
+EASE	International Conference on Evaluation and Assessment in Software Engineering	B1
+ECAL	European Conference on Artificial Life	B1
+ECCTD	European Conference on Circuit Theory and Design	B1
+ECMDAFA	European Conference on Modelling Foundations and Applications	B1
+ECMS	European Conference on Modelling and Simulation	B1
+ECSA	European Conference on Software Architecture	B1
+ECSQARU	European Conference on Symbolic and Quantitative Approaches to Reasoning and Uncertainty	B1
+ECTEL	European Conference on Technology Enhanced Learning	B1
+EGOV	International Conference on Electronic Government	B1
+EMBC	Annual International Conference of the IEEE Engineering in Medicine and Biology Society	B1
+EMO	International Conference on Evolutionary Multi-Criterion Optimization	B1
+EPIA	Portuguese Conference on Artificial Intelligence	B1
+ER	International Conference on Conceptual Modeling	B1
+ESANN	European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning	B1
+ESCIENCE	IEEE International Conference on e-Science	B1
+ETS	IEEE European Test Symposium	B1
+EuroGP	European Conference on Genetic Programming	B1
+EUROITV	European Conference on Interactive TV and Video	B1
+EUROMICRO	Euromicro Conference on Software Engineering and Advanced Applications	B1
+EuroSPI	European Conference on Software Process Improvement	B1
+EUSFLAT	Conference of the European Society for Fuzzy Logic and Technology	B1
+EVOAPPLICATIONS	European Conference on the Applications of Evolutionary Computation	B1
+EVOCOP	European Conference on Evolutionary Computation in Combinatorial Optimization	B1
+EWSDN	European Workshop on Software Defined Networks	B1
+FEDCSIS	Federated Conference on Computer Science and Information Systems	B1
+FIE	IEEE Frontiers in Education Conference	B1
+FLAIRS	International Florida Artificial Intelligence Conference	B1
+FSKD	International Conference on Fuzzy Systems and Knowledge Discovery	B1
+FSTTCS	Annual Conference on Foundations of Software Technology and Theoretical Computer Science	B1
+FUZZIEEE	IEEE International Conference on Fuzzy Systems	B1
+GI	Graphics Interface Conference	B1
+GLOBALSIP	Global Conference on Signal and Information Processing	B1
+GLVLSI	ACM Great Lakes Symposium on VLSI	B1
+GRAPP	International Conference on Computer Graphics Theory and Applications	B1
+HAIS	International Conference on Hybrid Artificial Intelligence Systems	B1
+HASE	IEEE International Symposium on High Assurance Systems Engineering	B1
+HCOMP	Conference on Human Computation and Crowdsourcing	B1
+HIPC	IEEE International Conference on High Performance Computing	B1
+HOST	IEEE International Symposium on Hardware Oriented Security and Trust	B1
+HPCS	International Conference on High Performance Computing & Simulation	B1
+HVC	International Haifa Verification Conference	B1
+IAT	IEEE/WIC/ACM International Conference on Intelligent Agent Technology	B1
+ICA3PP	International Conference on Algorithms and Architectures for Parallel Processing	B1
+ICAART	International Conference on Agents and Artificial Intelligence	B1
+ICALT	IEEE International Conference on Advanced Learning Technologies	B1
+ICANN	International Conference on Artificial Neural Networks	B1
+ICAR	International Conference on Advanced Robotics	B1
+ICARV	International Conference on Control, Automation, Robotics and Vision	B1
+ICCA	IEEE International Conference on Control and Automation	B1
+ICCP	IEEE International Conference on Intelligent Computer Communication and Processing	B1
+ICCSA	International Conference on Computational Science and Its Applications	B1
+ICDSP	IEEE International Conference on Digital Signal Processing	B1
+ICEBE	IEEE International Conference on e-Business Engineering	B1
+ICEC	IFIP International Conference on Entertainment Computing	B1
+ICECCS	International Conference on Engineering of Complex Computer	B1
+ICECS	IEEE International Conference on Electronics, Circuits and Systems	B1
+ICFEM	International Conference on Formal Engineering Methods	B1
+ICFHR	International Conference on Frontiers in Handwriting Recognition	B1
+ICGSE	IEEE International Conference on Global Software Engineering	B1
+ICIAP	International Conference on Image Analysis and Processing	B1
+ICIAR	International Conference on Image Analysis and Recognition	B1
+ICIC	International Conference on Intelligent Computing	B1
+ICISS	International Conference on Information Systems Security	B1
+ICITST	International Conference for Internet Technology and Secured Transactions	B1
+ICLP	International Conference on Logic Programming	B1
+ICM	International Conference on Microelectronics	B1
+ICMC	International Computer Music Conference	B1
+ICMLA	IEEE International Conference on Machine Learning and Applications	B1
+ICNC	IInternational Conference on Natural Computation	B1
+ICNSC	IEEE International Conference on Networking, Sensing and Control	B1
+ICOIN	International Conference on Information Networking	B1
+ICONIP	International Conference on Neural Information Processing	B1
+ICSC	International Conference on Semantic Computing	B1
+ICSI	International Conference on Swarm Intelligence	B1
+ICSOB	International Conference on Software Business	B1
+ICSOFT	International Conference on Software and Data Technologies	B1
+ICST	International Conference on Sensing Technology	B1
+ICT	International Conference on Telecommunications	B1
+ICTAI	IEEE International Conference on Tools with Artificial Intelligence	B1
+ICVS	International Conference on Computer Vision Systems	B1
+ICWE	International Conference on Web Engineering	B1
+IECON	Annual Conference of the IEEE Industrial Electronics Society	B1
+IEEEANTS	IEEE International Conference on Advanced Networks and Telecommuncations Systems	B1
+IFAC	World Congress of the International Federation of Automatic Control	B1
+IIWAS	International Conference on Information Integration and Web-based Applications & Services	B1
+INCOS	International Conference on Intelligent Networking and Collaborative Systems	B1
+INDIN	IEEE International Conference on Industrial Informatics	B1
+IOLTS	IEEE International On-Line Testing Symposium	B1
+IPCCC	International Performance, Computing, and Communications Conference	B1
+IPCO	Conference on Integer Programming and Combinatorial Optimization	B1
+IRI	IEEE International Conference on Information Reuse and Integration	B1
+ISAAC	International Symposium Algorithms and Computation	B1
+ISCIS	International Symposium on Computer and Information Sciences	B1
+ISDA	International Conference on Intelligent Systems Design and Applications	B1
+ISEUD	International Symposium on End-User Development	B1
+ISI	IEEE International Conference on Intelligence and Security Informatics	B1
+ISM	IEEE International Symposium on Multimedia	B1
+ISMIS	International Symposium on Methodologies for Intelligent Systems	B1
+ISMM	International Symposium on Mathematical Morphology	B1
+ISNN	International Symposium on Neural Networks	B1
+ISOLA	International Symposium on Leveraging Applications of Formal Methods, Verification and Validation	B1
+ISORC	IEEE International Symposium on RealTime Distributed Computing	B1
+ISPD	ACM International Symposium on Physical Design	B1
+ISPDC	International Symposium on Parallel and Distributed Computing	B1
+ISQED	International Symposium on Quality Electronic Design	B1
+ISVC	International Symposium on Visual Computing	B1
+ISVLSI	IEEE Computer Society Annual Symposium on VLSI	B1
+ITC	International Test Conference	B1
+ITNG	International Conference on Information Technology : New Generations	B1
+ITS	International Conference on Intelligent Tutoring Systems	B1
+IV	International Conference on Information Visualization	B1
+IVA	International Conference on Intelligent Virtual Agents	B1
+IVAPP	International Conference on Information Visualization Theory and Applications	B1
+IVS	Intelligent Vehicles Symposium	B1
+IWANN	International Work-Conference on Artificial and Natural Neural Networks	B1
+IWSSIP	International Conference on Systems, Signals and Image Processing	B1
+KES	International Conference on Knowledge-Based and Intelligent Information & Engineering Systems	B1
+KESAMSTA	International KES Conference on Agents and Multi-Agent Systems: Technologies and Applications	B1
+LATIN	Latin American Symposium on Theoretical Informatics	B1
+LCN	IEEE Conference on Local Computer Networks	B1
+LION	Learning and Intelligent Optimization Conference	B1
+LPNMR	International Conference on Logic Programming and Non-monotonic Reasoning	B1
+MEDHOCNET	Mediterranean Ad Hoc Networking Workshop	B1
+MICAI	Mexican International Conference on Artificial Intelligence	B1
+MIG	ACM Siggraph Conference on Motion in Games	B1
+MLDM	International Conference on Machine Learning and Data Mining in Pattern Recognition	B1
+MLSP	IEEE International Workshop on Machine Learning for Signal Processing	B1
+MMM	International Conference on Multimedia Modelling	B1
+MMSP	International Workshop on Multimedia and Signal Processing	B1
+MOBIQUITOUS	International Conference on Mobile and Ubiquitous Systems: Computing, Networking and Services	B1
+MSWIM	ACM International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems	B1
+MUM	International Conference on Mobile and Ubiquitous Multimedia	B1
+MWSCAS	International Midwest Symposium on Circuits and Systems	B1
+NCA	IEEE International Symposium on Network Computing and Applications	B1
+NEWCAS	IEEE International New Circuits and Systems Conference	B1
+NIME	International Conference on New Interfaces for Musical Expression	B1
+NLDB	International Conference on Application of Natural Language to Information Systems	B1
+NordiCHI	Nordic Conference on Human-Computer Interaction	B1
+NTMS	IFIP International Conference on New Technologies, Mobility and Security	B1
+OFC	IEEE Optical Fiber Communication Conference	B1
+OPODIS	International Conference on Principles of Distributed Systems	B1
+OzCHI	Australian Conference on Human-Computer Interaction	B1
+P2P	International Conference on Peer-to-Peer Computing	B1
+PAAMS	International Conference on Practical Applications of Agents, Multi-Agent Systems and Sustainability	B1
+PACIS	Pacific Asia Conference on Information Systems	B1
+PACT	International Conference on Parallel Computing Technologies	B1
+PADS	ACM SIGSIM Conference on Principles of Advanced Discrete Simulation	B1
+ParCO	International Conference on Parallel Computing	B1
+PCS	Picture Coding Symposium	B1
+PDCAT	International Conference on Parallel and Distributed Computing, Applications and Technologies	B1
+PESGM	IEEE Power & Energy Society General Meeting	B1
+PETRA	ACM International Conference on PErvasive Technologies Related to Assistive Environments	B1
+PPDP	International Symposium on Principles and Practice of Declarative Programming	B1
+PPSN	International Conference on Parallel Problem Solving from Nature	B1
+PRDC	Pacific Rim International Symposium on Dependable Computing	B1
+PROFES	International Conference on Product-Focused Software Process Improvement	B1
+PST	International Conference on Privacy, Security and Trust	B1
+QEST	International Conference on Quantitative Evaluation of Systems	B1
+QoMEX	International Workshop on Quality of Multimedia Experience	B1
+RAMS	Annual Reliability and Maintainability Symposium	B1
+RANLP	International Conference on Recent Advances in Natural Language Processing	B1
+RCIS	International Conference on Research Challenges in Information Science	B1
+RECONFIG	International Conference on Reconfigurable Computing and FPGAs	B1
+RECOSOC	International Symposium on Reconfigurable Communication-centric Systems-on-Chip	B1
+REFSQ	International Working Conference on Requirements Engineering: Foundations for Software Quality	B1
+RFID	IEEE International Conference on RFID	B1
+ROBOCUP	Robocup International Symposium	B1
+RTCSA	International Conference on Embedded and Real-Time Computing Systems and Applications	B1
+RuleML	International Web Rule Symposium	B1
+SACI	IEEE International Symposium on Applied Computational Intelligence and Informatics	B1
+SAFECOMP	International Conference on Computer Safety, Reliability, and Security	B1
+SAMOS	International Conference on Embedded Computer Systems: Architectures, Modeling and Simulation	B1
+SAS	IEEE Sensors Applications Symposium	B1
+SASO	International Conference on Self-Adaptive and Self-Organizing Systems	B1
+SBAC-PAD	International Symposium on Computer Architecture and High Performance Computing	B1
+SBIE	Simpósio Brasileiro de Informática na Educação	B1
+SCAM	IEEE International Working Conference on Source Code Analysis and Manipulation	B1
+SEC	International Conference on ICT Systems Security and Privacy Protection	B1
+SEFM	International Conference on Software Engineering and Formal Methods	B1
+SEKE	International Conference on Software Engineering and Knowledge Engineering	B1
+SIBGRAPI	Conference on Graphics, Patterns and Images	B1
+SIMUTOOLS	International Conference on Simulation Tools and Techniques	B1
+SMARTGRIDCOMM	IEEE International Conference on Smart Grid Communications	B1
+SOCINFO	International Conference on Social Informatics	B1
+SOCS	International Symposium on Combinatorial Search	B1
+SOFSEM	International Conference on Current Trends in Theory and Practice of Computer Science	B1
+SOFTCOM	International Conference on Software, Telecommunications and Computer Networks	B1
+SOSE	IEEE International Symposium on Service-Oriented System Engineering	B1
+SPIRE	International Symposium on String Processing and Information Retrieval	B1
+SRDS	IEEE Symposium on Reliable Distributed Systems	B1
+SSBSE	International Symposium on Search Based Software Engineering	B1
+SSDBM	International Conference on Scientific and Statistical Database Management	B1
+SSTD	International Symposium on Spatial and Temporal Databases	B1
+SUM	International Conference on Scalable Uncertainty Management	B1
+SYSCON	IEEE International Systems Conference	B1
+TPDL	International Conference on Theory and Practice of Digital Libraries	B1
+TSD	International Conference on Text, Speech and Dialogue	B1
+UKSIM	International Conference on Computer Modelling and Simulation	B1
+VCIP	IEEE International Conference on Visual Communications and Image Processing	B1
+VISAPP	International Conference on Computer Vision Theory and Applications	B1
+VISSOFT	IEEE Working Conference on Software Visualization	B1
+VLHCC	IEEE Symposium on Visual Languages and Human-Centric Computing	B1
+VLSI	International Conference on Very Large Scale Integration	B1
+VLSID	International Conference on VLSI Design	B1
+VR	IEEE Virtual Reality Conference	B1
+VRCAI	International Conference on Virtual Reality Continuum and its Applications	B1
+VTC	Vehicular Technology Conference	B1
+VTS	IEEE VLSI Test Symposium	B1
+W4A	Conference on Web Accessibility	B1
+WABI	Workshop on Algorithms in Bioinformatics	B1
+WCNC	IEEE Wireless Communications and Networking Conference	B1
+WD	Wireless Days Conference	B1
+WEB3D	International Conference on 3D Web Technology	B1
+WETICE	IEEE International Conference on Enabling Technologies: Infrastructure for Collaborative Enterprises	B1
+WFCS	IEEE World Conference on Factory Communication Systems	B1
+WG	International Workshop on Graph-Theoretic Concepts in Computer Science	B1
+WICSA	Working IEEE/IFIP Conference on Software Architecture	B1
+WIFS	IEEE Workshop on Information Forensics and Security	B1
+WI-IAT	IEEE/WIC/ACM International Conference on Web Intelligence and Intelligent Agent Technology	B1
+WISE	International Conference on Web Information Systems Engineering	B1
+WMNC	Joint IFIP Wireless and Mobile Networking Conference	B1
+WOLLIC	International Workshop on Logic, Language, Information and Computation	B1
+XP	International Conference on Agile Software Development	B1
+AAIM	International Conference on Algorithmic Aspects of Information and Management	B2
+AC-HCI	International Conference on Augmented Cognition	B2
+ACRI	International conference on Cellular Automata for Research and Industry	B2
+AGERE	Workshop on Programming based on Actors, Agents, and Decentralized Control	B2
+AGILEGIS	Conference on Geographic Information Science	B2
+AICCSA	ACS/IEEE International Conference on Computer Systems and Applications	B2
+AICT	International Conference on Application of Information and Communication Technologies	B2
+AIML	Advances in Modal Logic	B2
+AMIA	Annual Symposium of the American Medical Informatics Association	B2
+ANNPR	International IAPR TC3 Workshop on Artificial Neural Networks in Pattern Recognition	B2
+ANTS	International Conference on Swarm Intelligence	B2
+ASYNC	IEEE International Symposium on Asynchronous Circuits and Systems	B2
+BCB	ACM International Conference on Bioinformatics and Computational Biology and Health Informatics	B2
+BEDS	ACM International Conference on Distributed Event-Based Systems	B2
+BIH	International Conference on Brain Informatics and Health	B2
+BIR	International Conferences on Perspectives in Business Informatics Research	B2
+BPMDS	International Conference BPMDS/EMMSAD	B2
+BRACIS	Brazilian Conference on Intelligent System	B2
+CANDAR	International Symposium on Computing and Networking	B2
+CC	International Conference on Compiler Construction	B2
+CCNC	Annual IEEE Consumer Communications & Networking Conference	B2
+CGI	Computer Graphics International Conference	B2
+CIBCB	IEEE Conference on Computational Intelligence in Bioinformatics and Computational Biology	B2
+CISRC	Cyber Security and Information Intelligence Research Workshop	B2
+CITS	International Conference on Computer, Information, and Telecommunication Systems	B2
+CLEF	Conference and Labs of the Evaluation Forum	B2
+COCOA	International Conference on Combinatorial Optimization and Applications	B2
+COGSCI	Annual Meeting of the Cognitive Science Society	B2
+CompSysTech	International Conference on Computer Systems and Technologies	B2
+COSN	Conference on Online Social Networks	B2
+DAIS	International Conference on Distributed Applications and Interoperable Systems	B2
+DARS	International Symposium on Distributed Autonomous Robotic Systems	B2
+DCAI	International Symposium on Distributed Computing and Artificial Intelligence	B2
+DESE	International Conference on Developments in eSystems Engineering	B2
+DH	Digital Heritage	B2
+DHM	Applications in Health, Safety, Ergonomics and Risk Management	B2
+DILS	International Conference on Data Integration in Life Sciences	B2
+DIVANET	ACM Symposium on Development and Analysis of Intelligent Vehicular Networks and Applications	B2
+DSAI	International Conference on Software Development for Enhancing Accessibility and Fighting Info-exclusion	B2
+DUXU	International Conference on Design, User Experience, and Usability: Interactive Experience Design	B2
+EAIS	IEEE Conference on Evolving and Adaptive Intelligent Systems	B2
+ECC	European Control Conference	B2
+ECCE	European Conference on Cognitive Ergonomics	B2
+EGOVIS	International Conference on Electronic Government and the Information Systems Perspective	B2
+ENASE	International Conference on Evaluation of Novel Approaches to Software Engineering	B2
+ENIC	European Network Intelligence Conference	B2
+ETFA	IEEE International Conference on Emerging Technologies and Factory Automation	B2
+EUC	IEEE/IFIP International Conferences on Embedded and Ubiquitous Computing	B2
+EUMAS	European Conference on Multi-Agent Systems	B2
+EUVIP	European Workshop on Visual Information Processing	B2
+EWSN	European Conference on Wireless Sensor Networks	B2
+FACS	International Conference on Formal Aspects of Component Software	B2
+FAW	International Frontiers of Algorithmics Workshop	B2
+FDL	Forum on Specification and Design Languages	B2
+FG	Conference on Formal Grammar	B2
+FORMATS	International Conference on Formal Modeling and Analysis of Timed Systems	B2
+FOSD	International Workshop on Feature-Oriented Software Development	B2
+GECON	International Conference on Economics of Grids, Clouds, Systems and Services	B2
+GIIS	Global Information Infrastructure and Networking Symposium	B2
+GPC	International Conference on Grid And Pervasive Computing	B2
+GPCE	ACM International Conference on Generative Programming: Concepts and Experiences	B2
+GREC	International Workshop on Graphic Recognition: Current Trends and Challenges	B2
+GreenCom	IEEE International Conference on Green Computing and Communications	B2
+GROUP	International Conference on Supporting Group Work	B2
+HCI	International Conference on Human-Computer Interaction	B2
+HEALTHCOM	IEEE International Conference on E-health Networking, Application & Services	B2
+HIMI-HCI	Human Interface and the Management of Information Thematic Area	B2
+HIS	International Conference on Hybrid Intelligent Systems	B2
+HM	International Workshop on Hybrid Metaheuristics	B2
+IAS	Industry Applications Society Annual Meeting	B2
+IBERAMIA	Ibero-American Conference on Artificial Intelligence	B2
+IbPRIA	Iberian Conference on Pattern Recognition and Image Analysis	B2
+ICAT	International Conference on Artificial Reality and Telexistence	B2
+ICCE	IEEE International Conference on Consumer Electronics	B2
+ICCIC	International Conference on Computational Intelligence and Computing Research	B2
+ICCL2	International Conference on Computational Logistics	B2
+ICCPS	International Conference on Cyber-Physical Systems	B2
+ICDIM	International Conference on Digital Information Management	B2
+ICEGOV	International Conference on Theory and Practice of Eletronic Governance	B2
+ICEIS	International Conference on Enterprise Information Systems	B2
+ICGTT	International Conference on Graph Transformation	B2
+ICINCO	International Conference on Informatics in Control, Automation and Robotics	B2
+ICISO	International Conference on Informatics and Semiotics in Organisations	B2
+ICITS	International Conference on Information Theoretic Security	B2
+ICSR	International Conference on Software Reuse	B2
+ICTAC	International Colloquium on Theoretical Aspects of Computing	B2
+ICTIR	Conference on the Theory of Information Retrieval	B2
+ICTSS	IFIP International Conference on Testing Software and Systems	B2
+ICVR	International Conference on Virtual Rehabilitation	B2
+IDC	International Symposium on Intelligent Distributed Computing	B2
+IDEAL	International Conference on Intelligent Data Engineering and Automated Learning	B2
+IDEAS	International Database Engineering and Applications Symposium	B2
+IFM	International Conference on Integrated Formal Methods	B2
+IFSA	World Congress of International Fuzzy Systems Association	B2
+IGARSS	IEEE International Geoscience and Remote Sensing Symposium	B2
+IGIC	IEEE International Games Innovation Conference	B2
+IHC	Simpósio Brasileiro sobre Fatores Humanos em Sistemas Computacionais	B2
+IJCAR	International Joint Conference on Automated Reasoning	B2
+ILP	International Conference on Inductive Logic Programming	B2
+IMR	International Meshing Roundtable and User Forum	B2
+IPAW	International Provenance and Annotation Workshop	B2
+IPMU	International Conference on Information Processing and Management of Uncertainty in Knowledge-Based Systems	B2
+ISAmI	International Symposium on Ambient Intelligence	B2
+ISBI	IEEE International Symposium on Biomedical Imaging	B2
+ISGTEUROPE	IEEE International Conference on Innovative Smart Grid Technologies	B2
+ISIC	International Symposium on Integrated Circuits	B2
+ISIE	IEEE International Symposium on Industrial Electronics	B2
+ISSPIT	IEEE International Symposium on Signal Processing and Information Technology	B2
+ISW	Information Security Conference	B2
+ITHET	International Conference on Information Technology Based Higher Education and Training	B2
+ITSC	IEEE International Conference on Intelligent Transportation Systems	B2
+IWBBIO	International Work-Conference on Bioinformatics and Biomedical Engineering	B2
+IWOCA	International Workshop on Combinatorial Algorithms	B2
+IWSM-MENSURA	International Conference on Measurement and Data Analytics	B2
+JCSSE	International Joint Conference on Computer Science and Software Engineering	B2
+JURIX	International Conference on Legal Knowledge and Information Systems	B2
+KESW	International Conference on Knowledge Engineering and Semantic Web	B2
+LANMAM	IEEE International Symposium on Local and Metropolitan Area Networks	B2
+LASCAS	IEEE Latin American Symposium on Circuits and Systems	B2
+LATINCOM	IEEE Latin-American Conference on Communications	B2
+LATW	Latin American Test Workshop	B2
+LCTRTS	ACM SIGPLAN/SIGBED Conference on Languages, Compilers, and Tools for Embedded Systems	B2
+MATES	German Conference on Multiagent System Technologies	B2
+MCPR2	Mexican Conference on Pattern Recognition	B2
+MCS	International Workshop on Multiple Classifier Systems Multiple Classifier Systems	B2
+MDAI	International Conference on Modeling Decisions for Artificial Intelligence	B2
+MEDES	International Conference on Management of Emergent Digital EcoSystems	B2
+MOBILECLOUD	International Conference on Mobile Cloud, Computing and Service Engineering	B2
+MOBILESOFT	International Conference on Mobile Software Engineering and Systems	B2
+MOBIWAC	ACM International Symposium on Mobility Management and Wireless Access	B2
+MODELSWARD	International Conference on Model-Driven Engineering and Software Development	B2
+MS	IEEE International Conference on Mobile Services	B2
+MSN	International Conference on Mobile Ad-Hoc and Sensor Networks	B2
+MTSR	International Conference on Metadata and Semantics Research	B2
+NABIC	World Congress on Nature and Biologically Inspired Computing	B2
+NAFIPS	Annual Conference of the North American Fuzzy Information Processing Society	B2
+NEW2AN	International Conference on Internet of Things, Smart Spaces, and Next Generation Networks and Systems	B2
+NFV-SDN	IEEE Conference on Network Function Virtualization and Software Defined Networks	B2
+NOF	International Conference on Network of the Future	B2
+OR	International Conference on Operations Research	B2
+OSS	International Conference on Open Source Systems	B2
+PDES	IFAC International Conference on Programmable Devices and Embedded Systems	B2
+PE-WASUN	ACM International Symposium on Performance Evaluation of Wireless Ad Hoc, Sensor, and Ubiquitous Networks	B2
+PLOP	Conference on Pattern Languages of Programs	B2
+POST	International Conference on Principles of Security and Trust	B2
+PRIB	IAPR International Conference on Pattern Recognition in Bioinformatics	B2
+PRIMA	PRIMA -International Conference on Principles and Practice of Multi-Agent Systems	B2
+PROMISE	International Conference on Predictive Models and Data Analytics in Software Engineering	B2
+PSCC	Power Systems Computation Conference	B2
+Q2SWinet	ACM Symposium on QoS and Security for Wireless and Mobile Networks	B2
+QoSA	International ACM Sigsoft Conference on the Quality of Software Architectures	B2
+QUATIC	International Conference on Quality of Information and Communications Technology	B2
+RACS	Conference on Research in Adaptive and Convergent Systems	B2
+ROSE	IEEE International Symposium on Robotic and Sensors Environments	B2
+RSP	IEEE International Symposium on Rapid System Prototyping	B2
+RUSMART	Conference on Internet of Things and Smart Spaces	B2
+SBBD	Simpósio Brasileiro de Banco de Dados	B2
+SBCCI	Symposium on Integrated Circuits and Systems Design	B2
+SBES	Brazilian Symposium on Software Engineering	B2
+SBESC	Brazilian Symposium on Computing System Engineering	B2
+SBGAMES	Simpósio Brasileiro de Jogos e Entretenimento Digital	B2
+SBIA	Brazilian Symposium on Artificial Intelligence	B2
+SBRC	Simpósio Brasileiro de Redes de Computadores e Sistemas Distribuídos	B2
+SBSI	Simpósio Brasileiro de Sistemas de Informação	B2
+SCSM	International Conference on Social Computing and Social Media	B2
+SDL	Symposium on Dynamic Languages	B2
+SIGDOC	ACM International Conference on Design of Communication	B2
+SIMULTECH	International Conference on Simulation and Modeling Methodologies, Technologies and Applications	B2
+SISAP	SISAP -International Conference on Similarity Search and Applications	B2
+SIYSTOR	ACM International on Systems and Storage Conference	B2
+SOCC	IEEE International System-on-Chip Conference	B2
+SPIN	International SPIN symposium on Model Checking of Software	B2
+SSPR	International Workshop on Structural and Syntactic Pattern Recognition	B2
+SVR	Symposium on Virtual and Augmented Reality	B2
+SYSTOL	Conference on Control and Fault-Tolerant Systems	B2
+TABLEAUX	International Conference on Automated Reasoning with Analytic Tableaux and Related Methods	B2
+TAP	International Conference on Tests and Proofs	B2
+TAROS	Conference Towards Autonomous Robotics Systems	B2
+UAHCI	International Conference Universal Access in Human-Computer Interaction	B2
+UCAMI	International Conference on Ubiquitous Computing and Ambient Intelligence	B2
+UIC	IEEE International Conference on Ubiquitous Intelligence and Computing	B2
+VAMR	International Conference on Virtual, Augmented and Mixed Reality	B2
+VECPAR	International Meeting on High Performance Computing for Computational Science	B2
+VMV	Vision, Modeling & Visualization	B2
+VRST	ACM Symposium on Virtual Reality Software and Technology	B2
+W2GIS	International Symposium Web and Wireless Geographical Information Systems	B2
+WALCOM	International Workshop on Algorithms and Computation	B2
+WAOA	Workshop on Approximation and Online Algorithms	B2
+WEBIST	International Conference on Web Information Systems and Technologies	B2
+WEBMEDIA	Brazilian Symposium on Multimedia and the Web	B2
+WiSec	ACM Conference on Security & Privacy in Wireless and Mobile Networks	B2
+WOCC	Wireless and Optical Communications Conference	B2
+WSKS	World Summit on the Kowledge Society	B2
+BDCLOUD	International Conference on Big Data and Cloud Computing	B3
+BIGMM	IEEE International Conference on Multimedia Big Data	B3
+BSB	Brazilian Symposium on Bioinformatics	B3
+CADGRAPHICS	International Conference on Computer-Aided Design and Computer Graphics	B3
+CALDAM	International Conference on Algorithms and Discrete Applied Mathematics	B3
+CASA	Conference on Computer Animation and Social Agents	B3
+CDVE	International Conference on Cooperative Design, Visualization, and Engineering	B3
+CEDEM	International Conference for E-Democracy and Open Government	B3
+CENTERIS	Conference on ENTERprise Information Systems	B3
+CICOMMS	Symposium on Computational Intelligence for Communication Systems and Networks	B3
+CICS	Symposium on Computational Intelligence in Cyber Security	B3
+CLEI	Conferencia Latinoamericana de Informática	B3
+COLOGNETWENTE	Cologne-Twente Workshop on Graphs and Combinatorial Optimization	B3
+COMPIMAGE	International Symposium CompIMAGE	B3
+CRIWG	International Conference on Collaboration and Technology	B3
+DEPCOS	International Conference on Dependability and Complex Systems	B3
+DMS	International Conference on Distributed Multimedia Systems	B3
+DS	International Conference on Discovery Science	B3
+DSAA	IEEE International Conference on Data Science and Advanced Analytics	B3
+EANN	Internation Conference on Engineering Applications of Neural Networks	B3
+EATIS	Euro American Conference on Telematics and Information Systems	B3
+ECWeb	International Conference on Electronic Commerce and Web Technologies	B3
+EDCC	European Dependable Computing Conference	B3
+EUROHAPTICS	Eurohaptics	B3
+EuroPloP	European Conference on Pattern Languages of Programs	B3
+EVA	Electronic Visualisation and the Arts	B3
+EXP.AT	Experiment@ International Conference	B3
+FOGA	ACM Conference on Foundations of Genetic Algorithms	B3
+FOIS	International Conference on Formal Ontology in Information Systems	B3
+GAMEON	Annual Simulation and AI in Games Conference	B3
+GEOINFO	Brazilian Symposium on GeoInformatics	B3
+HCIST	International Conference on Health and Social Care Information Systems and Technologies	B3
+HCSE	International Working Conference on Human-Centred Software Engineering	B3
+ICAIS	International Conference on Adaptive and Intelligent Systems	B3
+ICCEBerlin	IEEE International Conference on Consumer Electronics Berlin	B3
+ICIST	International Conference on Information and Software Technologies	B3
+ICIT	IEEE International Conference on Industrial Technology	B3
+ICLA	Indian Conference on Logic and its Applications	B3
+ICTON	International Conference on Transparent Optical Networks	B3
+ICUAS	International Conference on Unmanned Aircraft Systems	B3
+ICUMT	International Conference on Ultra Modern Telecommunications	B3
+IDCS	International Conference on Internet and Distributed Computing Systems	B3
+IEAAIE	International Conference on Industrial Engineering & Other Applications of Appled Intelligence Systems	B3
+IEEENANO	International Conference on Nanotechnology	B3
+IESS	IFIP International Embedded Systems Symposium	B3
+IFUZZY	International Conference on Fuzzy Theory and its Applications	B3
+IHM	Conférence Francophone sur l’Interaction Homme-Machine	B3
+IIR	Italian Information Retrieval Workshop	B3
+IJCCI	International Joint Conference on Computational Intelligence	B3
+IMS3TW	Annual International Mixed-Signals, Sensors and Systems Test Workshop	B3
+INTECH	International Conference on Innovative Computing Technology	B3
+IRMMW	International Conference on Infrared, Millimeter, and Terahertz Waves	B3
+ISBRA	International Symposium on Bioinformatics Research and Applications	B3
+ISC2	IEEE International Smart Cities Conference	B3
+ISCE	IEEE International Symposium on Consumer Electronics	B3
+ISCOPT	International Symposium on Combinatorial Optimization	B3
+ISDEVEL	International Conference on Information Systems Development	B3
+ISER	International Symposium on Experimental Robotics	B3
+ISSI	International Society of Scientometrics and Informetrics Conference	B3
+ISTAR	International i*Workshop	B3
+IWBF	International Workshop on Biometrics and Forensics	B3
+IWEI	International IFIP Working Conference on Enterprise Interoperability	B3
+IWT	International Workshop on Telecommunications	B3
+KMO	International Conference on Knowledge Management in Organizations	B3
+LACLO	Latin American Conference on Learning Objects and Technologies	B3
+LADC	Latin-American Symposium on Dependable Computing	B3
+LAGOS	Latin-American Algorithms, Graphs and Optimization Symposium	B3
+LANC	Latin American Networking Conference	B3
+LANOMS	Latin-American Network Operations and Management Symposium	B3
+LARS	IEEE Latin American Robotics Symposium	B3
+LATINCRYPT	International Conference on Cryptology and Information Security in Latin America	B3
+LAW	Linguistic Annotation Workshop	B3
+LA-WEB	Latin American Web Congress	B3
+LightSec	International Workshop on Lightweight Cryptography for Security & Privacy	B3
+LSFA	Workshop on Logical and Semantic Frameworks, with Applications	B3
+MED	Mediterranean Conference on Control and Automation	B3
+MEMEA	IEEE International Symposium on Medical Measurements and Applications	B3
+MOBILWARE	International Conference on MOBILe Wireless MiddleWARE, Operating Systems, and Applications	B3
+NETWORKS	International Telecommunications Network Strategy and Planning Symposium	B3
+ONTOBRAS	Brazilian Seminar on Ontologies	B3
+PATMOS	International Workshop on Power and Timing Modeling, Optimization and Simulation	B3
+PGM	International Conference on Probabilistic Graphical Models	B3
+PROPOR	International Conference on Computational Processing of the Portuguese Language	B3
+QRS	IEEE International Conference on Software Quality, Reliability and Security	B3
+RADECS	European Conference on Radiation Effects on Components and Systems	B3
+SAICC	Science and Information Conference	B3
+SAM	Sensor Array and Multichannel Signal Processing Workshop	B3
+SBCARS	Brazilian Symposium on Components, Architectures and Reuse Software	B3
+SBCM	Simpósio Brasileiro de Computação Musical	B3
+SBLP	Brazilian Symposium on Programming Languages	B3
+SBMF	Brazilian Symposium on Formal Methods	B3
+SBQS	Simpósio Brasileiro de Qualidade de Software	B3
+SBSC	Simpósio Brasileiro de Sistemas Colaborativos	B3
+SBSeg	Simpósio Brasileiro em Segurança da Informação e de Sistemas Computacionais	B3
+SCCC	International Conference of the Chilean Computer Science Society	B3
+SEGAH	International Conference on Serious Games and Applications for Health	B3
+SENSORNETS	International Conference on Sensor Networks	B3
+SENSORS	IEEE Sensors	B3
+SIIE	Simpósio Internacional de Informática Educatica	B3
+SMARTGREENS	International Conference on Smart Grids and Green ICT Systems	B3
+SOC	International Symposium on System-on-Chip	B3
+SPA	Signal Processing: Algorithms, Architectures, Arrangements, and Applications Conference	B3
+SPACE	International Conference on Security, Privacy, and Applied Cryptography Engineering	B3
+SSIAI	Southwest Symposium on Image Analysis and Interpretation	B3
+STAG	Eurographics Italian Chapter Conference	B3
+STIL	Brazilian Symposium in Information and Human Language Technology	B3
+SustainIT	Conference on Sustainable Internet and ICT for Sustainability	B3
+SWQD	Conference Software Quality Days	B3
+T&D	IEEE/PES Transmission and Distribution Conference and Exposition	B3
+TLCA	International Conference on Typed Lambda Calculi and Applications	B3
+TVX	International Conference on Interactive Experiences for Television and Online Video	B3
+VNS	International Conference on Variable Neighborhood Search	B3
+WCCI	IEEE World Congress on Computational Intelligence	B3
+WEI	Workshop sobre Educação em Computação	B3
+WF-IoT	IEEE World Forum on Internet of Things	B3
+WIE	Workshop de Informática na Escola	B3
+WPerformance	Workshop em Desempenho de Sistemas Computacionais e de Comunicação	B3
+WRLA	International Workshop on Rewriting Logic and its Applications	B3
+WSCAD	Simpósio em Sistemas Computacionais de Alto Desempenho	B3
+WSCG	International Conference in Central Europe on Computer Graphics and Visualization and Computer Vision	B3
+WUWNET	International Conference on UnderWater Networks and Systems	B3
+21CW	IEEE Conference on Norbert Wiener in the 21st Century	B4
+3DCVE	International Workshop on Collaborative Virtual Environments	B4
+3DOR	Eurographics Workshop on 3D Object Retrieval	B4
+AAAI W	Workshop on Symbiotic Cognitive Systems	B4
+AINAW	IEEE International Conference on Advanced Information Networking and Applications Workshops	B4
+AISEC	ACM Workshop on Artificial Intelligence and Security	B4
+APCASE	Asia-Pacific Conference on Computer Aided System Engineering	B4
+APDCM	Workshop on Advances in Parallel and Distributed Computational Models	B4
+ARMS-CC	International Workshop on Adaptive Resource Management and Scheduling for Cloud Computing	B4
+A-TEST	International Workshop on Automating Test Case Design, Selection and Evaluation	B4
+ATT	International Workshop on Agents in Traffic and Transportation	B4
+BAI	Workshop on Advances in Bioinformatics and Artificial Intelligence: bridging the Gaps	B4
+BeyondMR	Workshop on Algorithms and Systems for MapReduce and Beyond	B4
+BIGDSE	IEEE/ACM International Workshop on Big Data Software Engineering	B4
+BigSpatial	ACM SIGSPATIAL International Workshop on Analytics for Big Geospatial Data	B4
+BIOKDD	International Workshop on Biological Knowledge Discovery and Data Mining	B4
+BMAW	Bayesian Modeling Applications Workshop	B4
+BPMS2	Workshop on Social and Human Aspects of Business Process Management	B4
+BRC	ISSNIP Biosignals and Biorobotics Conference	B4
+BRESCI	Brazilian e-Science Workshop	B4
+BWILD	International Workshop on Biometrics in the Wild	B4
+CARLA	Latin American High-Performance Computing Conference	B4
+CBSF	Congresso Brasileiro de Sistemas Fuzzy	B4
+CIMSIVP	IEEE Symposium on Computational Intelligence for Multimedia, Signal and Vision Processing	B4
+CIT/IUCC/DASC/PICOM	CIT, IUCC, DASC, PICOM	B4
+CIVTS	IEEE Symposium on Computational Intelligence in Vehicles and Transportation Systems	B4
+CL4LC	Workshop on Computational Linguistics for Linguistic Complexity	B4
+CLIHC	Latin American Conference on Human Computer Interaction	B4
+CLOUDTECH	International Conference on Cloud Computing Technologies and Applications	B4
+COGNISE	International Workshop on Cognitive Aspects of Information Systems Engineering	B4
+COIN	International Workshop on Coordination, Organisations, Institutions and Norms	B4
+CONFIRM	International Conference on Information Resources Management	B4
+CONTECSI	International Conference on Information Systems and Technology Management	B4
+CORAL	International Workshop on Emerging COgnitive Radio Applications and aLgorithms	B4
+COTB	Computer on The Beach	B4
+CSC	SIAM Workshop on Combinatorial Scientific Computing	B4
+CSI-SE	International Workshop on Crowdsourcing in Software Engineering	B4
+CVPRW	IEEE Conference on Computer Vision and Pattern Recognition Workshops	B4
+DaMNet	Workshop on Data Mining in Networks	B4
+DCCW	ACM Workshop on Distributed Cloud Computing	B4
+DeMiMoP	Workshop on Decision Mining & Modeling for Business Processes	B4
+DESWEB	International Workshop on Data Engineering meets the Semantic Web	B4
+DISN	Workshop on Dependability Issues on SDN and NFV	B4
+DMNPL	Workshop on Interactions between Data Mining and Natural Language Processing	B4
+DroNet	Workshop on Micro Aerial Vehicle Networks, Systems, and Applications for Civilian Use	B4
+DSNW	IEEE International Conference on Dependable Systems and Networks Workshops	B4
+DYNAK	International Workshop on Dynamic Networks and Knowledge Discovery	B4
+ECSAW	European Conference on Software Architecture Workshops	B4
+EMAS	International Workshop on Engineering Multiagent Systems	B4
+ENIAC	Encontro Nacional de Inteligencia Artificial e Computacional	B4
+ERLANG	ACM SIGPLAN Erlang Workshop	B4
+ESELAW	Workshop Latinoamericano de Ingeniería de Software Experimental	B4
+EURO	European Conference on Operational Research	B4
+EuroParW	Parallel Processing Workshops	B4
+EUROPKI	European Public Key Infrastructure Workshop	B4
+EVLBP	International Workshop on Evolutionary Business Processes	B4
+EXAMPI	Workshop on Exascale MPI	B4
+FCTA	International Conference on Fuzzy Computation Theory and Applications	B4
+FLinAI	Workshop on Fuzzy Logic in AI	B4
+FOCI	IEEE Symposium on Foundations of Computational Intelligence	B4
+FOFAI	International Workshop on Formal Ontologies for Artificial Intelligence	B4
+FSEW	Workhops of the SIGSOFT FSE International Symposium on Foundations of Software Engineering	B4
+FTXS	Workshop on Fault Tolerance for HPC at eXtreme Scale	B4
+GAS	International Workshop on Games and Software Engineering	B4
+GCCE	IEEE Global Conference on Consumer Electronics	B4
+GeoPrivacy	Workshop on Privacy in Geographic Information Collection and Analysis	B4
+GraphQ	International Workshop on Querying Graph Structured Data (EDBT)	B4
+GREENS	International Workshop on Green and Sustainable Software	B4
+GTVMT	International Workshop on Graph Transformation and Visual Modeling Techniques	B4
+HAI	International Workshop on Human Aspects in Ambient Intelligence	B4
+HCI3P	Workshop on Human Computer Interaction in Third Places	B4
+HPCB	International Workshop on High Performance Computing on Bioinformatics	B4
+HR	Workshop on Hybrid Reasoning	B4
+IC3K	International Joint Conference on Knowledge Discovery, Knowledge Engineering and Knowledge Management	B4
+ICCCC	International Conference on Computers Communications and Control	B4
+ICCVE	International Conference on Connected Vehicles & Exp	B4
+ICCW	IEEE International Conference on Communications Workshops	B4
+ICDEW	International Workshop on Keyword Search and Data Exploration on Structured Data	B4
+ICERI	International Conference of Education, Research and Innovation	B4
+ICGSEW	IEEE International Conference on Global Software Engineering Wokshops	B4
+ICHQP	IEEE International Conference on Harmonics and Power Quality	B4
+ICORES	International Conference on Operations Research and Enterprise Systems	B4
+ICSEW	International Conference on Software Engineering Workshops	B4
+IEEEIA	IEEE Symposium on Intelligent Agents	B4
+IMOC	SBMO/IEEE MTT-S International Microwave and Optoelectronics Conference	B4
+INDUSCON	International Conference on Industry Applications	B4
+INFOCOMW	IEEE Workshop on Communication & Networking Techniques for Contemporary Video	B4
+IoTAAL	Workshop on Internet of Things for Ambient Assisted Living	B4
+IPDPSW	IEEE International Parallel & Distributed Processing Symposium Workshops	B4
+ISAP	International Conference on Intelligent System Applications to Power Systems	B4
+ISCRAM	International Conference on Information Systems for Crisis Response and Management	B4
+ISEOLE	International Workshop on Intelligent Support in Exploratory and Open-Ended Learning Environments	B4
+ISSREW	IEEE International Symposium on Software Reliability Engineering Workshops	B4
+ISWCW	Intenational Workshop on Intelligent Exploration of Semantic Data	B4
+ITA	International Conference on Internet Technologies and Applications	B4
+IWPSE	International Workshop on Principles of Software Evolution	B4
+IWSC	International Workshop on Smart Cities: People, Technology and Data	B4
+IWSECO	International Workshop on Software Ecosystems	B4
+KnowLOD	Workshop on Knowledge Discovery and Data Mining Meets Linked Open Data	B4
+KSBT	Workshop on Knowledge, Skill, and Behavior Transfer in Autonomous Robots	B4
+LA-CCI	Latin American Conference on Computational Intelligence	B4
+LANCOMM	ACM SIGCOMM Workshop on Fostering Latin-American Research in Data Communication Networks	B4
+LCDNET	Workshop on Lowest Cost Denominator Networking for Universal Access	B4
+M4IOT	Workshop on Middleware for Context-Aware Applications in the IoT	B4
+MABS	International Workshop on Multi-Agent Based Simulation	B4
+MANSDNNFV	International Workshop on Management of SDN and NFV Systems	B4
+MARMI	International Workshop on Multimedia Analysis and Retrieval for Multimodal Interaction	B4
+MASS	Mobility Analytics from Spatial and Social Data	B4
+MDMW	IEEE International Conference on Mobile Data Management Workshops	B4
+MetaSel	International Workshop on Meta-Learning and Algorithm Selection	B4
+MISE	Workshop on Modeling in Software Engineering	B4
+MobiArch	Workshop on Mobility in the Evolving Internet Architecture	B4
+MOBILEHCIW	International Conference on Human-Computer Interaction with Mobile Devices and Services Workshops	B4
+MOCRYSEN	International Workshop on Modern Cryptography and Security Engineering	B4
+MODULARITYW	International Conference on Modularity Workshops	B4
+MPPU	Models and Paradigms for Planning under Uncertainty: a Broad Perspective Workshop	B4
+MTD	International Workshop on Managing Technical Debt	B4
+MUCS	IEEE Workshop on Managing Ubiquitous Communications and Services	B4
+MULTIPROG	Workshop on Programmability Issues for Heterogeneous Multicore	B4
+MWAIL	ICAIL Multi-Lingual Workshop on AI & Law	B4
+MWE	Workshop on Multiword Expressions	B4
+NESY@HLAI	Workshop on Neural-Symbolic Learning and Reasoning	B4
+NEWSIR	International Workshop on Recent Trends in News Information Retrieval	B4
+NFmcp	International Workshop on New Frontiers in Mining Complex Patterns	B4
+NIDISC	International Workshop on Nature Inspired Distributed Computing	B4
+PerCol	International Workshop on Pervasive Collaboration and Social Networking	B4
+PerComW	IEEE International Conference on Pervasive Computing and Communication Workshops	B4
+PESOS	International Workshop on Principles of Engineering Service-Oriented and Cloud Systems	B4
+PLATEAU	Workshop on Evaluation and Usability of Programming Languages and Tools	B4
+PPNIV	Workshop on Planning, Perception and Navigation for Intelligent Vehicles	B4
+RAHA	IEEE Internacional Conference on Robotics and Automation for Humanitarian Applications	B4
+RELAW	International Workshop on Requirements Engineering and Law	B4
+RePa	IEEE International Workshop on Requirements Patterns	B4
+SBACPADW	International Symposium on Computer Architecture and High Performance Computing Workshop	B4
+SBCUP	Simpósio Brasileiro de Computação Ubíqua e Pervasiva	B4
+SBMICRO	Symposium on Microelectronics Technology and Devices	B4
+SBPO	Simpósio Brasileiro de Pesquisa Operacional	B4
+SBST	International Workshop on Search-Based Software Testing	B4
+SCCTSA	International Workshop on Smart City Clouds: Technologies, Systems and Applications	B4
+SCGSE	Workshop on Software Support for Collaborative and Global Software Engineering	B4
+SCSS	International Symposium on Symbolic Computation in Software Science	B4
+SDIEV	IEEE Symposium on Differential Evolution	B4
+SEARIS	Workshop on Software Engineering and Architectures for Realtime Interactive Systems	B4
+SeCoGis	International Workshop on Semantic and Conceptual Issues in Geographic Information Systems	B4
+SEM	Joint Conference on Lexical and Computational Semantics	B4
+SEMISH	Seminário Integrado de Software e Hardware	B4
+SESCPS	International Workshop on Software Engineering for Smart Cyber-Physical Systems	B4
+SESoS	International Workshop on Software Engineering for Systems-of-Systems	B4
+SET	Software Engineering Track	B4
+SHAPES	Interdisciplinary Worshop The Shape of Things	B4
+SmartObjects	Workshop on Interacting with Smart Objects	B4
+SNAA	Workshop on Social Network Analysis in Applications	B4
+SOCIALEDU	International Workshop on Social Computing in Digital Education	B4
+SOCM	International Workshop on the Theory and Practice of Social Machines	B4
+SOCO	International Conference on Software Composition	B4
+SORT	IEEE Workshop on Self-Organizing Real-Time Systems	B4
+SUGARLOAFPLOP	Latin American Conference on Pattern Languages of Programming	B4
+SUMMERSIM	Summer Simulation Multi-conference	B4
+SWEET	Workshop on Scalable Workflow Execution Engines and Technologies	B4
+T&DLA	IEEE PES Transmission & Distribution Conference and Exposition Latin America	B4
+UbiSafe	IEEE International Symposium on UbiSafe Computing	B4
+UCHPC	Workshop on UnConventional High Performance Computing	B4
+UNIF	International Workshop on Unification	B4
+URSW	International Workshop on Uncertainty Reasoning for the Semantic Web	B4
+WAMCA	Workshop on Applications for Multi-Core Architectures	B4
+WER	Workshop on Requirements Engineering	B4
+WETSOM	International Workshop on Emerging Trends in Software Metrics	B4
+WIM	Workshop de Informática Médica	B4
+WNUT	Workshop on Noisy User-generated Text	B4
+WORKS	Workshop on Workflows in Support of Large-Scale Science	B4
+WOSAR	International Workshop on Software Aging and Rejuvenation	B4
+WOSP	International Workshop on Mining Scientific Publications	B4
+WWWW	International World Wide Web Conference Workshops	B4
+3DIPM	Three-Dimensional Image Processing, Measurement and Applications	B5
+AAATE	Association for the Advancement of Assistive Technology in Europe Congress	B5
+ACHI-IARIA	IARIA International Conference on Advances in Computer-Human Interactions	B5
+ACRA	Australasian Conference on Robotics and Automation	B5
+ADVCOMP-IARIA	IARIA International Conference on Advanced Engineering Computing and Applications in Sciences	B5
+AICT-IARIA	IARIA Advanced International Conference on Telecommunications	B5
+ALIO/EURO	Workshop on Applied Combinatorial Optimization	B5
+AM	Audio Mostly on Interaction With Sound	B5
+AOFA	International Conference on Probabilistic, Combinatorial and Asymptotic Methods for the Analysis of Algorithms	B5
+ARGMAS	International Workshop on Argumentation in Multiagent Systems	B5
+BIGDATASECURITY	IEEE International Conference on Big Data Security on Cloud	B5
+BioCOMP-WC	International Conference on Bioinformatics & Computational Biology	B5
+BNAIC	Benelux Conference on Artificial Intelligence	B5
+BRASNAM	Brazilian Workshop on Social Network Analysis and Mining	B5
+C4BIE	International Workshop on Cloud for Business, Industry and Enterprises	B5
+CAAD	Computer-Aided Architectural Design Futures Conference	B5
+CAD	International CAD Conference	B5
+CARE	Workshop on Collaborative Agents Research and Development	B5
+CGIM	International Conference on Computer Graphics and Imaging	B5
+CLAIO	Latin-Ibero-American Conference on Operations Research	B5
+CLOUDCOMPUTING-IARIA	IARIA International Conference on Cloud Computing, GRIDs, and Virtualization	B5
+CMC	International Conference on Concept Mapping	B5
+CobRA	International Workshop on Exploring Component-based Techniques for Constructing Reference Architectures	B5
+COGNITIVE-IARIA	IARIA International Conference on Advanced Cognitive Technologies and Applications	B5
+COMSOC	International Workshop on Computational Social Choice	B5
+CONTEXT-BPM	International Workshop on Context for Business Process Management	B5
+CPA	Communicating Process Architectures	B5
+CSCL	International Conference on Computer Supported Collaborative Learning	B5
+CSCWC	International Conference on Scientific Computing	B5
+DATAANALYTICS-IARIA	IARIA International Conference on Data Analytics	B5
+DBKD-AIARIA	IARIA International Conference on Advances in Databases, Knowledge, and Data Applications	B5
+DCM	International Workshop on Developments in Computational Models	B5
+DESAFIE	Workshop de Desafios da Computação Aplicada à Educação	B5
+EA	International Conference on Artificial Evolution	B5
+ECTA	International Conference on Evolutionary Computation Theory and Applications	B5
+EEEWC	International Conference on e-Learning, e-Business, Enterprise Information Systems, and e-Government	B5
+EIS	SPIE Human Vision and Electronic Imaging	B5
+eKNOW	IARIA International Conference on Information, Process, and Knowledge Management	B5
+EnDM	Workshop on Energy Data Management	B5
+ENERGY-IARIA	IARIA International Conference on Smart Grids, Green Communications and IT Energy-aware Technologies	B5
+EPAMUS	International Workshop on Engineering Parallel and Multi-core Systems	B5
+ETELEMED-IARIA	IARIA International Conference on eHealth, Telemedicine, and Social Medicine	B5
+EUROCG	European Workshop on Computational Geometry	B5
+EUROCOMB	European Conference on Combinatorics, Graph Theory and Applications	B5
+EUROSIM	Congress on Modelling and Simulation	B5
+EuroVISW	EuroVis Workshop on Visual Analytics (EuroVA)	B5
+FCA4AI	Workshop What can FCA do for Artificial Intelligence	B5
+FECS-WS	WS International Conference on Frontiers in Education: Computer Science and Computer Engineering	B5
+FINS	International Workshop on Future Internet and Smart Networks	B5
+FLINS	International FLINS Conference on Decision Making and Soft Computing	B5
+GeoPROCESSING-IARIA	IARIA International Conference on Advanced Geographic Information Systems, Applications, and Services	B5
+GLOBALDEV	Workshop of the AIS Special Interest Group for ICT in Global Development	B5
+HEALTHINF	International Conference on Health Informatics	B5
+HPG	High-Performance Graphics	B5
+HPPN	Workshop on High Performance and Programmable Networking	B5
+HUMANCOM	International Conference on Human-centric Ubiquitous Computing and Applications	B5
+ICAIWC	International Conference on Artificial Intelligence	B5
+ICARSC	IEEE International Conference on Autonomous Robot Systems and Competitions	B5
+ICAS-IARIA	IARIA International Conference on Autonomic and Autonomous Systems	B5
+ICCDCS	International Caribbean Conference on Devices, Circuits and Systems	B5
+ICCETaiwan	IEEE International Conference on Consumer Electronics Taiwan	B5
+ICCRTS	International Command and Control Research and Technology Symposium	B5
+ICDP	International Conference on Imaging for Crime Detection and Prevention	B5
+ICDS-IARIA	IARIA International Conference on Digital Society	B5
+ICED	International Conference on Engineering Design	B5
+ICIEOM	International Conference on Industrial Engineering and Operations Management	B5
+ICIQ	International Conference on Information Quality	B5
+ICIW-IARIA	IARIA International Conference on Internet and Web Applications and Services	B5
+ICN-IARIA	IARIA International Conference on Networks	B5
+ICNS-IARIA	IARIA International Conference on Networking and Services	B5
+ICOMPWC	International Conference on Internet Computing and Internet of Things	B5
+ICONS-IARIA	IARIA International Conference on Systems	B5
+ICSEA-IARIA	IARIA International Conference on Software Engineering Advances	B5
+ICSNC-IARIA	IARIA International Conference on Systems and Networks Communications	B5
+ICWMC-IARIA	IARIA International Conference on Wireless and Mobile Communications	B5
+ICWNWC	International Conference on Wireless Networks	B5
+IEMSS	International Congress on Environmental Modelling & Software	B5
+INNOV-IARIA	IARIA International Conference on Communications, Computation, Networks and Technologies	B5
+INOC	International Network Optimization Conference	B5
+INTELLI-IARIA	IARIA International Conference on Intelligent Systems and Applications	B5
+INTELLISYS	SAI Intelligent Systems Conference	B5
+INTERACCION	International Conference on Human Computer Interaction	B5
+IPCVWC	International Conference on Image Processing, Computer Vision, and Pattern Recognition	B5
+ISCAW	Image-Based Smart City Application Workshop	B5
+ISWPC	International Symposium on Wireless and Pervasive Computing	B5
+IWC	International Workshop on Confluence	B5
+IWS	Iberchip Workshop	B5
+IWSG	International Workshop on Science Gateways	B5
+KDMILE	Symposium on Knowledge Discovery, Mining and Learning	B5
+LAC	Linux Audio Conference	B5
+LAFM	Latin American Workshop on Formal Methods	B5
+LANMR	Latin American Workshop on Logic/Languages, Algorithms and New Methods of Reasoning	B5
+LATINCLOUD	IEEE Latin America Conference on Cloud Computing and Communications	B5
+LAWCG	Latin American Workshop on Cliques in Graphs	B5
+LISS	International Conference on Logistics, Informatics and Services Sciences	B5
+LRC	Workshop on Logical Reasoning and Computation	B5
+MASLE	Workshop in Multiagent System Based Learning Environments	B5
+Matheuristics	International Workshop on Model-based metaheuristics	B5
+MCDM	International Conference on Multiple Criteria Decision Making	B5
+MEDIAN	Workshop On Manufacturable and Dependable Multicore Architectures at Nanoscale	B5
+MIC	Metaheuristics International Conference	B5
+MIKON	International Conference on Microwave, Radar and Wireless Communications	B5
+MMEDIA-IARIA	International Conferences on Advances in Multimedia	B5
+MoWNeT	International Conference on Selected Topics in Mobile and Wireless Networking	B5
+MSI	International Conference on Modelling, Simulation and Identification	B5
+MS-ST	IEEE MS Special Track on Services for the Ubiquitous Web	B5
+MSVWC	International Conference on Modeling, Simulation and Visualization Methods	B5
+NLPCS	International Workshop on Natural Language Processing and Cognitive Science	B5
+NRW	Asia Pacific Advanced Network Research Workshop	B5
+PAAMSW	International Workshops of Practical Applications of Agents, Multi-Agent Systems, and Sustainability	B5
+PATAT	International Conference on the Practice and Theory of Automated Timetabling	B5
+PATTERNS	International Conferences on Pervasive Patterns and Applications	B5
+PDPTAWC	International Conference on Parallel and Distributed Processing Techniques and Applications	B5
+PLP	International Workshop on Probabilistic Programming	B5
+PoEM	IFIP WG 8.1 Working Conference on the Practice of Enterprise Modelling	B5
+QMMQ	Quality of Models and Models of Quality Workshop	B5
+QRSW	IEEE International Conference on Software Quality, Reliability and Security Companion	B5
+REM	Workshop on Reactivity, Events and Modularity	B5
+RESER	International Workshop on Replication in Empirical Software Engineering Research	B5
+SACCONET	International Conference on Smart Communications in Network Technologies	B5
+SAMWC	International Conference on Security and Management	B5
+SAST	Brazilian Workshop on Systematic and Automated Software Testing	B5
+SBAI	Simpósio Brasileiro de Automação Inteligente	B5
+SBIAGRO	Congresso Brasileiro de Agroinformática	B5
+Scrowd	Workshop de Sistemas de Crowdsourcing	B5
+SCSC	Summer Computer Simulation Conference	B5
+SDH	International Symposium on Spatial Data Handling	B5
+SEAWAVE	Workshop on Seamless Adaptive Multi-cloud Management of Service-based Applications	B5
+SECURWARE-IARIA	IARIA International Conference on Emerging Security Information, Systems and Technologies	B5
+SEMAPROIARIA	IARIA International Conference on Advances in Semantic Processing	B5
+SEMEVAL	International Workshop on Semantic Evaluation	B5
+SERPWC	International Conference on Software Engineering Research and Practice	B5
+SESENA	International Workshop on Software Engineering for Sensor Network Applications	B5
+SIGGRAPH-Asia	Conference on Computer Graphics and Interactive Techniques	B5
+SLISW	Simposio Latinoamericano de Ingeniería de Software	B5
+SMusC	Sound and Music Computing Conference	B5
+SOFTENG-IARIA	IARIA International Conference on Advances and Trends in Software Engineering	B5
+SoWeMi	International Workshop on Mining the Social Web	B5
+SPECTS	International Symposium on Performance Evaluation of Computer and Telecommunications Systems	B5
+SSC	Social Simulation Conference	B5
+SWWSWC	International Conference on Semantic Web and Web Services	B5
+TaPP	International Workshop on Theory and Practice of Provenance	B5
+TISE	Congreso Internacional de Informática Educativa	B5
+ToRPorEsp	Workshop on Tools and Resources for Automatically Processing Portuguese and Spanish	B5
+UBICOMM-IARIA	IARIA International Conference on Mobile Ubiquitous Computing, Systems, Services and Technologies	B5
+UNET	International Symposium on Ubiquitous Networking	B5
+VEM	Workshop on Software Visualization, Evolution and Maintenance	B5
+VPQM	International Workshop on Video Processing and Quality Metrics for Consumer Electronics	B5
+WAPCO	Workshop on Approximate Computing	B5
+WCAMA	Workshop de Computação Aplicada à Gestão do Meio Ambiente e Recursos Naturais	B5
+WCAS	Workshop on Circuits and Systems Design	B5
+WCGE	Workshop de Computação Aplicada ao Governo Eletrônico	B5
+WDES	Workshop de Desenvolvimento Distribuído de Software	B5
+WEAC	Workshop sobre Educação em Arquitetura de Computadores	B5
+WEIHC	Workshop sobre Ensino de IHC	B5
+WESB	Workshop de Engenharia de Software Baseada em Busca	B5
+WFA	Workshop de Ferramentas e Aplicações	B5
+WISM	Workshop on Web Information Systems Modeling	B5
+WMOD	Workshop on Software Modularity	B5
+WOCCES	Workshop de Comunicação em Sistemas Embarcados Crítico	B5
+WoMO	International Workshop on Modular Ontologies	B5
+WP2P+	Workshop de Redes P2P, Dinâmicas, Sociais e Orientadas a Conteúdo	B5
+WPEIF	Workshop de Pesquisa Experimental da Internet do Futuro	B5
+WRE	Workshop of Robotics in Education	B5
+WRVA	Workshop de Realidade Virtual e Aumentada	B5
+WSL	Workshop de Software Livre	B5
+WTF	Workshop de Testes e Tolerância a Falhas	B5
+WTranS	Workshop de Transparência de Sistema	B5
+WTTM	Workshop on the Theory of Transactional Memory	B5
+WVC	Workshop de Visão Computacional	B5

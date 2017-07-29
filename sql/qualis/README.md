@@ -58,3 +58,11 @@ update tb_qualis_periodico set no_area_avaliacao = 'TEOLOGIA' where no_area_aval
 * Remoção da sigla do início do nome do evento utilizando a expressão regular `^(.+) - (.*)$`.
 
 * Os registros foram inseridos com o ano base de 2015 através do arquivo `QualisConferencias2013-2015.csv` e copiados para os anos base 2013 e 2014.
+
+# Qualis conferência 2016
+
+* Gerado a partir do PDF `Qualis_conferencia_ccomp_2016.pdf`. Foi copiado o conteúdo do arquivo e colado em um arquivo `.txt`, cada coluna da tabela do PDF tornou-se uma nova linha deste arquivo.
+
+* Este arquivo foi processado utilizando um script python (`utils/qualis-extract.py`) para geração do arquivo `QualisConferencia2016.csv`.
+
+* Remoção da sigla do início do nome do evento utilizando a expressão regular `^(.+) - (.*)$`.

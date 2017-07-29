@@ -25,6 +25,8 @@ UPDATE tb_qualis_periodico SET no_titulo = trim(no_titulo), no_estrato = trim(no
 --------------------------------------------------------------------------------
 -- Qualis Conferência
 
+-- 2013-2015
+
 \COPY tb_qualis_evento(ds_sigla, no_titulo, nu_indice_h, no_estrato) FROM QualisConferencias2013-2015.csv DELIMITER E'\t' CSV HEADER ENCODING 'utf8';
 UPDATE tb_qualis_evento SET nu_ano = 2015 WHERE nu_ano IS NULL;
 UPDATE tb_qualis_evento SET no_area_avaliacao = 'CIÊNCIA DA COMPUTAÇÃO' WHERE no_area_avaliacao IS NULL;
@@ -39,3 +41,8 @@ INSERT INTO tb_qualis_evento
 SELECT nextval('sq_qualis_evento'), ds_sigla, no_titulo, nu_indice_h, no_estrato, no_area_avaliacao, 2014
 FROM tb_qualis_evento
 WHERE nu_ano = 2015;
+
+-- 2016
+\COPY tb_qualis_evento(ds_sigla, no_titulo, no_estrato) FROM QualisConferencias2016.csv DELIMITER E'\t' CSV HEADER ENCODING 'utf8';
+UPDATE tb_qualis_evento SET nu_ano = 2016 WHERE nu_ano IS NULL;
+UPDATE tb_qualis_evento SET no_area_avaliacao = 'CIÊNCIA DA COMPUTAÇÃO' WHERE no_area_avaliacao IS NULL;
