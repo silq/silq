@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 9.3.8
--- Dumped by pg_dump version 9.5.6
+-- Dumped by pg_dump version 9.5.7
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -4318,6 +4318,1185 @@ COPY tb_qualis_evento (co_seq_evento, ds_sigla, no_titulo, nu_indice_h, no_estra
 5161	HPDC	International Symposium on High Performance Distributed Computing	29	A1	CIÊNCIA DA COMPUTAÇÃO	2013
 5162	HPCA	IEEE  International Symposium on High Performance Computer Architecture	42	A1	CIÊNCIA DA COMPUTAÇÃO	2013
 5163	HOTNETS	ACM Workshop on Hot Topics in Networks	27	A1	CIÊNCIA DA COMPUTAÇÃO	2013
+6334	WP2P+	Workshop de Redes P2P, Dinâmicas, Sociais e Orientadas a Conteúdo	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6333	WoMO	International Workshop on Modular Ontologies	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6332	WOCCES	Workshop de Comunicação em Sistemas Embarcados Crítico	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6331	WMOD	Workshop on Software Modularity	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6330	WISM	Workshop on Web Information Systems Modeling	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6329	WFA	Workshop de Ferramentas e Aplicações	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6328	WESB	Workshop de Engenharia de Software Baseada em Busca	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6326	WEAC	Workshop sobre Educação em Arquitetura de Computadores	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6325	WDES	Workshop de Desenvolvimento Distribuído de Software	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6324	WCGE	Workshop de Computação Aplicada ao Governo Eletrônico	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6323	WCAS	Workshop on Circuits and Systems Design	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6322	WCAMA	Workshop de Computação Aplicada à Gestão do Meio Ambiente e Recursos Naturais	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6320	VPQM	International Workshop on Video Processing and Quality Metrics for Consumer Electronics	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6319	VEM	Workshop on Software Visualization, Evolution and Maintenance	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6318	UNET	International Symposium on Ubiquitous Networking	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6317	UBICOMM-IARIA	IARIA International Conference on Mobile Ubiquitous Computing, Systems, Services and Technologies	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6316	ToRPorEsp	Workshop on Tools and Resources for Automatically Processing Portuguese and Spanish	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6315	TISE	Congreso Internacional de Informática Educativa	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6314	TaPP	International Workshop on Theory and Practice of Provenance	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6313	SWWSWC	International Conference on Semantic Web and Web Services	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6312	SSC	Social Simulation Conference	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6311	SPECTS	International Symposium on Performance Evaluation of Computer and Telecommunications Systems	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6310	SoWeMi	International Workshop on Mining the Social Web	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6309	SOFTENG-IARIA	IARIA International Conference on Advances and Trends in Software Engineering	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6308	SMusC	Sound and Music Computing Conference	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6307	SLISW	Simposio Latinoamericano de Ingeniería de Software	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6306	SIGGRAPH-Asia	Conference on Computer Graphics and Interactive Techniques	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6305	SESENA	International Workshop on Software Engineering for Sensor Network Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6304	SERPWC	International Conference on Software Engineering Research and Practice	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6303	SEMEVAL	International Workshop on Semantic Evaluation	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6302	SEMAPROIARIA	IARIA International Conference on Advances in Semantic Processing	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6301	SECURWARE-IARIA	IARIA International Conference on Emerging Security Information, Systems and Technologies	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6300	SEAWAVE	Workshop on Seamless Adaptive Multi-cloud Management of Service-based Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6299	SDH	International Symposium on Spatial Data Handling	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6298	SCSC	Summer Computer Simulation Conference	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6297	Scrowd	Workshop de Sistemas de Crowdsourcing	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6296	SBIAGRO	Congresso Brasileiro de Agroinformática	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6295	SBAI	Simpósio Brasileiro de Automação Inteligente	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6294	SAST	Brazilian Workshop on Systematic and Automated Software Testing	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6293	SAMWC	International Conference on Security and Management	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6292	SACCONET	International Conference on Smart Communications in Network Technologies	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6291	RESER	International Workshop on Replication in Empirical Software Engineering Research	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6290	REM	Workshop on Reactivity, Events and Modularity	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6289	QRSW	IEEE International Conference on Software Quality, Reliability and Security Companion	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6288	QMMQ	Quality of Models and Models of Quality Workshop	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6287	PoEM	IFIP WG 8.1 Working Conference on the Practice of Enterprise Modelling	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6286	PLP	International Workshop on Probabilistic Programming	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6285	PDPTAWC	International Conference on Parallel and Distributed Processing Techniques and Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6284	PATTERNS	International Conferences on Pervasive Patterns and Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6283	PATAT	International Conference on the Practice and Theory of Automated Timetabling	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6282	PAAMSW	International Workshops of Practical Applications of Agents, Multi-Agent Systems, and Sustainability	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6281	NRW	Asia Pacific Advanced Network Research Workshop	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6280	NLPCS	International Workshop on Natural Language Processing and Cognitive Science	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6279	MSVWC	International Conference on Modeling, Simulation and Visualization Methods	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6278	MS-ST	IEEE MS Special Track on Services for the Ubiquitous Web	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6277	MSI	International Conference on Modelling, Simulation and Identification	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6276	MoWNeT	International Conference on Selected Topics in Mobile and Wireless Networking	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6275	MMEDIA-IARIA	International Conferences on Advances in Multimedia	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6274	MIKON	International Conference on Microwave, Radar and Wireless Communications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6273	MIC	Metaheuristics International Conference	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6272	MEDIAN	Workshop On Manufacturable and Dependable Multicore Architectures at Nanoscale	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6271	MCDM	International Conference on Multiple Criteria Decision Making	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+5167	ACMSOCC	ACM Symposium on Cloud Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+6270	Matheuristics	International Workshop on Model-based metaheuristics	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6269	MASLE	Workshop in Multiagent System Based Learning Environments	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6268	LRC	Workshop on Logical Reasoning and Computation	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6267	LISS	International Conference on Logistics, Informatics and Services Sciences	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6266	LAWCG	Latin American Workshop on Cliques in Graphs	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6265	LATINCLOUD	IEEE Latin America Conference on Cloud Computing and Communications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6264	LANMR	Latin American Workshop on Logic/Languages, Algorithms and New Methods of Reasoning	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6263	LAFM	Latin American Workshop on Formal Methods	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6262	LAC	Linux Audio Conference	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6261	KDMILE	Symposium on Knowledge Discovery, Mining and Learning	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6260	IWSG	International Workshop on Science Gateways	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6259	IWS	Iberchip Workshop	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6258	IWC	International Workshop on Confluence	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6257	ISWPC	International Symposium on Wireless and Pervasive Computing	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6256	ISCAW	Image-Based Smart City Application Workshop	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6255	IPCVWC	International Conference on Image Processing, Computer Vision, and Pattern Recognition	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6254	INTERACCION	International Conference on Human Computer Interaction	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6253	INTELLISYS	SAI Intelligent Systems Conference	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6252	INTELLI-IARIA	IARIA International Conference on Intelligent Systems and Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6251	INOC	International Network Optimization Conference	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6250	INNOV-IARIA	IARIA International Conference on Communications, Computation, Networks and Technologies	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6249	IEMSS	International Congress on Environmental Modelling & Software	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6248	ICWNWC	International Conference on Wireless Networks	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6247	ICWMC-IARIA	IARIA International Conference on Wireless and Mobile Communications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6246	ICSNC-IARIA	IARIA International Conference on Systems and Networks Communications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6245	ICSEA-IARIA	IARIA International Conference on Software Engineering Advances	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6244	ICONS-IARIA	IARIA International Conference on Systems	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6243	ICOMPWC	International Conference on Internet Computing and Internet of Things	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6242	ICNS-IARIA	IARIA International Conference on Networking and Services	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6241	ICN-IARIA	IARIA International Conference on Networks	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6240	ICIW-IARIA	IARIA International Conference on Internet and Web Applications and Services	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6239	ICIQ	International Conference on Information Quality	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6238	ICIEOM	International Conference on Industrial Engineering and Operations Management	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6237	ICED	International Conference on Engineering Design	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6236	ICDS-IARIA	IARIA International Conference on Digital Society	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6235	ICDP	International Conference on Imaging for Crime Detection and Prevention	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6234	ICCRTS	International Command and Control Research and Technology Symposium	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6233	ICCETaiwan	IEEE International Conference on Consumer Electronics Taiwan	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6232	ICCDCS	International Caribbean Conference on Devices, Circuits and Systems	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6231	ICAS-IARIA	IARIA International Conference on Autonomic and Autonomous Systems	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6230	ICARSC	IEEE International Conference on Autonomous Robot Systems and Competitions	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6229	ICAIWC	International Conference on Artificial Intelligence	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6228	HUMANCOM	International Conference on Human-centric Ubiquitous Computing and Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6227	HPPN	Workshop on High Performance and Programmable Networking	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6226	HPG	High-Performance Graphics	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6225	HEALTHINF	International Conference on Health Informatics	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6224	GLOBALDEV	Workshop of the AIS Special Interest Group for ICT in Global Development	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6223	GeoPROCESSING-IARIA	IARIA International Conference on Advanced Geographic Information Systems, Applications, and Services	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6222	FLINS	International FLINS Conference on Decision Making and Soft Computing	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6221	FINS	International Workshop on Future Internet and Smart Networks	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6220	FECS-WS	WS International Conference on Frontiers in Education: Computer Science and Computer Engineering	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6219	FCA4AI	Workshop What can FCA do for Artificial Intelligence	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6218	EuroVISW	EuroVis Workshop on Visual Analytics (EuroVA)	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6217	EUROSIM	Congress on Modelling and Simulation	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6216	EUROCOMB	European Conference on Combinatorics, Graph Theory and Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6215	EUROCG	European Workshop on Computational Geometry	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6214	ETELEMED-IARIA	IARIA International Conference on eHealth, Telemedicine, and Social Medicine	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6213	EPAMUS	International Workshop on Engineering Parallel and Multi-core Systems	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6212	ENERGY-IARIA	IARIA International Conference on Smart Grids, Green Communications and IT Energy-aware Technologies	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6211	EnDM	Workshop on Energy Data Management	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6210	eKNOW	IARIA International Conference on Information, Process, and Knowledge Management	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6209	EIS	SPIE Human Vision and Electronic Imaging	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6208	EEEWC	International Conference on e-Learning, e-Business, Enterprise Information Systems, and e-Government	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6207	ECTA	International Conference on Evolutionary Computation Theory and Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6206	EA	International Conference on Artificial Evolution	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6205	DESAFIE	Workshop de Desafios da Computação Aplicada à Educação	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6204	DCM	International Workshop on Developments in Computational Models	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6203	DBKD-AIARIA	IARIA International Conference on Advances in Databases, Knowledge, and Data Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6202	DATAANALYTICS-IARIA	IARIA International Conference on Data Analytics	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6201	CSCWC	International Conference on Scientific Computing	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6200	CSCL	International Conference on Computer Supported Collaborative Learning	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6199	CPA	Communicating Process Architectures	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6198	CONTEXT-BPM	International Workshop on Context for Business Process Management	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6197	COMSOC	International Workshop on Computational Social Choice	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6196	COGNITIVE-IARIA	IARIA International Conference on Advanced Cognitive Technologies and Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6195	CobRA	International Workshop on Exploring Component-based Techniques for Constructing Reference Architectures	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6194	CMC	International Conference on Concept Mapping	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6193	CLOUDCOMPUTING-IARIA	IARIA International Conference on Cloud Computing, GRIDs, and Virtualization	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6192	CLAIO	Latin-Ibero-American Conference on Operations Research	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6191	CGIM	International Conference on Computer Graphics and Imaging	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6190	CARE	Workshop on Collaborative Agents Research and Development	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6189	CAD	International CAD Conference	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6188	CAAD	Computer-Aided Architectural Design Futures Conference	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6187	C4BIE	International Workshop on Cloud for Business, Industry and Enterprises	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6186	BRASNAM	Brazilian Workshop on Social Network Analysis and Mining	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6185	BNAIC	Benelux Conference on Artificial Intelligence	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6184	BioCOMP-WC	International Conference on Bioinformatics & Computational Biology	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6183	BIGDATASECURITY	IEEE International Conference on Big Data Security on Cloud	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6182	ARGMAS	International Workshop on Argumentation in Multiagent Systems	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6181	AOFA	International Conference on Probabilistic, Combinatorial and Asymptotic Methods for the Analysis of Algorithms	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6180	AM	Audio Mostly on Interaction With Sound	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6179	ALIO/EURO	Workshop on Applied Combinatorial Optimization	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6178	AICT-IARIA	IARIA Advanced International Conference on Telecommunications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6177	ADVCOMP-IARIA	IARIA International Conference on Advanced Engineering Computing and Applications in Sciences	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6176	ACRA	Australasian Conference on Robotics and Automation	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6175	ACHI-IARIA	IARIA International Conference on Advances in Computer-Human Interactions	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6174	AAATE	Association for the Advancement of Assistive Technology in Europe Congress	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6173	3DIPM	Three-Dimensional Image Processing, Measurement and Applications	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6167	WIM	Workshop de Informática Médica	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6166	WETSOM	International Workshop on Emerging Trends in Software Metrics	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6165	WER	Workshop on Requirements Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6164	WAMCA	Workshop on Applications for Multi-Core Architectures	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6163	URSW	International Workshop on Uncertainty Reasoning for the Semantic Web	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6162	UNIF	International Workshop on Unification	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6161	UCHPC	Workshop on UnConventional High Performance Computing	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6160	UbiSafe	IEEE International Symposium on UbiSafe Computing	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6159	T&DLA	IEEE PES Transmission & Distribution Conference and Exposition Latin America	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6158	SWEET	Workshop on Scalable Workflow Execution Engines and Technologies	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6157	SUMMERSIM	Summer Simulation Multi-conference	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6156	SUGARLOAFPLOP	Latin American Conference on Pattern Languages of Programming	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6155	SORT	IEEE Workshop on Self-Organizing Real-Time Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6154	SOCO	International Conference on Software Composition	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6153	SOCM	International Workshop on the Theory and Practice of Social Machines	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6152	SOCIALEDU	International Workshop on Social Computing in Digital Education	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6151	SNAA	Workshop on Social Network Analysis in Applications	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6150	SmartObjects	Workshop on Interacting with Smart Objects	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6149	SHAPES	Interdisciplinary Worshop The Shape of Things	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6147	SESoS	International Workshop on Software Engineering for Systems-of-Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6146	SESCPS	International Workshop on Software Engineering for Smart Cyber-Physical Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6145	SEMISH	Seminário Integrado de Software e Hardware	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6144	SEM	Joint Conference on Lexical and Computational Semantics	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6143	SeCoGis	International Workshop on Semantic and Conceptual Issues in Geographic Information Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6142	SEARIS	Workshop on Software Engineering and Architectures for Realtime Interactive Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6141	SDIEV	IEEE Symposium on Differential Evolution	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6140	SCSS	International Symposium on Symbolic Computation in Software Science	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6139	SCGSE	Workshop on Software Support for Collaborative and Global Software Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6138	SCCTSA	International Workshop on Smart City Clouds: Technologies, Systems and Applications	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6137	SBST	International Workshop on Search-Based Software Testing	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6136	SBPO	Simpósio Brasileiro de Pesquisa Operacional	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6135	SBMICRO	Symposium on Microelectronics Technology and Devices	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6134	SBCUP	Simpósio Brasileiro de Computação Ubíqua e Pervasiva	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6133	SBACPADW	International Symposium on Computer Architecture and High Performance Computing Workshop	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6132	RePa	IEEE International Workshop on Requirements Patterns	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6131	RELAW	International Workshop on Requirements Engineering and Law	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6130	RAHA	IEEE Internacional Conference on Robotics and Automation for Humanitarian Applications	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6129	PPNIV	Workshop on Planning, Perception and Navigation for Intelligent Vehicles	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6128	PLATEAU	Workshop on Evaluation and Usability of Programming Languages and Tools	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6127	PESOS	International Workshop on Principles of Engineering Service-Oriented and Cloud Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6126	PerComW	IEEE International Conference on Pervasive Computing and Communication Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6125	PerCol	International Workshop on Pervasive Collaboration and Social Networking	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+5969	SBMF	Brazilian Symposium on Formal Methods	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5968	SBLP	Brazilian Symposium on Programming Languages	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5967	SBCM	Simpósio Brasileiro de Computação Musical	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5966	SBCARS	Brazilian Symposium on Components, Architectures and Reuse Software	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5965	SAM	Sensor Array and Multichannel Signal Processing Workshop	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5964	SAICC	Science and Information Conference	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5963	RADECS	European Conference on Radiation Effects on Components and Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5962	QRS	IEEE International Conference on Software Quality, Reliability and Security	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5961	PROPOR	International Conference on Computational Processing of the Portuguese Language	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5960	PGM	International Conference on Probabilistic Graphical Models	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5959	PATMOS	International Workshop on Power and Timing Modeling, Optimization and Simulation	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5958	ONTOBRAS	Brazilian Seminar on Ontologies	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5957	NETWORKS	International Telecommunications Network Strategy and Planning Symposium	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5956	MOBILWARE	International Conference on MOBILe Wireless MiddleWARE, Operating Systems, and Applications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5955	MEMEA	IEEE International Symposium on Medical Measurements and Applications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5954	MED	Mediterranean Conference on Control and Automation	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5953	LSFA	Workshop on Logical and Semantic Frameworks, with Applications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5952	LightSec	International Workshop on Lightweight Cryptography for Security & Privacy	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5951	LA-WEB	Latin American Web Congress	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5949	LATINCRYPT	International Conference on Cryptology and Information Security in Latin America	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5948	LARS	IEEE Latin American Robotics Symposium	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5947	LANOMS	Latin-American Network Operations and Management Symposium	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5946	LANC	Latin American Networking Conference	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5945	LAGOS	Latin-American Algorithms, Graphs and Optimization Symposium	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5944	LADC	Latin-American Symposium on Dependable Computing	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5943	LACLO	Latin American Conference on Learning Objects and Technologies	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5942	KMO	International Conference on Knowledge Management in Organizations	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5941	IWT	International Workshop on Telecommunications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5940	IWEI	International IFIP Working Conference on Enterprise Interoperability	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5939	IWBF	International Workshop on Biometrics and Forensics	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5938	ISTAR	International i*Workshop	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5937	ISSI	International Society of Scientometrics and Informetrics Conference	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5936	ISER	International Symposium on Experimental Robotics	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5935	ISDEVEL	International Conference on Information Systems Development	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5934	ISCOPT	International Symposium on Combinatorial Optimization	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5933	ISCE	IEEE International Symposium on Consumer Electronics	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5932	ISC2	IEEE International Smart Cities Conference	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5931	ISBRA	International Symposium on Bioinformatics Research and Applications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5930	IRMMW	International Conference on Infrared, Millimeter, and Terahertz Waves	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5929	INTECH	International Conference on Innovative Computing Technology	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5928	IMS3TW	Annual International Mixed-Signals, Sensors and Systems Test Workshop	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5927	IJCCI	International Joint Conference on Computational Intelligence	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5926	IIR	Italian Information Retrieval Workshop	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5925	IHM	Conférence Francophone sur l’Interaction Homme-Machine	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5924	IFUZZY	International Conference on Fuzzy Theory and its Applications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5923	IESS	IFIP International Embedded Systems Symposium	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5922	IEEENANO	International Conference on Nanotechnology	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5921	IEAAIE	International Conference on Industrial Engineering & Other Applications of Appled Intelligence Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5920	IDCS	International Conference on Internet and Distributed Computing Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5919	ICUMT	International Conference on Ultra Modern Telecommunications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5918	ICUAS	International Conference on Unmanned Aircraft Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5917	ICTON	International Conference on Transparent Optical Networks	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5916	ICLA	Indian Conference on Logic and its Applications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5915	ICIT	IEEE International Conference on Industrial Technology	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5914	ICIST	International Conference on Information and Software Technologies	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5913	ICCEBerlin	IEEE International Conference on Consumer Electronics Berlin	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5912	ICAIS	International Conference on Adaptive and Intelligent Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5911	HCSE	International Working Conference on Human-Centred Software Engineering	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5910	HCIST	International Conference on Health and Social Care Information Systems and Technologies	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5909	GEOINFO	Brazilian Symposium on GeoInformatics	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5908	GAMEON	Annual Simulation and AI in Games Conference	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5907	FOIS	International Conference on Formal Ontology in Information Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5906	FOGA	ACM Conference on Foundations of Genetic Algorithms	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5905	EXP.AT	Experiment@ International Conference	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5904	EVA	Electronic Visualisation and the Arts	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5903	EuroPloP	European Conference on Pattern Languages of Programs	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5902	EUROHAPTICS	Eurohaptics	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5901	EDCC	European Dependable Computing Conference	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5900	ECWeb	International Conference on Electronic Commerce and Web Technologies	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5899	EATIS	Euro American Conference on Telematics and Information Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5898	EANN	Internation Conference on Engineering Applications of Neural Networks	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5897	DSAA	IEEE International Conference on Data Science and Advanced Analytics	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5896	DS	International Conference on Discovery Science	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5895	DMS	International Conference on Distributed Multimedia Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5894	DEPCOS	International Conference on Dependability and Complex Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5893	CRIWG	International Conference on Collaboration and Technology	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5892	COMPIMAGE	International Symposium CompIMAGE	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5891	COLOGNETWENTE	Cologne-Twente Workshop on Graphs and Combinatorial Optimization	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5890	CLEI	Conferencia Latinoamericana de Informática	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5889	CICS	Symposium on Computational Intelligence in Cyber Security	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5888	CICOMMS	Symposium on Computational Intelligence for Communication Systems and Networks	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5887	CENTERIS	Conference on ENTERprise Information Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5886	CEDEM	International Conference for E-Democracy and Open Government	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5885	CDVE	International Conference on Cooperative Design, Visualization, and Engineering	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5884	CASA	Conference on Computer Animation and Social Agents	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5883	CALDAM	International Conference on Algorithms and Discrete Applied Mathematics	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5882	CADGRAPHICS	International Conference on Computer-Aided Design and Computer Graphics	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5881	BSB	Brazilian Symposium on Bioinformatics	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5880	BIGMM	IEEE International Conference on Multimedia Big Data	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5879	BDCLOUD	International Conference on Big Data and Cloud Computing	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5878	WSKS	World Summit on the Kowledge Society	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5877	WOCC	Wireless and Optical Communications Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5876	WiSec	ACM Conference on Security & Privacy in Wireless and Mobile Networks	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5875	WEBMEDIA	Brazilian Symposium on Multimedia and the Web	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5874	WEBIST	International Conference on Web Information Systems and Technologies	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5873	WAOA	Workshop on Approximation and Online Algorithms	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5872	WALCOM	International Workshop on Algorithms and Computation	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5871	W2GIS	International Symposium Web and Wireless Geographical Information Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5870	VRST	ACM Symposium on Virtual Reality Software and Technology	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5869	VMV	Vision, Modeling & Visualization	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5868	VECPAR	International Meeting on High Performance Computing for Computational Science	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5867	VAMR	International Conference on Virtual, Augmented and Mixed Reality	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5866	UIC	IEEE International Conference on Ubiquitous Intelligence and Computing	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5865	UCAMI	International Conference on Ubiquitous Computing and Ambient Intelligence	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5864	UAHCI	International Conference Universal Access in Human-Computer Interaction	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5863	TAROS	Conference Towards Autonomous Robotics Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5862	TAP	International Conference on Tests and Proofs	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5861	TABLEAUX	International Conference on Automated Reasoning with Analytic Tableaux and Related Methods	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+6168	WNUT	Workshop on Noisy User-generated Text	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+5860	SYSTOL	Conference on Control and Fault-Tolerant Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5859	SVR	Symposium on Virtual and Augmented Reality	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5858	SSPR	International Workshop on Structural and Syntactic Pattern Recognition	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5857	SPIN	International SPIN symposium on Model Checking of Software	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5856	SOCC	IEEE International System-on-Chip Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5855	SIYSTOR	ACM International on Systems and Storage Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5854	SISAP	SISAP -International Conference on Similarity Search and Applications	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5853	SIMULTECH	International Conference on Simulation and Modeling Methodologies, Technologies and Applications	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5852	SIGDOC	ACM International Conference on Design of Communication	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5851	SDL	Symposium on Dynamic Languages	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5850	SCSM	International Conference on Social Computing and Social Media	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5849	SBSI	Simpósio Brasileiro de Sistemas de Informação	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5848	SBRC	Simpósio Brasileiro de Redes de Computadores e Sistemas Distribuídos	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5847	SBIA	Brazilian Symposium on Artificial Intelligence	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5846	SBGAMES	Simpósio Brasileiro de Jogos e Entretenimento Digital	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5845	SBESC	Brazilian Symposium on Computing System Engineering	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5844	SBES	Brazilian Symposium on Software Engineering	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5843	SBCCI	Symposium on Integrated Circuits and Systems Design	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5842	SBBD	Simpósio Brasileiro de Banco de Dados	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5841	RUSMART	Conference on Internet of Things and Smart Spaces	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5840	RSP	IEEE International Symposium on Rapid System Prototyping	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5839	ROSE	IEEE International Symposium on Robotic and Sensors Environments	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5838	RACS	Conference on Research in Adaptive and Convergent Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5837	QUATIC	International Conference on Quality of Information and Communications Technology	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5836	QoSA	International ACM Sigsoft Conference on the Quality of Software Architectures	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5835	Q2SWinet	ACM Symposium on QoS and Security for Wireless and Mobile Networks	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5834	PSCC	Power Systems Computation Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5833	PROMISE	International Conference on Predictive Models and Data Analytics in Software Engineering	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5832	PRIMA	PRIMA -International Conference on Principles and Practice of Multi-Agent Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5831	PRIB	IAPR International Conference on Pattern Recognition in Bioinformatics	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5830	POST	International Conference on Principles of Security and Trust	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5829	PLOP	Conference on Pattern Languages of Programs	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5828	PE-WASUN	ACM International Symposium on Performance Evaluation of Wireless Ad Hoc, Sensor, and Ubiquitous Networks	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5827	PDES	IFAC International Conference on Programmable Devices and Embedded Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5826	OSS	International Conference on Open Source Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5825	OR	International Conference on Operations Research	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5824	NOF	International Conference on Network of the Future	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5823	NFV-SDN	IEEE Conference on Network Function Virtualization and Software Defined Networks	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5822	NEW2AN	International Conference on Internet of Things, Smart Spaces, and Next Generation Networks and Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5821	NAFIPS	Annual Conference of the North American Fuzzy Information Processing Society	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5820	NABIC	World Congress on Nature and Biologically Inspired Computing	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5819	MTSR	International Conference on Metadata and Semantics Research	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5818	MSN	International Conference on Mobile Ad-Hoc and Sensor Networks	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5817	MS	IEEE International Conference on Mobile Services	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5816	MODELSWARD	International Conference on Model-Driven Engineering and Software Development	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5815	MOBIWAC	ACM International Symposium on Mobility Management and Wireless Access	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5814	MOBILESOFT	International Conference on Mobile Software Engineering and Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5813	MOBILECLOUD	International Conference on Mobile Cloud, Computing and Service Engineering	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5812	MEDES	International Conference on Management of Emergent Digital EcoSystems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5811	MDAI	International Conference on Modeling Decisions for Artificial Intelligence	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5810	MCS	International Workshop on Multiple Classifier Systems Multiple Classifier Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5809	MCPR2	Mexican Conference on Pattern Recognition	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5808	MATES	German Conference on Multiagent System Technologies	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5807	LCTRTS	ACM SIGPLAN/SIGBED Conference on Languages, Compilers, and Tools for Embedded Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5806	LATW	Latin American Test Workshop	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5805	LATINCOM	IEEE Latin-American Conference on Communications	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5804	LASCAS	IEEE Latin American Symposium on Circuits and Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5803	LANMAM	IEEE International Symposium on Local and Metropolitan Area Networks	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5802	KESW	International Conference on Knowledge Engineering and Semantic Web	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5801	JURIX	International Conference on Legal Knowledge and Information Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5800	JCSSE	International Joint Conference on Computer Science and Software Engineering	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5799	IWSM-MENSURA	International Conference on Measurement and Data Analytics	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5798	IWOCA	International Workshop on Combinatorial Algorithms	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5797	IWBBIO	International Work-Conference on Bioinformatics and Biomedical Engineering	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5796	ITSC	IEEE International Conference on Intelligent Transportation Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5795	ITHET	International Conference on Information Technology Based Higher Education and Training	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5794	ISW	Information Security Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5793	ISSPIT	IEEE International Symposium on Signal Processing and Information Technology	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5792	ISIE	IEEE International Symposium on Industrial Electronics	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5791	ISIC	International Symposium on Integrated Circuits	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5790	ISGTEUROPE	IEEE International Conference on Innovative Smart Grid Technologies	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5789	ISBI	IEEE International Symposium on Biomedical Imaging	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5788	ISAmI	International Symposium on Ambient Intelligence	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5787	IPMU	International Conference on Information Processing and Management of Uncertainty in Knowledge-Based Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5783	IJCAR	International Joint Conference on Automated Reasoning	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5782	IHC	Simpósio Brasileiro sobre Fatores Humanos em Sistemas Computacionais	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5781	IGIC	IEEE International Games Innovation Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5780	IGARSS	IEEE International Geoscience and Remote Sensing Symposium	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5779	IFSA	World Congress of International Fuzzy Systems Association	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5778	IFM	International Conference on Integrated Formal Methods	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5777	IDEAS	International Database Engineering and Applications Symposium	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5776	IDEAL	International Conference on Intelligent Data Engineering and Automated Learning	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5775	IDC	International Symposium on Intelligent Distributed Computing	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5774	ICVR	International Conference on Virtual Rehabilitation	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5773	ICTSS	IFIP International Conference on Testing Software and Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5772	ICTIR	Conference on the Theory of Information Retrieval	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5771	ICTAC	International Colloquium on Theoretical Aspects of Computing	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5770	ICSR	International Conference on Software Reuse	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5769	ICITS	International Conference on Information Theoretic Security	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5768	ICISO	International Conference on Informatics and Semiotics in Organisations	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5767	ICINCO	International Conference on Informatics in Control, Automation and Robotics	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5766	ICGTT	International Conference on Graph Transformation	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5765	ICEIS	International Conference on Enterprise Information Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5764	ICEGOV	International Conference on Theory and Practice of Eletronic Governance	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5763	ICDIM	International Conference on Digital Information Management	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5762	ICCPS	International Conference on Cyber-Physical Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5761	ICCL2	International Conference on Computational Logistics	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5760	ICCIC	International Conference on Computational Intelligence and Computing Research	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5759	ICCE	IEEE International Conference on Consumer Electronics	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5758	ICAT	International Conference on Artificial Reality and Telexistence	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5757	IbPRIA	Iberian Conference on Pattern Recognition and Image Analysis	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5756	IBERAMIA	Ibero-American Conference on Artificial Intelligence	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5755	IAS	Industry Applications Society Annual Meeting	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5754	HM	International Workshop on Hybrid Metaheuristics	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5753	HIS	International Conference on Hybrid Intelligent Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5752	HIMI-HCI	Human Interface and the Management of Information Thematic Area	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5751	HEALTHCOM	IEEE International Conference on E-health Networking, Application & Services	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5685	XP	International Conference on Agile Software Development	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5684	WOLLIC	International Workshop on Logic, Language, Information and Computation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5683	WMNC	Joint IFIP Wireless and Mobile Networking Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5682	WISE	International Conference on Web Information Systems Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5681	WI-IAT	IEEE/WIC/ACM International Conference on Web Intelligence and Intelligent Agent Technology	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5680	WIFS	IEEE Workshop on Information Forensics and Security	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5679	WICSA	Working IEEE/IFIP Conference on Software Architecture	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5678	WG	International Workshop on Graph-Theoretic Concepts in Computer Science	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5677	WFCS	IEEE World Conference on Factory Communication Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5676	WETICE	IEEE International Conference on Enabling Technologies: Infrastructure for Collaborative Enterprises	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5675	WEB3D	International Conference on 3D Web Technology	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5674	WD	Wireless Days Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5673	WCNC	IEEE Wireless Communications and Networking Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5672	WABI	Workshop on Algorithms in Bioinformatics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5671	W4A	Conference on Web Accessibility	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5670	VTS	IEEE VLSI Test Symposium	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5669	VTC	Vehicular Technology Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5668	VRCAI	International Conference on Virtual Reality Continuum and its Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5667	VR	IEEE Virtual Reality Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5666	VLSID	International Conference on VLSI Design	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5665	VLSI	International Conference on Very Large Scale Integration	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5664	VLHCC	IEEE Symposium on Visual Languages and Human-Centric Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5663	VISSOFT	IEEE Working Conference on Software Visualization	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5662	VISAPP	International Conference on Computer Vision Theory and Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5661	VCIP	IEEE International Conference on Visual Communications and Image Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5660	UKSIM	International Conference on Computer Modelling and Simulation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5659	TSD	International Conference on Text, Speech and Dialogue	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5658	TPDL	International Conference on Theory and Practice of Digital Libraries	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5657	SYSCON	IEEE International Systems Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5656	SUM	International Conference on Scalable Uncertainty Management	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5655	SSTD	International Symposium on Spatial and Temporal Databases	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5654	SSDBM	International Conference on Scientific and Statistical Database Management	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5653	SSBSE	International Symposium on Search Based Software Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5652	SRDS	IEEE Symposium on Reliable Distributed Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5651	SPIRE	International Symposium on String Processing and Information Retrieval	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5650	SOSE	IEEE International Symposium on Service-Oriented System Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5649	SOFTCOM	International Conference on Software, Telecommunications and Computer Networks	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5648	SOFSEM	International Conference on Current Trends in Theory and Practice of Computer Science	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5647	SOCS	International Symposium on Combinatorial Search	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5646	SOCINFO	International Conference on Social Informatics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5645	SMARTGRIDCOMM	IEEE International Conference on Smart Grid Communications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5644	SIMUTOOLS	International Conference on Simulation Tools and Techniques	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5643	SIBGRAPI	Conference on Graphics, Patterns and Images	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5642	SEKE	International Conference on Software Engineering and Knowledge Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5641	SEFM	International Conference on Software Engineering and Formal Methods	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5640	SEC	International Conference on ICT Systems Security and Privacy Protection	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5639	SCAM	IEEE International Working Conference on Source Code Analysis and Manipulation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5638	SBIE	Simpósio Brasileiro de Informática na Educação	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5637	SBAC-PAD	International Symposium on Computer Architecture and High Performance Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5636	SASO	International Conference on Self-Adaptive and Self-Organizing Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5635	SAS	IEEE Sensors Applications Symposium	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5634	SAMOS	International Conference on Embedded Computer Systems: Architectures, Modeling and Simulation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5633	SAFECOMP	International Conference on Computer Safety, Reliability, and Security	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5632	SACI	IEEE International Symposium on Applied Computational Intelligence and Informatics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5631	RuleML	International Web Rule Symposium	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5630	RTCSA	International Conference on Embedded and Real-Time Computing Systems and Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5628	RFID	IEEE International Conference on RFID	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5627	REFSQ	International Working Conference on Requirements Engineering: Foundations for Software Quality	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5626	RECOSOC	International Symposium on Reconfigurable Communication-centric Systems-on-Chip	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5625	RECONFIG	International Conference on Reconfigurable Computing and FPGAs	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5624	RCIS	International Conference on Research Challenges in Information Science	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5623	RANLP	International Conference on Recent Advances in Natural Language Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5622	RAMS	Annual Reliability and Maintainability Symposium	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5621	QoMEX	International Workshop on Quality of Multimedia Experience	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5620	QEST	International Conference on Quantitative Evaluation of Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5619	PST	International Conference on Privacy, Security and Trust	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5618	PROFES	International Conference on Product-Focused Software Process Improvement	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5617	PRDC	Pacific Rim International Symposium on Dependable Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5616	PPSN	International Conference on Parallel Problem Solving from Nature	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+6124	NIDISC	International Workshop on Nature Inspired Distributed Computing	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6123	NFmcp	International Workshop on New Frontiers in Mining Complex Patterns	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6122	NEWSIR	International Workshop on Recent Trends in News Information Retrieval	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6121	NESY@HLAI	Workshop on Neural-Symbolic Learning and Reasoning	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6120	MWE	Workshop on Multiword Expressions	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6119	MWAIL	ICAIL Multi-Lingual Workshop on AI & Law	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6118	MULTIPROG	Workshop on Programmability Issues for Heterogeneous Multicore	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6117	MUCS	IEEE Workshop on Managing Ubiquitous Communications and Services	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6116	MTD	International Workshop on Managing Technical Debt	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6115	MPPU	Models and Paradigms for Planning under Uncertainty: a Broad Perspective Workshop	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6114	MODULARITYW	International Conference on Modularity Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6113	MOCRYSEN	International Workshop on Modern Cryptography and Security Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6112	MOBILEHCIW	International Conference on Human-Computer Interaction with Mobile Devices and Services Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6111	MobiArch	Workshop on Mobility in the Evolving Internet Architecture	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6110	MISE	Workshop on Modeling in Software Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6109	MetaSel	International Workshop on Meta-Learning and Algorithm Selection	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6108	MDMW	IEEE International Conference on Mobile Data Management Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6107	MASS	Mobility Analytics from Spatial and Social Data	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6106	MARMI	International Workshop on Multimedia Analysis and Retrieval for Multimodal Interaction	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6105	MANSDNNFV	International Workshop on Management of SDN and NFV Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6104	MABS	International Workshop on Multi-Agent Based Simulation	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6103	M4IOT	Workshop on Middleware for Context-Aware Applications in the IoT	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6102	LCDNET	Workshop on Lowest Cost Denominator Networking for Universal Access	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6101	LANCOMM	ACM SIGCOMM Workshop on Fostering Latin-American Research in Data Communication Networks	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6100	LA-CCI	Latin American Conference on Computational Intelligence	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6099	KSBT	Workshop on Knowledge, Skill, and Behavior Transfer in Autonomous Robots	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6098	KnowLOD	Workshop on Knowledge Discovery and Data Mining Meets Linked Open Data	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6097	IWSECO	International Workshop on Software Ecosystems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6096	IWSC	International Workshop on Smart Cities: People, Technology and Data	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6095	IWPSE	International Workshop on Principles of Software Evolution	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6094	ITA	International Conference on Internet Technologies and Applications	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6093	ISWCW	Intenational Workshop on Intelligent Exploration of Semantic Data	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6092	ISSREW	IEEE International Symposium on Software Reliability Engineering Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6091	ISEOLE	International Workshop on Intelligent Support in Exploratory and Open-Ended Learning Environments	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6090	ISCRAM	International Conference on Information Systems for Crisis Response and Management	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6089	ISAP	International Conference on Intelligent System Applications to Power Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6088	IPDPSW	IEEE International Parallel & Distributed Processing Symposium Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6087	IoTAAL	Workshop on Internet of Things for Ambient Assisted Living	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6086	INFOCOMW	IEEE Workshop on Communication & Networking Techniques for Contemporary Video	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6085	INDUSCON	International Conference on Industry Applications	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6084	IMOC	SBMO/IEEE MTT-S International Microwave and Optoelectronics Conference	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6083	IEEEIA	IEEE Symposium on Intelligent Agents	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6082	ICSEW	International Conference on Software Engineering Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6081	ICORES	International Conference on Operations Research and Enterprise Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6080	ICHQP	IEEE International Conference on Harmonics and Power Quality	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6079	ICGSEW	IEEE International Conference on Global Software Engineering Wokshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6078	ICERI	International Conference of Education, Research and Innovation	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6077	ICDEW	International Workshop on Keyword Search and Data Exploration on Structured Data	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6076	ICCW	IEEE International Conference on Communications Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6075	ICCVE	International Conference on Connected Vehicles & Exp	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6074	ICCCC	International Conference on Computers Communications and Control	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6073	IC3K	International Joint Conference on Knowledge Discovery, Knowledge Engineering and Knowledge Management	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6072	HR	Workshop on Hybrid Reasoning	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6071	HPCB	International Workshop on High Performance Computing on Bioinformatics	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6070	HCI3P	Workshop on Human Computer Interaction in Third Places	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6069	HAI	International Workshop on Human Aspects in Ambient Intelligence	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6068	GTVMT	International Workshop on Graph Transformation and Visual Modeling Techniques	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6067	GREENS	International Workshop on Green and Sustainable Software	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6066	GraphQ	International Workshop on Querying Graph Structured Data (EDBT)	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6065	GeoPrivacy	Workshop on Privacy in Geographic Information Collection and Analysis	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6064	GCCE	IEEE Global Conference on Consumer Electronics	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6063	GAS	International Workshop on Games and Software Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6062	FTXS	Workshop on Fault Tolerance for HPC at eXtreme Scale	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6061	FSEW	Workhops of the SIGSOFT FSE International Symposium on Foundations of Software Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6060	FOFAI	International Workshop on Formal Ontologies for Artificial Intelligence	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6059	FOCI	IEEE Symposium on Foundations of Computational Intelligence	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6058	FLinAI	Workshop on Fuzzy Logic in AI	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6057	FCTA	International Conference on Fuzzy Computation Theory and Applications	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6056	EXAMPI	Workshop on Exascale MPI	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6055	EVLBP	International Workshop on Evolutionary Business Processes	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6054	EUROPKI	European Public Key Infrastructure Workshop	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6053	EuroParW	Parallel Processing Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6052	EURO	European Conference on Operational Research	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6051	ESELAW	Workshop Latinoamericano de Ingeniería de Software Experimental	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6050	ERLANG	ACM SIGPLAN Erlang Workshop	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6049	ENIAC	Encontro Nacional de Inteligencia Artificial e Computacional	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6048	EMAS	International Workshop on Engineering Multiagent Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6047	ECSAW	European Conference on Software Architecture Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6046	DYNAK	International Workshop on Dynamic Networks and Knowledge Discovery	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6045	DSNW	IEEE International Conference on Dependable Systems and Networks Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6044	DroNet	Workshop on Micro Aerial Vehicle Networks, Systems, and Applications for Civilian Use	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6043	DMNPL	Workshop on Interactions between Data Mining and Natural Language Processing	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6042	DISN	Workshop on Dependability Issues on SDN and NFV	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6041	DESWEB	International Workshop on Data Engineering meets the Semantic Web	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6040	DeMiMoP	Workshop on Decision Mining & Modeling for Business Processes	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6039	DCCW	ACM Workshop on Distributed Cloud Computing	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6038	DaMNet	Workshop on Data Mining in Networks	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6037	CVPRW	IEEE Conference on Computer Vision and Pattern Recognition Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6036	CSI-SE	International Workshop on Crowdsourcing in Software Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6035	CSC	SIAM Workshop on Combinatorial Scientific Computing	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6034	COTB	Computer on The Beach	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6033	CORAL	International Workshop on Emerging COgnitive Radio Applications and aLgorithms	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6032	CONTECSI	International Conference on Information Systems and Technology Management	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6031	CONFIRM	International Conference on Information Resources Management	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6030	COIN	International Workshop on Coordination, Organisations, Institutions and Norms	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6029	COGNISE	International Workshop on Cognitive Aspects of Information Systems Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6028	CLOUDTECH	International Conference on Cloud Computing Technologies and Applications	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6027	CLIHC	Latin American Conference on Human Computer Interaction	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6026	CL4LC	Workshop on Computational Linguistics for Linguistic Complexity	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6025	CIVTS	IEEE Symposium on Computational Intelligence in Vehicles and Transportation Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6024	CIT/IUCC/DASC/PICOM	CIT, IUCC, DASC, PICOM	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6023	CIMSIVP	IEEE Symposium on Computational Intelligence for Multimedia, Signal and Vision Processing	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6022	CBSF	Congresso Brasileiro de Sistemas Fuzzy	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6021	CARLA	Latin American High-Performance Computing Conference	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6020	BWILD	International Workshop on Biometrics in the Wild	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6019	BRESCI	Brazilian e-Science Workshop	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6018	BRC	ISSNIP Biosignals and Biorobotics Conference	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6017	BPMS2	Workshop on Social and Human Aspects of Business Process Management	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6016	BMAW	Bayesian Modeling Applications Workshop	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6015	BIOKDD	International Workshop on Biological Knowledge Discovery and Data Mining	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6014	BigSpatial	ACM SIGSPATIAL International Workshop on Analytics for Big Geospatial Data	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6013	BIGDSE	IEEE/ACM International Workshop on Big Data Software Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6012	BeyondMR	Workshop on Algorithms and Systems for MapReduce and Beyond	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6011	BAI	Workshop on Advances in Bioinformatics and Artificial Intelligence: bridging the Gaps	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6010	ATT	International Workshop on Agents in Traffic and Transportation	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6009	A-TEST	International Workshop on Automating Test Case Design, Selection and Evaluation	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6008	ARMS-CC	International Workshop on Adaptive Resource Management and Scheduling for Cloud Computing	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6007	APDCM	Workshop on Advances in Parallel and Distributed Computational Models	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6006	APCASE	Asia-Pacific Conference on Computer Aided System Engineering	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6005	AISEC	ACM Workshop on Artificial Intelligence and Security	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6004	AINAW	IEEE International Conference on Advanced Information Networking and Applications Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6003	AAAI W	Workshop on Symbiotic Cognitive Systems	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6002	3DOR	Eurographics Workshop on 3D Object Retrieval	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6001	3DCVE	International Workshop on Collaborative Virtual Environments	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6000	21CW	IEEE Conference on Norbert Wiener in the 21st Century	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+5999	WUWNET	International Conference on UnderWater Networks and Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5998	WSCG	International Conference in Central Europe on Computer Graphics and Visualization and Computer Vision	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5997	WSCAD	Simpósio em Sistemas Computacionais de Alto Desempenho	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5996	WRLA	International Workshop on Rewriting Logic and its Applications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5995	WPerformance	Workshop em Desempenho de Sistemas Computacionais e de Comunicação	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5994	WIE	Workshop de Informática na Escola	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5993	WF-IoT	IEEE World Forum on Internet of Things	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5992	WEI	Workshop sobre Educação em Computação	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5991	WCCI	IEEE World Congress on Computational Intelligence	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5990	VNS	International Conference on Variable Neighborhood Search	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5989	TVX	International Conference on Interactive Experiences for Television and Online Video	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5988	TLCA	International Conference on Typed Lambda Calculi and Applications	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5987	T&D	IEEE/PES Transmission and Distribution Conference and Exposition	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5986	SWQD	Conference Software Quality Days	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5985	SustainIT	Conference on Sustainable Internet and ICT for Sustainability	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5984	STIL	Brazilian Symposium in Information and Human Language Technology	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5983	STAG	Eurographics Italian Chapter Conference	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5982	SSIAI	Southwest Symposium on Image Analysis and Interpretation	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5981	SPACE	International Conference on Security, Privacy, and Applied Cryptography Engineering	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5980	SPA	Signal Processing: Algorithms, Architectures, Arrangements, and Applications Conference	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5979	SOC	International Symposium on System-on-Chip	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5978	SMARTGREENS	International Conference on Smart Grids and Green ICT Systems	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5977	SIIE	Simpósio Internacional de Informática Educatica	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5976	SENSORS	IEEE Sensors	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5975	SENSORNETS	International Conference on Sensor Networks	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5974	SEGAH	International Conference on Serious Games and Applications for Health	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5973	SCCC	International Conference of the Chilean Computer Science Society	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5972	SBSeg	Simpósio Brasileiro em Segurança da Informação e de Sistemas Computacionais	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5971	SBSC	Simpósio Brasileiro de Sistemas Colaborativos	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5970	SBQS	Simpósio Brasileiro de Qualidade de Software	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5615	PPDP	International Symposium on Principles and Practice of Declarative Programming	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5614	PETRA	ACM International Conference on PErvasive Technologies Related to Assistive Environments	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5613	PESGM	IEEE Power & Energy Society General Meeting	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5612	PDCAT	International Conference on Parallel and Distributed Computing, Applications and Technologies	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5611	PCS	Picture Coding Symposium	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5610	ParCO	International Conference on Parallel Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5609	PADS	ACM SIGSIM Conference on Principles of Advanced Discrete Simulation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5608	PACT	International Conference on Parallel Computing Technologies	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5607	PACIS	Pacific Asia Conference on Information Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5606	PAAMS	International Conference on Practical Applications of Agents, Multi-Agent Systems and Sustainability	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5605	P2P	International Conference on Peer-to-Peer Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5604	OzCHI	Australian Conference on Human-Computer Interaction	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5603	OPODIS	International Conference on Principles of Distributed Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5602	OFC	IEEE Optical Fiber Communication Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5601	NTMS	IFIP International Conference on New Technologies, Mobility and Security	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5600	NordiCHI	Nordic Conference on Human-Computer Interaction	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5599	NLDB	International Conference on Application of Natural Language to Information Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5598	NIME	International Conference on New Interfaces for Musical Expression	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5597	NEWCAS	IEEE International New Circuits and Systems Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5596	NCA	IEEE International Symposium on Network Computing and Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5595	MWSCAS	International Midwest Symposium on Circuits and Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5594	MUM	International Conference on Mobile and Ubiquitous Multimedia	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5593	MSWIM	ACM International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5592	MOBIQUITOUS	International Conference on Mobile and Ubiquitous Systems: Computing, Networking and Services	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5591	MMSP	International Workshop on Multimedia and Signal Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5590	MMM	International Conference on Multimedia Modelling	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5589	MLSP	IEEE International Workshop on Machine Learning for Signal Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5588	MLDM	International Conference on Machine Learning and Data Mining in Pattern Recognition	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5587	MIG	ACM Siggraph Conference on Motion in Games	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5586	MICAI	Mexican International Conference on Artificial Intelligence	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5585	MEDHOCNET	Mediterranean Ad Hoc Networking Workshop	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5584	LPNMR	International Conference on Logic Programming and Non-monotonic Reasoning	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5583	LION	Learning and Intelligent Optimization Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5582	LCN	IEEE Conference on Local Computer Networks	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5581	LATIN	Latin American Symposium on Theoretical Informatics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5580	KESAMSTA	International KES Conference on Agents and Multi-Agent Systems: Technologies and Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5579	KES	International Conference on Knowledge-Based and Intelligent Information & Engineering Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5578	IWSSIP	International Conference on Systems, Signals and Image Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5577	IWANN	International Work-Conference on Artificial and Natural Neural Networks	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5576	IVS	Intelligent Vehicles Symposium	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5575	IVAPP	International Conference on Information Visualization Theory and Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5574	IVA	International Conference on Intelligent Virtual Agents	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5573	IV	International Conference on Information Visualization	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5572	ITS	International Conference on Intelligent Tutoring Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5571	ITNG	International Conference on Information Technology : New Generations	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5570	ITC	International Test Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5569	ISVLSI	IEEE Computer Society Annual Symposium on VLSI	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5568	ISVC	International Symposium on Visual Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5567	ISQED	International Symposium on Quality Electronic Design	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5566	ISPDC	International Symposium on Parallel and Distributed Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5565	ISPD	ACM International Symposium on Physical Design	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5564	ISORC	IEEE International Symposium on RealTime Distributed Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5563	ISOLA	International Symposium on Leveraging Applications of Formal Methods, Verification and Validation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5562	ISNN	International Symposium on Neural Networks	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5561	ISMM	International Symposium on Mathematical Morphology	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5560	ISMIS	International Symposium on Methodologies for Intelligent Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5559	ISM	IEEE International Symposium on Multimedia	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5558	ISI	IEEE International Conference on Intelligence and Security Informatics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5557	ISEUD	International Symposium on End-User Development	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5556	ISDA	International Conference on Intelligent Systems Design and Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5555	ISCIS	International Symposium on Computer and Information Sciences	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5554	ISAAC	International Symposium Algorithms and Computation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5553	IRI	IEEE International Conference on Information Reuse and Integration	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5552	IPCO	Conference on Integer Programming and Combinatorial Optimization	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5551	IPCCC	International Performance, Computing, and Communications Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5550	IOLTS	IEEE International On-Line Testing Symposium	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5549	INDIN	IEEE International Conference on Industrial Informatics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5548	INCOS	International Conference on Intelligent Networking and Collaborative Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5547	IIWAS	International Conference on Information Integration and Web-based Applications & Services	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5222	ICWSM	International AAAI Conference on Weblogs and Social Media	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5546	IFAC	World Congress of the International Federation of Automatic Control	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5545	IEEEANTS	IEEE International Conference on Advanced Networks and Telecommuncations Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5544	IECON	Annual Conference of the IEEE Industrial Electronics Society	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5543	ICWE	International Conference on Web Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5542	ICVS	International Conference on Computer Vision Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5541	ICTAI	IEEE International Conference on Tools with Artificial Intelligence	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5540	ICT	International Conference on Telecommunications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5539	ICST	International Conference on Sensing Technology	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5538	ICSOFT	International Conference on Software and Data Technologies	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5537	ICSOB	International Conference on Software Business	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5536	ICSI	International Conference on Swarm Intelligence	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5535	ICSC	International Conference on Semantic Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5534	ICONIP	International Conference on Neural Information Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5533	ICOIN	International Conference on Information Networking	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5532	ICNSC	IEEE International Conference on Networking, Sensing and Control	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5531	ICNC	IInternational Conference on Natural Computation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5530	ICMLA	IEEE International Conference on Machine Learning and Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5529	ICMC	International Computer Music Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5528	ICM	International Conference on Microelectronics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5527	ICLP	International Conference on Logic Programming	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5526	ICITST	International Conference for Internet Technology and Secured Transactions	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5525	ICISS	International Conference on Information Systems Security	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5524	ICIC	International Conference on Intelligent Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5523	ICIAR	International Conference on Image Analysis and Recognition	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5522	ICIAP	International Conference on Image Analysis and Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5521	ICGSE	IEEE International Conference on Global Software Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5520	ICFHR	International Conference on Frontiers in Handwriting Recognition	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5519	ICFEM	International Conference on Formal Engineering Methods	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5518	ICECS	IEEE International Conference on Electronics, Circuits and Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5517	ICECCS	International Conference on Engineering of Complex Computer	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5516	ICEC	IFIP International Conference on Entertainment Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5515	ICEBE	IEEE International Conference on e-Business Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5514	ICDSP	IEEE International Conference on Digital Signal Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5513	ICCSA	International Conference on Computational Science and Its Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5512	ICCP	IEEE International Conference on Intelligent Computer Communication and Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5511	ICCA	IEEE International Conference on Control and Automation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5510	ICARV	International Conference on Control, Automation, Robotics and Vision	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5509	ICAR	International Conference on Advanced Robotics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5508	ICANN	International Conference on Artificial Neural Networks	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5507	ICALT	IEEE International Conference on Advanced Learning Technologies	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5506	ICAART	International Conference on Agents and Artificial Intelligence	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5505	ICA3PP	International Conference on Algorithms and Architectures for Parallel Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5504	IAT	IEEE/WIC/ACM International Conference on Intelligent Agent Technology	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5503	HVC	International Haifa Verification Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5502	HPCS	International Conference on High Performance Computing & Simulation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5501	HOST	IEEE International Symposium on Hardware Oriented Security and Trust	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5500	HIPC	IEEE International Conference on High Performance Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5499	HCOMP	Conference on Human Computation and Crowdsourcing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5498	HASE	IEEE International Symposium on High Assurance Systems Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5497	HAIS	International Conference on Hybrid Artificial Intelligence Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5496	GRAPP	International Conference on Computer Graphics Theory and Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5495	GLVLSI	ACM Great Lakes Symposium on VLSI	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5494	GLOBALSIP	Global Conference on Signal and Information Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5493	GI	Graphics Interface Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5492	FUZZIEEE	IEEE International Conference on Fuzzy Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5491	FSTTCS	Annual Conference on Foundations of Software Technology and Theoretical Computer Science	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5490	FSKD	International Conference on Fuzzy Systems and Knowledge Discovery	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5489	FLAIRS	International Florida Artificial Intelligence Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5488	FIE	IEEE Frontiers in Education Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5487	FEDCSIS	Federated Conference on Computer Science and Information Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+6148	SET	Software Engineering Track	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+5486	EWSDN	European Workshop on Software Defined Networks	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5485	EVOCOP	European Conference on Evolutionary Computation in Combinatorial Optimization	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5484	EVOAPPLICATIONS	European Conference on the Applications of Evolutionary Computation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5483	EUSFLAT	Conference of the European Society for Fuzzy Logic and Technology	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5482	EuroSPI	European Conference on Software Process Improvement	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5481	EUROMICRO	Euromicro Conference on Software Engineering and Advanced Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5480	EUROITV	European Conference on Interactive TV and Video	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5479	EuroGP	European Conference on Genetic Programming	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5477	ESCIENCE	IEEE International Conference on e-Science	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5476	ESANN	European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5473	EMO	International Conference on Evolutionary Multi-Criterion Optimization	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5472	EMBC	Annual International Conference of the IEEE Engineering in Medicine and Biology Society	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5471	EGOV	International Conference on Electronic Government	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5470	ECTEL	European Conference on Technology Enhanced Learning	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5469	ECSQARU	European Conference on Symbolic and Quantitative Approaches to Reasoning and Uncertainty	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5468	ECSA	European Conference on Software Architecture	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5467	ECMS	European Conference on Modelling and Simulation	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5466	ECMDAFA	European Conference on Modelling Foundations and Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5320	HPCC	International Conference on High Performance Computing and Communications	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5319	FPL	International Conference on Field-Programmable Logic and Applications	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5318	FMCAD	International Conference on Formal Methods in Computer-Aided Design	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5317	FM	International Symposium on Formal Methods	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5316	FCCM	IEEE Annual International Symposium on Field-Programmable Custom Computing Machines	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5315	FASE	International Conference on Fundamental Approaches to Software Engineering	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5314	EUSIPCO	European Signal Processing Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5313	ETRA	Biennial ACM Symposium on Eye Tracking Research & Applications	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5312	ESORICS	European Symposium on Research in Computer Security	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5311	ESEM	ACM/IEEE International Symposium on Empirical Software Engineering and Measurement	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5310	ESA	European Symposium on Algorithms	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5309	EICS	ACM SIGCHI Symposium on Engineering Interactive Computing Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5308	EDOC	IEEE International Enterprise Distributed Object Computing Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5307	EDM	International Conference on Educational Data Mining	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5306	ECOOP	European Conference on Object-Oriented Programming	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5305	ECIS	European Conference on Information Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5304	ECIR	European Conference on Information Retrieval	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5303	ECAI	European Conference on Artificial Intelligence	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5302	DEBS	International Conference on Distributed and Event-Based Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5301	DCOSS	International Conference on Distributed Computing in Sensor Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5300	CT-RSA	RSA Conference Cryptographers' Track	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5299	CSMR	European Conference on Software Maintenance and Reengineering	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5298	CSF	IEEE Computer Security Foundations Symposium	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5297	CP	International Conference on Principles and Practice of Constraint Programming	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5296	CoopIS	International Conference on Cooperative Information Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5295	CONCUR	International Conference on Concurrency Theory	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5294	COMSNETS	International Conference on COMmunication Systems & NETworkS	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5293	COMPSAC	Annual International Computers, Software & Applications Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5292	COMPGEOM	International Symposium on Computational Geometry	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5291	COLING	International Conference on Computational Linguistics	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5290	CODES+ISSS	International Conference on Hardware/Software Codesign and System Synthesis	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5289	CNSM	International Conference on Network and Service Management	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5288	CLUSTER	IEEE International Conference on Cluster Computing	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5287	CLOSER	International Conference on Cloud Computing and Services Science	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5286	CIG	IEEE Conference on Computational Intelligence and Games	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5285	CICLING	International Conference on Intelligent Text Processing and Computational Linguistics	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5284	CICC	IEEE Custom Integrated Circuits Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5283	CGO	International Symposium on Code Generation and Optimization	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5282	CAISE	International Conference on Advanced Information Systems Engineering	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5281	CADE	International Conference on Automated Deduction	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5280	BTAS	IEEE International Conference on Biometrics: Theory, Applications, and Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5279	BPM	International Conference on Business Process Management	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5278	AVSS	IEEE International Conference on Advanced Video and Signal Based Surveillance	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5277	ASSETS	International ACM SIGACCESS Conference on Computers and Accessibility	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5276	ASONAM	IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5275	ARES	International Conference on Availability, Reliability and Security	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5274	AMCIS	Americas Conference on Information Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5273	AINA	IEEE International Conference on Advanced Information Networking and Applications	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5272	AIIDE	AAAI Conference on Artificial Intelligence and Interactive Digital Entertainment	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5271	AIED	Intternational Conference on Artificial Intelligence in Education	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5270	WWW	International World Wide Web Conferences	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5269	WSDM	ACM Conference International Conference on Web Search and Data Mining	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5268	WACV	Winter Conference on Applications of Computer Vision	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5267	UIST	User Interface Software Technology Symposium	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5266	UbiComp	ACM International Joint Conference on Pervasive and Ubiquitous Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5265	UAI	Conference on Uncertainty in Artificial Intelligence	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5264	SPLC	International Software Product Line Conference: New Directions in Systems and Software Product Line Engineering	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5263	SODA	ACM-SIAM Symposium on Discrete Algorithms	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5262	SOCIALCOM	International Conference on Social Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5261	SIGMOD	ACM Conference on Management Data	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5260	SIGIR	International ACM SIGIR Conference on Research and Development in Information Retrieval	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5259	SIGCSE	ACM Technical Symposium on Computer Science Education	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5258	SIGCOMM	ACM SIGCOMM Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5257	SenSys	ACM Conference on Embedded Network Sensor Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5256	SDM	SIAM International Conference on Data Mining	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5255	SC	International Conference for High Performance Computing, Networking, Storage and Analysis	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5254	SAC	ACM Symposium on Applied Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5253	RECSYS	ACM Conference on Recommender Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5252	PPOPP	ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5750	HCI	International Conference on Human-Computer Interaction	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5749	GROUP	International Conference on Supporting Group Work	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5748	GreenCom	IEEE International Conference on Green Computing and Communications	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5747	GREC	International Workshop on Graphic Recognition: Current Trends and Challenges	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5746	GPCE	ACM International Conference on Generative Programming: Concepts and Experiences	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5745	GPC	International Conference on Grid And Pervasive Computing	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5744	GIIS	Global Information Infrastructure and Networking Symposium	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5743	GECON	International Conference on Economics of Grids, Clouds, Systems and Services	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5742	FOSD	International Workshop on Feature-Oriented Software Development	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5741	FORMATS	International Conference on Formal Modeling and Analysis of Timed Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5740	FG	Conference on Formal Grammar	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5739	FDL	Forum on Specification and Design Languages	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5738	FAW	International Frontiers of Algorithmics Workshop	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5737	FACS	International Conference on Formal Aspects of Component Software	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5736	EWSN	European Conference on Wireless Sensor Networks	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5735	EUVIP	European Workshop on Visual Information Processing	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5734	EUMAS	European Conference on Multi-Agent Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5733	EUC	IEEE/IFIP International Conferences on Embedded and Ubiquitous Computing	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5732	ETFA	IEEE International Conference on Emerging Technologies and Factory Automation	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5731	ENIC	European Network Intelligence Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5730	ENASE	International Conference on Evaluation of Novel Approaches to Software Engineering	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5729	EGOVIS	International Conference on Electronic Government and the Information Systems Perspective	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5728	ECCE	European Conference on Cognitive Ergonomics	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5727	ECC	European Control Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5726	EAIS	IEEE Conference on Evolving and Adaptive Intelligent Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5725	DUXU	International Conference on Design, User Experience, and Usability: Interactive Experience Design	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5724	DSAI	International Conference on Software Development for Enhancing Accessibility and Fighting Info-exclusion	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5723	DIVANET	ACM Symposium on Development and Analysis of Intelligent Vehicular Networks and Applications	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5722	DILS	International Conference on Data Integration in Life Sciences	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5721	DHM	Applications in Health, Safety, Ergonomics and Risk Management	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5720	DH	Digital Heritage	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5719	DESE	International Conference on Developments in eSystems Engineering	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5718	DCAI	International Symposium on Distributed Computing and Artificial Intelligence	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5717	DARS	International Symposium on Distributed Autonomous Robotic Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5716	DAIS	International Conference on Distributed Applications and Interoperable Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5715	COSN	Conference on Online Social Networks	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5714	CompSysTech	International Conference on Computer Systems and Technologies	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5713	COGSCI	Annual Meeting of the Cognitive Science Society	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5712	COCOA	International Conference on Combinatorial Optimization and Applications	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5711	CLEF	Conference and Labs of the Evaluation Forum	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5710	CITS	International Conference on Computer, Information, and Telecommunication Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5709	CISRC	Cyber Security and Information Intelligence Research Workshop	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5708	CIBCB	IEEE Conference on Computational Intelligence in Bioinformatics and Computational Biology	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5706	CCNC	Annual IEEE Consumer Communications & Networking Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5705	CC	International Conference on Compiler Construction	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5704	CANDAR	International Symposium on Computing and Networking	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+6327	WEIHC	Workshop sobre Ensino de IHC	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6342	WVC	Workshop de Visão Computacional	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6341	WTTM	Workshop on the Theory of Transactional Memory	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6340	WTranS	Workshop de Transparência de Sistema	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6339	WTF	Workshop de Testes e Tolerância a Falhas	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6338	WSL	Workshop de Software Livre	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6337	WRVA	Workshop de Realidade Virtual e Aumentada	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6336	WRE	Workshop of Robotics in Education	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6335	WPEIF	Workshop de Pesquisa Experimental da Internet do Futuro	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+5703	BRACIS	Brazilian Conference on Intelligent System	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5702	BPMDS	International Conference BPMDS/EMMSAD	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5701	BIR	International Conferences on Perspectives in Business Informatics Research	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5700	BIH	International Conference on Brain Informatics and Health	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5699	BEDS	ACM International Conference on Distributed Event-Based Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5698	BCB	ACM International Conference on Bioinformatics and Computational Biology and Health Informatics	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5697	ASYNC	IEEE International Symposium on Asynchronous Circuits and Systems	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5696	ANTS	International Conference on Swarm Intelligence	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5695	ANNPR	International IAPR TC3 Workshop on Artificial Neural Networks in Pattern Recognition	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5694	AMIA	Annual Symposium of the American Medical Informatics Association	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5693	AIML	Advances in Modal Logic	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5692	AICT	International Conference on Application of Information and Communication Technologies	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5691	AICCSA	ACS/IEEE International Conference on Computer Systems and Applications	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5690	AGILEGIS	Conference on Geographic Information Science	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5689	AGERE	Workshop on Programming based on Actors, Agents, and Decentralized Control	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5688	ACRI	International conference on Cellular Automata for Research and Industry	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5687	AC-HCI	International Conference on Augmented Cognition	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5686	AAIM	International Conference on Algorithmic Aspects of Information and Management	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5251	POPL	Symposium on Principles of Programming Languages	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5250	PLDI	SIGPLAN Conference on Programming Language Design and Implementation	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5249	PIMRC	International Symposium on Personal, Indoor and Mobile Radio Communications	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5248	PERCOM	International Conference on Pervasive Computing and Communications	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5247	PACTT	International Conference on Parallel Architectures and Compilation Techniques	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5246	OOPSLA	Conference on Object-Oriented Programming Systems, Languages, and Applications	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5245	NSDI	Networked Systems Design and Implementation	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5244	MSR	Working Conference on Mining Software Repositories	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5243	MOBILEHCI	International Conference on Human-Computer Interaction with Mobile Devices and Services Adjunct	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5242	MOBICOM	ACM/IEEE International Conference on Mobile Computing and Networking	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5241	MICCAI	International Conference on Medical Image Computing and Computer Assisted Intervention	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5240	LREC	International Conference on Language Resources and Evaluation	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5239	LAK	International Learning Analytics and Knowledge Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5238	KDD	ACM SIGKDD Conference on Knowledge Discovery and Data Mining	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5237	ISWC	International Semantic Web Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5236	ISSTA	International Symposium on Software Testing and Analysis	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5235	ISMIR	International Society for Music Information Retrieval Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5234	ISIT	International Symposium on Information Theory	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5233	ISCAS	IEEE International Symposium on Circuits and Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5232	ISCA	International Symposium on Computer Architecture	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5231	IROS	IEEE/RSJ International Conference on Intelligent Robots and Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5230	IPSN	International Conference on Information Processing in Sensor Networks	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5229	IPDPS	IEEE International Parallel & Distributed Processing Symposium	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5228	INTERSPEECH	Conference of the International Speech Communication Association	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5227	INFOCOM	IEEE International Conference on Computer Communications	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5226	IMC	ACM Internet Measurement Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5225	IJCNN	IEEE International Joint Conference on Neural Networks	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5224	IJCAI	International Joint Conference on Artificial Intelligence	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5223	IEEECLOUD	IEEE International Conference on Cloud Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5221	ICSM	IEEE International Conference on Software Maintenance and Evolution	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5220	ICSE	International Conference on Software Engineering	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5219	ICRA	IEEE International Conference on Robotics and Automation	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5218	ICPP	International Conference on Parallel Processing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5217	ICN	ACM International Conference on Information-Centric Networking	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5216	ICMR	ACM International Conference on Multimedia Retrieval	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5215	ICML	International Conference on Machine Learning	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5214	ICIS	International Conference on Information Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5213	ICIP	IEEE International Conference on Image Processing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5212	ICDM	IEEE International Conference on Data Mining	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5211	ICDE	IEEE International Conference on Data Engineering	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5210	ICDCS	International Conference on Distributed Computing Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5209	ICDAR	International Conference on Document Analysis and Recognition	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5208	ICCS	International Conference on Computational Science	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5207	ICCAD	IEEE/ACM International Conference on ComputerAided Design	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5206	ICC	IEEE International Conference on Communications	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5205	ICASSP	IEEE International Conference on Acoustics, Speech and Signal Processing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5204	HPDC	International Symposium on High Performance Distributed Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5203	HPCA	IEEE International Symposium on High Performance Computer Architecture	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5202	HOTNETS	ACM Workshop on Hot Topics in Networks	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5201	HLT	International Conference Baltic Human Language Technology	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5200	HICSS	Hawaii International Conference on System Sciences	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5199	GLOBECOM	IEEE Global Communications Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5198	GIS	ACM SIGSPATIAL International Conference on Advances in Geographic Information Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5197	GECCO	Genetic and Evolutionary Computation Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5196	FUSION	International Conference on Information Fusion	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5195	FSE/ESEC	Joint Meeting on European Software Engineering Conference and Foundations of Software Engineering	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5194	FGR	IEEE International Conference on Automatic Face and Gesture Recognition	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5193	EUROSYS	European Conference on Computer Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5192	EUROPAR	European Conference on Parallel Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5191	ESWS	European Semantic Web Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5190	EMNLP	Conference on Empirical Methods in Natural Language Processing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5189	EDBT	International Conference on Extending Database Technology	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5188	ECRTS	Euromicro Conference on Real-Time Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5187	ECML	European Conference on Machine Learning and Principles and Practice of Knowledge Discovery in Databases	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5186	ECCV	European Conference on Computer Vision	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5185	DSN	Annual IEEE/IFIP International Conference on Dependable Systems and Networks	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5184	DATE	Design, Automation and Test in Europe Conference and Exhibition	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5183	DAC	Design Automation Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5182	CVPR	IEEE Conference on Computer Vision and Pattern Recognition	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5181	CSCW	ACM Conference on Computer Supported Cooperative Work & Social Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5180	CONEXT	Conference on Emerging Network Experiment and Technology	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5179	CloudCom	IEEE International Conference on Cloud Computing Technology and Science	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5178	CIKM	ACM International Conference on Information and Knowledge Management	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5177	CHI	ACM Conference on Human Factors in Computing Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5176	CHES	Conference on Cryptographic Hardware and Embedded Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5175	CEC	IEEE Congress on Evolutionary Computation	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5174	CCS	ACM Symposium on Information, Computer and Communications Security	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5173	CCGRID	IEEE/ACM International Symposium on Cluster, Cloud and Grid Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5172	BMVC	British Machine Vision Conference	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5171	ASPLOS	International Conference on Architectural Support for Programming Languages and Operating Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5170	ASIACRYPT	Annual International Conference on the Theory and Applications of Cryptology and Information Security	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5169	ASE	IEEE/ACM International Conference on Automated Software Engineering	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5168	ALLERTON	Allerton Conference on Communication, Control, and Computing	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5166	ACL	Annual Meeting of the Association for Computational Linguistics	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5165	AAMAS	International Conference on Autonomous Agents and Multiagent Systems	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+5786	IPAW	International Provenance and Annotation Workshop	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5785	IMR	International Meshing Roundtable and User Forum	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5784	ILP	International Conference on Inductive Logic Programming	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5707	CGI	Computer Graphics International Conference	\N	B2	CIÊNCIA DA COMPUTAÇÃO	2016
+5629	ROBOCUP	Robocup International Symposium	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5475	ER	International Conference on Conceptual Modeling	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5474	EPIA	Portuguese Conference on Artificial Intelligence	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5164	AAAI	Conference on Artificial Intelligence	\N	A1	CIÊNCIA DA COMPUTAÇÃO	2016
+6321	WAPCO	Workshop on Approximate Computing	\N	B5	CIÊNCIA DA COMPUTAÇÃO	2016
+6172	WWWW	International World Wide Web Conference Workshops	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6171	WOSP	International Workshop on Mining Scientific Publications	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6170	WOSAR	International Workshop on Software Aging and Rejuvenation	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+6169	WORKS	Workshop on Workflows in Support of Large-Scale Science	\N	B4	CIÊNCIA DA COMPUTAÇÃO	2016
+5465	ECCTD	European Conference on Circuit Theory and Design	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5464	ECAL	European Conference on Artificial Life	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5463	EASE	International Conference on Evaluation and Assessment in Software Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5462	DSRT	IEEE/ACM International Symposium on Distributed Simulation and Real Time Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5461	DSD	Euromicro Conference on Digital System Design	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5460	DRCN	International Conference on the Design of Reliable Communication Networks	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5459	DOLAP	International Workshop On Data Warehousing and OLAP	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5458	DOCENG	ACM SIGWEB International Symposium on Document Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5457	DGO	Annual International Conference on Digital Government Research	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5456	DFT	IEEE International Symposium on Defect and Fault Tolerance in VLSI Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5455	DEXA	International Conference on Database and Expert Systems Applications	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5454	DDECS	IEEE International Symposium on Design and Diagnostics of Electronic Circuits and Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5453	DCC	Data Compression Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5452	DAWAK	International Conference on Big Data Analytics and Knowledge Discovery	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5451	DAS	International Workshop on Document Analysis Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5450	CSNDSP	International Symposium on Communication Systems, Networks and Digital Signal Processing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5449	CSEE&T	Conference on Software Engineering Education and Training	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5448	CSEDU	International Conference on Computer Supported Education	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5447	CSE	International Conference on Computational Science and Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5446	CSCWD	IEEE International Conference on Computer Supported Cooperative Work in Design	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5445	CPM	Annual Symposium on Combinatorial Pattern Matching	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5444	COMMA	International Conference on Computational Models of Argument	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5443	CogSIMA	IEEE International Multi-Disciplinary Conference on Cognitive Methods in Situation Awareness and Decision Support	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5442	COCOON	International Computing and Combinatorics Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5441	CMSB	International Conference on Computational Methods in Systems Biology	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5440	CloudNet	IEEE International Conference on Cloud Networking	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5439	CIT	IEEE International Conference on Computer and Information Technology	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5438	CISIS	International Conference on Complex, Intelligent, and Software Intensive Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5437	CIDM	Symposium on Computational Intelligence and Data Mining	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5436	CIARP	Iberoamerican Congress on Pattern Recognition	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5435	CHASE	International Workshop on Cooperative and Human Aspects of Software Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5434	CGC	International Conference on Cloud and Green Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5433	CF	ACM International Conference on Computing Frontiers	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5432	CDC	IEEE Conference on Decision and Control	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5431	CCECE	Canadian Conference on Electrical and Computer Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5430	CCCG	Canadian Conference on Computational Geometry	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5429	CBSE	International ACM Sigsoft Symposium on Component-Based Software Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5428	CBMS	International Symposium on Computer-Based Medical Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5427	CBMI	International Workshop on Content-Based Multimedia Indexing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5426	CBI	IEEE Conference on Business Informatics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5425	CASON	International Conferennce on Computational Aspects of Social Networks	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5424	CASES	International Conference on Compilers, Architecture, and Synthesis for Embedded Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5423	CASE	IEEE Conference on Automation Science and Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5422	CASCON	Annual International Conference on Computer Science and Software Engineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5421	CANS	International Conference on Cryptology and Network Security	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5420	CAIP	International Conference on Computer Analysis of Images and Patterns	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5419	BMSB	IEEE International Symposium on Broadband Multimedia Systems and Broadcasting	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5418	BMEI	International Conference BioMedical Engineering and Informatics	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5417	BIOSIG	International Conference of the Biometrics Special Interest Group	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5416	BIGDATA	IEEE International Congress on BigData	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5415	BIBM	IEEE International Conference on Bioinformatics and Biomedicine	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5414	BIBE	IEEE International Conference on BioInformatics and BioEngineering	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5413	ASAP	IEEE International Conference on Application-specific Systems, Architectures and Processors	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5412	ARC	International Symposium on Applied Reconfigurable Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5411	APLAS	Asian Symposium on Programming Languages and Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5410	AMW	Alberto Mendelzon International Workshop on Foundations of Data Management	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5409	AI	Canadian Conference on Artificial Intelligence	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5408	AHS	NASA/ESA Conference on Adaptive Hardware and Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5407	AH	Augmented Human International Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5406	AGILE	Agile Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5405	AGI	Conference on Artificial General Intelligence	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5404	ADHOC-NOW	International Conference on Ad-Hoc Networks and Wireless	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5403	ADBIS	East European Conference on Advances in Databases and Information Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5402	ACIVS	Advanced Concepts for Intelligent Vision Systems	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5401	ACE	International Conference on Advances in Computer Entertainment Technology	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5400	3PGCIC	International Conference on P2P, Parallel, Grid, Cloud and Internet Computing	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5399	3DUI	IEEE Symposium on 3D User Interfaces	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5398	3DTV	3DTV Conference: The True Vision-Capture, Transmission and Display of 3D Video	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5397	3DIC	International 3D System Integration Conference	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
+5396	WSC	Winter Simulation Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5395	WOWMOM	International Symposium on a World of Wireless, Mobile and Multimedia Networks	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5394	WIMOB	IEEE International Conference on Wireless and Mobile Computing, Networking and Communications	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5393	WEBSCI	Web Science Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5392	WCRE	Working Conference on Reverse Engineering	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5391	VNC	IEEE Vehicular Networking Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5390	VAST	IEEE Conference on Visual Analytics Science and Technology	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5389	VAMOS	International Workshop on Variability Modelling of Software-intensive Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5388	UMAP	International Conference on User Modeling, Adaptation and Personalization	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5387	UCC	IEEE/ACM International Conference on Utility and Cloud Computing	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5386	TRUSTCOM	International Conference on Trust, Security and Privacy in Computing and Communications	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5385	TREC	Text Retrieval Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5384	TEI	International Conference on Tangible, Embedded and Embodied Interaction	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5383	TABLETOPS	International Conference on Interactive Tabletops and Surfaces	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5382	SMC	IEEE International Conference on Systems, Man and Cybernetics	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5381	SLT	Workshop on Spoken Language Technology	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5380	SIGGRAPH	International Conference and Exibition on Computer Graphics and Interactive Techniques	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5379	SERVICES	IEEE World Congress on Services	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5378	SEAMS	International Symposium on Software Engineering for Adaptive and Self-Managing Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5377	SEA	International Symposium on Experimental Algorithms	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5376	SAT	International Conference on Theory and Applications of Satisfiability Testing	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5375	SANER	IEEE International Conference on Software Analysis, Evolution and Reengineering	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5374	SACRYPT	Workshop on Selected Areas in Cryptography	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5373	RTSS	Real-Time Systems Symposium	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5372	RECOMB	International Conference on Research in Computational Molecular Biology	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5371	RE	IEEE International Requirements Engineering Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5370	PDP	Euromicro International Conference on Parallel, Distributed and Network-Based Processing	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5369	PAM	Passive and Active Network Measurement Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5368	PAKDD	Pacific-Asia Conference on Knowledge Discovery and Data Mining	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5367	PacificVis	IEEE Pacific Visualization Symposium	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5366	OM	International Workshop on Ontology Matching	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5365	NOMS	IEEE/IFIP Network Operations and Management Symposium	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5364	NFM	NASA Formal Methods Symposium	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5363	NETWORKING	IFIP Networking Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5362	MSST	IEEE Symposium on Mass Storage Systems and Technologies	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5361	MODULARITY	International Conference on Modularity	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5360	MODELS	International Conference on Model Driven Engineering Languages and Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5359	MOBIHOC	ACM International Symposium on Mobile Ad Hoc Networking and Computing	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5358	MMSYS	ACM Multimedia Systems Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5357	MIDDLEWARE	International Middleware Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5356	MDM	IEEE International Conference on Mobile Data Management	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5355	MASCOTS	International Symposium on the Modeling, Analysis, and Simulation of Computer and Telecommunication Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5354	KR	International Conference on Principles of Knowledge Representation and Reasoning	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5353	JCDL	ACM/IEEE Joint Conference on Digital Libraries	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5352	IWCMC	International Wireless Communications and Mobile Computing Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5351	IUI	International Conference on Intelligent User Interfaces	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5350	ITICSE	Conference on Innovation and Technology in Computer Science Education	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5349	ISWCS	International Symposium on Wireless Communication Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5348	ISSRE	IEEE International Symposium on Software Reliability Engineering	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5347	ISPASS	IEEE International Symposium on Performance Analysis of Systems and Software	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5346	ISMAR	International Symposium on Mixed and Augmented Reality	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5345	ISLPED	International Symposium on Low Power Electronics and Design	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5344	ISCC	International Symposium on Computers and Communications	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5343	INTERACT	IFIP TC 13 International Conference on Human-Computer Interaction	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5342	IMIS	International Conference on Innovative Mobile and Internet Services in Ubiquitous Computing	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5341	IM	IFIP/IEEE International Symposium on Integrated Network Management	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5340	IISWC	IEEE International Symposium on Workload Characterization	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5339	IGSC	International Green and Sustainable Computing Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5338	IEEESCC	IEEE International Conference on Services Computing	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5337	ICWS	IEEE International Conference on Web Services	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5336	ICSTV	IEEE International Conference on Software Testing, Verification and Validation	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5335	ICSOC	International Conference on Service Oriented Computing	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5334	ICPR	International Conference on Pattern Recognition	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5333	ICPE	International Conference on Performance Engineering	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5332	ICPC	International Conference on Program Comprehension	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5331	ICPADS	International Conference on Parallel and Distributed Systems	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5330	ICME	IEEE International Conference on Multimedia and Expo	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5329	ICCNC	International Conference on Computing, Networking and Communications	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5328	ICCD	International Conference on Computer Design	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5327	ICCCN	International Conference on Computer Communications and Networks	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5326	ICB	International Conference on Biometrics	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5325	ICAPS	International Conference on Automated Planning and Scheduling	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5324	ICAISC	International Conference on Artificial Intelligence and Soft Computing	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5323	I3D	ACM Symposium on Interactive 3D Graphics and Games	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5322	I2MTC	IEEE International Instrumentation and Measurement Technology Conference	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5321	HT	ACM Conference on Hypertext and Social Media	\N	A2	CIÊNCIA DA COMPUTAÇÃO	2016
+5950	LAW	Linguistic Annotation Workshop	\N	B3	CIÊNCIA DA COMPUTAÇÃO	2016
+5478	ETS	IEEE European Test Symposium	\N	B1	CIÊNCIA DA COMPUTAÇÃO	2016
 \.
 
 
