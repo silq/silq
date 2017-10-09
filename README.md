@@ -40,17 +40,13 @@ As credenciais de conexão com o banco estão no arquivo `docker-compose.yml`.
 
 ### Criação do esquema e dados iniciais
 
-Execute o arquivo `sql/schema.sql`. Posteriormente, execute `sql/qualis_evento.sql` e `sql/qualis_periodico.sql` para inserção dos registros Qualis.
+Os arquivos que contém o esquema e os dados Qualis estão nos arquivos SQL:
 
-Os seguintes comandos podem ser utilizados para tanto:
+- `sql/schema.sql`
+- `sql/qualis_evento.sql`
+- `sql/qualis_periodico.sql`
 
-```
-psql -h 0.0.0.0 -p 5432 -U postgres -d silq2 -f sql/schema.sql
-psql -h 0.0.0.0 -p 5432 -U postgres -d silq2 -f sql/qualis_evento.sql
-psql -h 0.0.0.0 -p 5432 -U postgres -d silq2 -f sql/qualis_periodico.sql
-```
-
-Também é necessário executar estes scripts para a base de testes.
+Os dockers criados com o `docker-compose` executarão automaticamente esses SQLs em sua construção.
 
 ## Construindo a aplicação
 
