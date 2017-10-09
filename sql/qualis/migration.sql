@@ -18,6 +18,9 @@ UPDATE tb_qualis_periodico SET nu_ano = 2014 WHERE nu_ano IS NULL;
 \COPY tb_qualis_periodico(co_issn, no_titulo, no_area_avaliacao, no_estrato) FROM 2015_101865_registros.xls DELIMITER E'\t' CSV HEADER ENCODING 'latin1';
 UPDATE tb_qualis_periodico SET nu_ano = 2015 WHERE nu_ano IS NULL;
 
+\COPY tb_qualis_periodico(co_issn, no_titulo, no_area_avaliacao, no_estrato) FROM 2016_131273_registros.xls DELIMITER E'\t' CSV HEADER ENCODING 'latin1';
+UPDATE tb_qualis_periodico SET nu_ano = 2016 WHERE nu_ano IS NULL;
+
 -- Removendo espaços em branco das colunas:
 -- Exemplo: "ADMINISTRAÇÃO ..         " -> "ADMINISTRAÇÃO .."
 UPDATE tb_qualis_periodico SET no_titulo = trim(no_titulo), no_estrato = trim(no_estrato), no_area_avaliacao = trim(no_area_avaliacao);
@@ -46,3 +49,6 @@ WHERE nu_ano = 2015;
 \COPY tb_qualis_evento(ds_sigla, no_titulo, no_estrato) FROM QualisConferencias2016.csv DELIMITER E'\t' CSV HEADER ENCODING 'utf8';
 UPDATE tb_qualis_evento SET nu_ano = 2016 WHERE nu_ano IS NULL;
 UPDATE tb_qualis_evento SET no_area_avaliacao = 'CIÊNCIA DA COMPUTAÇÃO' WHERE no_area_avaliacao IS NULL;
+
+-- Cópia parcial de uma tabela para exportação de novos registros Qualis:
+\copy (SELECT * FROM tb_qualis_periodico WHERE nu_ano = 2016) TO /home/bonetti/workspace/silq/periodico2016.csv DELIMITER E'\t' CSV HEADER ENCODING 'utf8';

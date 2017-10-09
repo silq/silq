@@ -51,6 +51,12 @@ update tb_qualis_periodico set no_area_avaliacao = 'FILOSOFIA' where no_area_ava
 update tb_qualis_periodico set no_area_avaliacao = 'TEOLOGIA' where no_area_avaliacao = 'FILOSOFIA/TEOLOGIA:subcomissão TEOLOGIA';
 -- 1766 registros atualizados
 
+# Qualis 2016
+
+* A área de avaliação dos Qualis 2010-2015 'ADMINISTRAÇÃO, CIÊNCIAS CONTÁBEIS E TURISMO' é apresentado na tabela Qualis de 2016 como 'ADMINISTRAÇÃO PÚBLICA E DE EMPRESAS, CIÊNCIAS CONTÁBEIS E TURISMO'. Foi realizado um find & replace na tabela para alterar o nome da área para 'ADMINISTRAÇÃO, CIÊNCIAS CONTÁBEIS E TURISMO'.
+
+* A nova área 'CIÊNCIAS DA RELIGIÃO E TEOLOGIA' aparecia nos Qualis anteriores como 'TEOLOGIA'. Os registros que apresentavam tal caso tiveram sua área alterada para 'TEOLOGIA'.
+
 # Qualis conferência 2013-2015
 
 * Títulos da linha de cabeçalho alterados para os nomes correspondentes das colunas da tabela `tb_qualis_evento` da base de dados. As colunas desnecessárias foram removidas.
