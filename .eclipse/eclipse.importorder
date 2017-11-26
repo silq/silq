@@ -1,0 +1,9 @@
+#Organize Import Order
+#Tue Aug 09 11:22:22 BRT 2016
+6=com
+5=br.ufsc
+4=br.gov
+3=org
+2=lombok
+1=javax
+0=java
