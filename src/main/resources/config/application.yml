@@ -26,14 +26,17 @@ spring:
         mode: XHTML
     data:
         rest:
-            defaultPageSize=10
-            maxPageSize=10
+            default-page-size: 10
+            max-page-size: 500
+    http:
+        multipart:
+            enabled: true
+            max-file-size: 20MB
+            max-request-size: 20MB
 
 security:
     basic:
         enabled: false
-
-multipart.maxFileSize: 100Mb
 
 # ===================================================================
 # JHipster specific properties
