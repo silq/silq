@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +24,10 @@ public class AreaConhecimento implements Serializable {
 	}
 
 	public String getNomeGrandeArea() {
+	    if (StringUtils.isEmpty(this.nomeGrandeArea)) {
+	        return null;
+        }
+
 		return GrandeAreaConhecimento.valueOf(this.nomeGrandeArea) != null
 				? GrandeAreaConhecimento.valueOf(this.nomeGrandeArea).getDesc() : this.nomeGrandeArea;
 	}
