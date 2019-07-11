@@ -32,12 +32,43 @@
 
         <div>
             <a class="btn-block btn btn-sm btn-primary" ng-click="avaliarGrupo()"><span class="glyphicon glyphicon-stats"></span> Avaliar grupo</a>
+            <a class="btn-block btn btn-sm btn-success" ng-click="classificarGrupo()"><span class="glyphicon glyphicon-sort-by-attributes"></span> Classificar grupo</a>
             <hr />
 
             <div class="side-to-side-block">
-                <a class="btn btn-sm btn-danger" ui-sref="grupo.delete({id: grupo.id})"><span class="glyphicon glyphicon-remove-circle"></span> Excluir grupo</a>
-                <a class="btn btn-sm btn-info" ui-sref="grupo.edit({id: grupo.id})"><span class="glyphicon glyphicon-pencil"></span> Editar grupo</a>
+                <a class="btn btn-sm btn-danger" ui-sref="grupo.delete({id: grupo.id})"><span class="glyphicon glyphicon-remove-circle"></span> Excluir</a>
+                <a class="btn btn-sm btn-info" ui-sref="grupo.edit({id: grupo.id})"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                <a class="btn btn-sm btn-warning" ui-sref="grupo.share({id: grupo.id})"><span class="glyphicon glyphicon-send"></span> Compartilhar</a>
             </div>
+        </div>
+        <hr />
+
+        <h4 class="title-border">
+            <span class="glyphicon glyphicon-eye-open"></span>
+            Espectadores
+        </h4>
+        <div class="table-responsive" ng-show="grupo.pesquisadores.length > 0">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="espectador in grupo.espectadores | orderBy: 'nome'">
+                    <td>{{ espectador.nome }}</td>
+                    <td class="table-actions">
+                        <a confirm-click="removeEspectador(espectador)"
+                           confirm-message="Tem certeza que deseja remover o espectador deste grupo?"
+                           class="text-danger"
+                        >
+                            <span class="glyphicon glyphicon-remove-circle"></span> Remover
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 

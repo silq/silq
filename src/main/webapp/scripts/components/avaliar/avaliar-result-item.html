@@ -1,5 +1,11 @@
 <div class="qualis-result-item">
     <div class="pull-right" uib-dropdown>
+        <button type="button" class="btn btn-success btn-sm" title="Conceito" ng-if="evaluationSystem == 'QUALIS'">
+            {{obterNotaQUALIS(item.obj.ano, item.conceitos )}}
+        </button>
+        <button type="button" class="btn btn-warning btn-sm" title="Conceito" ng-if="evaluationSystem == 'SICLAP'">
+            {{obterNotaSICLAP(item.obj.ano, item.conceitos )}}
+        </button>
         <button type="button" class="btn btn-default btn-sm" title="Opções" uib-dropdown-toggle>
             <i class="glyphicon glyphicon-cog"></i>
             <span class="caret"></span>

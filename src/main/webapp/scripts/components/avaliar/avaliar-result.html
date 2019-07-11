@@ -7,6 +7,11 @@
 
 <div class="row">
     <div class="col-md-3">
+        <h2 class="title-border">Sistema de avaliação</h2>
+        <select class="form-control" ng-model="evaluationSystem">
+            <option value="QUALIS" selected>QUALIS</option>
+            <option value="SICLAP">SICLAP</option>
+        </select>
         <h3 class="title-border">Dados gerais</h3>
 
         <dl>
@@ -20,6 +25,8 @@
             <dd>{{results.form.area}}</dd>
             <dt>Período de avaliação</dt>
             <dd>{{results.form.periodoAvaliacao.text}}</dd>
+            <dt>Sistema de avaliação</dt>
+            <dd>{{evaluationSystem}}</dd>
         </dl>
 
         <h4 class="title-border">Totalizador <small>Nível de confiança: {{results.form.nivelSimilaridade.text}}</small></h4>
@@ -38,8 +45,14 @@
                 <th>Conceito</th>
                 <th>Qtde.</th>
             </thead>
-            <tbody>
+            <tbody ng-if="evaluationSystem == 'QUALIS'">
                 <tr ng-repeat="total in results.stats.totalizador">
+                    <td><strong>{{total.conceito}}</strong></td>
+                    <td>{{total.qtde}}</td>
+                </tr>
+            </tbody>
+            <tbody ng-if="evaluationSystem == 'SICLAP'">
+                <tr ng-repeat="total in results.stats.totalizadorSICLAP">
                     <td><strong>{{total.conceito}}</strong></td>
                     <td>{{total.qtde}}</td>
                 </tr>
@@ -51,19 +64,22 @@
         <br />
         <ul class="nav nav-tabs nav-justified" role="tablist" ng-init="active = 0">
             <li ng-class="{ active: active == 0 }">
-                <a ng-click="active = 0">Artigos <span class="badge badge-sm">{{results.artigos.length}} registros</span></a>
+                <a ng-click="active = 0">Periódicos <span class="badge badge-sm">{{results.artigos.length}} registros</span></a>
             </li>
             <li ng-class="{ active: active == 1}">
-                <a ng-click="active = 1">Trabalhos <span class="badge badge-sm">{{results.trabalhos.length}} registros</span></a>
+                <a ng-click="active = 1">Eventos <span class="badge badge-sm">{{ (results.trabalhos | filter: {obj: {'natureza': 'Completo'},}).length }} registros</span></a>
             </li>
             <li ng-class="{ active: active == 2}">
-                <a ng-click="active = 2">Gráficos</a>
+                <a ng-click="active = 2">Resumos <span class="badge badge-sm">{{ (results.trabalhos | filter: {obj: {'natureza': '!Completo'},}).length }} registros</span></a>
+            </li>
+            <li ng-class="{ active: active == 3}">
+                <a ng-click="active = 3">Gráficos</a>
             </li>
         </ul>
 
         <div ng-show="active == 0">
             <h3 class="title-border flex">
-                <div class="flex-grow">Artigos <small>{{ results.artigos.length }} registros</small></div>
+                <div class="flex-grow">Periódicos <small>{{ results.artigos.length }} registros</small></div>
 
                 <button class="btn btn-sm btn-default"
                     title="Download arquivo .csv dos resultados"
@@ -73,9 +89,9 @@
                     filename="Artigos.csv"
                 ><i class="glyphicon glyphicon-download"></i> Download .csv</button>
             </h3>
-            <div class="qualis-results">
+            <div ng-class="evaluationSystem == 'QUALIS' ? 'qualis-results': 'siclap-results'">
                 <div ng-repeat="item in results.artigos | filter: filter">
-                    <avaliar-result-item item="item" filter="filter" form="results.form"></avaliar-result-item>
+                    <avaliar-result-item item="item" filter="filter" evaluation-system="evaluationSystem" form="results.form"></avaliar-result-item>
                 </div>
 
                 <p class="help-block" ng-hide="(results.artigos | filter: filter).length">
@@ -86,7 +102,7 @@
 
         <div ng-show="active == 1">
             <h3 class="title-border flex">
-                <div class="flex-grow">Trabalhos <small>{{ results.trabalhos.length }} registros</small></div>
+                <div class="flex-grow">Eventos <small>{{ (results.trabalhos | filter: {obj: {'natureza': 'Completo'},}).length }} registros</small></div>
 
                 <button class="btn btn-sm btn-default"
                     title="Download arquivo .csv dos resultados"
@@ -97,8 +113,8 @@
                 ><i class="glyphicon glyphicon-download"></i> Download .csv</button>
             </h3>
             <div class="qualis-results">
-                <div ng-repeat="item in results.trabalhos | filter: filter">
-                    <avaliar-result-item item="item" filter="filter" form="results.form"></avaliar-result-item>
+                <div ng-repeat="item in results.trabalhos | filter: { obj: {natureza: 'Completo'}, $: filter}">
+                    <avaliar-result-item item="item" filter="filter" evaluation-system="evaluationSystem" form="results.form"></avaliar-result-item>
                 </div>
 
                  <p class="help-block" ng-hide="(results.trabalhos | filter: filter).length">
@@ -108,14 +124,36 @@
         </div>
 
         <div ng-show="active == 2">
+            <h3 class="title-border flex">
+                <div class="flex-grow">Resumos <small>{{ (results.trabalhos | filter: {obj: {'natureza': '!Completo'},}).length }} registros</small></div>
+
+                <button class="btn btn-sm btn-default"
+                        title="Download arquivo .csv dos resultados"
+                        ng-csv="getResumosCSV"
+                        csv-header="['Ano', 'Título do Trabalho', 'Evento', 'Conceito', 'Similaridade', 'Título do Evento Similar', 'Ano de avaliação do evento']"
+                        csv-column-order="['ano', 'titulo', 'tituloVeiculo', 'conceitoEstrato', 'conceitoSimilaridade', 'conceitoTitulo', 'conceitoAno']"
+                        filename="Resumos.csv"
+                ><i class="glyphicon glyphicon-download"></i> Download .csv</button>
+            </h3>
+            <div class="qualis-results">
+                <div ng-repeat="item in results.trabalhos | filter: { obj: {natureza: '!Completo'}, $: filter}">
+                    <avaliar-result-item item="item" filter="filter" evaluation-system="evaluationSystem" form="results.form"></avaliar-result-item>
+                </div>
+
+                <p class="help-block" ng-hide="(results.trabalhos | filter: filter).length">
+                    <i>Nenhum resultado encontrado.</i>
+                </p>
+            </div>
+        </div>
+
+        <div ng-show="active == 3">
             <br />
             <div ng-show="needRefresh" class="alert alert-warning">
                 <p>
                     Alguns conceitos foram manualmente modificados pelo usuário. <a ng-click="refreshResults()">Atualize esta página</a> para recalcular as estatísticas!
                 </p>
             </div>
-
-            <chart-publicacoes-por-ano stats="results.stats"></chart-publicacoes-por-ano>
+            <chart-publicacoes-por-ano stats="results.stats" evaluation-system="evaluationSystem"></chart-publicacoes-por-ano>
         </div>
     </div>
 </div>

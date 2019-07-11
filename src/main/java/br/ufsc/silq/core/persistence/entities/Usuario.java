@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -33,6 +34,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString(of = { "id", "nome" })
+@EqualsAndHashCode(of = { "id" })
 public class Usuario {
 
 	@Id
@@ -74,4 +76,8 @@ public class Usuario {
 	@OneToMany(mappedBy = "coordenador", orphanRemoval = true, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Grupo> grupos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "espectadores", orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Grupo> gruposEspectadores = new ArrayList<>();
 }

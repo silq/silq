@@ -54,4 +54,8 @@ public class Grupo {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "rl_grupo_pesquisador", joinColumns = @JoinColumn(name = "co_grupo") , inverseJoinColumns = @JoinColumn(name = "co_curriculum") )
 	private Set<CurriculumLattes> pesquisadores = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "rl_espectador", joinColumns = @JoinColumn(name = "co_grupo") , inverseJoinColumns = @JoinColumn(name = "co_usuario") )
+    private Set<Usuario> espectadores = new HashSet<>();
 }

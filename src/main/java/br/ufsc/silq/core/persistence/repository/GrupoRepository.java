@@ -22,4 +22,8 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long> {
 	 * @return
 	 */
 	List<Grupo> findAllByPesquisadores(CurriculumLattes curriculumPesquisador);
+
+    List<Grupo> findAllByEspectadores(Usuario coordenador);
+
+    Optional<Grupo> findOneByIdAndEspectadores(Long id, Usuario coordenador);
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import br.ufsc.silq.core.data.ClassificacaoCollectionResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -133,8 +134,22 @@ public class AvaliarResource {
 	@RequestMapping(value = "/avaliar/grupo/{grupoId}", method = RequestMethod.POST)
 	public ResponseEntity<AvaliacaoCollectionResult> avaliarGrupo(@PathVariable Long grupoId,
 			@Valid @RequestBody AvaliarForm avaliarForm) throws SilqLattesException {
-		Grupo grupo = this.grupoService.findOneWithPermission(grupoId).orElseThrow(() -> new HttpNotFound("Grupo não encontrado"));
+        Grupo grupo = this.grupoService.findOneWithEspectadorPermission(grupoId).orElse(null);
+        if (grupo == null){
+            grupo = this.grupoService.findOneWithPermission(grupoId).orElseThrow(() -> new HttpNotFound("Grupo não encontrado"));
+        }
 		AvaliacaoCollectionResult result = this.avaliacaoService.avaliarCollection(grupo.getPesquisadores(), avaliarForm);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
+
+    @RequestMapping(value = "/classificar/grupo/{grupoId}", method = RequestMethod.POST)
+    public ResponseEntity<ClassificacaoCollectionResult> classificarGrupo(@PathVariable Long grupoId,
+                                                                          @Valid @RequestBody AvaliarForm avaliarForm) throws SilqLattesException {
+        Grupo grupo = this.grupoService.findOneWithEspectadorPermission(grupoId).orElse(null);
+        if (grupo == null){
+            grupo = this.grupoService.findOneWithPermission(grupoId).orElseThrow(() -> new HttpNotFound("Grupo não encontrado"));
+        }
+        ClassificacaoCollectionResult result = this.avaliacaoService.classificarCollection(grupo.getPesquisadores(), avaliarForm);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

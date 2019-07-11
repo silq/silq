@@ -52,7 +52,7 @@ public class AvaliarForm {
 	 */
 	@Min(1)
 	@Max(100)
-	private int maxConceitos = 5;
+	private int maxConceitos = 100;
 
 	/**
 	 * Se devem ser utilizados os feedbacks do usuário para a avaliação.

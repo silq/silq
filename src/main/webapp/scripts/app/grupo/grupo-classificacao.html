@@ -1,0 +1,57 @@
+<h2 class="text-center">Resultados da classificação de grupo <small>{{grupo.nomeGrupo}}</small></h2>
+
+<p class="text-center">
+    <a class="btn btn-primary btn-spaced btn-sm" ui-sref="^">
+        &larr; Voltar para página do grupo
+    </a>
+</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <h4 class="title-border">
+            <span class="glyphicon glyphicon-list-alt"></span>
+            Informações do grupo
+        </h4>
+
+        <div class="table-responsive">
+            <table class="table table-resumo">
+                <tbody>
+                <tr>
+                    <td>Nome</td>
+                    <td>{{grupo.nomeGrupo}}</td>
+                </tr>
+                <tr>
+                    <td>Instituição</td>
+                    <td>{{grupo.nomeInstituicao}}</td>
+                </tr>
+                <tr>
+                    <td>Área de Atuação</td>
+                    <td>{{grupo.nomeArea}}</td>
+                </tr>
+                <tr>
+                    <td>Pesquisadores</td>
+                    <td>{{grupo.pesquisadores.length}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="title-border">
+            <span class="glyphicon glyphicon-cog"></span>
+            Opções de avaliação
+        </h4>
+
+        <dl>
+            <dt>Área utilizada na classificação</dt>
+            <dd>{{results.form.area}}</dd>
+            <dt>Período de classificação</dt>
+            <dd>{{results.form.periodoAvaliacao.text}}</dd>
+            <dt>Nível de confiança</dt>
+            <dd>{{results.form.nivelSimilaridade.text}}</dd>
+        </dl>
+    </div>
+
+    <div class="col-md-8">
+        <classificacao-table avaliacoes="results.avaliacoes"></classificacao-table>
+    </div>
+</div>

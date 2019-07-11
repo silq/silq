@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{email.share.title}">SILQ - Um grupo de pesquisa foi compartilhado com você</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:text="#{email.share.greeting(${user.nome})}">
+    Caro usuário
+</p>
+<p th:text="#{email.share.text1(${grupo.nomeGrupo})}">
+    Um grupo de pesquisa foi compartilhado com sua conta no SILQ.
+</p>
+<p>
+    <span th:text="#{email.share.text2}">Atenciosamente, </span>
+    <br/>
+    <em th:text="#{email.signature}">JHipster.</em>
+</p>
+</body>
+</html>

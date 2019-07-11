@@ -45,6 +45,20 @@ angular.module('silq2App')
                     }
                 }
             })
+            .state('grupo.classificacao', {
+                parent: 'grupo.detail',
+                url: '/classificacao?{avaliarForm:json}',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Classificação de grupo'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/grupo/grupo-classificacao.html',
+                        controller: 'GrupoClassificacaoController'
+                    }
+                }
+            })
             .state('grupo.new', {
                 parent: 'grupo',
                 url: '/-/new',
@@ -104,6 +118,25 @@ angular.module('silq2App')
                     $uibModal.open({
                         templateUrl: 'scripts/app/grupo/grupo-delete-dialog.html',
                         controller: 'GrupoDeleteController',
+                        size: 'md'
+                    }).result.then(function() {
+                        $state.go('grupo', null, { reload: true });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
+            .state('grupo.share', {
+                parent: 'grupo.detail',
+                url: '/share',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'Compartilhar grupo'
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'scripts/app/grupo/grupo-share-dialog.html',
+                        controller: 'GrupoShareController',
                         size: 'md'
                     }).result.then(function() {
                         $state.go('grupo', null, { reload: true });

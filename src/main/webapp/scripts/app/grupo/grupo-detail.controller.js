@@ -39,11 +39,32 @@ angular.module('silq2App')
             });
         };
 
+        $scope.classificarGrupo = function() {
+            AvaliarConfigModal.open({
+                area: $scope.grupo.nomeArea
+            }).then(function(form) {
+                $state.go('grupo.classificacao', {
+                    id: $scope.grupo.id,
+                    avaliarForm: form
+                });
+            });
+        };
+
         $scope.removePesquisador = function(pesquisador) {
             Grupo.removePesquisador($stateParams.id, pesquisador.id).then(function() {
                 var index = $scope.grupo.pesquisadores.indexOf(pesquisador);
                 index != -1 && $scope.grupo.pesquisadores.splice(index, 1);
                 Flash.create('success', '<strong>Sucesso!</strong> O pesquisador "'+pesquisador.nome+'" foi removido do grupo.');
+            }).catch(function(err) {
+                console.error(err);
+            });
+        };
+
+        $scope.removeEspectador = function(espectador) {
+            Grupo.removeEspectador($stateParams.id, espectador.id).then(function() {
+                var index = $scope.grupo.espectadores.indexOf(espectador);
+                index != -1 && $scope.grupo.espectadores.splice(index, 1);
+                Flash.create('success', '<strong>Sucesso!</strong> O espectador "'+espectador.nome+'" foi removido do grupo.');
             }).catch(function(err) {
                 console.error(err);
             });

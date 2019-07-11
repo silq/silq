@@ -135,4 +135,23 @@ public class GrupoService {
 		this.grupoRepository.save(grupo);
 	}
 
+    public List<Grupo> findAllWithEspectadorPermission() {
+        return this.grupoRepository.findAllByEspectadores(this.getCoordenadorLogado());
+    }
+
+    public Optional<Grupo> findOneWithEspectadorPermission(Long id) {
+        return this.grupoRepository.findOneByIdAndEspectadores(id, this.getCoordenadorLogado());
+    }
+
+    public void addUsuarioToGrupo(Grupo grupo, Usuario usuario) {
+        grupo.getEspectadores().add(usuario);
+        this.grupoRepository.save(grupo);
+    }
+
+    public void removeEspectador(Grupo grupo, Long espectadorId) {
+        Usuario usuario = this.usuarioService.findOneById(espectadorId).get();
+        grupo.getEspectadores().remove(usuario);
+        this.grupoRepository.save(grupo);
+    }
+
 }

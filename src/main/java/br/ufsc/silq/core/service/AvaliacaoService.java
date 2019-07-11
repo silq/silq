@@ -12,21 +12,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
+import br.ufsc.silq.core.data.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.querydsl.jpa.impl.JPAQuery;
 
-import br.ufsc.silq.core.data.AvaliacaoCollectionResult;
-import br.ufsc.silq.core.data.AvaliacaoResult;
-import br.ufsc.silq.core.data.AvaliacaoStats;
-import br.ufsc.silq.core.data.AvaliacaoType;
-import br.ufsc.silq.core.data.Conceito;
-import br.ufsc.silq.core.data.Conceituado;
-import br.ufsc.silq.core.data.NivelSimilaridade;
-import br.ufsc.silq.core.data.SimilarityResult;
-import br.ufsc.silq.core.data.TipoConceito;
 import br.ufsc.silq.core.exception.SilqError;
 import br.ufsc.silq.core.exception.SilqLattesException;
 import br.ufsc.silq.core.forms.AvaliarForm;
@@ -115,6 +107,19 @@ public class AvaliacaoService {
 
 		return new AvaliacaoCollectionResult(avaliarForm, stats);
 	}
+
+    public ClassificacaoCollectionResult classificarCollection(Collection<CurriculumLattes> curriculos, @Valid AvaliarForm avaliarForm)
+        throws SilqLattesException {
+        Usuario usuarioLogado = this.usuarioService.getUsuarioLogado();
+
+        ClassificacaoCollectionResult classificacaoCollectionResult = new ClassificacaoCollectionResult(avaliarForm);
+
+        curriculos.parallelStream()
+            .map(curriculo -> this.avaliar(curriculo, avaliarForm, usuarioLogado))
+            .forEach(avaliacaoResult -> classificacaoCollectionResult.putAvaliacaoResult(avaliacaoResult));
+
+        return classificacaoCollectionResult;
+    }
 
 	/**
 	 * Avalia dados de um currículo Lattes já parseados pelo {@link LattesParser}.

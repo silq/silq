@@ -238,4 +238,14 @@ public class UsuarioService {
 	public CurriculumLattes saveCurriculumUsuarioLogado(MultipartFile uploadedFile) throws SilqException {
 		return this.saveCurriculumUsuario(this.getUsuarioLogado(), uploadedFile);
 	}
+
+    /**
+     * Retorna o usuário que possua o id especificado.
+     *
+     * @param id ID do usuário.
+     * @return A entidade {@link Usuario} que possue o ID especificado.
+     */
+    public Optional<Usuario> findOneById(Long id) {
+        return this.usuarioRepository.findOneById(id);
+    }
 }

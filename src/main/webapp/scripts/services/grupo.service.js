@@ -43,6 +43,20 @@ angular.module('silq2App')
 
             avaliarGrupo: function(grupoId, avaliarForm) {
                 return $http.post('api/avaliar/grupo/' + grupoId, avaliarForm);
-            }
+            },
+
+            classificarGrupo: function(grupoId, avaliarForm) {
+                return $http.post('api/classificar/grupo/' + grupoId, avaliarForm);
+            },
+
+            share: function(grupoId, email) {
+                Cache.invalidate();
+                return $http.post('api/grupos/' + grupoId + '/share', email);
+            },
+
+            removeEspectador: function(grupoId, espectadorId) {
+                Cache.invalidate();
+                return $http.delete('api/grupos/' + grupoId + '/removeEspectador/' + espectadorId);
+            },
         };
     });

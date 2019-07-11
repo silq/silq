@@ -1,0 +1,23 @@
+<form name="shareForm" role="form" novalidate ng-submit="share(grupo.id)">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myGrupoLabel">Compartilhar Grupo</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="control-label" for="field_nomeGrupo">Email do usuário *</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                   ng-model="email" required
+            />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" ng-disabled="shareForm.$invalid || isSaving" class="btn btn-primary">
+            Compartilhar
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            Cancelar
+        </button>
+    </div>
+</form>

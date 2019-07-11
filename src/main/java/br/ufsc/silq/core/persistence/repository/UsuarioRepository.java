@@ -20,4 +20,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 	List<Usuario> findAllByCurriculum(CurriculumLattes curriculum);
 
+    Optional<Usuario> findOneById(Long id);
+
 }

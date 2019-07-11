@@ -7,6 +7,7 @@ angular.module('silq2App')
             scope: {
                 item: '=item',
                 filter: '=filter',
+                evaluationSystem: '=evaluationSystem',
                 form: '=form'
             },
             templateUrl: 'scripts/components/avaliar/avaliar-result-item.html',
@@ -30,6 +31,61 @@ angular.module('silq2App')
                             conceito.conceito = conceito.estrato;
                             $scope.feedback(item, conceito);
                         });
+                };
+
+                $scope.obterNotaQUALIS = function(ano, conceitos) {
+                    var conceito = _.find(conceitos, function(p){ return p.ano === ano; });
+                    return conceito != null ? conceito.conceito : 'Não há avaliação Qualis neste ano' ;
+                };
+
+                $scope.obterNotaSICLAP = function(ano, conceitos) {
+                    var CONCEITO_ENUM = {
+                        A1: 8,
+                        A2: 7,
+                        B1: 6,
+                        B2: 5,
+                        B3: 4,
+                        B4: 3,
+                        B5: 2,
+                        C: 1,
+                        NA: 0,
+                        properties: {
+                            8: {name: "A1"},
+                            7: {name: "A2"},
+                            6: {name: "B1"},
+                            5: {name: "B2"},
+                            4: {name: "B3"},
+                            3: {name: "B4"},
+                            2: {name: "B5"},
+                            1: {name: "C"},
+                            0: {name: "NA"}
+                        }
+                    };
+                    var primeiroConceito;
+                    var segundoConceito = null;
+                    var primeirosConceitos = _.filter(conceitos, function(p){ return p.ano < ano; });
+                    primeiroConceito = getConceito(primeirosConceitos);
+                    if(primeiroConceito != null){
+                        var anoPrimeiroConceito = primeiroConceito.ano;
+                        var segundosConceitos = _.filter(conceitos, function(p){ return p.ano < anoPrimeiroConceito; });
+                        segundoConceito = getConceito(segundosConceitos);
+                    }
+                    primeiroConceito = CONCEITO_ENUM[primeiroConceito != null ? primeiroConceito.conceito : "NA"];
+                    segundoConceito = CONCEITO_ENUM[segundoConceito != null ? segundoConceito.conceito : "NA"];
+                    var result = CONCEITO_ENUM.properties[Math.max(primeiroConceito, segundoConceito)].name;
+                    return result === 'NA' ? 'Não há avaliação Siclap para este ano' : result;
+                };
+
+                var getConceito = function(conceitos){
+                    var conceito = null;
+                    if (conceitos.length > 0) {
+                        conceitos = _.sortBy(conceitos, ['feedback']).reverse();
+                        if (!conceitos[0].feedback){
+                            conceitos = _.sortBy(conceitos, ['similaridade', 'ano']).reverse();
+                        }
+                        conceito = conceitos[0]
+                    }
+                    return conceito;
                 };
 
                 var contains = function(arr, key, value) {

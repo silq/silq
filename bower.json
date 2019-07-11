@@ -27,6 +27,7 @@
     "ng-csv": "0.3.6",
     "ng-file-upload-shim": "11.2.3",
     "ng-file-upload": "11.2.3",
-    "ngInfiniteScroll": "1.2.1"
+    "ngInfiniteScroll": "1.2.1",
+    "underscore": "1.9.1"
   }
 }
