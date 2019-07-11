@@ -34,7 +34,10 @@ $ mvn clean install -DskipTests
 
 ## Banco de dados
 
-Utilizamos docker para gerenciamento dos bancos de dados de desenvolvimento e teste. Utilize `docker-compose` (pode ser necessário instalá-lo) para criar as bases de dados de desenvolvimento e de testes com o comando `docker-compose -f docker-compose.yml up -d`.
+Utilizamos docker para gerenciamento dos bancos de dados de desenvolvimento e teste. Utilize `docker-compose` (pode ser necessário instalá-lo) para criar as bases de dados de desenvolvimento e de testes com o comando:
+```sh
+$ docker-compose -f docker-compose.yml up -d
+```
 
 As credenciais de conexão com o banco estão no arquivo `docker-compose.yml`.
 
