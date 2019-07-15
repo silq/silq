@@ -49,6 +49,14 @@ angular.module('silq2App')
                     return nota;
                 };
 
+                $scope.totalizador = function(classificacoes){
+                    var totalizador = 0;
+                    classificacoes.forEach(function(classificacao){
+                        totalizador += classificacao.pontuacao
+                    });
+                    return totalizador
+                };
+
                 $scope.obterClassificacao = function(artigos, trabalhos) {
                     var nota = $scope.obterPontuacao(artigos, trabalhos);
                     var quantidadeArtigos = 0;

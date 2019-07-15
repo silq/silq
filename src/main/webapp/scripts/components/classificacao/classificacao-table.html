@@ -65,4 +65,10 @@
             <th scope="col"> {{ item.classificacao }}</th>
         </tr>
     </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="{{years.length*6+1}}"></td>
+        <td colspan="2">{{totalizador(classificacoes)}}</td>
+    </tr>
+    </tfoot>
 </table>
