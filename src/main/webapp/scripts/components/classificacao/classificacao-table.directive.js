@@ -28,22 +28,17 @@ angular.module('silq2App')
                         'sem-conceito': 0,
                         'total': 0
                     };
-                    var anoLimite = new Date().getFullYear()-4;
                     var nota = 0;
                     for(var index in artigos) {
-                        if(Number(index) >= anoLimite){
-                            var conceitos = artigos[index];
-                            for(var conceito in conceitos) {
-                                nota = nota +  (CONCEITO_NOTA_ENUM[conceito] * conceitos[conceito])
-                            }
+                        var conceitos = artigos[index];
+                        for(var conceito in conceitos) {
+                            nota = nota +  (CONCEITO_NOTA_ENUM[conceito] * conceitos[conceito])
                         }
                     }
                     for(var index in trabalhos) {
-                        if(Number(index) >= anoLimite){
-                            var conceitos = trabalhos[index];
-                            for(var conceito in conceitos) {
-                                nota = nota + (CONCEITO_NOTA_ENUM[conceito] * conceitos[conceito])
-                            }
+                        var conceitos = trabalhos[index];
+                        for(var conceito in conceitos) {
+                            nota = nota + (CONCEITO_NOTA_ENUM[conceito] * conceitos[conceito])
                         }
                     }
                     return nota;
@@ -60,11 +55,8 @@ angular.module('silq2App')
                 $scope.obterClassificacao = function(artigos, trabalhos) {
                     var nota = $scope.obterPontuacao(artigos, trabalhos);
                     var quantidadeArtigos = 0;
-                    var anoLimite = new Date().getFullYear()-4;
                     for(var index in artigos) {
-                        if(Number(index) >= anoLimite){
-                            quantidadeArtigos = quantidadeArtigos + artigos[index]['total']
-                        }
+                        quantidadeArtigos = quantidadeArtigos + artigos[index]['total']
                     }
                     if(nota >= 200 && quantidadeArtigos >= 3){
                         return 'GRUPO I'
@@ -101,26 +93,34 @@ angular.module('silq2App')
                     var fim = $scope.periodo.fim
 
                     var artigosSiclap = avaliacoes.map(function(avaliacao) { return avaliacao.stats.publicacoesPorAno.artigosSICLAP });
+                    var trabalhosSiclap = avaliacoes.map(function(avaliacao) { return avaliacao.stats.publicacoesPorAno.trabalhosSICLAP });
 
                     if(!inicio && !fim){
-                    _.each(artigosSiclap, function(obj){
-                        _.each(_.keys(obj), function(k){
-                            if(_.has(obj[k],"A1") || _.has(obj[k],"A2") || _.has(obj[k],"B1") ){
-                                if(inicio > Number(k) || !inicio){
-                                    inicio = Number(k)
+                        _.each(artigosSiclap, function(obj){
+                            _.each(_.keys(obj), function(k){
+                                if(_.has(obj[k],"A1") || _.has(obj[k],"A2") || _.has(obj[k],"B1") ){
+                                    if(inicio > Number(k) || !inicio){
+                                        inicio = Number(k)
+                                    }
+                                    if(fim < Number(k) || !fim){
+                                        fim = Number(k)
+                                    }
                                 }
-                                if(fim < Number(k) || !fim){
-                                    fim = Number(k)
+                            })
+                        });
+                        _.each(trabalhosSiclap, function(obj){
+                            _.each(_.keys(obj), function(k){
+                                if(_.has(obj[k],"A1") || _.has(obj[k],"A2") || _.has(obj[k],"B1") ){
+                                    if(inicio > Number(k) || !inicio){
+                                        inicio = Number(k)
+                                    }
+                                    if(fim < Number(k) || !fim){
+                                        fim = Number(k)
+                                    }
                                 }
-                            }
+                            })
                         })
-                    })
                     }
-                    // artigosSiclap.forEach(function(element){
-                    //     });
-                    //     _.has(element[0]["2010"],"A1")
-                    // })
-                    var trabalhosSiclap = avaliacoes.map(function(avaliacao) { return avaliacao.stats.publicacoesPorAno.trabalhosSICLAP });
 
                     for (var i = inicio; i <= fim; i++) {
                         $scope.years.push(i)
