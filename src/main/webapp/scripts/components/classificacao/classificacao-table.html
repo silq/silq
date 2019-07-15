@@ -2,27 +2,17 @@
     <thead>
     <tr>
         <th scope="col"></th>
-        <th colspan="6">{{ currentYear-4 }}</th>
-        <th colspan="6">{{ currentYear-3 }}</th>
-        <th colspan="6">{{ currentYear-2 }}</th>
-        <th colspan="6">{{ currentYear-1 }}</th>
+        <th ng-repeat="year in years" colspan="6">
+            {{ year }}
+        </th>
         <th scope="col"></th>
         <th scope="col"></th>
     </tr>
     <tr>
         <th scope="col"></th>
-        <th colspan="2">A1</th>
+        <th ng-repeat-start="year in years" colspan="2">A1</th>
         <th colspan="2">A2</th>
-        <th colspan="2">B1</th>
-        <th colspan="2">A1</th>
-        <th colspan="2">A2</th>
-        <th colspan="2">B1</th>
-        <th colspan="2">A1</th>
-        <th colspan="2">A2</th>
-        <th colspan="2">B1</th>
-        <th colspan="2">A1</th>
-        <th colspan="2">A2</th>
-        <th colspan="2">B1</th>
+        <th ng-repeat-end colspan="2">B1</th>
         <th scope="col"></th>
         <th scope="col"></th>
     </tr>
@@ -36,30 +26,12 @@
                 </span>
             </a>
         </th>
-        <th scope="col">A</th>
+        <th ng-repeat-start="year in years" scope="col">A</th>
         <th scope="col">T</th>
         <th scope="col">A</th>
         <th scope="col">T</th>
         <th scope="col">A</th>
-        <th scope="col">T</th>
-        <th scope="col">A</th>
-        <th scope="col">T</th>
-        <th scope="col">A</th>
-        <th scope="col">T</th>
-        <th scope="col">A</th>
-        <th scope="col">T</th>
-        <th scope="col">A</th>
-        <th scope="col">T</th>
-        <th scope="col">A</th>
-        <th scope="col">T</th>
-        <th scope="col">A</th>
-        <th scope="col">T</th>
-        <th scope="col">A</th>
-        <th scope="col">T</th>
-        <th scope="col">A</th>
-        <th scope="col">T</th>
-        <th scope="col">A</th>
-        <th scope="col">T</th>
+        <th ng-repeat-end scope="col">T</th>
         <th scope="col">
             <a ng-click="orderByField='pontuacao'; reverseSort = !reverseSort">
                 Pontuação
@@ -83,30 +55,12 @@
     <tbody>
         <tr ng-repeat="item in classificacoes | orderBy:orderByField:reverseSort">
             <td>{{ item.nome }}</td>
-            <td>{{ item.primeiroAno.artigos.a1 }}</td>
-            <td>{{ item.primeiroAno.trabalhos.a1 }}</td>
-            <td>{{ item.primeiroAno.artigos.a2 }}</td>
-            <td>{{ item.primeiroAno.trabalhos.a2 }}</td>
-            <td>{{ item.primeiroAno.artigos.b1 }}</td>
-            <td>{{ item.primeiroAno.trabalhos.b1 }}</td>
-            <td>{{ item.segundoAno.artigos.a1 }}</td>
-            <td>{{ item.segundoAno.trabalhos.a1 }}</td>
-            <td>{{ item.segundoAno.artigos.a2 }}</td>
-            <td>{{ item.segundoAno.trabalhos.a2 }}</td>
-            <td>{{ item.segundoAno.artigos.b1 }}</td>
-            <td>{{ item.segundoAno.trabalhos.b1 }}</td>
-            <td>{{ item.terceiroAno.artigos.a1 }}</td>
-            <td>{{ item.terceiroAno.trabalhos.a1 }}</td>
-            <td>{{ item.terceiroAno.artigos.a2 }}</td>
-            <td>{{ item.terceiroAno.trabalhos.a2 }}</td>
-            <td>{{ item.terceiroAno.artigos.b1 }}</td>
-            <td>{{ item.terceiroAno.trabalhos.b1 }}</td>
-            <td>{{ item.quartoAno.artigos.a1 }}</td>
-            <td>{{ item.quartoAno.trabalhos.a1 }}</td>
-            <td>{{ item.quartoAno.artigos.a2 }}</td>
-            <td>{{ item.quartoAno.trabalhos.a2 }}</td>
-            <td>{{ item.quartoAno.artigos.b1 }}</td>
-            <td>{{ item.quartoAno.trabalhos.b1 }}</td>
+            <td ng-repeat-start="year in years" scope="col">{{ (item.avaliacao | filter:{ano: year})[0].artigos.a1 }}</td>
+            <td scope="col">{{ (item.avaliacao | filter:{ano: year})[0].trabalhos.a1 }}</td>
+            <td scope="col">{{ (item.avaliacao | filter:{ano: year})[0].artigos.a2 }}</td>
+            <td scope="col">{{ (item.avaliacao | filter:{ano: year})[0].trabalhos.a2 }}</td>
+            <td scope="col">{{ (item.avaliacao | filter:{ano: year})[0].artigos.b1 }}</td>
+            <td ng-repeat-end scope="col">{{ (item.avaliacao | filter:{ano: year})[0].trabalhos.b1 }}</td>
             <th scope="col">{{ item.pontuacao }}</th>
             <th scope="col"> {{ item.classificacao }}</th>
         </tr>

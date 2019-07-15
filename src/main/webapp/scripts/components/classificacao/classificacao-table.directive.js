@@ -5,7 +5,8 @@ angular.module('silq2App')
         return {
             restrict: 'E',
             scope: {
-                avaliacoes: '=?avaliacoes'
+                avaliacoes: '=?avaliacoes',
+                periodo: '=?periodo'
             },
             templateUrl: 'scripts/components/classificacao/classificacao-table.html',
             link: function($scope) {
@@ -13,6 +14,7 @@ angular.module('silq2App')
                 $scope.orderByField = 'nome';
                 $scope.reverseSort = false;
                 $scope.classificacoes = [];
+                $scope.years = [];
                 $scope.obterPontuacao = function(artigos, trabalhos) {
                     var CONCEITO_NOTA_ENUM = {
                         'A1': 100,
@@ -51,7 +53,6 @@ angular.module('silq2App')
                     var nota = $scope.obterPontuacao(artigos, trabalhos);
                     var quantidadeArtigos = 0;
                     var anoLimite = new Date().getFullYear()-4;
-                    debugger;
                     for(var index in artigos) {
                         if(Number(index) >= anoLimite){
                             quantidadeArtigos = quantidadeArtigos + artigos[index]['total']
@@ -86,34 +87,61 @@ angular.module('silq2App')
                     }
                 };
 
+                var reload = $scope.reload = function() {
+                    var avaliacoes = $scope.avaliacoes;
+                    var inicio = $scope.periodo.inicio
+                    var fim = $scope.periodo.fim
+
+                    var artigosSiclap = avaliacoes.map(function(avaliacao) { return avaliacao.stats.publicacoesPorAno.artigosSICLAP });
+
+                    if(!inicio && !fim){
+                    _.each(artigosSiclap, function(obj){
+                        _.each(_.keys(obj), function(k){
+                            if(_.has(obj[k],"A1") || _.has(obj[k],"A2") || _.has(obj[k],"B1") ){
+                                if(inicio > Number(k) || !inicio){
+                                    inicio = Number(k)
+                                }
+                                if(fim < Number(k) || !fim){
+                                    fim = Number(k)
+                                }
+                            }
+                        })
+                    })
+                    }
+                    // artigosSiclap.forEach(function(element){
+                    //     });
+                    //     _.has(element[0]["2010"],"A1")
+                    // })
+                    var trabalhosSiclap = avaliacoes.map(function(avaliacao) { return avaliacao.stats.publicacoesPorAno.trabalhosSICLAP });
+
+                    for (var i = inicio; i <= fim; i++) {
+                        $scope.years.push(i)
+                    }
+
+                    avaliacoes.forEach(function(element){
+                        var avaliacao = [];
+                        $scope.years.forEach(function(year){
+                            avaliacao.push({
+                                ano: year,
+                                trabalhos: $scope.obterResultado(element.stats.publicacoesPorAno.trabalhosSICLAP[year]),
+                                artigos: $scope.obterResultado(element.stats.publicacoesPorAno.artigosSICLAP[year])
+                            })
+                        });
+
+                        $scope.classificacoes.push({
+                            nome: element.dadosGerais.nome,
+                            pontuacao: $scope.obterPontuacao(element.stats.publicacoesPorAno.artigosSICLAP, element.stats.publicacoesPorAno.trabalhosSICLAP),
+                            classificacao: $scope.obterClassificacao(element.stats.publicacoesPorAno.artigosSICLAP, element.stats.publicacoesPorAno.trabalhosSICLAP),
+                            avaliacao: avaliacao
+                        })
+                    });
+                    console.log($scope.classificacoes)
+                };
+
                 $scope.$watch('avaliacoes', function(value) {
                     $scope.avaliacoes = value;
                     if ($scope.avaliacoes) {
-
-                        var avaliacoes = $scope.avaliacoes;
-                        avaliacoes.forEach(function(element){
-                            $scope.classificacoes.push({
-                                nome: element.dadosGerais.nome,
-                                pontuacao: $scope.obterPontuacao(element.stats.publicacoesPorAno.artigosSICLAP, element.stats.publicacoesPorAno.trabalhosSICLAP),
-                                classificacao: $scope.obterClassificacao(element.stats.publicacoesPorAno.artigosSICLAP, element.stats.publicacoesPorAno.trabalhosSICLAP),
-                                primeiroAno: {
-                                    trabalhos: $scope.obterResultado(element.stats.publicacoesPorAno.trabalhosSICLAP[$scope.currentYear-4]),
-                                    artigos: $scope.obterResultado(element.stats.publicacoesPorAno.artigosSICLAP[$scope.currentYear-4])
-                                },
-                                segundoAno: {
-                                    trabalhos: $scope.obterResultado(element.stats.publicacoesPorAno.trabalhosSICLAP[$scope.currentYear-3]),
-                                    artigos: $scope.obterResultado(element.stats.publicacoesPorAno.artigosSICLAP[$scope.currentYear-3])
-                                },
-                                terceiroAno: {
-                                    trabalhos: $scope.obterResultado(element.stats.publicacoesPorAno.trabalhosSICLAP[$scope.currentYear-2]),
-                                    artigos: $scope.obterResultado(element.stats.publicacoesPorAno.artigosSICLAP[$scope.currentYear-2])
-                                },
-                                quartoAno: {
-                                    trabalhos: $scope.obterResultado(element.stats.publicacoesPorAno.trabalhosSICLAP[$scope.currentYear-1]),
-                                    artigos: $scope.obterResultado(element.stats.publicacoesPorAno.artigosSICLAP[$scope.currentYear-1])
-                                }
-                            })
-                        });
+                        reload()
                     }
                 });
             }
