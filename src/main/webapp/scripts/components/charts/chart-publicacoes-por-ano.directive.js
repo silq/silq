@@ -10,6 +10,7 @@ angular.module('silq2App')
             },
             templateUrl: 'scripts/components/charts/chart-publicacoes-por-ano.html',
             link: function($scope) {
+                $scope.evaluationSystem = 'QUALIS';
                 $scope.agrupador = [
                     { name: 'Artigos', selected: true },
                     { name: 'Trabalhos', selected: true },

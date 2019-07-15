@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-4">
         <h2 class="title-border">Sistema de avaliação</h2>
-        <select class="form-control" id="sistemaAvaliacao" name="sistemaAvaliacao">
+        <select class="form-control" ng-model="evaluationSystem">
             <option value="QUALIS" selected>QUALIS</option>
             <option value="SICLAP">SICLAP</option>
         </select>
@@ -57,6 +57,6 @@
     </div>
 
     <div class="col-md-8">
-        <chart-publicacoes-por-ano stats="results.stats"></chart-publicacoes-por-ano>
+        <chart-publicacoes-por-ano stats="results.stats" evaluation-system="evaluationSystem"></chart-publicacoes-por-ano>
     </div>
 </div>
