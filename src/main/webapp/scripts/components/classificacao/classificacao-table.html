@@ -55,12 +55,12 @@
     <tbody>
         <tr ng-repeat="item in classificacoes | orderBy:orderByField:reverseSort">
             <td>{{ item.nome }}</td>
-            <td ng-repeat-start="year in years" scope="col">{{ (item.avaliacao | filter:{ano: year})[0].artigos.a1 }}</td>
-            <td scope="col">{{ (item.avaliacao | filter:{ano: year})[0].trabalhos.a1 }}</td>
-            <td scope="col">{{ (item.avaliacao | filter:{ano: year})[0].artigos.a2 }}</td>
-            <td scope="col">{{ (item.avaliacao | filter:{ano: year})[0].trabalhos.a2 }}</td>
-            <td scope="col">{{ (item.avaliacao | filter:{ano: year})[0].artigos.b1 }}</td>
-            <td ng-repeat-end scope="col">{{ (item.avaliacao | filter:{ano: year})[0].trabalhos.b1 }}</td>
+            <td ng-repeat-start="year in years" scope="col" style="background-color: #f2dede">{{ (item.avaliacao | filter:{ano: year})[0].artigos.a1 }}</td>
+            <td scope="col" style="background-color: #dff0d8">{{ (item.avaliacao | filter:{ano: year})[0].trabalhos.a1 }}</td>
+            <td scope="col" style="background-color: #f2dede">{{ (item.avaliacao | filter:{ano: year})[0].artigos.a2 }}</td>
+            <td scope="col" style="background-color: #dff0d8">{{ (item.avaliacao | filter:{ano: year})[0].trabalhos.a2 }}</td>
+            <td scope="col" style="background-color: #f2dede">{{ (item.avaliacao | filter:{ano: year})[0].artigos.b1 }}</td>
+            <td ng-repeat-end scope="col" style="background-color: #dff0d8">{{ (item.avaliacao | filter:{ano: year})[0].trabalhos.b1 }}</td>
             <th scope="col">{{ item.pontuacao }}</th>
             <th scope="col"> {{ item.classificacao }}</th>
         </tr>
