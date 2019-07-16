@@ -78,8 +78,21 @@ angular.module('silq2App')
                             chart.data[i].push(count);
                         }
                     }
-
                     $scope.chart = chart;
+                };
+
+                var createShallowResults = function(chart) {
+                    var arr = [];
+                    var anos = [];
+                    anos.push('ANOS');
+                    Array.prototype.push.apply(anos, chart.labels);
+                    arr.push(anos);
+
+                    chart.series.forEach(function(item,index){
+                        arr[index+1] = [item];
+                        Array.prototype.push.apply(arr[index+1], chart.data[index]);
+                    });
+                    return arr;
                 };
 
                 // Se 'stats' for modificado, atualiza o gráfico:
@@ -93,6 +106,10 @@ angular.module('silq2App')
                 $scope.$watch('evaluationSystem', function(value) {
                     reload();
                 });
+
+                $scope.getGraficoCSV = function() {
+                    return createShallowResults($scope.chart);
+                };
             }
         };
     });
