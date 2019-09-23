@@ -92,9 +92,13 @@ public class AvaliacaoStatsTest {
 	@Test
 	public void testGetPublicacoesPorAno() {
 		Map<String, Map<Integer, ContadorConceitos>> map = this.stats.getPublicacoesPorAno();
-		Assertions.assertThat(map).containsOnlyKeys("artigos", "trabalhos");
+		Assertions.assertThat(map).containsOnlyKeys("artigos", "trabalhos", "resumos", "artigosSICLAP", "trabalhosSICLAP","resumosSICLAP");
 		Assertions.assertThat(map.get("artigos")).isEqualTo(this.stats.getQtdeArtigosPorAno());
 		Assertions.assertThat(map.get("trabalhos")).isEqualTo(this.stats.getQtdeTrabalhosPorAno());
+        Assertions.assertThat(map.get("resumos")).isEqualTo(this.stats.getQtdeResumosPorAno());
+        Assertions.assertThat(map.get("artigosSICLAP")).isEqualTo(this.stats.getQtdeArtigosPorAnoSICLAP());
+        Assertions.assertThat(map.get("trabalhosSICLAP")).isEqualTo(this.stats.getQtdeTrabalhosPorAnoSICLAP());
+        Assertions.assertThat(map.get("resumosSICLAP")).isEqualTo(this.stats.getQtdeResumosPorAnoSICLAP());
 	}
 
 	@Test
