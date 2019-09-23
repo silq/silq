@@ -224,6 +224,18 @@ CREATE TABLE tb_grupo (
 ALTER TABLE tb_grupo OWNER TO postgres;
 
 --
+-- Name: rl_espectador; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE rl_espectador (
+    co_usuario bigint NOT NULL,
+    co_grupo bigint NOT NULL
+);
+
+
+ALTER TABLE rl_espectador OWNER TO postgres;
+
+--
 -- Name: tb_qualis_evento; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -456,6 +468,11 @@ ALTER TABLE ONLY tb_feedback
 ALTER TABLE ONLY tb_grupo
     ADD CONSTRAINT tb_grupo_co_usuario_fkey FOREIGN KEY (co_usuario) REFERENCES tb_usuario(co_seq_usuario);
 
+ALTER TABLE ONLY rl_espectador
+    ADD CONSTRAINT rl_espectador_co_usuario_fkey FOREIGN KEY (co_usuario) REFERENCES tb_usuario(co_seq_usuario);
+ALTER TABLE ONLY rl_espectador
+    ADD CONSTRAINT rl_espectador_co_grupo_fkey FOREIGN KEY (co_grupo) REFERENCES tb_grupo(co_seq_grupo);
+
 
 --
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
@@ -470,4 +487,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
