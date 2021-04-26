@@ -22,7 +22,7 @@
     <properties>
         <assertj-core.version>3.5.2</assertj-core.version>
         <awaitility.version>1.4.0</awaitility.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-lang.version>2.6</commons-lang.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
         <hikaricp.version>2.4.1</hikaricp.version>
